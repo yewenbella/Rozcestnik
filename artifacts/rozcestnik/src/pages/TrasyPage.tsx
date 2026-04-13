@@ -1,40 +1,54 @@
 import PageLayout from "@/components/PageLayout";
-import { Route } from "lucide-react";
+import { Route, ChevronRight } from "lucide-react";
+
+const trasy = [
+  { id: 1, label: "Trasa č.1" },
+];
 
 export default function TrasyPage() {
   return (
     <PageLayout title="Trasy" backPath="/">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "48px 24px",
-          gap: "16px",
-          textAlign: "center",
-        }}
-      >
-        <div
-          style={{
-            width: "64px",
-            height: "64px",
-            borderRadius: "20px",
-            background: "rgba(14,165,233,0.12)",
-            border: "1.5px solid rgba(14,165,233,0.25)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Route size={28} color="#38bdf8" strokeWidth={1.8} />
-        </div>
-        <h2 style={{ color: "white", fontWeight: 700, fontSize: "1.1rem", margin: 0 }}>
-          Žádné trasy zatím
-        </h2>
-        <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.85rem", lineHeight: 1.6, margin: 0 }}>
-          Trasy budou přidány brzy.
-        </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px", padding: "16px" }}>
+        {trasy.map((trasa) => (
+          <button
+            key={trasa.id}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "100%",
+              padding: "16px 18px",
+              borderRadius: "16px",
+              border: "1px solid rgba(14,165,233,0.30)",
+              background: "rgba(14,165,233,0.10)",
+              backdropFilter: "blur(12px)",
+              cursor: "pointer",
+              textAlign: "left",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <div
+                style={{
+                  width: "38px",
+                  height: "38px",
+                  borderRadius: "12px",
+                  background: "rgba(14,165,233,0.15)",
+                  border: "1px solid rgba(14,165,233,0.25)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                }}
+              >
+                <Route size={18} color="#38bdf8" strokeWidth={1.8} />
+              </div>
+              <span style={{ color: "white", fontWeight: 700, fontSize: "1rem" }}>
+                {trasa.label}
+              </span>
+            </div>
+            <ChevronRight size={18} color="rgba(255,255,255,0.4)" />
+          </button>
+        ))}
       </div>
     </PageLayout>
   );
