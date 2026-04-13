@@ -7,33 +7,33 @@ const buttons = [
     label: "MAPA",
     icon: Map,
     path: "/mapa",
-    color: "from-emerald-500 to-emerald-600",
-    border: "border-emerald-700",
-    glow: "#10b981",
+    gradient: "linear-gradient(135deg, #22c55e, #16a34a)",
+    border: "#15803d",
+    glow: "#22c55e",
   },
   {
     label: "TRASY",
     icon: Route,
     path: "/trasy",
-    color: "from-sky-500 to-sky-600",
-    border: "border-sky-700",
-    glow: "#0ea5e9",
+    gradient: "linear-gradient(135deg, #38bdf8, #0284c7)",
+    border: "#0369a1",
+    glow: "#38bdf8",
   },
   {
     label: "ŽEBŘÍČEK",
     icon: Trophy,
     path: "/zebricek",
-    color: "from-amber-500 to-orange-500",
-    border: "border-amber-700",
-    glow: "#f59e0b",
+    gradient: "linear-gradient(135deg, #fb923c, #ea580c)",
+    border: "#c2410c",
+    glow: "#fb923c",
   },
   {
     label: "PRAVIDLA",
     icon: BookOpen,
     path: "/pravidla",
-    color: "from-emerald-500 to-emerald-600",
-    border: "border-emerald-700",
-    glow: "#10b981",
+    gradient: "linear-gradient(135deg, #22c55e, #16a34a)",
+    border: "#15803d",
+    glow: "#22c55e",
   },
 ];
 
@@ -52,8 +52,16 @@ export default function Home() {
         margin: "0 auto",
       }}
     >
-      {/* Hero image — fills edge to edge, no border, no text overlay */}
-      <div style={{ width: "100%", position: "relative", flexShrink: 0 }}>
+      {/* Hero: only show the top scenic/title part of the mockup image, crop the rest */}
+      <div
+        style={{
+          width: "100%",
+          height: "230px",
+          overflow: "hidden",
+          position: "relative",
+          flexShrink: 0,
+        }}
+      >
         <img
           src={mountainBg}
           alt="Turistická krajina"
@@ -61,107 +69,104 @@ export default function Home() {
             width: "100%",
             display: "block",
             objectFit: "cover",
-            objectPosition: "top",
+            objectPosition: "top center",
           }}
         />
-        {/* Only bottom fade to blend into dark background */}
+        {/* Fade bottom so it blends into dark background */}
         <div
           style={{
             position: "absolute",
             bottom: 0,
             left: 0,
             right: 0,
-            height: "60px",
+            height: "70px",
             background: "linear-gradient(to bottom, transparent, #1a2a1a)",
           }}
         />
       </div>
 
-      {/* Divider */}
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "4px", marginBottom: "4px" }}>
-        <div
-          style={{
-            width: "64px",
-            height: "3px",
-            borderRadius: "2px",
-            background: "linear-gradient(90deg, #ca8a04, #f59e0b)",
-          }}
-        />
-      </div>
-
-      {/* Buttons */}
+      {/* HTML buttons — the real interactive ones */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "10px",
-          padding: "10px 20px",
+          gap: "9px",
+          padding: "8px 18px 0 18px",
           flex: 1,
         }}
       >
-        {buttons.map(({ label, icon: Icon, path, color, border, glow }) => (
+        {buttons.map(({ label, icon: Icon, path, gradient, border, glow }) => (
           <button
             key={label}
             onClick={() => navigate(path)}
-            className={`relative flex items-center gap-3 w-full bg-gradient-to-r ${color} border-2 ${border} rounded-xl active:scale-[0.97] transition-all duration-150 group overflow-hidden`}
             style={{
-              boxShadow: `0 3px 14px 0 ${glow}44, 0 1px 4px rgba(0,0,0,0.35)`,
-              padding: "10px 14px",
-              minHeight: "52px",
+              position: "relative",
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              width: "100%",
+              background: gradient,
+              border: `2px solid ${border}`,
+              borderRadius: "14px",
+              padding: "9px 13px",
+              minHeight: "48px",
+              cursor: "pointer",
+              boxShadow: `0 3px 12px 0 ${glow}40, 0 1px 3px rgba(0,0,0,0.3)`,
+              overflow: "hidden",
             }}
           >
-            {/* Wood grain overlay */}
+            {/* Wood grain texture */}
             <div
               style={{
                 position: "absolute",
                 inset: 0,
-                opacity: 0.08,
+                opacity: 0.07,
                 pointerEvents: "none",
                 backgroundImage:
-                  "repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.12) 3px, rgba(0,0,0,0.12) 4px)",
+                  "repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px)",
               }}
             />
-            {/* Icon box */}
+            {/* Icon */}
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "34px",
-                height: "34px",
-                borderRadius: "9px",
+                width: "32px",
+                height: "32px",
+                borderRadius: "8px",
                 backgroundColor: "rgba(0,0,0,0.2)",
-                border: "1.5px solid rgba(255,255,255,0.22)",
+                border: "1.5px solid rgba(255,255,255,0.2)",
                 flexShrink: 0,
               }}
             >
-              <Icon size={18} color="white" strokeWidth={2.2} />
+              <Icon size={16} color="white" strokeWidth={2.3} />
             </div>
             {/* Label */}
             <span
               style={{
                 fontWeight: 800,
                 color: "white",
-                fontSize: "0.95rem",
-                letterSpacing: "0.11em",
-                textShadow: "0 1px 3px rgba(0,0,0,0.4)",
+                fontSize: "0.9rem",
+                letterSpacing: "0.12em",
+                textShadow: "0 1px 3px rgba(0,0,0,0.35)",
               }}
             >
               {label}
             </span>
             {/* Arrow */}
-            <div style={{ marginLeft: "auto", opacity: 0.7 }}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M5 3l6 5-6 5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <div style={{ marginLeft: "auto", opacity: 0.65 }}>
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <path d="M5 3l5 4.5L5 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
           </button>
         ))}
       </div>
 
-      {/* Footer tagline */}
-      <div style={{ display: "flex", justifyContent: "center", paddingBottom: "20px", paddingTop: "8px" }}>
-        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.78rem", letterSpacing: "0.02em" }}>
+      {/* Footer */}
+      <div style={{ display: "flex", justifyContent: "center", paddingBottom: "18px", paddingTop: "10px" }}>
+        <p style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.75rem", letterSpacing: "0.02em" }}>
           Vyberte si směr a vydejte se na cestu
         </p>
       </div>
