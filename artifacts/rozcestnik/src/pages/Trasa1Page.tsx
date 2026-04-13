@@ -255,25 +255,42 @@ export default function Trasa1Page() {
           })}
         </div>
 
-        {/* Total time — compact pill */}
-        <div style={{ marginTop: "10px", display: "flex", justifyContent: "flex-start" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: "6px",
-            padding: "5px 11px", borderRadius: "20px",
-            background: totalDuration ? "rgba(251,191,36,0.14)" : "rgba(255,255,255,0.04)",
-            border: totalDuration ? "1px solid rgba(251,191,36,0.40)" : "1px dashed rgba(255,255,255,0.15)",
-            transition: "all 0.4s",
-          }}>
-            <Timer size={12} color={totalDuration ? "#fbbf24" : "rgba(255,255,255,0.25)"} />
-            <span style={{
-              fontSize: "0.78rem", fontWeight: 700,
-              color: totalDuration ? "#fbbf24" : "rgba(255,255,255,0.25)",
-            }}>
-              {totalDuration
-                ? `Celkový čas: ${totalDuration} (${startEntry!.display}–${finishEntry!.display})`
-                : "Celkový čas trasy"}
+        {/* Total time — centered card */}
+        <div style={{
+          marginTop: "16px",
+          padding: "14px 16px",
+          borderRadius: "16px",
+          background: totalDuration
+            ? "rgba(253,230,138,0.10)"
+            : "rgba(253,230,138,0.04)",
+          border: totalDuration
+            ? "1px solid rgba(253,230,138,0.40)"
+            : "1px dashed rgba(253,230,138,0.20)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "4px",
+          textAlign: "center",
+          transition: "all 0.4s",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            <Timer size={13} color={totalDuration ? "#fde68a" : "rgba(253,230,138,0.35)"} />
+            <span style={{ color: totalDuration ? "rgba(253,230,138,0.7)" : "rgba(253,230,138,0.35)", fontSize: "0.70rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+              Celkový čas trasy
             </span>
           </div>
+          {totalDuration ? (
+            <>
+              <div style={{ color: "#fde68a", fontWeight: 800, fontSize: "1.25rem", lineHeight: 1.2 }}>{totalDuration}</div>
+              <div style={{ color: "rgba(253,230,138,0.45)", fontSize: "0.72rem" }}>
+                {startEntry!.display} → {finishEntry!.display}
+              </div>
+            </>
+          ) : (
+            <div style={{ color: "rgba(253,230,138,0.30)", fontSize: "0.80rem", fontStyle: "italic" }}>
+              Zapíše se po dokončení trasy
+            </div>
+          )}
         </div>
 
         <div style={{ flex: 1 }} />
