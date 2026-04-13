@@ -255,47 +255,24 @@ export default function Trasa1Page() {
           })}
         </div>
 
-        {/* Total time — placeholder always visible, fills in when START + CÍL recorded */}
-        <div style={{
-          marginTop: "16px",
-          padding: "14px 16px",
-          borderRadius: "16px",
-          background: totalDuration
-            ? "linear-gradient(135deg, rgba(251,191,36,0.12) 0%, rgba(251,191,36,0.05) 100%)"
-            : "rgba(255,255,255,0.03)",
-          border: totalDuration
-            ? "1px solid rgba(251,191,36,0.35)"
-            : "1px dashed rgba(255,255,255,0.13)",
-          display: "flex",
-          alignItems: "center",
-          gap: "12px",
-          transition: "all 0.4s",
-        }}>
+        {/* Total time — compact pill */}
+        <div style={{ marginTop: "10px", display: "flex", justifyContent: "flex-start" }}>
           <div style={{
-            width: "38px", height: "38px", borderRadius: "12px",
-            background: totalDuration ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.05)",
-            border: totalDuration ? "1px solid rgba(251,191,36,0.30)" : "1px solid rgba(255,255,255,0.10)",
-            display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+            display: "inline-flex", alignItems: "center", gap: "6px",
+            padding: "5px 11px", borderRadius: "20px",
+            background: totalDuration ? "rgba(251,191,36,0.14)" : "rgba(255,255,255,0.04)",
+            border: totalDuration ? "1px solid rgba(251,191,36,0.40)" : "1px dashed rgba(255,255,255,0.15)",
             transition: "all 0.4s",
           }}>
-            <Timer size={18} color={totalDuration ? "#fbbf24" : "rgba(255,255,255,0.2)"} />
-          </div>
-          <div>
-            <div style={{ color: totalDuration ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.3)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "2px" }}>
-              Celkový čas trasy
-            </div>
-            {totalDuration ? (
-              <>
-                <div style={{ color: "#fbbf24", fontWeight: 800, fontSize: "1.3rem" }}>{totalDuration}</div>
-                <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.72rem", marginTop: "1px" }}>
-                  {startEntry!.display} → {finishEntry!.display}
-                </div>
-              </>
-            ) : (
-              <div style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.82rem", fontStyle: "italic" }}>
-                Zapíše se po dokončení trasy
-              </div>
-            )}
+            <Timer size={12} color={totalDuration ? "#fbbf24" : "rgba(255,255,255,0.25)"} />
+            <span style={{
+              fontSize: "0.78rem", fontWeight: 700,
+              color: totalDuration ? "#fbbf24" : "rgba(255,255,255,0.25)",
+            }}>
+              {totalDuration
+                ? `Celkový čas: ${totalDuration} (${startEntry!.display}–${finishEntry!.display})`
+                : "Celkový čas trasy"}
+            </span>
           </div>
         </div>
 
