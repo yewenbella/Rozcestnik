@@ -7,33 +7,37 @@ const buttons = [
     label: "MAPA",
     icon: Map,
     path: "/mapa",
-    gradient: "linear-gradient(135deg, #22c55e, #16a34a)",
-    border: "#15803d",
+    gradient: "linear-gradient(135deg, rgba(34,197,94,0.38), rgba(22,163,74,0.32))",
+    border: "rgba(34,197,94,0.55)",
     glow: "#22c55e",
+    accent: "#4ade80",
   },
   {
     label: "TRASY",
     icon: Route,
     path: "/trasy",
-    gradient: "linear-gradient(135deg, #38bdf8, #0284c7)",
-    border: "#0369a1",
+    gradient: "linear-gradient(135deg, rgba(56,189,248,0.38), rgba(2,132,199,0.32))",
+    border: "rgba(56,189,248,0.55)",
     glow: "#38bdf8",
+    accent: "#7dd3fc",
   },
   {
     label: "ŽEBŘÍČEK",
     icon: Trophy,
     path: "/zebricek",
-    gradient: "linear-gradient(135deg, #fb923c, #ea580c)",
-    border: "#c2410c",
+    gradient: "linear-gradient(135deg, rgba(251,146,60,0.38), rgba(234,88,12,0.32))",
+    border: "rgba(251,146,60,0.55)",
     glow: "#fb923c",
+    accent: "#fdba74",
   },
   {
     label: "PRAVIDLA",
     icon: BookOpen,
     path: "/pravidla",
-    gradient: "linear-gradient(135deg, #22c55e, #16a34a)",
-    border: "#15803d",
+    gradient: "linear-gradient(135deg, rgba(34,197,94,0.38), rgba(22,163,74,0.32))",
+    border: "rgba(34,197,94,0.55)",
     glow: "#22c55e",
+    accent: "#4ade80",
   },
 ];
 
@@ -133,7 +137,7 @@ export default function Home() {
             flex: 1,
           }}
         >
-          {buttons.map(({ label, icon: Icon, path, gradient, border, glow }) => (
+          {buttons.map(({ label, icon: Icon, path, gradient, border, glow, accent }) => (
             <button
               key={label}
               onClick={() => navigate(path)}
@@ -144,12 +148,14 @@ export default function Home() {
                 gap: "8px",
                 width: "220px",
                 background: gradient,
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
                 border: `1.5px solid ${border}`,
                 borderRadius: "10px",
                 padding: "12px 14px",
                 minHeight: "52px",
                 cursor: "pointer",
-                boxShadow: `0 3px 10px 0 ${glow}45, 0 1px 4px rgba(0,0,0,0.35)`,
+                boxShadow: `0 4px 16px 0 ${glow}30, inset 0 1px 0 rgba(255,255,255,0.18)`,
                 overflow: "hidden",
               }}
             >
@@ -178,7 +184,7 @@ export default function Home() {
                   flexShrink: 0,
                 }}
               >
-                <Icon size={13} color="white" strokeWidth={2.3} />
+                <Icon size={13} color={accent} strokeWidth={2.3} />
               </div>
               {/* Label */}
               <span
