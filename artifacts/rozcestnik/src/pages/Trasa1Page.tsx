@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 const STORAGE_KEY = "trasa1_times";
-const RADIUS_M = 300;
+const RADIUS_M = 100;
 
 const steps = [
   {
