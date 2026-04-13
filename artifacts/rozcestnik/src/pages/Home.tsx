@@ -1,6 +1,7 @@
 import { useLocation } from "wouter";
 import { Map, Route, Trophy, BookOpen } from "lucide-react";
 import heroBg from "@/assets/hero-bg.png";
+import WeatherWidget from "@/components/WeatherWidget";
 
 const buttons = [
   {
@@ -209,8 +210,13 @@ export default function Home() {
           ))}
         </div>
 
+        {/* Weather */}
+        <div style={{ display: "flex", justifyContent: "center", paddingBottom: "10px" }}>
+          <WeatherWidget />
+        </div>
+
         {/* Footer */}
-        <div style={{ textAlign: "center", paddingBottom: "20px", paddingTop: "12px" }}>
+        <div style={{ textAlign: "center", paddingBottom: "20px", paddingTop: "4px" }}>
           <p style={{ color: "rgba(255,255,255,0.42)", fontSize: "0.75rem", letterSpacing: "0.02em" }}>
             Vyberte si směr a vydejte se na cestu
           </p>
