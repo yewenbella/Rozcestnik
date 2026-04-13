@@ -85,13 +85,14 @@ export default function Home() {
         />
       </div>
 
-      {/* HTML buttons — the real interactive ones */}
+      {/* HTML buttons — centered vertically in remaining space */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
+          justifyContent: "center",
           gap: "9px",
-          padding: "22px 18px 0 18px",
+          padding: "0 18px",
           flex: 1,
         }}
       >

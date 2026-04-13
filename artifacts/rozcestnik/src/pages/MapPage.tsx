@@ -18,11 +18,19 @@ export default function MapPage() {
 
     mapInstanceRef.current = map;
 
-    L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+    // Base map — OSM standard
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
-        'Mapa &copy; <a href="https://opentopomap.org" target="_blank">OpenTopoMap</a> | &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
-      maxZoom: 17,
-      subdomains: ["a", "b", "c"],
+        '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
+      maxZoom: 19,
+    }).addTo(map);
+
+    // Hiking/tourist trails overlay from Waymarked Trails
+    L.tileLayer("https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png", {
+      attribution:
+        'Turistické stezky &copy; <a href="https://hiking.waymarkedtrails.org" target="_blank">Waymarked Trails</a>',
+      maxZoom: 19,
+      opacity: 1,
     }).addTo(map);
 
     return () => {
