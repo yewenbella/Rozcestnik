@@ -4,6 +4,18 @@
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
 
+## Artifacts
+
+### Rozcestník (react-vite, previewPath: /)
+A mobile-optimized Czech hiking challenge web app. Features:
+- Home page with mountain hero image and 4 navigation buttons (Mapa, Trasy, Žebříček, Pravidla) styled as wooden signpost buttons
+- Map page with favorite hiking locations
+- Trasy (Routes) page with 5 hiking routes with difficulty, distance, time
+- Žebříček (Leaderboard) page with ranked couples/teams
+- Pravidla (Rules) page explaining how to play and score points
+- Dark forest green theme, mobile-first layout (max-width 480px)
+- No backend required — all static data
+
 ## Stack
 
 - **Monorepo tool**: pnpm workspaces
