@@ -4,7 +4,7 @@ import PageLayout from "@/components/PageLayout";
 import {
   MapPin, Flag, Camera, Navigation, Car, Bus,
   ChevronUp, ChevronDown, ParkingCircle, Clock,
-  Loader2, AlertCircle, CheckCircle2, Timer,
+  Loader2, AlertCircle, CheckCircle2, Timer, ExternalLink,
 } from "lucide-react";
 import { trasa1Steps } from "@/data/trasa1Steps";
 
@@ -285,11 +285,26 @@ export default function Trasa1Page() {
 
           {busOpen && (
             <div style={{ padding: "12px 14px", borderRadius: "12px", background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.22)", display: "flex", alignItems: "center", gap: "8px" }}>
-              <Bus size={15} color="#60a5fa" />
-              <div>
+              <Bus size={15} color="#60a5fa" flexShrink={0} />
+              <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem", marginBottom: "2px" }}>Zastávka</div>
                 <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Janov nad Nisou, pošta</div>
               </div>
+              <a
+                href="https://idos.cz/autobusy/spojeni/?f=Janov+nad+Nisou%2C+po%C5%A1ta"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex", alignItems: "center", gap: "4px", flexShrink: 0,
+                  padding: "5px 9px", borderRadius: "8px",
+                  background: "rgba(96,165,250,0.15)", border: "1px solid rgba(96,165,250,0.35)",
+                  color: "#60a5fa", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <ExternalLink size={11} />
+                IDOS
+              </a>
             </div>
           )}
         </div>
