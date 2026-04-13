@@ -1,5 +1,5 @@
 import { useParams } from "wouter";
-import { MapPin, Navigation, Flag, Camera, Info } from "lucide-react";
+import { MapPin, Navigation, Flag, Camera, Info, ExternalLink } from "lucide-react";
 import { trasa1Steps } from "@/data/trasa1Steps";
 import PageLayout from "@/components/PageLayout";
 
@@ -54,11 +54,14 @@ export default function StepDetailPage() {
           border: "1px solid rgba(255,255,255,0.10)",
           padding: "16px",
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "10px" }}>
-            <Info size={14} color={step.color} />
-            <span style={{ color: step.color, fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.05em" }}>
-              O tomto místě
-            </span>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "10px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
+              <Info size={14} color={step.color} />
+              <span style={{ color: step.color, fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.05em" }}>
+                O tomto místě
+              </span>
+            </div>
+            <span style={{ color: "rgba(255,255,255,0.25)", fontSize: "0.68rem" }}>zdroj: Wikipedie</span>
           </div>
           <p style={{
             margin: 0,
@@ -68,6 +71,23 @@ export default function StepDetailPage() {
           }}>
             {step.info}
           </p>
+          {step.wikiUrl && (
+            <a
+              href={step.wikiUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "5px",
+                marginTop: "12px",
+                padding: "5px 10px", borderRadius: "8px",
+                background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)",
+                color: "rgba(255,255,255,0.55)", fontSize: "0.74rem", textDecoration: "none",
+              }}
+            >
+              <ExternalLink size={11} />
+              Přečíst celý článek na Wikipedii
+            </a>
+          )}
         </div>
 
         {/* Proof card */}
