@@ -4,7 +4,7 @@ import PageLayout from "@/components/PageLayout";
 import {
   MapPin, Flag, Camera, Navigation, Car, Bus,
   ChevronUp, ChevronDown, ParkingCircle, Clock,
-  Loader2, AlertCircle, CheckCircle2, Timer, ExternalLink,
+  Loader2, AlertCircle, CheckCircle2, Timer, ExternalLink, Hotel,
 } from "lucide-react";
 import { trasa1Steps } from "@/data/trasa1Steps";
 
@@ -53,6 +53,7 @@ type GeoState = "idle" | "loading" | "error";
 export default function Trasa1Page() {
   const [busOpen, setBusOpen] = useState(false);
   const [parkOpen, setParkOpen] = useState(false);
+  const [hotelOpen, setHotelOpen] = useState(false);
 
   const [times, setTimes] = useState<StoredTimes>(() => {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
@@ -258,6 +259,39 @@ export default function Trasa1Page() {
 
         {/* Transport section */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
+
+          {/* Ubytování button */}
+          <button onClick={() => setHotelOpen((o) => !o)} style={{
+            width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+            padding: "8px 10px", borderRadius: "12px",
+            border: hotelOpen ? "1px solid rgba(232,121,249,0.45)" : "1px solid rgba(255,255,255,0.15)",
+            background: hotelOpen ? "rgba(232,121,249,0.15)" : "rgba(255,255,255,0.07)",
+            backdropFilter: "blur(10px)", color: "rgba(255,255,255,0.8)",
+            fontWeight: 700, fontSize: "0.80rem", cursor: "pointer", transition: "all 0.2s",
+          }}>
+            <Hotel size={15} color={hotelOpen ? "#e879f9" : "rgba(255,255,255,0.7)"} />
+            Ubytování
+            {hotelOpen ? <ChevronUp size={12} color="rgba(255,255,255,0.5)" /> : <ChevronDown size={12} color="rgba(255,255,255,0.5)" />}
+          </button>
+
+          {hotelOpen && (
+            <div style={{ padding: "12px 14px", borderRadius: "12px", background: "rgba(232,121,249,0.08)", border: "1px solid rgba(232,121,249,0.22)", display: "flex", flexDirection: "column", gap: "8px" }}>
+              {[
+                { name: "Penzion Janov", detail: "Janov nad Nisou 236" },
+                { name: "Hotel Maxov", detail: "Maxov 27, Janov nad Nisou" },
+                { name: "Penzion Severák", detail: "u lyžařského areálu Severák" },
+              ].map((h) => (
+                <div key={h.name} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <Hotel size={13} color="#e879f9" style={{ flexShrink: 0 }} />
+                  <div>
+                    <div style={{ color: "white", fontWeight: 600, fontSize: "0.85rem" }}>{h.name}</div>
+                    <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem" }}>{h.detail}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
           <div style={{ display: "flex", gap: "10px" }}>
             <button onClick={() => setParkOpen((o) => !o)} style={{
               flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
