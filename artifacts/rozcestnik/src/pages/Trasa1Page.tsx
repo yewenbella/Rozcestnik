@@ -255,44 +255,44 @@ export default function Trasa1Page() {
           })}
         </div>
 
-        {/* Total time — button style, centered, yellow */}
-        <div style={{ marginTop: "16px", display: "flex", justifyContent: "center" }}>
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "2px",
-            padding: "8px 20px",
-            borderRadius: "12px",
-            border: totalDuration ? "1px solid rgba(253,230,138,0.45)" : "1px dashed rgba(253,230,138,0.25)",
-            background: totalDuration ? "rgba(253,230,138,0.15)" : "rgba(253,230,138,0.05)",
-            backdropFilter: "blur(10px)",
-            minWidth: "160px",
-            transition: "all 0.4s",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <Timer size={14} color={totalDuration ? "#fde68a" : "rgba(253,230,138,0.35)"} />
-              <span style={{ color: totalDuration ? "#fde68a" : "rgba(253,230,138,0.35)", fontWeight: 700, fontSize: "0.80rem" }}>
-                {totalDuration ? totalDuration : "Celkový čas trasy"}
-              </span>
-            </div>
-            {totalDuration ? (
-              <span style={{ color: "rgba(253,230,138,0.45)", fontSize: "0.72rem", marginTop: "2px" }}>
-                {startEntry!.display} → {finishEntry!.display}
-              </span>
-            ) : (
-              <span style={{ color: "rgba(253,230,138,0.25)", fontSize: "0.72rem", fontStyle: "italic", marginTop: "1px" }}>
-                Zapíše se po dokončení trasy
-              </span>
-            )}
-          </div>
-        </div>
-
         <div style={{ flex: 1 }} />
 
         {/* Transport section */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
+
+          {/* Total time — inside transport section */}
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "2px",
+              padding: "8px 20px",
+              borderRadius: "12px",
+              border: totalDuration ? "1px solid rgba(253,230,138,0.45)" : "1px dashed rgba(253,230,138,0.25)",
+              background: totalDuration ? "rgba(253,230,138,0.15)" : "rgba(253,230,138,0.05)",
+              backdropFilter: "blur(10px)",
+              minWidth: "160px",
+              transition: "all 0.4s",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                <Timer size={14} color={totalDuration ? "#fde68a" : "rgba(253,230,138,0.35)"} />
+                <span style={{ color: totalDuration ? "#fde68a" : "rgba(253,230,138,0.35)", fontWeight: 700, fontSize: "0.80rem" }}>
+                  {totalDuration ? totalDuration : "Celkový čas trasy"}
+                </span>
+              </div>
+              {totalDuration ? (
+                <span style={{ color: "rgba(253,230,138,0.45)", fontSize: "0.72rem", marginTop: "2px" }}>
+                  {startEntry!.display} → {finishEntry!.display}
+                </span>
+              ) : (
+                <span style={{ color: "rgba(253,230,138,0.25)", fontSize: "0.72rem", fontStyle: "italic", marginTop: "1px" }}>
+                  Zapíše se po dokončení trasy
+                </span>
+              )}
+            </div>
+          </div>
           <div style={{ display: "flex", gap: "10px" }}>
             <button onClick={() => setParkOpen((o) => !o)} style={{
               flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
