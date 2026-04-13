@@ -10,6 +10,7 @@ const sections = [
       "Každý tým tvoří dvojice",
       "Společně vybíráte a absolvujete trasy",
       "Zapisujte výsledky po každé trase",
+      "Zákaz používání navigace (GPS)",
     ],
   },
   {
