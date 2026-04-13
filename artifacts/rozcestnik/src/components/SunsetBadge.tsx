@@ -161,16 +161,7 @@ export default function SunsetBadge() {
         display: "flex",
         alignItems: "center",
         gap: "7px",
-        padding: "6px 11px",
-        borderRadius: "12px",
-        background: info.passed
-          ? "rgba(99,102,241,0.15)"
-          : "rgba(251,146,60,0.15)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        border: info.passed
-          ? "1px solid rgba(99,102,241,0.30)"
-          : "1px solid rgba(251,146,60,0.30)",
+        padding: "4px 8px",
         zIndex: 10,
         pointerEvents: "none",
         userSelect: "none",
