@@ -289,6 +289,23 @@ export default function Trasa1Page() {
                   </div>
                 </div>
               ))}
+              <div style={{ borderTop: "1px solid rgba(232,121,249,0.15)", paddingTop: "8px", display: "flex", justifyContent: "flex-end" }}>
+                <a
+                  href="https://www.booking.com/searchresults.html?ss=Janov+nad+Nisou"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "flex", alignItems: "center", gap: "4px",
+                    padding: "5px 10px", borderRadius: "8px",
+                    background: "rgba(0,100,200,0.20)", border: "1px solid rgba(0,150,255,0.35)",
+                    color: "#60a5fa", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <ExternalLink size={11} />
+                  Hledat na Booking.com
+                </a>
+              </div>
             </div>
           )}
 
