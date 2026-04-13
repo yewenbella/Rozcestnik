@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PageLayout from "@/components/PageLayout";
-import { MapPin, Flag, Camera, Navigation, Car, Bus, ChevronUp, ChevronDown, ParkingCircle } from "lucide-react";
+import { MapPin, Flag, Camera, Navigation, Car, Bus, ChevronUp, ChevronDown, ParkingCircle, Clock, RotateCcw } from "lucide-react";
+
+const STORAGE_KEY = "trasa1_times";
 
 const steps = [
   {
@@ -55,9 +57,38 @@ const steps = [
   },
 ];
 
+function nowTime() {
+  const d = new Date();
+  return d.toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit" });
+}
+
 export default function Trasa1Page() {
   const [busOpen, setBusOpen] = useState(false);
   const [parkOpen, setParkOpen] = useState(false);
+
+  const [times, setTimes] = useState<Record<string, string>>(() => {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    } catch {
+      return {};
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(times));
+  }, [times]);
+
+  function recordTime(label: string) {
+    setTimes((prev) => ({ ...prev, [label]: nowTime() }));
+  }
+
+  function clearTime(label: string) {
+    setTimes((prev) => {
+      const next = { ...prev };
+      delete next[label];
+      return next;
+    });
+  }
 
   return (
     <PageLayout title="Trasa č.1" backPath="/trasy">
@@ -74,20 +105,25 @@ export default function Trasa1Page() {
           {steps.map((step, index) => {
             const Icon = step.icon;
             const isLast = index === steps.length - 1;
+            const recorded = times[step.label];
+
             return (
               <div key={step.label} style={{ display: "flex", gap: "12px" }}>
+                {/* Timeline line */}
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "36px", flexShrink: 0 }}>
                   <div
                     style={{
                       width: "36px",
                       height: "36px",
                       borderRadius: "50%",
-                      background: step.bg,
-                      border: `2px solid ${step.border}`,
+                      background: recorded ? step.bg : step.bg,
+                      border: `2px solid ${recorded ? step.color : step.border}`,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       flexShrink: 0,
+                      boxShadow: recorded ? `0 0 8px ${step.color}55` : "none",
+                      transition: "all 0.3s",
                     }}
                   >
                     <Icon size={16} color={step.color} strokeWidth={2} />
@@ -105,6 +141,7 @@ export default function Trasa1Page() {
                   )}
                 </div>
 
+                {/* Card */}
                 <div
                   style={{
                     flex: 1,
@@ -112,7 +149,8 @@ export default function Trasa1Page() {
                     padding: "12px 14px",
                     borderRadius: "14px",
                     background: step.bg,
-                    border: `1px solid ${step.border}`,
+                    border: `1px solid ${recorded ? step.color + "66" : step.border}`,
+                    transition: "border-color 0.3s",
                   }}
                 >
                   <div style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.1em", color: step.color, marginBottom: "3px" }}>
@@ -121,9 +159,68 @@ export default function Trasa1Page() {
                   <div style={{ color: "white", fontWeight: 700, fontSize: "0.95rem", marginBottom: "6px" }}>
                     {step.place}
                   </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "5px", color: "rgba(255,255,255,0.5)", fontSize: "0.78rem" }}>
-                    <Camera size={12} />
-                    <span>{step.proof}</span>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "5px", color: "rgba(255,255,255,0.5)", fontSize: "0.78rem" }}>
+                      <Camera size={12} />
+                      <span>{step.proof}</span>
+                    </div>
+
+                    {/* Time button / recorded time */}
+                    {recorded ? (
+                      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "5px",
+                            padding: "4px 10px",
+                            borderRadius: "20px",
+                            background: step.color + "22",
+                            border: `1px solid ${step.color}55`,
+                          }}
+                        >
+                          <Clock size={11} color={step.color} />
+                          <span style={{ color: step.color, fontWeight: 700, fontSize: "0.82rem" }}>{recorded}</span>
+                        </div>
+                        <button
+                          onClick={() => clearTime(step.label)}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            width: "26px",
+                            height: "26px",
+                            borderRadius: "50%",
+                            background: "rgba(255,255,255,0.06)",
+                            border: "1px solid rgba(255,255,255,0.12)",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <RotateCcw size={11} color="rgba(255,255,255,0.4)" />
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => recordTime(step.label)}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "5px",
+                          padding: "5px 10px",
+                          borderRadius: "20px",
+                          background: "rgba(255,255,255,0.06)",
+                          border: "1px solid rgba(255,255,255,0.15)",
+                          color: "rgba(255,255,255,0.6)",
+                          fontSize: "0.78rem",
+                          fontWeight: 600,
+                          cursor: "pointer",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        <Clock size={11} />
+                        Zapsat čas
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -131,7 +228,7 @@ export default function Trasa1Page() {
           })}
         </div>
 
-        {/* Spacer — pushes buttons to bottom */}
+        {/* Spacer */}
         <div style={{ flex: 1 }} />
 
         {/* Transport section */}
@@ -167,10 +264,7 @@ export default function Trasa1Page() {
             >
               <Car size={18} color={parkOpen ? "#4ade80" : "rgba(255,255,255,0.7)"} />
               Parkoviště
-              {parkOpen
-                ? <ChevronUp size={14} color="rgba(255,255,255,0.5)" />
-                : <ChevronDown size={14} color="rgba(255,255,255,0.5)" />
-              }
+              {parkOpen ? <ChevronUp size={14} color="rgba(255,255,255,0.5)" /> : <ChevronDown size={14} color="rgba(255,255,255,0.5)" />}
             </button>
 
             <button
@@ -195,14 +289,10 @@ export default function Trasa1Page() {
             >
               <Bus size={18} color={busOpen ? "#60a5fa" : "rgba(255,255,255,0.7)"} />
               Autobus
-              {busOpen
-                ? <ChevronUp size={14} color="rgba(255,255,255,0.5)" />
-                : <ChevronDown size={14} color="rgba(255,255,255,0.5)" />
-              }
+              {busOpen ? <ChevronUp size={14} color="rgba(255,255,255,0.5)" /> : <ChevronDown size={14} color="rgba(255,255,255,0.5)" />}
             </button>
           </div>
 
-          {/* Parking info panel */}
           {parkOpen && (
             <div
               style={{
@@ -223,7 +313,6 @@ export default function Trasa1Page() {
             </div>
           )}
 
-          {/* Bus info panel */}
           {busOpen && (
             <div
               style={{
