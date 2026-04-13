@@ -172,11 +172,12 @@ export default function SunsetBadge() {
       </span>
       <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
         <span style={{
-          color: info.passed ? "rgba(165,180,252,0.8)" : "rgba(253,186,116,0.85)",
+          color: "rgba(255,255,255,0.82)",
           fontSize: "0.65rem",
           fontWeight: 600,
           letterSpacing: "0.03em",
           lineHeight: 1.3,
+          textShadow: "0 1px 4px rgba(0,0,0,0.6)",
         }}>
           {info.line1}
         </span>
@@ -185,6 +186,7 @@ export default function SunsetBadge() {
           fontSize: "0.80rem",
           fontWeight: 700,
           lineHeight: 1.2,
+          textShadow: "0 1px 4px rgba(0,0,0,0.6)",
         }}>
           {info.line2}
         </span>
