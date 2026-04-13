@@ -190,7 +190,7 @@ export default function Trasa1Page() {
 
                 {/* Card */}
                 <div style={{
-                  flex: 1, marginBottom: isLast ? 0 : "6px", padding: "8px 12px",
+                  flex: 1, marginBottom: isLast ? 0 : "5px", padding: "5px 10px",
                   borderRadius: "14px", background: step.bg,
                   border: `1px solid ${recorded ? step.color + "66" : step.border}`,
                   transition: "border-color 0.3s",
