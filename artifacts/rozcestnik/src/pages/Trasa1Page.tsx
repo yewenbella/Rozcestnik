@@ -275,11 +275,26 @@ export default function Trasa1Page() {
 
           {parkOpen && (
             <div style={{ padding: "12px 14px", borderRadius: "12px", background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.22)", display: "flex", alignItems: "center", gap: "8px" }}>
-              <ParkingCircle size={15} color="#4ade80" />
-              <div>
+              <ParkingCircle size={15} color="#4ade80" style={{ flexShrink: 0 }} />
+              <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem", marginBottom: "2px" }}>Parkoviště</div>
                 <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Kavárna Mlsné myšky (Janov nad Nisou 518)</div>
               </div>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=Kav%C3%A1rna+Mls%C3%A9+my%C5%A1ky%2C+Janov+nad+Nisou+518"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex", alignItems: "center", gap: "4px", flexShrink: 0,
+                  padding: "5px 9px", borderRadius: "8px",
+                  background: "rgba(74,222,128,0.15)", border: "1px solid rgba(74,222,128,0.35)",
+                  color: "#4ade80", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <Navigation size={11} />
+                Navigovat
+              </a>
             </div>
           )}
 
