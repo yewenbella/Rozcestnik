@@ -275,37 +275,37 @@ export default function Trasa1Page() {
           </button>
 
           {hotelOpen && (
-            <div style={{ padding: "12px 14px", borderRadius: "12px", background: "rgba(232,121,249,0.08)", border: "1px solid rgba(232,121,249,0.22)", display: "flex", flexDirection: "column", gap: "8px" }}>
-              {[
-                { name: "Penzion Janov", detail: "Janov nad Nisou 236" },
-                { name: "Hotel Maxov", detail: "Maxov 27, Janov nad Nisou" },
-                { name: "Penzion Severák", detail: "u lyžařského areálu Severák" },
-              ].map((h) => (
-                <div key={h.name} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <Hotel size={13} color="#e879f9" style={{ flexShrink: 0 }} />
-                  <div>
-                    <div style={{ color: "white", fontWeight: 600, fontSize: "0.85rem" }}>{h.name}</div>
-                    <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem" }}>{h.detail}</div>
+            <div style={{ padding: "12px 14px", borderRadius: "12px", background: "rgba(232,121,249,0.08)", border: "1px solid rgba(232,121,249,0.22)", display: "flex", alignItems: "center", gap: "10px" }}>
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "8px", minWidth: 0 }}>
+                {[
+                  { name: "Penzion Janov", detail: "Janov nad Nisou 236" },
+                  { name: "Hotel Maxov", detail: "Maxov 27, Janov nad Nisou" },
+                  { name: "Penzion Severák", detail: "u lyžařského areálu Severák" },
+                ].map((h) => (
+                  <div key={h.name} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    <Hotel size={13} color="#e879f9" style={{ flexShrink: 0 }} />
+                    <div>
+                      <div style={{ color: "white", fontWeight: 600, fontSize: "0.85rem" }}>{h.name}</div>
+                      <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem" }}>{h.detail}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <a
-                  href="https://www.booking.com/searchresults.html?ss=Janov+nad+Nisou"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "flex", alignItems: "center", gap: "4px",
-                    padding: "5px 10px", borderRadius: "8px",
-                    background: "rgba(232,121,249,0.15)", border: "1px solid rgba(232,121,249,0.35)",
-                    color: "#e879f9", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  <ExternalLink size={11} />
-                  Hledat na Booking.com
-                </a>
+                ))}
               </div>
+              <a
+                href="https://www.booking.com/searchresults.html?ss=Janov+nad+Nisou"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex", alignItems: "center", gap: "4px", flexShrink: 0,
+                  padding: "5px 9px", borderRadius: "8px",
+                  background: "rgba(232,121,249,0.15)", border: "1px solid rgba(232,121,249,0.35)",
+                  color: "#e879f9", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <ExternalLink size={11} />
+                Booking
+              </a>
             </div>
           )}
 
