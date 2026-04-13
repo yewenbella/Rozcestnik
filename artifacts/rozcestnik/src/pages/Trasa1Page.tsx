@@ -255,8 +255,10 @@ export default function Trasa1Page() {
           })}
         </div>
 
-        {/* Total time — above separator */}
-        <div style={{ marginTop: "12px", marginBottom: "12px", display: "flex", justifyContent: "center" }}>
+        <div style={{ flex: 1 }} />
+
+        {/* Total time — centered between route and transport */}
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <div style={{
             display: "flex",
             flexDirection: "column",
@@ -289,7 +291,7 @@ export default function Trasa1Page() {
           </div>
         </div>
 
-        <div style={{ flex: 1, minHeight: "12px" }} />
+        <div style={{ flex: 1 }} />
 
         {/* Transport section */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
