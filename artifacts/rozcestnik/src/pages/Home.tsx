@@ -67,13 +67,13 @@ export default function Home() {
         }}
       />
 
-      {/* Dark gradient overlay — stronger at bottom for button readability */}
+      {/* Light gradient overlay — subtle, keeps photo bright */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(10,25,10,0.55) 40%, rgba(10,25,10,0.82) 100%)",
+            "linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(10,25,10,0.28) 40%, rgba(10,25,10,0.55) 100%)",
         }}
       />
 
@@ -97,7 +97,7 @@ export default function Home() {
         >
           <h1
             style={{
-              fontSize: "2.6rem",
+              fontSize: "1.7rem",
               fontWeight: 900,
               color: "white",
               letterSpacing: "0.04em",
@@ -111,13 +111,13 @@ export default function Home() {
           <p
             style={{
               color: "rgba(255,255,255,0.78)",
-              fontSize: "0.95rem",
-              marginTop: "6px",
+              fontSize: "0.78rem",
+              marginTop: "4px",
               letterSpacing: "0.05em",
               textShadow: "0 1px 6px rgba(0,0,0,0.6)",
             }}
           >
-            Turistická výzva dvojic 🪧
+            Turistická výzva dvojic
           </p>
         </div>
 
@@ -140,15 +140,15 @@ export default function Home() {
                 position: "relative",
                 display: "flex",
                 alignItems: "center",
-                gap: "12px",
+                gap: "8px",
                 width: "100%",
                 background: gradient,
-                border: `2px solid ${border}`,
-                borderRadius: "14px",
-                padding: "10px 14px",
-                minHeight: "52px",
+                border: `1.5px solid ${border}`,
+                borderRadius: "10px",
+                padding: "6px 10px",
+                minHeight: "36px",
                 cursor: "pointer",
-                boxShadow: `0 4px 16px 0 ${glow}50, 0 2px 6px rgba(0,0,0,0.4)`,
+                boxShadow: `0 3px 10px 0 ${glow}45, 0 1px 4px rgba(0,0,0,0.35)`,
                 overflow: "hidden",
               }}
             >
@@ -169,22 +169,22 @@ export default function Home() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  width: "34px",
-                  height: "34px",
-                  borderRadius: "9px",
+                  width: "24px",
+                  height: "24px",
+                  borderRadius: "6px",
                   backgroundColor: "rgba(0,0,0,0.22)",
-                  border: "1.5px solid rgba(255,255,255,0.22)",
+                  border: "1px solid rgba(255,255,255,0.22)",
                   flexShrink: 0,
                 }}
               >
-                <Icon size={17} color="white" strokeWidth={2.3} />
+                <Icon size={13} color="white" strokeWidth={2.3} />
               </div>
               {/* Label */}
               <span
                 style={{
                   fontWeight: 800,
                   color: "white",
-                  fontSize: "0.93rem",
+                  fontSize: "0.78rem",
                   letterSpacing: "0.12em",
                   textShadow: "0 1px 3px rgba(0,0,0,0.4)",
                 }}
