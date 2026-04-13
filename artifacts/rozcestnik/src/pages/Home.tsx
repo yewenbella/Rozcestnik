@@ -1,5 +1,6 @@
 import { useLocation } from "wouter";
-import { Map, Route, Trophy, BookOpen } from "lucide-react";
+import { Map, Route, Trophy, BookOpen, UserCircle } from "lucide-react";
+import { Show } from "@clerk/react";
 import heroBg from "@/assets/hero-bg.png";
 import WeatherWidget from "@/components/WeatherWidget";
 
@@ -125,6 +126,52 @@ export default function Home() {
           >
             Turistická výzva dvojic
           </p>
+
+          {/* Auth badge */}
+          <div style={{ marginTop: "10px", display: "flex", justifyContent: "center" }}>
+            <Show when="signed-out">
+              <button
+                onClick={() => navigate("/sign-in")}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  padding: "5px 12px",
+                  borderRadius: "20px",
+                  border: "1px solid rgba(255,255,255,0.25)",
+                  background: "rgba(255,255,255,0.1)",
+                  backdropFilter: "blur(8px)",
+                  color: "rgba(255,255,255,0.8)",
+                  fontSize: "0.76rem",
+                  cursor: "pointer",
+                }}
+              >
+                <UserCircle size={13} />
+                Přihlásit se / Tým
+              </button>
+            </Show>
+            <Show when="signed-in">
+              <button
+                onClick={() => navigate("/team")}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  padding: "5px 12px",
+                  borderRadius: "20px",
+                  border: "1px solid rgba(74,222,128,0.4)",
+                  background: "rgba(34,197,94,0.15)",
+                  backdropFilter: "blur(8px)",
+                  color: "rgba(255,255,255,0.85)",
+                  fontSize: "0.76rem",
+                  cursor: "pointer",
+                }}
+              >
+                <UserCircle size={13} color="#4ade80" />
+                Můj tým
+              </button>
+            </Show>
+          </div>
         </div>
 
         {/* Buttons — centered vertically in remaining space */}
