@@ -190,15 +190,15 @@ export default function Trasa1Page() {
 
                 {/* Card */}
                 <div style={{
-                  flex: 1, marginBottom: isLast ? 0 : "8px", padding: "12px 14px",
+                  flex: 1, marginBottom: isLast ? 0 : "6px", padding: "8px 12px",
                   borderRadius: "14px", background: step.bg,
                   border: `1px solid ${recorded ? step.color + "66" : step.border}`,
                   transition: "border-color 0.3s",
                 }}>
-                  <div style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.1em", color: step.color, marginBottom: "3px" }}>
+                  <div style={{ fontSize: "0.65rem", fontWeight: 800, letterSpacing: "0.1em", color: step.color, marginBottom: "1px" }}>
                     {step.label}
                   </div>
-                  <div style={{ color: "white", fontWeight: 700, fontSize: "0.95rem", marginBottom: "6px" }}>
+                  <div style={{ color: "white", fontWeight: 700, fontSize: "0.90rem", marginBottom: "4px" }}>
                     {step.place}
                   </div>
 
