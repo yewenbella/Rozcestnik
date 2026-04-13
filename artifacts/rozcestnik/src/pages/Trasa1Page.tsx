@@ -15,6 +15,7 @@ const steps = [
     label: "START",
     place: "Socha sv. Nepomuckého",
     proof: "Socha",
+    info: "Barokní socha patrona Čech z 18. století. Stojí u historického mostu v centru Jablonce nad Nisou — tradiční místo setkání turistů.",
     color: "#4ade80",
     bg: "rgba(74,222,128,0.10)",
     border: "rgba(74,222,128,0.28)",
@@ -27,6 +28,7 @@ const steps = [
     label: "Checkpoint 1",
     place: "Rozhledna Slovanka",
     proof: "Rozcestník",
+    info: "Dřevěná rozhledna ve výšce 836 m n. m. s panoramatickým výhledem na Jizerské hory a Lužické hory. Za jasného dne jsou vidět i Krkonoše.",
     color: "#60a5fa",
     bg: "rgba(96,165,250,0.08)",
     border: "rgba(96,165,250,0.22)",
@@ -39,6 +41,7 @@ const steps = [
     label: "Checkpoint 2",
     place: "Karlov",
     proof: "Rozcestník",
+    info: "Malebná osada na náhorní plošině obklopená lesy. Oblíbené místo odpočinku s lavičkami a výhledem do údolí Černé Nisy.",
     color: "#60a5fa",
     bg: "rgba(96,165,250,0.08)",
     border: "rgba(96,165,250,0.22)",
@@ -51,6 +54,7 @@ const steps = [
     label: "Checkpoint 3",
     place: "Přehrada Josefův důl",
     proof: "Rozcestník",
+    info: "Vodní nádrž z roku 1906 obklopená smrkovými lesy. Zásobárna pitné vody pro Liberecký kraj — klidné místo s příjemnou atmosférou.",
     color: "#60a5fa",
     bg: "rgba(96,165,250,0.08)",
     border: "rgba(96,165,250,0.22)",
@@ -63,6 +67,7 @@ const steps = [
     label: "CÍL",
     place: "Socha sv. Nepomuckého",
     proof: "Socha",
+    info: "Zpět u sochy sv. Nepomuckého — konec okruhu. Gratulujeme k dokončení trasy! Nezapomeňte zapsat čas pro platný výsledek.",
     color: "#f97316",
     bg: "rgba(249,115,22,0.10)",
     border: "rgba(249,115,22,0.28)",
@@ -116,6 +121,7 @@ export default function Trasa1Page() {
 
   const [geoState, setGeoState] = useState<Record<string, GeoState>>({});
   const [geoError, setGeoError] = useState<Record<string, string>>({});
+  const [expandedStep, setExpandedStep] = useState<string | null>(null);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(times));
@@ -189,12 +195,15 @@ export default function Trasa1Page() {
                 </div>
 
                 {/* Card */}
-                <div style={{
-                  flex: 1, marginBottom: isLast ? 0 : "5px", padding: "5px 10px",
-                  borderRadius: "14px", background: step.bg,
-                  border: `1px solid ${recorded ? step.color + "66" : step.border}`,
-                  transition: "border-color 0.3s",
-                }}>
+                <div
+                  onClick={() => setExpandedStep(expandedStep === step.label ? null : step.label)}
+                  style={{
+                    flex: 1, marginBottom: isLast ? 0 : "5px", padding: "5px 10px",
+                    borderRadius: "14px", background: step.bg,
+                    border: `1px solid ${recorded ? step.color + "66" : step.border}`,
+                    transition: "border-color 0.3s", cursor: "pointer",
+                  }}
+                >
                   <div style={{ fontSize: "0.65rem", fontWeight: 800, letterSpacing: "0.1em", color: step.color, marginBottom: "1px" }}>
                     {step.label}
                   </div>
@@ -219,7 +228,7 @@ export default function Trasa1Page() {
                       </div>
                     ) : (
                       <button
-                        onClick={() => recordWithGeo(step)}
+                        onClick={(e) => { e.stopPropagation(); recordWithGeo(step); }}
                         disabled={geo === "loading"}
                         style={{
                           display: "flex", alignItems: "center", gap: "4px",
@@ -247,6 +256,20 @@ export default function Trasa1Page() {
                     }}>
                       <AlertCircle size={12} color="#f87171" />
                       <span style={{ color: "#f87171", fontSize: "0.75rem" }}>{err}</span>
+                    </div>
+                  )}
+
+                  {expandedStep === step.label && (
+                    <div style={{
+                      marginTop: "8px", paddingTop: "8px",
+                      borderTop: `1px solid ${step.color}22`,
+                    }}>
+                      <p style={{
+                        margin: 0, color: "rgba(255,255,255,0.70)",
+                        fontSize: "0.76rem", lineHeight: "1.5",
+                      }}>
+                        {step.info}
+                      </p>
                     </div>
                   )}
                 </div>
