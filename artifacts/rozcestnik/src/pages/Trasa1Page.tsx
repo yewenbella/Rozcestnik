@@ -209,33 +209,31 @@ export default function Trasa1Page() {
                     </div>
 
                     {recorded ? (
-                      /* Locked — no reset */
                       <div style={{
-                        display: "flex", alignItems: "center", gap: "5px",
-                        padding: "4px 10px", borderRadius: "20px",
+                        display: "flex", alignItems: "center", gap: "4px",
+                        padding: "3px 8px", borderRadius: "20px",
                         background: step.color + "22", border: `1px solid ${step.color}55`,
                       }}>
-                        <CheckCircle2 size={11} color={step.color} />
-                        <Clock size={11} color={step.color} />
-                        <span style={{ color: step.color, fontWeight: 700, fontSize: "0.82rem" }}>{recorded.display}</span>
+                        <CheckCircle2 size={10} color={step.color} />
+                        <span style={{ color: step.color, fontWeight: 700, fontSize: "0.76rem" }}>{recorded.display}</span>
                       </div>
                     ) : (
                       <button
                         onClick={() => recordWithGeo(step)}
                         disabled={geo === "loading"}
                         style={{
-                          display: "flex", alignItems: "center", gap: "5px",
-                          padding: "5px 10px", borderRadius: "20px",
-                          background: geo === "error" ? "rgba(239,68,68,0.10)" : "rgba(255,255,255,0.06)",
-                          border: geo === "error" ? "1px solid rgba(239,68,68,0.35)" : "1px solid rgba(255,255,255,0.15)",
-                          color: "rgba(255,255,255,0.7)", fontSize: "0.78rem", fontWeight: 600,
+                          display: "flex", alignItems: "center", gap: "4px",
+                          padding: "3px 8px", borderRadius: "20px",
+                          background: geo === "error" ? "rgba(239,68,68,0.10)" : "rgba(255,255,255,0.05)",
+                          border: geo === "error" ? "1px solid rgba(239,68,68,0.35)" : "1px solid rgba(255,255,255,0.12)",
+                          color: "rgba(255,255,255,0.55)", fontSize: "0.72rem", fontWeight: 600,
                           cursor: geo === "loading" ? "default" : "pointer", whiteSpace: "nowrap",
                           opacity: geo === "loading" ? 0.7 : 1,
                         }}
                       >
                         {geo === "loading"
-                          ? <><Loader2 size={11} style={{ animation: "spin 1s linear infinite" }} />Zjišťuji polohu…</>
-                          : <><Clock size={11} />Zapsat čas</>
+                          ? <><Loader2 size={10} style={{ animation: "spin 1s linear infinite" }} />Zjišťuji…</>
+                          : <><Clock size={10} />Zapsat čas</>
                         }
                       </button>
                     )}
@@ -257,38 +255,49 @@ export default function Trasa1Page() {
           })}
         </div>
 
-        {/* Total time — shown when START + CÍL both recorded */}
-        {totalDuration && (
+        {/* Total time — placeholder always visible, fills in when START + CÍL recorded */}
+        <div style={{
+          marginTop: "16px",
+          padding: "14px 16px",
+          borderRadius: "16px",
+          background: totalDuration
+            ? "linear-gradient(135deg, rgba(251,191,36,0.12) 0%, rgba(251,191,36,0.05) 100%)"
+            : "rgba(255,255,255,0.03)",
+          border: totalDuration
+            ? "1px solid rgba(251,191,36,0.35)"
+            : "1px dashed rgba(255,255,255,0.13)",
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+          transition: "all 0.4s",
+        }}>
           <div style={{
-            marginTop: "16px",
-            padding: "14px 16px",
-            borderRadius: "16px",
-            background: "linear-gradient(135deg, rgba(251,191,36,0.12) 0%, rgba(251,191,36,0.05) 100%)",
-            border: "1px solid rgba(251,191,36,0.35)",
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
+            width: "38px", height: "38px", borderRadius: "12px",
+            background: totalDuration ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.05)",
+            border: totalDuration ? "1px solid rgba(251,191,36,0.30)" : "1px solid rgba(255,255,255,0.10)",
+            display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+            transition: "all 0.4s",
           }}>
-            <div style={{
-              width: "38px", height: "38px", borderRadius: "12px",
-              background: "rgba(251,191,36,0.15)", border: "1px solid rgba(251,191,36,0.30)",
-              display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-            }}>
-              <Timer size={18} color="#fbbf24" />
-            </div>
-            <div>
-              <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "2px" }}>
-                Celkový čas trasy
-              </div>
-              <div style={{ color: "#fbbf24", fontWeight: 800, fontSize: "1.3rem" }}>
-                {totalDuration}
-              </div>
-              <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.72rem", marginTop: "1px" }}>
-                {startEntry.display} → {finishEntry.display}
-              </div>
-            </div>
+            <Timer size={18} color={totalDuration ? "#fbbf24" : "rgba(255,255,255,0.2)"} />
           </div>
-        )}
+          <div>
+            <div style={{ color: totalDuration ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.3)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "2px" }}>
+              Celkový čas trasy
+            </div>
+            {totalDuration ? (
+              <>
+                <div style={{ color: "#fbbf24", fontWeight: 800, fontSize: "1.3rem" }}>{totalDuration}</div>
+                <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.72rem", marginTop: "1px" }}>
+                  {startEntry!.display} → {finishEntry!.display}
+                </div>
+              </>
+            ) : (
+              <div style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.82rem", fontStyle: "italic" }}>
+                Zapíše se po dokončení trasy
+              </div>
+            )}
+          </div>
+        </div>
 
         <div style={{ flex: 1 }} />
 
