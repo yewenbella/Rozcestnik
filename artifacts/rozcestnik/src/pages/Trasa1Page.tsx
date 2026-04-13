@@ -263,8 +263,8 @@ export default function Trasa1Page() {
             alignItems: "center",
             justifyContent: "center",
             gap: "2px",
-            padding: "13px 24px",
-            borderRadius: "14px",
+            padding: "8px 20px",
+            borderRadius: "12px",
             border: totalDuration ? "1px solid rgba(253,230,138,0.45)" : "1px dashed rgba(253,230,138,0.25)",
             background: totalDuration ? "rgba(253,230,138,0.15)" : "rgba(253,230,138,0.05)",
             backdropFilter: "blur(10px)",
@@ -272,8 +272,8 @@ export default function Trasa1Page() {
             transition: "all 0.4s",
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <Timer size={16} color={totalDuration ? "#fde68a" : "rgba(253,230,138,0.35)"} />
-              <span style={{ color: totalDuration ? "#fde68a" : "rgba(253,230,138,0.35)", fontWeight: 700, fontSize: "0.88rem" }}>
+              <Timer size={14} color={totalDuration ? "#fde68a" : "rgba(253,230,138,0.35)"} />
+              <span style={{ color: totalDuration ? "#fde68a" : "rgba(253,230,138,0.35)", fontWeight: 700, fontSize: "0.80rem" }}>
                 {totalDuration ? totalDuration : "Celkový čas trasy"}
               </span>
             </div>
@@ -295,29 +295,29 @@ export default function Trasa1Page() {
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
           <div style={{ display: "flex", gap: "10px" }}>
             <button onClick={() => setParkOpen((o) => !o)} style={{
-              flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-              padding: "13px", borderRadius: "14px",
+              flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+              padding: "8px 10px", borderRadius: "12px",
               border: parkOpen ? "1px solid rgba(74,222,128,0.45)" : "1px solid rgba(255,255,255,0.15)",
               background: parkOpen ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.07)",
               backdropFilter: "blur(10px)", color: "rgba(255,255,255,0.8)",
-              fontWeight: 700, fontSize: "0.88rem", cursor: "pointer", transition: "all 0.2s",
+              fontWeight: 700, fontSize: "0.80rem", cursor: "pointer", transition: "all 0.2s",
             }}>
-              <Car size={18} color={parkOpen ? "#4ade80" : "rgba(255,255,255,0.7)"} />
+              <Car size={15} color={parkOpen ? "#4ade80" : "rgba(255,255,255,0.7)"} />
               Parkoviště
-              {parkOpen ? <ChevronUp size={14} color="rgba(255,255,255,0.5)" /> : <ChevronDown size={14} color="rgba(255,255,255,0.5)" />}
+              {parkOpen ? <ChevronUp size={12} color="rgba(255,255,255,0.5)" /> : <ChevronDown size={12} color="rgba(255,255,255,0.5)" />}
             </button>
 
             <button onClick={() => setBusOpen((o) => !o)} style={{
-              flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-              padding: "13px", borderRadius: "14px",
+              flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+              padding: "8px 10px", borderRadius: "12px",
               border: busOpen ? "1px solid rgba(96,165,250,0.45)" : "1px solid rgba(255,255,255,0.15)",
               background: busOpen ? "rgba(96,165,250,0.15)" : "rgba(255,255,255,0.07)",
               backdropFilter: "blur(10px)", color: "rgba(255,255,255,0.8)",
-              fontWeight: 700, fontSize: "0.88rem", cursor: "pointer", transition: "all 0.2s",
+              fontWeight: 700, fontSize: "0.80rem", cursor: "pointer", transition: "all 0.2s",
             }}>
-              <Bus size={18} color={busOpen ? "#60a5fa" : "rgba(255,255,255,0.7)"} />
+              <Bus size={15} color={busOpen ? "#60a5fa" : "rgba(255,255,255,0.7)"} />
               Autobus
-              {busOpen ? <ChevronUp size={14} color="rgba(255,255,255,0.5)" /> : <ChevronDown size={14} color="rgba(255,255,255,0.5)" />}
+              {busOpen ? <ChevronUp size={12} color="rgba(255,255,255,0.5)" /> : <ChevronDown size={12} color="rgba(255,255,255,0.5)" />}
             </button>
           </div>
 
