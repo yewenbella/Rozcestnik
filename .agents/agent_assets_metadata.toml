@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "ataAAGKnM4ZSriHZcPjgT"
+uri = "file://artifacts/rozcestnik/src/assets/hero-bg.png"
+type = "image"
+title = "czech mountain hiking hero"

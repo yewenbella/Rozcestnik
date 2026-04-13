@@ -1,6 +1,6 @@
 import { useLocation } from "wouter";
 import { Map, Route, Trophy, BookOpen } from "lucide-react";
-import mountainBg from "@assets/Snímek_obrazovky_2026-04-13_185556_1776100605253.png";
+import heroBg from "@/assets/hero-bg.png";
 
 const buttons = [
   {
@@ -45,131 +45,168 @@ export default function Home() {
       style={{
         minHeight: "100vh",
         width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "#1a2a1a",
         maxWidth: "480px",
         margin: "0 auto",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
       }}
     >
-      {/* Hero: only show the top scenic/title part of the mockup image, crop the rest */}
-      <div
+      {/* Full-screen background photo */}
+      <img
+        src={heroBg}
+        alt="Turistická krajina"
         style={{
+          position: "absolute",
+          inset: 0,
           width: "100%",
-          height: "230px",
-          overflow: "hidden",
-          position: "relative",
-          flexShrink: 0,
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
         }}
-      >
-        <img
-          src={mountainBg}
-          alt="Turistická krajina"
-          style={{
-            width: "100%",
-            display: "block",
-            objectFit: "cover",
-            objectPosition: "top center",
-          }}
-        />
-        {/* Fade bottom so it blends into dark background */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "70px",
-            background: "linear-gradient(to bottom, transparent, #1a2a1a)",
-          }}
-        />
-      </div>
+      />
 
-      {/* HTML buttons — centered vertically in remaining space */}
+      {/* Dark gradient overlay — stronger at bottom for button readability */}
       <div
         style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(10,25,10,0.55) 40%, rgba(10,25,10,0.82) 100%)",
+        }}
+      />
+
+      {/* Content — sits on top of the photo */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          gap: "9px",
-          padding: "0 18px",
-          flex: 1,
+          minHeight: "100vh",
         }}
       >
-        {buttons.map(({ label, icon: Icon, path, gradient, border, glow }) => (
-          <button
-            key={label}
-            onClick={() => navigate(path)}
+        {/* Title */}
+        <div
+          style={{
+            textAlign: "center",
+            paddingTop: "52px",
+            paddingBottom: "8px",
+          }}
+        >
+          <h1
             style={{
-              position: "relative",
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              width: "100%",
-              background: gradient,
-              border: `2px solid ${border}`,
-              borderRadius: "14px",
-              padding: "9px 13px",
-              minHeight: "48px",
-              cursor: "pointer",
-              boxShadow: `0 3px 12px 0 ${glow}40, 0 1px 3px rgba(0,0,0,0.3)`,
-              overflow: "hidden",
+              fontSize: "2.6rem",
+              fontWeight: 900,
+              color: "white",
+              letterSpacing: "0.04em",
+              textShadow: "0 2px 16px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)",
+              margin: 0,
+              lineHeight: 1.1,
             }}
           >
-            {/* Wood grain texture */}
-            <div
+            Rozcestník
+          </h1>
+          <p
+            style={{
+              color: "rgba(255,255,255,0.78)",
+              fontSize: "0.95rem",
+              marginTop: "6px",
+              letterSpacing: "0.05em",
+              textShadow: "0 1px 6px rgba(0,0,0,0.6)",
+            }}
+          >
+            Turistická výzva dvojic 🪧
+          </p>
+        </div>
+
+        {/* Buttons — centered vertically in remaining space */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            gap: "10px",
+            padding: "0 20px",
+            flex: 1,
+          }}
+        >
+          {buttons.map(({ label, icon: Icon, path, gradient, border, glow }) => (
+            <button
+              key={label}
+              onClick={() => navigate(path)}
               style={{
-                position: "absolute",
-                inset: 0,
-                opacity: 0.07,
-                pointerEvents: "none",
-                backgroundImage:
-                  "repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px)",
-              }}
-            />
-            {/* Icon */}
-            <div
-              style={{
+                position: "relative",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
-                width: "32px",
-                height: "32px",
-                borderRadius: "8px",
-                backgroundColor: "rgba(0,0,0,0.2)",
-                border: "1.5px solid rgba(255,255,255,0.2)",
-                flexShrink: 0,
+                gap: "12px",
+                width: "100%",
+                background: gradient,
+                border: `2px solid ${border}`,
+                borderRadius: "14px",
+                padding: "10px 14px",
+                minHeight: "52px",
+                cursor: "pointer",
+                boxShadow: `0 4px 16px 0 ${glow}50, 0 2px 6px rgba(0,0,0,0.4)`,
+                overflow: "hidden",
               }}
             >
-              <Icon size={16} color="white" strokeWidth={2.3} />
-            </div>
-            {/* Label */}
-            <span
-              style={{
-                fontWeight: 800,
-                color: "white",
-                fontSize: "0.9rem",
-                letterSpacing: "0.12em",
-                textShadow: "0 1px 3px rgba(0,0,0,0.35)",
-              }}
-            >
-              {label}
-            </span>
-            {/* Arrow */}
-            <div style={{ marginLeft: "auto", opacity: 0.65 }}>
-              <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                <path d="M5 3l5 4.5L5 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </div>
-          </button>
-        ))}
-      </div>
+              {/* Wood grain texture */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  opacity: 0.07,
+                  pointerEvents: "none",
+                  backgroundImage:
+                    "repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px)",
+                }}
+              />
+              {/* Icon */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "34px",
+                  height: "34px",
+                  borderRadius: "9px",
+                  backgroundColor: "rgba(0,0,0,0.22)",
+                  border: "1.5px solid rgba(255,255,255,0.22)",
+                  flexShrink: 0,
+                }}
+              >
+                <Icon size={17} color="white" strokeWidth={2.3} />
+              </div>
+              {/* Label */}
+              <span
+                style={{
+                  fontWeight: 800,
+                  color: "white",
+                  fontSize: "0.93rem",
+                  letterSpacing: "0.12em",
+                  textShadow: "0 1px 3px rgba(0,0,0,0.4)",
+                }}
+              >
+                {label}
+              </span>
+              {/* Arrow */}
+              <div style={{ marginLeft: "auto", opacity: 0.65 }}>
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                  <path d="M5 3l5 4.5L5 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            </button>
+          ))}
+        </div>
 
-      {/* Footer */}
-      <div style={{ display: "flex", justifyContent: "center", paddingBottom: "18px", paddingTop: "10px" }}>
-        <p style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.75rem", letterSpacing: "0.02em" }}>
-          Vyberte si směr a vydejte se na cestu
-        </p>
+        {/* Footer */}
+        <div style={{ textAlign: "center", paddingBottom: "20px", paddingTop: "12px" }}>
+          <p style={{ color: "rgba(255,255,255,0.42)", fontSize: "0.75rem", letterSpacing: "0.02em" }}>
+            Vyberte si směr a vydejte se na cestu
+          </p>
+        </div>
       </div>
     </div>
   );
