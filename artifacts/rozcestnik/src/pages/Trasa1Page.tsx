@@ -3,7 +3,7 @@ import PageLayout from "@/components/PageLayout";
 import {
   MapPin, Flag, Camera, Navigation, Car, Bus,
   ChevronUp, ChevronDown, ParkingCircle, Clock,
-  RotateCcw, Loader2, AlertCircle, CheckCircle2,
+  Loader2, AlertCircle, CheckCircle2, Timer,
 } from "lucide-react";
 
 const STORAGE_KEY = "trasa1_times";
@@ -72,8 +72,23 @@ const steps = [
   },
 ];
 
-function nowTime() {
-  return new Date().toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit" });
+interface TimeEntry { display: string; ts: number; }
+type StoredTimes = Record<string, TimeEntry>;
+
+function nowEntry(): TimeEntry {
+  const now = new Date();
+  return {
+    display: now.toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit" }),
+    ts: now.getTime(),
+  };
+}
+
+function formatDuration(ms: number): string {
+  const totalMin = Math.round(ms / 60000);
+  const h = Math.floor(totalMin / 60);
+  const m = totalMin % 60;
+  if (h === 0) return `${m} min`;
+  return `${h} h ${m} min`;
 }
 
 function haversineM(lat1: number, lng1: number, lat2: number, lng2: number) {
@@ -94,7 +109,7 @@ export default function Trasa1Page() {
   const [busOpen, setBusOpen] = useState(false);
   const [parkOpen, setParkOpen] = useState(false);
 
-  const [times, setTimes] = useState<Record<string, string>>(() => {
+  const [times, setTimes] = useState<StoredTimes>(() => {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
     catch { return {}; }
   });
@@ -106,11 +121,12 @@ export default function Trasa1Page() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(times));
   }, [times]);
 
-  function clearTime(label: string) {
-    setTimes((prev) => { const n = { ...prev }; delete n[label]; return n; });
-    setGeoError((prev) => { const n = { ...prev }; delete n[label]; return n; });
-    setGeoState((prev) => ({ ...prev, [label]: "idle" }));
-  }
+  const startEntry = times["START"];
+  const finishEntry = times["CÍL"];
+  const totalDuration =
+    startEntry && finishEntry
+      ? formatDuration(finishEntry.ts - startEntry.ts)
+      : null;
 
   function recordWithGeo(step: typeof steps[number]) {
     if (!navigator.geolocation) {
@@ -124,12 +140,10 @@ export default function Trasa1Page() {
       (pos) => {
         const dist = haversineM(pos.coords.latitude, pos.coords.longitude, step.lat, step.lng);
         if (dist <= RADIUS_M) {
-          setTimes((p) => ({ ...p, [step.label]: nowTime() }));
+          setTimes((p) => ({ ...p, [step.label]: nowEntry() }));
           setGeoState((p) => ({ ...p, [step.label]: "idle" }));
         } else {
-          const distStr = dist < 1000
-            ? `${Math.round(dist)} m`
-            : `${(dist / 1000).toFixed(1)} km`;
+          const distStr = dist < 1000 ? `${Math.round(dist)} m` : `${(dist / 1000).toFixed(1)} km`;
           setGeoError((p) => ({ ...p, [step.label]: `Jsi ${distStr} od místa` }));
           setGeoState((p) => ({ ...p, [step.label]: "error" }));
         }
@@ -194,26 +208,16 @@ export default function Trasa1Page() {
                       <span>{step.proof}</span>
                     </div>
 
-                    {/* Button area */}
                     {recorded ? (
-                      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                        <div style={{
-                          display: "flex", alignItems: "center", gap: "5px",
-                          padding: "4px 10px", borderRadius: "20px",
-                          background: step.color + "22", border: `1px solid ${step.color}55`,
-                        }}>
-                          <CheckCircle2 size={11} color={step.color} />
-                          <Clock size={11} color={step.color} />
-                          <span style={{ color: step.color, fontWeight: 700, fontSize: "0.82rem" }}>{recorded}</span>
-                        </div>
-                        <button onClick={() => clearTime(step.label)} style={{
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          width: "26px", height: "26px", borderRadius: "50%",
-                          background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
-                          cursor: "pointer",
-                        }}>
-                          <RotateCcw size={11} color="rgba(255,255,255,0.4)" />
-                        </button>
+                      /* Locked — no reset */
+                      <div style={{
+                        display: "flex", alignItems: "center", gap: "5px",
+                        padding: "4px 10px", borderRadius: "20px",
+                        background: step.color + "22", border: `1px solid ${step.color}55`,
+                      }}>
+                        <CheckCircle2 size={11} color={step.color} />
+                        <Clock size={11} color={step.color} />
+                        <span style={{ color: step.color, fontWeight: 700, fontSize: "0.82rem" }}>{recorded.display}</span>
                       </div>
                     ) : (
                       <button
@@ -229,16 +233,14 @@ export default function Trasa1Page() {
                           opacity: geo === "loading" ? 0.7 : 1,
                         }}
                       >
-                        {geo === "loading" ? (
-                          <><Loader2 size={11} style={{ animation: "spin 1s linear infinite" }} />Zjišťuji polohu…</>
-                        ) : (
-                          <><Clock size={11} />Zapsat čas</>
-                        )}
+                        {geo === "loading"
+                          ? <><Loader2 size={11} style={{ animation: "spin 1s linear infinite" }} />Zjišťuji polohu…</>
+                          : <><Clock size={11} />Zapsat čas</>
+                        }
                       </button>
                     )}
                   </div>
 
-                  {/* Geo error */}
                   {err && !recorded && (
                     <div style={{
                       display: "flex", alignItems: "center", gap: "5px",
@@ -254,6 +256,39 @@ export default function Trasa1Page() {
             );
           })}
         </div>
+
+        {/* Total time — shown when START + CÍL both recorded */}
+        {totalDuration && (
+          <div style={{
+            marginTop: "16px",
+            padding: "14px 16px",
+            borderRadius: "16px",
+            background: "linear-gradient(135deg, rgba(251,191,36,0.12) 0%, rgba(251,191,36,0.05) 100%)",
+            border: "1px solid rgba(251,191,36,0.35)",
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+          }}>
+            <div style={{
+              width: "38px", height: "38px", borderRadius: "12px",
+              background: "rgba(251,191,36,0.15)", border: "1px solid rgba(251,191,36,0.30)",
+              display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+            }}>
+              <Timer size={18} color="#fbbf24" />
+            </div>
+            <div>
+              <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "2px" }}>
+                Celkový čas trasy
+              </div>
+              <div style={{ color: "#fbbf24", fontWeight: 800, fontSize: "1.3rem" }}>
+                {totalDuration}
+              </div>
+              <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.72rem", marginTop: "1px" }}>
+                {startEntry.display} → {finishEntry.display}
+              </div>
+            </div>
+          </div>
+        )}
 
         <div style={{ flex: 1 }} />
 
