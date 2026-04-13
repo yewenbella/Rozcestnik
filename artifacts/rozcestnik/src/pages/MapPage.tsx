@@ -18,11 +18,11 @@ export default function MapPage() {
 
     mapInstanceRef.current = map;
 
-    L.tileLayer("https://mapserver.mapy.cz/turist-m/{z}-{x}-{y}", {
+    L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
       attribution:
-        '&copy; <a href="https://www.seznam.cz" target="_blank">Seznam.cz</a>, &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
-      maxZoom: 19,
-      tileSize: 256,
+        'Mapa &copy; <a href="https://opentopomap.org" target="_blank">OpenTopoMap</a> | &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
+      maxZoom: 17,
+      subdomains: ["a", "b", "c"],
     }).addTo(map);
 
     return () => {

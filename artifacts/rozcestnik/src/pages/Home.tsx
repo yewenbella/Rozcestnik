@@ -91,7 +91,7 @@ export default function Home() {
           display: "flex",
           flexDirection: "column",
           gap: "9px",
-          padding: "8px 18px 0 18px",
+          padding: "22px 18px 0 18px",
           flex: 1,
         }}
       >
