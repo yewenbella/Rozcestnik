@@ -291,7 +291,7 @@ export default function Trasa1Page() {
                 <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Janov nad Nisou, pošta</div>
               </div>
               <a
-                href="https://idos.cz/autobusy/spojeni/?f=Janov+nad+Nisou%2C+po%C5%A1ta"
+                href="https://idos.cz/autobusy/spojeni/?t=Janov+nad+Nisou%2C+po%C5%A1ta"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
