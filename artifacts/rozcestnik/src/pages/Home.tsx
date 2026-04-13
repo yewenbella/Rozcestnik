@@ -3,7 +3,6 @@ import { Map, Route, Trophy, BookOpen, UserCircle } from "lucide-react";
 import { Show } from "@clerk/react";
 import heroBg from "@/assets/hero-bg.png";
 import WeatherWidget from "@/components/WeatherWidget";
-import SunsetBadge from "@/components/SunsetBadge";
 
 const buttons = [
   {
@@ -94,7 +93,6 @@ export default function Home() {
           minHeight: "100vh",
         }}
       >
-        <SunsetBadge />
         {/* Title */}
         <div
           style={{

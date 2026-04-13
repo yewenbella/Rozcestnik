@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface WeatherData {
   temp: number;
   windspeed: number;
   code: number;
   city: string;
+  sunsetMs: number;
 }
 
 function getWeatherInfo(code: number): { label: string; icon: string } {
@@ -18,6 +19,16 @@ function getWeatherInfo(code: number): { label: string; icon: string } {
   if (code <= 82) return { label: "Přeháňky", icon: "🌦️" };
   if (code <= 99) return { label: "Bouřka", icon: "⛈️" };
   return { label: "Proměnlivě", icon: "🌡️" };
+}
+
+function formatSunset(sunsetMs: number): string {
+  const diff = sunsetMs - Date.now();
+  if (diff <= 0) return "Západ nastal";
+  const totalMin = Math.floor(diff / 60000);
+  const h = Math.floor(totalMin / 60);
+  const m = totalMin % 60;
+  if (h === 0) return `Západ za ${m} min`;
+  return `Západ za ${h} h ${m} min`;
 }
 
 async function reverseGeocode(lat: number, lon: number): Promise<string> {
@@ -40,25 +51,31 @@ async function reverseGeocode(lat: number, lon: number): Promise<string> {
 
 export default function WeatherWidget() {
   const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [sunsetLabel, setSunsetLabel] = useState<string>("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     const fetchWeather = async (lat: number, lon: number) => {
       try {
         const [weatherRes, city] = await Promise.all([
           fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode,windspeed_10m&timezone=auto`
+            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode,windspeed_10m&daily=sunset&timezone=auto&forecast_days=1`
           ),
           reverseGeocode(lat, lon),
         ]);
         const data = await weatherRes.json();
+        const sunsetStr: string = data.daily?.sunset?.[0] ?? "";
+        const sunsetMs = sunsetStr ? new Date(sunsetStr).getTime() : 0;
         setWeather({
           temp: Math.round(data.current.temperature_2m),
           windspeed: Math.round(data.current.windspeed_10m),
           code: data.current.weathercode,
           city,
+          sunsetMs,
         });
+        if (sunsetMs) setSunsetLabel(formatSunset(sunsetMs));
       } catch {
         setError(true);
       } finally {
@@ -66,15 +83,26 @@ export default function WeatherWidget() {
       }
     };
 
+    const DEFAULT_LAT = 50.72;
+    const DEFAULT_LON = 15.15;
+
+    fetchWeather(DEFAULT_LAT, DEFAULT_LON);
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => fetchWeather(pos.coords.latitude, pos.coords.longitude),
-        () => fetchWeather(50.08, 14.43) // fallback Praha
+        () => {},
+        { timeout: 5000 }
       );
-    } else {
-      fetchWeather(50.08, 14.43);
     }
   }, []);
+
+  useEffect(() => {
+    if (!weather?.sunsetMs) return;
+    const tick = () => setSunsetLabel(formatSunset(weather.sunsetMs));
+    timerRef.current = setInterval(tick, 30000);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [weather?.sunsetMs]);
 
   if (loading) {
     return (
@@ -89,11 +117,12 @@ export default function WeatherWidget() {
   if (error || !weather) return null;
 
   const { label, icon } = getWeatherInfo(weather.code);
+  const passed = weather.sunsetMs > 0 && Date.now() > weather.sunsetMs;
 
   return (
     <div style={widgetStyle}>
       <span style={{ fontSize: "1.6rem", lineHeight: 1 }}>{icon}</span>
-      <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "2px", flex: 1, minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
           <span style={{ color: "white", fontSize: "1.3rem", fontWeight: 700, lineHeight: 1 }}>
             {weather.temp}°C
@@ -103,6 +132,16 @@ export default function WeatherWidget() {
         <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem" }}>
           {weather.city} · 💨 {weather.windspeed} km/h
         </div>
+        {sunsetLabel && (
+          <div style={{
+            color: passed ? "rgba(165,180,252,0.85)" : "rgba(253,186,116,0.9)",
+            fontSize: "0.70rem",
+            fontWeight: 600,
+            marginTop: "1px",
+          }}>
+            {passed ? "🌙" : "🌅"} {sunsetLabel}
+          </div>
+        )}
       </div>
     </div>
   );
