@@ -1,5 +1,5 @@
 import PageLayout from "@/components/PageLayout";
-import { Star, Users, Trophy, CheckCircle } from "lucide-react";
+import { Users, CheckCircle } from "lucide-react";
 
 const sections = [
   {
@@ -10,30 +10,6 @@ const sections = [
       "Každý tým tvoří dvojice",
       "Společně vybíráte a absolvujete trasy",
       "Zapisujte výsledky po každé trase",
-      "Sbírejte body a plňte výzvy",
-    ],
-  },
-  {
-    icon: Star,
-    iconColor: "#f59e0b",
-    title: "Bodování",
-    items: [
-      "Lehká trasa: 100 bodů",
-      "Střední trasa: 200 bodů",
-      "Náročná trasa: 350 bodů",
-      "Bonus za foto z vrcholu: +50 bodů",
-      "Dokončení do 2 hodin: +30 bodů",
-    ],
-  },
-  {
-    icon: Trophy,
-    iconColor: "#fb923c",
-    title: "Výzvy sezóny",
-    items: [
-      "Vystoupejte na 3 různé vrcholy",
-      "Absolvujte trasu v dešti",
-      "Ubytujte se v horské chatě",
-      "Ujděte celkem 100 km",
     ],
   },
   {
@@ -41,7 +17,6 @@ const sections = [
     iconColor: "#4ade80",
     title: "Pravidla fair play",
     items: [
-      "Výsledky nezapisujte bez důkazu (foto)",
       "Respektujte přírodu a turistické značení",
       "Každou trasu můžete započítat jen jednou",
       "Rozhoduje záznam v aplikaci",
@@ -62,7 +37,7 @@ export default function PravidlaPage() {
         >
           <p className="text-white font-medium text-sm leading-relaxed">
             Turistická výzva dvojic je soutěž pro páry, rodiny i kamarády. Cílem je společně
-            prozkoumávat českou přírodu a sbírat body za absolvované trasy.
+            prozkoumávat českou přírodu a absolvovat trasy.
           </p>
         </div>
 
