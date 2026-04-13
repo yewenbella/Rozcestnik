@@ -5,6 +5,9 @@ interface WeatherData {
   windspeed: number;
   code: number;
   city: string;
+  maxTemp: number;
+  minTemp: number;
+  dailyCode: number;
 }
 
 function getWeatherInfo(code: number): { label: string; icon: string } {
@@ -48,7 +51,10 @@ export default function WeatherWidget() {
       try {
         const [weatherRes, city] = await Promise.all([
           fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode,windspeed_10m&timezone=auto`
+            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+            `&current=temperature_2m,weathercode,windspeed_10m` +
+            `&daily=temperature_2m_max,temperature_2m_min,weathercode` +
+            `&timezone=auto&forecast_days=1`
           ),
           reverseGeocode(lat, lon),
         ]);
@@ -58,6 +64,9 @@ export default function WeatherWidget() {
           windspeed: Math.round(data.current.windspeed_10m),
           code: data.current.weathercode,
           city,
+          maxTemp: Math.round(data.daily.temperature_2m_max[0]),
+          minTemp: Math.round(data.daily.temperature_2m_min[0]),
+          dailyCode: data.daily.weathercode[0],
         });
       } catch {
         setError(true);
@@ -79,7 +88,7 @@ export default function WeatherWidget() {
   if (loading) {
     return (
       <div style={widgetStyle}>
-        <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.78rem" }}>
+        <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.75rem" }}>
           Načítám počasí…
         </span>
       </div>
@@ -89,19 +98,29 @@ export default function WeatherWidget() {
   if (error || !weather) return null;
 
   const { label, icon } = getWeatherInfo(weather.code);
+  const { label: dailyLabel } = getWeatherInfo(weather.dailyCode);
 
   return (
     <div style={widgetStyle}>
-      <span style={{ fontSize: "1.6rem", lineHeight: 1 }}>{icon}</span>
-      <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
-        <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
-          <span style={{ color: "white", fontSize: "1.3rem", fontWeight: 700, lineHeight: 1 }}>
+      <span style={{ fontSize: "1.4rem", lineHeight: 1, flexShrink: 0 }}>{icon}</span>
+      <div style={{ display: "flex", flexDirection: "column", gap: "2px", minWidth: 0 }}>
+        {/* Current temp + condition */}
+        <div style={{ display: "flex", alignItems: "baseline", gap: "5px" }}>
+          <span style={{ color: "white", fontSize: "1.05rem", fontWeight: 700, lineHeight: 1 }}>
             {weather.temp}°C
           </span>
-          <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.8rem" }}>{label}</span>
+          <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.72rem" }}>{label}</span>
         </div>
-        <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem" }}>
+        {/* Location + wind */}
+        <div style={{ color: "rgba(255,255,255,0.48)", fontSize: "0.68rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
           {weather.city} · 💨 {weather.windspeed} km/h
+        </div>
+        {/* Daily forecast */}
+        <div style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.68rem", display: "flex", alignItems: "center", gap: "4px" }}>
+          <span>Dnes:</span>
+          <span style={{ color: "#fca5a5", fontWeight: 600 }}>↑{weather.maxTemp}°</span>
+          <span style={{ color: "#93c5fd", fontWeight: 600 }}>↓{weather.minTemp}°</span>
+          <span style={{ color: "rgba(255,255,255,0.45)" }}>· {dailyLabel}</span>
         </div>
       </div>
     </div>
@@ -113,7 +132,7 @@ const widgetStyle: React.CSSProperties = {
   alignItems: "center",
   gap: "10px",
   width: "220px",
-  padding: "10px 14px",
+  padding: "9px 13px",
   borderRadius: "10px",
   background: "rgba(255,255,255,0.08)",
   backdropFilter: "blur(12px)",
