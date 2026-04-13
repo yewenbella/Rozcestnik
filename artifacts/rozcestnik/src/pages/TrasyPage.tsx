@@ -1,17 +1,21 @@
 import PageLayout from "@/components/PageLayout";
 import { Route, ChevronRight } from "lucide-react";
+import { useLocation } from "wouter";
 
 const trasy = [
   { id: 1, label: "Trasa č.1" },
 ];
 
 export default function TrasyPage() {
+  const [, navigate] = useLocation();
+
   return (
     <PageLayout title="Trasy" backPath="/">
       <div style={{ display: "flex", flexDirection: "column", gap: "12px", padding: "16px" }}>
         {trasy.map((trasa) => (
           <button
             key={trasa.id}
+            onClick={() => navigate(`/trasy/${trasa.id}`)}
             style={{
               display: "flex",
               alignItems: "center",
