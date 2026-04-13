@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
-import { MapPin, Flag, Camera, Navigation, Car, Bus, ChevronUp, ChevronDown } from "lucide-react";
+import { MapPin, Flag, Camera, Navigation, Car, Bus, ChevronUp, ChevronDown, ParkingCircle } from "lucide-react";
 
 const steps = [
   {
@@ -57,6 +57,7 @@ const steps = [
 
 export default function Trasa1Page() {
   const [busOpen, setBusOpen] = useState(false);
+  const [parkOpen, setParkOpen] = useState(false);
 
   return (
     <PageLayout title="Trasa č.1" backPath="/trasy">
@@ -145,6 +146,7 @@ export default function Trasa1Page() {
         >
           <div style={{ display: "flex", gap: "10px" }}>
             <button
+              onClick={() => setParkOpen((o) => !o)}
               style={{
                 flex: 1,
                 display: "flex",
@@ -153,17 +155,22 @@ export default function Trasa1Page() {
                 gap: "8px",
                 padding: "13px",
                 borderRadius: "14px",
-                border: "1px solid rgba(255,255,255,0.15)",
-                background: "rgba(255,255,255,0.07)",
+                border: parkOpen ? "1px solid rgba(74,222,128,0.45)" : "1px solid rgba(255,255,255,0.15)",
+                background: parkOpen ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.07)",
                 backdropFilter: "blur(10px)",
                 color: "rgba(255,255,255,0.8)",
                 fontWeight: 700,
                 fontSize: "0.88rem",
                 cursor: "pointer",
+                transition: "all 0.2s",
               }}
             >
-              <Car size={18} color="rgba(255,255,255,0.7)" />
+              <Car size={18} color={parkOpen ? "#4ade80" : "rgba(255,255,255,0.7)"} />
               Parkoviště
+              {parkOpen
+                ? <ChevronUp size={14} color="rgba(255,255,255,0.5)" />
+                : <ChevronDown size={14} color="rgba(255,255,255,0.5)" />
+              }
             </button>
 
             <button
@@ -194,6 +201,27 @@ export default function Trasa1Page() {
               }
             </button>
           </div>
+
+          {/* Parking info panel */}
+          {parkOpen && (
+            <div
+              style={{
+                padding: "12px 14px",
+                borderRadius: "12px",
+                background: "rgba(74,222,128,0.08)",
+                border: "1px solid rgba(74,222,128,0.22)",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <ParkingCircle size={15} color="#4ade80" />
+              <div>
+                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem", marginBottom: "2px" }}>Parkoviště</div>
+                <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Kavárna Mlsné myšky</div>
+              </div>
+            </div>
+          )}
 
           {/* Bus info panel */}
           {busOpen && (
