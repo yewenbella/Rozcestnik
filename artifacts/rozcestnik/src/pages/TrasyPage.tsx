@@ -12,7 +12,7 @@ function isTrasa1Completed(): boolean {
 }
 
 const trasy = [
-  { id: 1, label: "Trasa č.1 – (Janov nad Nisou)" },
+  { id: 1, label: "Trasa č.1 (Janov nad Nisou)" },
 ];
 
 export default function TrasyPage() {
