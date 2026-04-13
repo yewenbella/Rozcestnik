@@ -69,10 +69,23 @@ export default function Trasa1Page() {
 
   const startEntry = times["START"];
   const finishEntry = times["CÍL"];
-  const totalDuration =
-    startEntry && finishEntry
-      ? formatDuration(finishEntry.ts - startEntry.ts)
-      : null;
+  const totalTimeMs =
+    startEntry && finishEntry ? finishEntry.ts - startEntry.ts : null;
+  const totalDuration = totalTimeMs ? formatDuration(totalTimeMs) : null;
+
+  useEffect(() => {
+    if (!totalTimeMs) return;
+    const saved = localStorage.getItem("trasa1_result_sent");
+    if (saved === String(totalTimeMs)) return;
+    fetch("/api/results", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ routeId: 1, totalTimeMs }),
+    })
+      .then((r) => { if (r.ok) localStorage.setItem("trasa1_result_sent", String(totalTimeMs)); })
+      .catch(() => {});
+  }, [totalTimeMs]);
 
   function recordWithGeo(step: typeof trasa1Steps[number]) {
     if (!navigator.geolocation) {

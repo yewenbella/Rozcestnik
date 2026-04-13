@@ -1,4 +1,4 @@
-import { pgTable, serial, text, integer, timestamp, unique } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, integer, timestamp, unique, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod/v4";
 
@@ -22,6 +22,22 @@ export const teamMembersTable = pgTable(
   },
   (t) => [unique("unique_team_user").on(t.teamId, t.userId)]
 );
+
+export const routeResultsTable = pgTable(
+  "route_results",
+  {
+    id: serial("id").primaryKey(),
+    teamId: integer("team_id")
+      .notNull()
+      .references(() => teamsTable.id, { onDelete: "cascade" }),
+    routeId: integer("route_id").notNull(),
+    totalTimeMs: integer("total_time_ms").notNull(),
+    completedAt: timestamp("completed_at").defaultNow(),
+  },
+  (t) => [unique("unique_team_route").on(t.teamId, t.routeId)]
+);
+
+export type RouteResult = typeof routeResultsTable.$inferSelect;
 
 export const insertTeamSchema = createInsertSchema(teamsTable).omit({
   id: true,
