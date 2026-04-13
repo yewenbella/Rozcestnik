@@ -1,5 +1,5 @@
 import PageLayout from "@/components/PageLayout";
-import { MapPin, Flag, Camera, Navigation } from "lucide-react";
+import { MapPin, Flag, Camera, Navigation, Car, Bus } from "lucide-react";
 
 const steps = [
   {
@@ -141,6 +141,52 @@ export default function Trasa1Page() {
             </div>
           );
         })}
+
+        {/* Transport buttons */}
+        <div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
+          <button
+            style={{
+              flex: 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              padding: "13px",
+              borderRadius: "14px",
+              border: "1px solid rgba(255,255,255,0.15)",
+              background: "rgba(255,255,255,0.07)",
+              backdropFilter: "blur(10px)",
+              color: "rgba(255,255,255,0.8)",
+              fontWeight: 700,
+              fontSize: "0.88rem",
+              cursor: "pointer",
+            }}
+          >
+            <Car size={18} color="rgba(255,255,255,0.7)" />
+            Parkoviště
+          </button>
+          <button
+            style={{
+              flex: 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              padding: "13px",
+              borderRadius: "14px",
+              border: "1px solid rgba(255,255,255,0.15)",
+              background: "rgba(255,255,255,0.07)",
+              backdropFilter: "blur(10px)",
+              color: "rgba(255,255,255,0.8)",
+              fontWeight: 700,
+              fontSize: "0.88rem",
+              cursor: "pointer",
+            }}
+          >
+            <Bus size={18} color="rgba(255,255,255,0.7)" />
+            Autobus
+          </button>
+        </div>
       </div>
     </PageLayout>
   );
