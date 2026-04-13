@@ -91,7 +91,7 @@ export default function Home() {
         <div
           style={{
             textAlign: "center",
-            paddingTop: "52px",
+            paddingTop: "120px",
             paddingBottom: "8px",
           }}
         >
@@ -142,7 +142,7 @@ export default function Home() {
                 display: "flex",
                 alignItems: "center",
                 gap: "8px",
-                width: "180px",
+                width: "220px",
                 background: gradient,
                 border: `1.5px solid ${border}`,
                 borderRadius: "10px",
