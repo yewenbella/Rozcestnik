@@ -1,81 +1,21 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import PageLayout from "@/components/PageLayout";
 import {
   MapPin, Flag, Camera, Navigation, Car, Bus,
   ChevronUp, ChevronDown, ParkingCircle, Clock,
   Loader2, AlertCircle, CheckCircle2, Timer,
 } from "lucide-react";
+import { trasa1Steps } from "@/data/trasa1Steps";
 
 const STORAGE_KEY = "trasa1_times";
 const RADIUS_M = 100;
 
-const steps = [
-  {
-    type: "start" as const,
-    label: "START",
-    place: "Socha sv. Nepomuckého",
-    proof: "Socha",
-    info: "Barokní socha patrona Čech z 18. století. Stojí u historického mostu v centru Jablonce nad Nisou — tradiční místo setkání turistů.",
-    color: "#4ade80",
-    bg: "rgba(74,222,128,0.10)",
-    border: "rgba(74,222,128,0.28)",
-    icon: Navigation,
-    lat: 50.7452,
-    lng: 15.1660,
-  },
-  {
-    type: "checkpoint" as const,
-    label: "Checkpoint 1",
-    place: "Rozhledna Slovanka",
-    proof: "Rozcestník",
-    info: "Dřevěná rozhledna ve výšce 836 m n. m. s panoramatickým výhledem na Jizerské hory a Lužické hory. Za jasného dne jsou vidět i Krkonoše.",
-    color: "#60a5fa",
-    bg: "rgba(96,165,250,0.08)",
-    border: "rgba(96,165,250,0.22)",
-    icon: MapPin,
-    lat: 50.7254,
-    lng: 15.1470,
-  },
-  {
-    type: "checkpoint" as const,
-    label: "Checkpoint 2",
-    place: "Karlov",
-    proof: "Rozcestník",
-    info: "Malebná osada na náhorní plošině obklopená lesy. Oblíbené místo odpočinku s lavičkami a výhledem do údolí Černé Nisy.",
-    color: "#60a5fa",
-    bg: "rgba(96,165,250,0.08)",
-    border: "rgba(96,165,250,0.22)",
-    icon: MapPin,
-    lat: 50.7400,
-    lng: 15.1480,
-  },
-  {
-    type: "checkpoint" as const,
-    label: "Checkpoint 3",
-    place: "Přehrada Josefův důl",
-    proof: "Rozcestník",
-    info: "Vodní nádrž z roku 1906 obklopená smrkovými lesy. Zásobárna pitné vody pro Liberecký kraj — klidné místo s příjemnou atmosférou.",
-    color: "#60a5fa",
-    bg: "rgba(96,165,250,0.08)",
-    border: "rgba(96,165,250,0.22)",
-    icon: MapPin,
-    lat: 50.7553,
-    lng: 15.1762,
-  },
-  {
-    type: "finish" as const,
-    label: "CÍL",
-    place: "Socha sv. Nepomuckého",
-    proof: "Socha",
-    info: "Zpět u sochy sv. Nepomuckého — konec okruhu. Gratulujeme k dokončení trasy! Nezapomeňte zapsat čas pro platný výsledek.",
-    color: "#f97316",
-    bg: "rgba(249,115,22,0.10)",
-    border: "rgba(249,115,22,0.28)",
-    icon: Flag,
-    lat: 50.7452,
-    lng: 15.1660,
-  },
-];
+const iconMap = {
+  start: Navigation,
+  checkpoint: MapPin,
+  finish: Flag,
+} as const;
 
 interface TimeEntry { display: string; ts: number; }
 type StoredTimes = Record<string, TimeEntry>;
@@ -121,7 +61,7 @@ export default function Trasa1Page() {
 
   const [geoState, setGeoState] = useState<Record<string, GeoState>>({});
   const [geoError, setGeoError] = useState<Record<string, string>>({});
-  const [expandedStep, setExpandedStep] = useState<string | null>(null);
+  const [, navigate] = useLocation();
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(times));
@@ -134,7 +74,7 @@ export default function Trasa1Page() {
       ? formatDuration(finishEntry.ts - startEntry.ts)
       : null;
 
-  function recordWithGeo(step: typeof steps[number]) {
+  function recordWithGeo(step: typeof trasa1Steps[number]) {
     if (!navigator.geolocation) {
       setGeoError((p) => ({ ...p, [step.label]: "GPS není dostupné" }));
       return;
@@ -168,9 +108,9 @@ export default function Trasa1Page() {
 
         {/* Route timeline */}
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            const isLast = index === steps.length - 1;
+          {trasa1Steps.map((step, index) => {
+            const Icon = iconMap[step.type];
+            const isLast = index === trasa1Steps.length - 1;
             const recorded = times[step.label];
             const geo = geoState[step.label] ?? "idle";
             const err = geoError[step.label];
@@ -196,7 +136,7 @@ export default function Trasa1Page() {
 
                 {/* Card */}
                 <div
-                  onClick={() => setExpandedStep(expandedStep === step.label ? null : step.label)}
+                  onClick={() => navigate(`/trasy/1/${step.slug}`)}
                   style={{
                     flex: 1, marginBottom: isLast ? 0 : "5px", padding: "5px 10px",
                     borderRadius: "14px", background: step.bg,
@@ -228,7 +168,7 @@ export default function Trasa1Page() {
                       </div>
                     ) : (
                       <button
-                        onClick={(e) => { e.stopPropagation(); recordWithGeo(step); }}
+                        onClick={(e) => { e.stopPropagation(); recordWithGeo(step as typeof trasa1Steps[number]); }}
                         disabled={geo === "loading"}
                         style={{
                           display: "flex", alignItems: "center", gap: "4px",
@@ -259,19 +199,6 @@ export default function Trasa1Page() {
                     </div>
                   )}
 
-                  {expandedStep === step.label && (
-                    <div style={{
-                      marginTop: "8px", paddingTop: "8px",
-                      borderTop: `1px solid ${step.color}22`,
-                    }}>
-                      <p style={{
-                        margin: 0, color: "rgba(255,255,255,0.70)",
-                        fontSize: "0.76rem", lineHeight: "1.5",
-                      }}>
-                        {step.info}
-                      </p>
-                    </div>
-                  )}
                 </div>
               </div>
             );

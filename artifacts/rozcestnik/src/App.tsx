@@ -6,6 +6,7 @@ import Home from "@/pages/Home";
 import MapPage from "@/pages/MapPage";
 import TrasyPage from "@/pages/TrasyPage";
 import Trasa1Page from "@/pages/Trasa1Page";
+import StepDetailPage from "@/pages/StepDetailPage";
 import ZebricekPage from "@/pages/ZebricekPage";
 import PravidlaPage from "@/pages/PravidlaPage";
 import SignInPage from "@/pages/SignInPage";
@@ -54,6 +55,7 @@ function AppRoutes() {
       <Route path="/mapa" component={MapPage} />
       <Route path="/trasy" component={TrasyPage} />
       <Route path="/trasy/1" component={Trasa1Page} />
+      <Route path="/trasy/1/:slug" component={StepDetailPage} />
       <Route path="/zebricek" component={ZebricekPage} />
       <Route path="/pravidla" component={PravidlaPage} />
       <Route component={NotFound} />
