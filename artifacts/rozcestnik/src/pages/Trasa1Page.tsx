@@ -5,7 +5,7 @@ const steps = [
   {
     type: "start" as const,
     label: "START",
-    place: "Parkoviště Skiareál Severák",
+    place: "Socha sv. Nepomuckého",
     proof: "Fotka kříže",
     color: "#4ade80",
     bg: "rgba(74,222,128,0.10)",
@@ -45,7 +45,7 @@ const steps = [
   {
     type: "finish" as const,
     label: "CÍL",
-    place: "Parkoviště Skiareál Severák",
+    place: "Socha sv. Nepomuckého",
     proof: "Fotka kříže",
     color: "#f97316",
     bg: "rgba(249,115,22,0.10)",
