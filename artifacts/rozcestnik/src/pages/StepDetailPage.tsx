@@ -1,5 +1,5 @@
 import { useParams } from "wouter";
-import { MapPin, Navigation, Flag, Camera, Info, ExternalLink } from "lucide-react";
+import { MapPin, Navigation, Flag, Info, ExternalLink } from "lucide-react";
 import { trasa1Steps } from "@/data/trasa1Steps";
 import PageLayout from "@/components/PageLayout";
 
@@ -24,9 +24,9 @@ export default function StepDetailPage() {
       <div style={{
         display: "flex",
         flexDirection: "column",
-        padding: "20px 16px 24px",
+        padding: "16px 16px 24px",
         boxSizing: "border-box",
-        gap: "20px",
+        gap: "16px",
       }}>
 
         {/* Colored label */}
@@ -34,18 +34,36 @@ export default function StepDetailPage() {
           {step.label}
         </div>
 
-        {/* Icon badge */}
-        <div style={{ display: "flex", justifyContent: "center", paddingTop: "8px" }}>
+        {/* Photo or icon fallback */}
+        {step.imageUrl ? (
           <div style={{
-            width: "80px", height: "80px", borderRadius: "24px",
+            borderRadius: "16px",
+            overflow: "hidden",
+            border: `1px solid ${step.color}33`,
+            boxShadow: `0 4px 24px ${step.color}22`,
+            aspectRatio: "16/9",
             background: step.bg,
-            border: `2px solid ${step.color}55`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            boxShadow: `0 0 32px ${step.color}33`,
           }}>
-            <IconComp size={36} color={step.color} strokeWidth={1.5} />
+            <img
+              src={step.imageUrl}
+              alt={step.place}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
           </div>
-        </div>
+        ) : (
+          <div style={{
+            display: "flex", justifyContent: "center", padding: "24px 0",
+          }}>
+            <div style={{
+              width: "80px", height: "80px", borderRadius: "24px",
+              background: step.bg, border: `2px solid ${step.color}55`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: `0 0 32px ${step.color}33`,
+            }}>
+              <IconComp size={36} color={step.color} strokeWidth={1.5} />
+            </div>
+          </div>
+        )}
 
         {/* Info card */}
         <div style={{
@@ -88,25 +106,6 @@ export default function StepDetailPage() {
               Přečíst celý článek na Wikipedii
             </a>
           )}
-        </div>
-
-        {/* Proof card */}
-        <div style={{
-          borderRadius: "16px",
-          background: step.bg,
-          border: `1px solid ${step.border}`,
-          padding: "14px 16px",
-          display: "flex", alignItems: "center", gap: "10px",
-        }}>
-          <Camera size={18} color={step.color} />
-          <div>
-            <div style={{ color: "rgba(255,255,255,0.50)", fontSize: "0.72rem", marginBottom: "2px" }}>
-              Důkaz přítomnosti
-            </div>
-            <div style={{ color: "white", fontWeight: 700, fontSize: "0.88rem" }}>
-              {step.proof}
-            </div>
-          </div>
         </div>
 
       </div>
