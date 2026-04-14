@@ -143,9 +143,49 @@ export default function Home() {
           minHeight: "100vh",
         }}
       >
-        {/* Weather — top-left corner, same style as SunsetBadge */}
+        {/* Weather — top-left corner */}
         <div style={{ position: "absolute", top: "16px", left: "16px", zIndex: 10 }}>
           <WeatherWidget compact />
+        </div>
+
+        {/* Team button — top-center */}
+        <div style={{ position: "absolute", top: "16px", left: "50%", transform: "translateX(-50%)", zIndex: 10 }}>
+          <Show when="signed-out">
+            <button
+              onClick={() => navigate("/sign-in")}
+              style={{
+                display: "flex", alignItems: "center", gap: "5px",
+                padding: "5px 11px", borderRadius: "8px",
+                border: "1px solid rgba(255,255,255,0.18)",
+                background: "rgba(0,0,0,0.32)",
+                backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+                color: "rgba(255,255,255,0.82)", fontSize: "0.72rem",
+                fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
+              }}
+            >
+              <UserCircle size={12} color="rgba(255,255,255,0.75)" />
+              {"P\u0159ihl\u00e1sit se / T\u00fdm"}
+            </button>
+          </Show>
+          <Show when="signed-in">
+            <button
+              onClick={() => navigate("/team")}
+              style={{
+                display: "flex", alignItems: "center", gap: "5px",
+                padding: "5px 11px", borderRadius: "8px",
+                border: "1px solid rgba(255,255,255,0.18)",
+                background: "rgba(0,0,0,0.32)",
+                backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+                color: "rgba(255,255,255,0.82)", fontSize: "0.72rem",
+                fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
+              }}
+            >
+              <UserCircle size={12} color="rgba(255,255,255,0.75)" />
+              {"M\u016fj t\u00fdm"}
+            </button>
+          </Show>
         </div>
 
         <SunsetBadge />
@@ -171,51 +211,6 @@ export default function Home() {
           >
             Rozcestník
           </h1>
-          {/* Auth badge */}
-          <div style={{ marginTop: "10px", display: "flex", justifyContent: "center" }}>
-            <Show when="signed-out">
-              <button
-                onClick={() => navigate("/sign-in")}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "5px",
-                  padding: "5px 12px",
-                  borderRadius: "20px",
-                  border: "1px solid rgba(255,255,255,0.25)",
-                  background: "rgba(255,255,255,0.1)",
-                  backdropFilter: "blur(8px)",
-                  color: "rgba(255,255,255,0.8)",
-                  fontSize: "0.76rem",
-                  cursor: "pointer",
-                }}
-              >
-                <UserCircle size={13} />
-                Přihlásit se / Tým
-              </button>
-            </Show>
-            <Show when="signed-in">
-              <button
-                onClick={() => navigate("/team")}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "5px",
-                  padding: "5px 12px",
-                  borderRadius: "20px",
-                  border: "1px solid rgba(74,222,128,0.4)",
-                  background: "rgba(34,197,94,0.15)",
-                  backdropFilter: "blur(8px)",
-                  color: "rgba(255,255,255,0.85)",
-                  fontSize: "0.76rem",
-                  cursor: "pointer",
-                }}
-              >
-                <UserCircle size={13} color="#4ade80" />
-                Můj tým
-              </button>
-            </Show>
-          </div>
         </div>
 
         {/* Main buttons — centered in remaining space */}
