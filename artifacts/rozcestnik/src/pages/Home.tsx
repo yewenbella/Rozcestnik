@@ -1,7 +1,7 @@
 import { useLocation } from "wouter";
 import { Map, Route, Trophy, BookOpen, UserCircle, Gamepad2 } from "lucide-react";
 import { Show } from "@clerk/react";
-import heroBg from "@/assets/hero-bg.png";
+import heroBg from "@/assets/hero-bg.jpg";
 import WeatherWidget from "@/components/WeatherWidget";
 import SunsetBadge from "@/components/SunsetBadge";
 
