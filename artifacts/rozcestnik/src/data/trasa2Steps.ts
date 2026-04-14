@@ -23,6 +23,7 @@ export const trasa2Steps: TrailStep[] = [
     place: "Rybník Vidlák",
     proof: "Rozcestník",
     info: "Vidlák je malebný rybník v srdci Českého ráje v blízkosti hradu Trosky. Svůj název dostal podle vidlovitého tvaru hráze. Okolí rybníka je oblíbeným místem pro procházky a pozorování přírody — hladina odráží siluetu troseckých věží a v ranních hodinách se nad vodou vznáší mlha.",
+    imageUrl: "/vidlak.png",
     color: "#60a5fa",
     bg: "rgba(96,165,250,0.08)",
     border: "rgba(96,165,250,0.22)",
