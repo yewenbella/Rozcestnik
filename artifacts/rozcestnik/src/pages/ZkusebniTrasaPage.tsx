@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import PageLayout from "@/components/PageLayout";
 import {
   Navigation, MapPin, Flag, CheckCircle2, Timer,
@@ -7,7 +7,7 @@ import {
 import { zkusebniSteps } from "@/data/zkusebniSteps";
 
 const STORAGE_KEY = "zkusebni_times";
-const RADIUS_M = 100;
+const RADIUS_M = 150;
 
 interface TimeEntry { display: string; ts: number; }
 type StoredTimes = Record<string, TimeEntry>;
@@ -51,6 +51,8 @@ export default function ZkusebniTrasaPage() {
   });
   const [geoState, setGeoState] = useState<Record<string, GeoState>>({});
   const [geoError, setGeoError] = useState<Record<string, string>>({});
+  const geoWatchRef = useRef<Record<string, number>>({});
+  const geoTimeoutRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
 
   const startEntry = times["START"];
   const finishEntry = times["CÍL"];
@@ -59,6 +61,13 @@ export default function ZkusebniTrasaPage() {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(times));
   }, [times]);
+
+  useEffect(() => {
+    return () => {
+      Object.values(geoWatchRef.current).forEach((id) => navigator.geolocation?.clearWatch(id));
+      Object.values(geoTimeoutRef.current).forEach((id) => clearTimeout(id));
+    };
+  }, []);
 
   function recordManual(label: string) {
     setTimes((p) => ({ ...p, [label]: nowEntry() }));
@@ -69,29 +78,71 @@ export default function ZkusebniTrasaPage() {
       setGeoError((p) => ({ ...p, [step.label]: "GPS není dostupné" }));
       return;
     }
-    setGeoState((p) => ({ ...p, [step.label]: "loading" }));
-    setGeoError((p) => { const n = { ...p }; delete n[step.label]; return n; });
+    if (geoWatchRef.current[step.label] !== undefined) {
+      navigator.geolocation.clearWatch(geoWatchRef.current[step.label]);
+      delete geoWatchRef.current[step.label];
+    }
+    clearTimeout(geoTimeoutRef.current[step.label]);
 
-    navigator.geolocation.getCurrentPosition(
+    setGeoState((p) => ({ ...p, [step.label]: "loading" }));
+    setGeoError((p) => ({ ...p, [step.label]: "Hledám GPS polohu\u2026" }));
+
+    let bestDist = Infinity;
+    let bestAcc = Infinity;
+    let finished = false;
+
+    const finish = (success: boolean) => {
+      if (finished) return;
+      finished = true;
+      navigator.geolocation.clearWatch(geoWatchRef.current[step.label]);
+      delete geoWatchRef.current[step.label];
+      clearTimeout(geoTimeoutRef.current[step.label]);
+      if (success) {
+        setTimes((p) => ({ ...p, [step.label]: nowEntry() }));
+        setGeoState((p) => ({ ...p, [step.label]: "idle" }));
+        setGeoError((p) => { const n = { ...p }; delete n[step.label]; return n; });
+      } else {
+        setGeoState((p) => ({ ...p, [step.label]: "error" }));
+        const distStr = bestDist < 1000 ? `${Math.round(bestDist)} m` : `${(bestDist / 1000).toFixed(1)} km`;
+        setGeoError((p) => ({
+          ...p,
+          [step.label]: `Jsi ${distStr} od m\xedsta (p\u0159esnost GPS: \xb1${Math.round(bestAcc)} m)`,
+        }));
+      }
+    };
+
+    geoTimeoutRef.current[step.label] = setTimeout(() => {
+      finish(bestDist <= RADIUS_M);
+    }, 20000);
+
+    const watchId = navigator.geolocation.watchPosition(
       (pos) => {
+        if (finished) return;
         const dist = haversineM(pos.coords.latitude, pos.coords.longitude, step.lat, step.lng);
-        if (dist <= RADIUS_M) {
-          setTimes((p) => ({ ...p, [step.label]: nowEntry() }));
-          setGeoState((p) => ({ ...p, [step.label]: "idle" }));
-        } else {
-          setGeoState((p) => ({ ...p, [step.label]: "error" }));
+        const acc = pos.coords.accuracy;
+        if (acc < bestAcc) { bestAcc = acc; bestDist = dist; }
+        if (dist > RADIUS_M) {
+          const distStr = dist < 1000 ? `${Math.round(dist)} m` : `${(dist / 1000).toFixed(1)} km`;
           setGeoError((p) => ({
             ...p,
-            [step.label]: `Jsi ${Math.round(dist)} m daleko (potřeba do ${RADIUS_M} m)`,
+            [step.label]: `Zp\u0159es\u0148uji GPS\u2026 ~${distStr} od c\xedle (\xb1${Math.round(acc)} m)`,
           }));
         }
+        if (dist <= RADIUS_M) { finish(true); return; }
+        if (acc <= 12 && dist > RADIUS_M * 2) { finish(false); }
       },
       () => {
+        if (finished) return;
+        finished = true;
+        clearTimeout(geoTimeoutRef.current[step.label]);
+        navigator.geolocation.clearWatch(geoWatchRef.current[step.label]);
+        delete geoWatchRef.current[step.label];
         setGeoState((p) => ({ ...p, [step.label]: "error" }));
-        setGeoError((p) => ({ ...p, [step.label]: "GPS poloha nedostupná" }));
+        setGeoError((p) => ({ ...p, [step.label]: "GPS selhalo \u2014 povolil/a jsi p\u0159\xedstup?" }));
       },
-      { enableHighAccuracy: true, timeout: 10000 }
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 }
     );
+    geoWatchRef.current[step.label] = watchId;
   }
 
   function reset() {
