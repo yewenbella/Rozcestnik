@@ -45,25 +45,31 @@ export default function ZebricekPage() {
       {/* Route tabs */}
       <div style={{ padding: "12px 16px 0" }}>
         <div style={{ display: "flex", gap: "8px" }}>
-          <button
-            onClick={() => setActiveRoute(1)}
-            style={{
-              display: "flex", alignItems: "center", gap: "6px",
-              padding: "7px 14px", borderRadius: "10px",
-              border: activeRoute === 1
-                ? "1px solid rgba(56,189,248,0.55)"
-                : "1px solid rgba(255,255,255,0.12)",
-              background: activeRoute === 1
-                ? "rgba(56,189,248,0.15)"
-                : "rgba(255,255,255,0.05)",
-              color: activeRoute === 1 ? "#7dd3fc" : "rgba(255,255,255,0.45)",
-              fontSize: "0.80rem", fontWeight: 700, cursor: "pointer",
-              transition: "all 0.2s",
-            }}
-          >
-            <Route size={13} />
-            Trasa č.1
-          </button>
+          {[
+            { id: 1, label: "Trasa č.1", activeColor: "56,189,248", textColor: "#7dd3fc" },
+            { id: 2, label: "Trasa č.2", activeColor: "74,222,128", textColor: "#86efac" },
+          ].map(({ id, label, activeColor, textColor }) => (
+            <button
+              key={id}
+              onClick={() => setActiveRoute(id)}
+              style={{
+                display: "flex", alignItems: "center", gap: "6px",
+                padding: "7px 14px", borderRadius: "10px",
+                border: activeRoute === id
+                  ? `1px solid rgba(${activeColor},0.55)`
+                  : "1px solid rgba(255,255,255,0.12)",
+                background: activeRoute === id
+                  ? `rgba(${activeColor},0.15)`
+                  : "rgba(255,255,255,0.05)",
+                color: activeRoute === id ? textColor : "rgba(255,255,255,0.45)",
+                fontSize: "0.80rem", fontWeight: 700, cursor: "pointer",
+                transition: "all 0.2s",
+              }}
+            >
+              <Route size={13} />
+              {label}
+            </button>
+          ))}
         </div>
         <div style={{ height: "1px", background: "rgba(255,255,255,0.08)", marginTop: "12px" }} />
       </div>
