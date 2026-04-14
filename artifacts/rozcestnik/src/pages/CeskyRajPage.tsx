@@ -5,7 +5,7 @@ import PageLayout from "@/components/PageLayout";
 const zajimavosti = [
   { emoji: "🏰", text: "Zřícenina hradu Trosky — dvojice věží Baba a Panna na čedičových kupách — je nejtypičtějším symbolem Českého ráje a viditelná z desítek kilometrů." },
   { emoji: "🐟", text: "Trasa prochází kolem malebných rybníků Vidlák, Věžák a Nebák — srdcem rybniční krajiny Českého ráje. Součástí cesty je i historický Podsemínský most, který tyto vody překlenuje." },
-  { emoji: "🦆", text: "Přírodní rezervací protéká řeka Jizera s čistou vodou — ideální pro rybaření, koupání i vodní turistiku na raftech či kánoích." },
+  { emoji: "🎬", text: "Krajina Českého ráje se proslavila i na plátně a obrazovce — natáčel se zde film Jak dostat tatínka do polepšovny a několik záběrů tohoto kraje se objevilo také ve videohře Kingdom Come: Deliverance 2." },
 ];
 
 export default function CeskyRajPage() {
