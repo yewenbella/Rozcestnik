@@ -4,8 +4,8 @@ import { Trophy } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
 const W = 360;
-const H = 220;
-const GROUND = 170;
+const H = 280;
+const GROUND = 210;
 const PLAYER_W = 28;
 const PLAYER_H = 36;
 const PLAYER_X = 55;
