@@ -201,9 +201,9 @@ export default function RozhlednyPage() {
                       }}>
                         {r.name}
                       </div>
-                      {r.kraj.filter(k => k.endsWith("kraj")).length > 0 && (
+                      {r.kraj.filter(k => krajeList.includes(k)).length > 0 && (
                         <div style={{ marginTop: "3px", display: "flex", flexWrap: "wrap", gap: "4px" }}>
-                          {r.kraj.filter(k => k.endsWith("kraj")).map(k => (
+                          {r.kraj.filter(k => krajeList.includes(k)).map(k => (
                             <span key={k} style={{
                               background: "rgba(134,239,172,0.12)", border: "1px solid rgba(134,239,172,0.25)",
                               borderRadius: "6px", padding: "1px 6px",
