@@ -343,7 +343,8 @@ export default function Trasa1Page() {
               <ParkingCircle size={15} color="#4ade80" style={{ flexShrink: 0 }} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem", marginBottom: "2px" }}>Parkoviště</div>
-                <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Kavárna Mlsné myšky (Janov nad Nisou 518)</div>
+                <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Kavárna Mlsné myšky</div>
+                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.74rem", marginTop: "2px" }}>(Janov nad Nisou 518)</div>
               </div>
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=Kav%C3%A1rna+Mls%C3%A9+my%C5%A1ky%2C+Janov+nad+Nisou+518"
