@@ -23,6 +23,7 @@ export const trasa2Steps: TrailStep[] = [
     place: "Rybník Vidlák",
     proof: "Rozcestník",
     info: "Vidlák je malebný rybník v srdci Českého ráje v blízkosti hradu Trosky. Svůj název dostal podle vidlovitého tvaru hráze. Okolí rybníka je oblíbeným místem pro procházky a pozorování přírody — hladina odráží siluetu troseckých věží a v ranních hodinách se nad vodou vznáší mlha.",
+    zajimavost: "Rybník Vidlák si zahrál v komedii Jak dostat tatínka do polepšovny, protože filmaři často kombinovali okolní lokace. Právě tady vznikla slavná scéna, kdy pošťák Fanda na mopedu vjede přímo do rybníka. Lekl se totiž dědy převlečeného za vodníka, který se proti němu rozjel na kole. Po pádu do vody pak Fanda nechápavě pronese svou hlášku: \u201EVodník\u2026 a říkal mi Fando!\u201C",
     imageUrl: "/vidlak.png",
     color: "#60a5fa",
     bg: "rgba(96,165,250,0.08)",
