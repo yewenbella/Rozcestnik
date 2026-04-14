@@ -258,7 +258,7 @@ export default function Home() {
             <NavBtn key={label} label={label} Icon={Icon} path={path} gradient={gradient} border={border} glow={glow} accent={accent} navigate={navigate} />
           ))}
 
-          <div style={{ width: "220px", height: "1px", background: "rgba(255,255,255,0.13)", margin: "8px 0" }} />
+          <div style={{ width: "220px", height: "1px", background: "rgba(255,255,255,0.13)", margin: "20px 0 8px" }} />
 
           {extraButtons.map(({ label, icon: Icon, path, gradient, border, glow, accent }) => (
             <NavBtn key={label} label={label} Icon={Icon} path={path} gradient={gradient} border={border} glow={glow} accent={accent} navigate={navigate} />
