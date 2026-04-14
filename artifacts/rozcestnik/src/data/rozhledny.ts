@@ -6757,8 +6757,10 @@ export const krajeList = [
   "Olomoucký kraj",
   "Pardubický kraj",
   "Plzeňský kraj",
-  "Středočeský kraj",
-  "Ústecký kraj",
-  "Vysočina",
-  "Zlínský kraj"
+  "Praha",
+  "P\u0159\u00edhranic\u00ed",
+  "St\u0159edo\u010desk\u00fd kraj",
+  "\u00dasteck\u00fd kraj",
+  "Vyso\u010dina",
+  "Zl\u00ednsk\u00fd kraj"
 ];
