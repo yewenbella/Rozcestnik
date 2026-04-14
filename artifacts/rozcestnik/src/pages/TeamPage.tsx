@@ -294,6 +294,7 @@ export default function TeamPage() {
             <div style={{ ...glassCard, marginTop: 8, padding: "10px 14px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
                 <Mountain size={17} color="#4ade80" />
+                <span style={{ color: "rgba(255,255,255,0.5)", fontWeight: 600, fontSize: "0.82rem" }}>{"T\u00fdm:"}</span>
                 <span style={{ color: "white", fontWeight: 800, fontSize: "1rem" }}>{team.name}</span>
                 <span style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "5px", color: "rgba(255,255,255,0.5)", fontSize: "0.75rem" }}>
                   <Users size={12} color="rgba(255,255,255,0.4)" />
