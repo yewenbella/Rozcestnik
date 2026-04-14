@@ -55,9 +55,6 @@ export default function GamePage() {
   const [nickname, setNickname] = useState<string | null>(null);
   const nicknameRef = useRef<string | null>(null);
   useEffect(() => { nicknameRef.current = nickname; }, [nickname]);
-  const [pendingScore, setPendingScore] = useState<number | null>(null);
-  const [guestName, setGuestName] = useState("");
-  const [showNameInput, setShowNameInput] = useState(false);
 
   const fetchTop = useCallback(async () => {
     try {
@@ -222,13 +219,9 @@ export default function GamePage() {
             if (!scoreSentRef.current) {
               scoreSentRef.current = true;
               const playerName = nicknameRef.current
-                || (user ? (user.fullName || user.firstName || user.username || null) : null);
-              if (playerName) {
-                submitScore(finalScore, playerName);
-              } else {
-                setPendingScore(finalScore);
-                setShowNameInput(true);
-              }
+                || (user ? (user.fullName || user.firstName || user.username || null) : null)
+                || "Anonym";
+              submitScore(finalScore, playerName);
             }
             break;
           }
@@ -350,82 +343,6 @@ export default function GamePage() {
             cursor: "pointer",
           }}
         />
-
-        {/* Name input dialog — when no nickname */}
-        {showNameInput && (
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "rgba(0,0,0,0.88)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            zIndex: 30, padding: "20px",
-          }}>
-            <div style={{
-              background: "rgba(6,14,10,0.97)",
-              border: "1px solid rgba(74,222,128,0.3)",
-              borderRadius: "16px",
-              padding: "24px 20px",
-              width: "100%", maxWidth: "320px",
-            }}>
-              <p style={{ color: "white", fontWeight: 700, fontSize: "1rem", margin: "0 0 4px" }}>
-                {"Jak se jmenuješ?"}
-              </p>
-              <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.78rem", margin: "0 0 16px" }}>
-                {"Tvoje jméno se zobrazí v žebříčku."}
-              </p>
-              <input
-                value={guestName}
-                onChange={e => setGuestName(e.target.value)}
-                onKeyDown={e => {
-                  if (e.key === "Enter" && guestName.trim()) {
-                    setShowNameInput(false);
-                    if (pendingScore !== null) submitScore(pendingScore, guestName.trim());
-                    setPendingScore(null);
-                  }
-                }}
-                maxLength={30}
-                placeholder={"Nap\u0159. Stejsina"}
-                autoFocus
-                style={{
-                  width: "100%", boxSizing: "border-box",
-                  background: "rgba(0,0,0,0.4)",
-                  border: "1px solid rgba(74,222,128,0.4)",
-                  borderRadius: "10px",
-                  padding: "10px 12px",
-                  color: "white", fontSize: "1rem", fontWeight: 700,
-                  outline: "none", marginBottom: "12px",
-                }}
-              />
-              <div style={{ display: "flex", gap: "8px" }}>
-                <button
-                  onClick={() => { setShowNameInput(false); setPendingScore(null); fetchTop(); }}
-                  style={{
-                    flex: 1, padding: "10px",
-                    background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)",
-                    borderRadius: "10px", color: "rgba(255,255,255,0.5)", cursor: "pointer", fontSize: "0.85rem",
-                  }}
-                >
-                  {"Přeskočit"}
-                </button>
-                <button
-                  onClick={() => {
-                    if (!guestName.trim()) return;
-                    setShowNameInput(false);
-                    if (pendingScore !== null) submitScore(pendingScore, guestName.trim());
-                    setPendingScore(null);
-                  }}
-                  disabled={!guestName.trim()}
-                  style={{
-                    flex: 2, padding: "10px",
-                    background: "rgba(74,222,128,0.2)", border: "1px solid rgba(74,222,128,0.4)",
-                    borderRadius: "10px", color: "#4ade80", fontWeight: 700, cursor: "pointer", fontSize: "0.9rem",
-                  }}
-                >
-                  {"Uložit do žebříčku"}
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Leaderboard overlay — bottom sheet */}
         {showLeaderboard && (
