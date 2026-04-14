@@ -174,102 +174,116 @@ export default function TeamPage() {
 
   if (!isLoaded || loading) {
     return (
-      <PageLayout title="Tým" backPath="/">
+      <PageLayout title={"M\u016fj t\u00fdm"} backPath="/">
         <div style={centerStyle}>
-          <p style={{ color: "rgba(255,255,255,0.5)" }}>Načítám…</p>
+          <p style={{ color: "rgba(255,255,255,0.5)" }}>{"Na\u010d\u00edt\u00e1m\u2026"}</p>
         </div>
       </PageLayout>
     );
   }
 
   return (
-    <PageLayout title="Tým" backPath="/">
+    <PageLayout title={"M\u016fj t\u00fdm"} backPath="/">
       <div style={{ padding: "10px 14px", maxWidth: "480px", margin: "0 auto" }}>
 
         {/* User info */}
-        <div style={{ ...glassCard, padding: "12px 14px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div style={{ ...glassCard, padding: "14px 16px" }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
             {user?.imageUrl && (
               <img
                 src={user.imageUrl}
                 alt="avatar"
-                style={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.2)", flexShrink: 0 }}
+                style={{ width: 48, height: 48, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.25)", flexShrink: 0, marginTop: 2 }}
               />
             )}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.72rem", margin: "0 0 1px" }}>
-                {user?.fullName || user?.firstName || "Uživatel"}
-              </p>
-              {/* Nickname — inline edit */}
-              {editingNickname ? (
-                <div style={{ display: "flex", gap: "6px", alignItems: "center", marginTop: "2px" }}>
-                  <input
-                    ref={nicknameRef}
-                    value={nicknameInput}
-                    onChange={(e) => setNicknameInput(e.target.value)}
-                    onKeyDown={(e) => { if (e.key === "Enter") saveNickname(); if (e.key === "Escape") { setEditingNickname(false); setNicknameInput(nickname || ""); } }}
-                    maxLength={30}
-                    placeholder="Nap\u0159. LesniBehoun"
-                    autoFocus
-                    style={{
-                      flex: 1, minWidth: 0,
-                      background: "rgba(0,0,0,0.35)",
-                      border: "1px solid rgba(74,222,128,0.5)",
-                      borderRadius: "7px",
-                      padding: "5px 9px",
-                      color: "white",
-                      fontSize: "0.90rem",
-                      fontWeight: 700,
-                      outline: "none",
-                    }}
-                  />
-                  <button
-                    onClick={saveNickname}
-                    disabled={savingNickname || !nicknameInput.trim()}
-                    style={{
-                      background: "rgba(74,222,128,0.2)",
-                      border: "1px solid rgba(74,222,128,0.4)",
-                      borderRadius: "7px",
-                      padding: "5px 10px",
-                      color: "#4ade80",
-                      fontWeight: 700,
-                      fontSize: "0.78rem",
-                      cursor: "pointer",
-                      whiteSpace: "nowrap",
-                      flexShrink: 0,
-                    }}
-                  >
-                    {savingNickname ? "\u2026" : "Ulo\u017eit"}
-                  </button>
-                </div>
-              ) : (
-                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                  {nickname ? (
-                    <span style={{ color: "#4ade80", fontWeight: 800, fontSize: "1.05rem" }}>
-                      {nickname}
-                      {nicknameSaved && <span style={{ color: "rgba(74,222,128,0.6)", fontWeight: 400, fontSize: "0.72rem", marginLeft: 6 }}>{"\u2714 Ulo\u017eeno"}</span>}
-                    </span>
-                  ) : (
-                    <span style={{ color: "rgba(255,255,255,0.28)", fontSize: "0.82rem", fontStyle: "italic" }}>
-                      {"Nastav p\u0159ezd\xedvku\u2026"}
-                    </span>
-                  )}
-                  <button
-                    onClick={() => { setEditingNickname(true); setTimeout(() => nicknameRef.current?.focus(), 50); }}
-                    style={{ ...iconBtn, padding: "2px" }}
-                    title="Upravit p\u0159ezd\xedvku"
-                  >
-                    <Pencil size={12} color="rgba(255,255,255,0.35)" />
-                  </button>
-                </div>
-              )}
+            <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
+
+              {/* Uživatelské jméno */}
+              <div>
+                <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", margin: "0 0 2px" }}>
+                  {"U\u017eivatelsk\u00e9 jm\u00e9no"}
+                </p>
+                <span style={{ color: "white", fontWeight: 700, fontSize: "0.95rem" }}>
+                  {user?.username || user?.fullName || user?.firstName || "Uživatel"}
+                </span>
+              </div>
+
+              {/* Přezdívka */}
+              <div>
+                <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", margin: "0 0 2px" }}>
+                  {"P\u0159ezd\u00edvka"}
+                </p>
+                {editingNickname ? (
+                  <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+                    <input
+                      ref={nicknameRef}
+                      value={nicknameInput}
+                      onChange={(e) => setNicknameInput(e.target.value)}
+                      onKeyDown={(e) => { if (e.key === "Enter") saveNickname(); if (e.key === "Escape") { setEditingNickname(false); setNicknameInput(nickname || ""); } }}
+                      maxLength={30}
+                      placeholder={"Nap\u0159. LesniBehoun"}
+                      autoFocus
+                      style={{
+                        flex: 1, minWidth: 0,
+                        background: "rgba(0,0,0,0.45)",
+                        border: "1px solid rgba(74,222,128,0.5)",
+                        borderRadius: "7px",
+                        padding: "5px 9px",
+                        color: "white",
+                        fontSize: "0.90rem",
+                        fontWeight: 700,
+                        outline: "none",
+                      }}
+                    />
+                    <button
+                      onClick={saveNickname}
+                      disabled={savingNickname || !nicknameInput.trim()}
+                      style={{
+                        background: "rgba(74,222,128,0.25)",
+                        border: "1px solid rgba(74,222,128,0.5)",
+                        borderRadius: "7px",
+                        padding: "5px 10px",
+                        color: "#4ade80",
+                        fontWeight: 700,
+                        fontSize: "0.78rem",
+                        cursor: "pointer",
+                        whiteSpace: "nowrap",
+                        flexShrink: 0,
+                      }}
+                    >
+                      {savingNickname ? "\u2026" : "Ulo\u017eit"}
+                    </button>
+                  </div>
+                ) : (
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                    {nickname ? (
+                      <span style={{ color: "#4ade80", fontWeight: 800, fontSize: "0.95rem" }}>
+                        {nickname}
+                        {nicknameSaved && <span style={{ color: "rgba(74,222,128,0.6)", fontWeight: 400, fontSize: "0.72rem", marginLeft: 6 }}>{"\u2714 Ulo\u017eeno"}</span>}
+                      </span>
+                    ) : (
+                      <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.82rem", fontStyle: "italic" }}>
+                        {"Nastav p\u0159ezd\u00edvku\u2026"}
+                      </span>
+                    )}
+                    <button
+                      onClick={() => { setEditingNickname(true); setTimeout(() => nicknameRef.current?.focus(), 50); }}
+                      style={{ ...iconBtn, padding: "2px" }}
+                      title={"Upravit p\u0159ezd\u00edvku"}
+                    >
+                      <Pencil size={12} color="rgba(255,255,255,0.4)" />
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
+
             <button
               onClick={() => signOut({ redirectUrl: "/" })}
-              style={{ ...iconBtn, flexShrink: 0 }}
-              title="Odhlásit se"
+              style={{ ...iconBtn, flexShrink: 0, marginTop: 2 }}
+              title={"Odhl\u00e1sit se"}
             >
-              <LogOut size={15} color="rgba(255,255,255,0.45)" />
+              <LogOut size={16} color="rgba(255,255,255,0.5)" />
             </button>
           </div>
         </div>
@@ -287,7 +301,7 @@ export default function TeamPage() {
                 </span>
               </div>
 
-              <div style={{ background: "rgba(0,0,0,0.25)", borderRadius: "10px", padding: "10px 12px" }}>
+              <div style={{ background: "rgba(0,0,0,0.45)", borderRadius: "10px", padding: "10px 12px" }}>
                 <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.70rem", margin: "0 0 3px" }}>
                   Kód pro přizvání
                 </p>
@@ -437,8 +451,8 @@ export default function TeamPage() {
 }
 
 const glassCard: React.CSSProperties = {
-  background: "rgba(255,255,255,0.09)",
-  border: "1.5px solid rgba(255,255,255,0.12)",
+  background: "rgba(5,18,5,0.82)",
+  border: "1.5px solid rgba(255,255,255,0.18)",
   borderRadius: "14px",
   padding: "16px",
 };
