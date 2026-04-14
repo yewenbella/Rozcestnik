@@ -49,6 +49,7 @@ export const trasa2Steps: TrailStep[] = [
     place: "Podsemínský most",
     proof: "Rozcestník",
     info: "Podsemínský most je historický kamenný most překlenující potok v oblasti Semína v Českém ráji. Stojí na starém obchodním spojení mezi vesnicemi u rybniční soustavy a je součástí turistické trasy kolem troseckých rybníků. Jeho okolí je klidné a romantické, ideální pro odpočinek uprostřed trasy.",
+    wikiUrl: "https://cs.wikipedia.org/wiki/Podsem%C3%ADnsk%C3%BD_most",
     color: "#60a5fa",
     bg: "rgba(96,165,250,0.08)",
     border: "rgba(96,165,250,0.22)",
