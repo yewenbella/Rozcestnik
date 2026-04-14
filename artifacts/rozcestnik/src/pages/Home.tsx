@@ -161,58 +161,79 @@ export default function Home() {
           minHeight: "100vh",
         }}
       >
-        {/* Weather — top-left corner */}
-        <div style={{ position: "absolute", top: "16px", left: "16px", zIndex: 10 }}>
-          <WeatherWidget compact />
-        </div>
+        {/* Top bar — 3 tiles in a row */}
+        <div style={{ display: "flex", gap: "8px", padding: "14px 14px 0", zIndex: 10 }}>
+          {/* Počasí tile */}
+          <div style={{
+            flex: 1, minWidth: 0,
+            background: "rgba(0,0,0,0.30)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+            border: "1px solid rgba(255,255,255,0.15)", borderRadius: "12px",
+            height: "72px", padding: "6px 8px", boxSizing: "border-box",
+            pointerEvents: "none", userSelect: "none",
+          }}>
+            <WeatherWidget tile />
+          </div>
 
-        {/* Team button — top-center */}
-        <div style={{ position: "absolute", top: "16px", left: "50%", transform: "translateX(-50%)", zIndex: 10 }}>
-          <Show when="signed-out">
-            <button
-              onClick={() => navigate("/sign-in")}
-              style={{
-                display: "flex", alignItems: "center", gap: "5px",
-                padding: "5px 11px", borderRadius: "8px",
-                border: "1px solid rgba(255,255,255,0.18)",
-                background: "rgba(0,0,0,0.32)",
-                backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-                color: "rgba(255,255,255,0.82)", fontSize: "0.72rem",
-                fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
-              }}
-            >
-              <UserCircle size={12} color="rgba(255,255,255,0.75)" />
-              {"P\u0159ihl\u00e1sit se / T\u00fdm"}
-            </button>
-          </Show>
-          <Show when="signed-in">
-            <button
-              onClick={() => navigate("/team")}
-              style={{
-                display: "flex", alignItems: "center", gap: "5px",
-                padding: "5px 11px", borderRadius: "8px",
-                border: "1px solid rgba(255,255,255,0.18)",
-                background: "rgba(0,0,0,0.32)",
-                backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-                color: "rgba(255,255,255,0.82)", fontSize: "0.72rem",
-                fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
-              }}
-            >
-              <UserCircle size={12} color="rgba(255,255,255,0.75)" />
-              {"M\u016fj t\u00fdm"}
-            </button>
-          </Show>
-        </div>
+          {/* Můj tým tile — center */}
+          <div style={{ flex: 1, minWidth: 0, height: "72px", boxSizing: "border-box" }}>
+            <Show when="signed-out">
+              <button
+                onClick={() => navigate("/sign-in")}
+                style={{
+                  width: "100%", height: "100%",
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px",
+                  background: "rgba(0,0,0,0.30)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255,255,255,0.18)", borderRadius: "12px",
+                  cursor: "pointer", boxSizing: "border-box",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
+                }}
+              >
+                <UserCircle size={18} color="rgba(255,255,255,0.75)" />
+                <span style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.62rem", fontWeight: 700, textAlign: "center", lineHeight: 1.2 }}>
+                  {"P\u0159ihl\u00e1sit"}
+                </span>
+                <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.56rem", textAlign: "center", lineHeight: 1.2 }}>
+                  {"M\u016fj t\u00fdm"}
+                </span>
+              </button>
+            </Show>
+            <Show when="signed-in">
+              <button
+                onClick={() => navigate("/team")}
+                style={{
+                  width: "100%", height: "100%",
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px",
+                  background: "rgba(0,0,0,0.30)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255,255,255,0.18)", borderRadius: "12px",
+                  cursor: "pointer", boxSizing: "border-box",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
+                }}
+              >
+                <UserCircle size={18} color="rgba(255,255,255,0.75)" />
+                <span style={{ color: "white", fontSize: "0.65rem", fontWeight: 700, textAlign: "center", lineHeight: 1.2 }}>
+                  {"M\u016fj t\u00fdm"}
+                </span>
+              </button>
+            </Show>
+          </div>
 
-        <SunsetBadge />
+          {/* Západ slunce tile */}
+          <div style={{
+            flex: 1, minWidth: 0,
+            background: "rgba(0,0,0,0.30)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+            border: "1px solid rgba(255,255,255,0.15)", borderRadius: "12px",
+            height: "72px", padding: "6px 8px", boxSizing: "border-box",
+            pointerEvents: "none", userSelect: "none",
+          }}>
+            <SunsetBadge tile />
+          </div>
+        </div>
 
         {/* Title */}
         <div
           style={{
             textAlign: "center",
-            paddingTop: "115px",
+            paddingTop: "18px",
             paddingBottom: "8px",
           }}
         >

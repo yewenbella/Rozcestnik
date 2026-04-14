@@ -41,7 +41,7 @@ async function reverseGeocode(lat: number, lon: number): Promise<string> {
   }
 }
 
-export default function WeatherWidget({ compact }: { compact?: boolean } = {}) {
+export default function WeatherWidget({ compact, tile }: { compact?: boolean; tile?: boolean } = {}) {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -102,7 +102,11 @@ export default function WeatherWidget({ compact }: { compact?: boolean } = {}) {
   const textShadow = "0 1px 6px rgba(0,0,0,0.9), 0 0px 2px rgba(0,0,0,0.8)";
 
   if (loading) {
-    if (compact) return null;
+    if (compact || tile) return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
+        <span style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.68rem" }}>…</span>
+      </div>
+    );
     return (
       <div style={widgetStyle}>
         <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.75rem" }}>
@@ -116,6 +120,23 @@ export default function WeatherWidget({ compact }: { compact?: boolean } = {}) {
 
   const { label, icon } = getWeatherInfo(weather.code);
   const { label: dailyLabel } = getWeatherInfo(weather.dailyCode);
+
+  if (tile) {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px", height: "100%" }}>
+        <span style={{ fontSize: "1.2rem", lineHeight: 1 }}>{icon}</span>
+        <span style={{ color: "white", fontSize: "0.82rem", fontWeight: 700, lineHeight: 1.2, textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}>
+          {weather.temp}°C
+        </span>
+        <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.60rem", fontWeight: 600, textAlign: "center", lineHeight: 1.2 }}>
+          {label}
+        </span>
+        <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.58rem", textAlign: "center" }}>
+          {weather.city}
+        </span>
+      </div>
+    );
+  }
 
   if (compact) {
     return (
