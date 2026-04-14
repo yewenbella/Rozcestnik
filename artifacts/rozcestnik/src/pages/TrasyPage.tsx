@@ -1,17 +1,14 @@
+import { useEffect } from "react";
 import PageLayout from "@/components/PageLayout";
 import { Route, ChevronRight, CheckCircle2, Construction, MapPin, FlaskConical } from "lucide-react";
 import { useLocation } from "wouter";
+import { useDenik } from "@/hooks/useDenik";
 
 function isTrasa1Done(): boolean {
-  try {
-    return !!localStorage.getItem("trasa1_result_sent");
-  } catch { return false; }
+  try { return !!localStorage.getItem("trasa1_result_sent"); } catch { return false; }
 }
-
 function isTrasa2Done(): boolean {
-  try {
-    return !!localStorage.getItem("trasa2_result_sent");
-  } catch { return false; }
+  try { return !!localStorage.getItem("trasa2_result_sent"); } catch { return false; }
 }
 
 const trasy = [
@@ -25,6 +22,15 @@ export default function TrasyPage() {
   const [, navigate] = useLocation();
   const trasa1Done = isTrasa1Done();
   const trasa2Done = isTrasa2Done();
+  const { markDone, isSignedIn } = useDenik();
+
+  useEffect(() => {
+    if (isSignedIn && trasa1Done) markDone("trasa", "1", "Trasa \u010d.1");
+  }, [isSignedIn, trasa1Done]);
+
+  useEffect(() => {
+    if (isSignedIn && trasa2Done) markDone("trasa", "2", "Trasa \u010d.2");
+  }, [isSignedIn, trasa2Done]);
 
   return (
     <PageLayout title="Trasy" backPath="/vyzva">
@@ -94,11 +100,9 @@ export default function TrasyPage() {
                   {wip && (
                     <span style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.72rem" }}>{trasa.location}</span>
                   )}
-
                   {!wip && isTest && (
                     <span style={{ color: "#fbbf24", fontSize: "0.72rem", fontWeight: 600 }}>{trasa.location}</span>
                   )}
-
                   {!wip && !isTest && (
                     <span style={{ color: done ? "#4ade80" : "rgba(255,255,255,0.40)", fontSize: "0.72rem" }}>
                       {trasa.duration}
@@ -112,7 +116,7 @@ export default function TrasyPage() {
                   onClick={(e) => { e.stopPropagation(); navigate(trasa.locationPath!); }}
                   style={{
                     display: "inline-flex", alignItems: "center", gap: "4px",
-                    flexShrink: 0, marginRight: done ? "6px" : "6px",
+                    flexShrink: 0, marginRight: "6px",
                     padding: "3px 9px", borderRadius: "8px",
                     border: done ? "1px solid rgba(74,222,128,0.45)" : "1px solid rgba(14,165,233,0.40)",
                     background: done ? "rgba(74,222,128,0.12)" : "rgba(14,165,233,0.12)",
@@ -123,9 +127,7 @@ export default function TrasyPage() {
                 >
                   <MapPin size={10} color={done ? "#4ade80" : "#38bdf8"} />
                   {trasa.location}
-                  {done && (
-                    <CheckCircle2 size={11} color="#4ade80" style={{ marginLeft: "2px" }} />
-                  )}
+                  {done && <CheckCircle2 size={11} color="#4ade80" style={{ marginLeft: "2px" }} />}
                 </div>
               )}
 

@@ -75,5 +75,28 @@ export function useDenik() {
     }
   }, [isSignedIn, items, getToken]);
 
-  return { items, loading, isCompleted, toggle, isSignedIn: !!isSignedIn };
+  const markDone = useCallback(async (
+    type: "trasa" | "rozhledna" | "hrad",
+    itemId: string,
+    itemName: string
+  ) => {
+    if (!isSignedIn) return;
+    const alreadyDone = items.some(i => i.type === type && i.itemId === itemId);
+    if (alreadyDone) return;
+    const token = await getToken();
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (token) headers["Authorization"] = `Bearer ${token}`;
+    const res = await fetch("/api/denik", {
+      method: "POST",
+      headers,
+      credentials: "include",
+      body: JSON.stringify({ type, itemId, itemName }),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setItems(prev => [...prev, data.item]);
+    }
+  }, [isSignedIn, items, getToken]);
+
+  return { items, loading, isCompleted, toggle, markDone, isSignedIn: !!isSignedIn };
 }
