@@ -41,7 +41,7 @@ export default function ZebricekPage() {
   }, [activeRoute]);
 
   return (
-    <PageLayout title="Žebříček" backPath="/">
+    <PageLayout title={"Žebříček"} backPath="/vyzva">
       {/* Route tabs */}
       <div style={{ padding: "12px 16px 0" }}>
         <div style={{ display: "flex", gap: "8px" }}>

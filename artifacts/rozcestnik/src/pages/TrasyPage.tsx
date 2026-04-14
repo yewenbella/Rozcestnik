@@ -23,7 +23,7 @@ export default function TrasyPage() {
   const trasa1Done = isTrasa1Completed();
 
   return (
-    <PageLayout title="Trasy" backPath="/">
+    <PageLayout title="Trasy" backPath="/vyzva">
       <div style={{ display: "flex", flexDirection: "column", gap: "12px", padding: "16px" }}>
         {trasy.map((trasa) => {
           const done = trasa.id === 1 ? trasa1Done : false;

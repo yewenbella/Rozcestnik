@@ -27,7 +27,7 @@ const sections = [
 
 export default function PravidlaPage() {
   return (
-    <PageLayout title="Pravidla" backPath="/">
+    <PageLayout title="Pravidla" backPath="/vyzva">
       <div className="flex flex-col gap-4 py-4 px-4">
         <div
           className="rounded-2xl p-4"
