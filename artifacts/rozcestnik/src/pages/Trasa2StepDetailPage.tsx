@@ -53,23 +53,23 @@ export default function Trasa2StepDetailPage() {
       <div style={{
         display: "flex",
         flexDirection: "column",
-        padding: "16px 16px 24px",
+        padding: "10px 12px 16px",
         boxSizing: "border-box",
-        gap: "16px",
+        gap: "10px",
       }}>
 
-        <div style={{ fontSize: "0.70rem", fontWeight: 800, letterSpacing: "0.12em", color: step.color, textTransform: "uppercase" }}>
+        <div style={{ fontSize: "0.66rem", fontWeight: 800, letterSpacing: "0.12em", color: step.color, textTransform: "uppercase" }}>
           {step.label}
         </div>
 
         {/* Photo */}
         {thumbnail ? (
           <div style={{
-            borderRadius: "16px",
+            borderRadius: "12px",
             overflow: "hidden",
             border: `1px solid ${step.color}33`,
-            boxShadow: `0 4px 24px ${step.color}22`,
-            aspectRatio: "16/9",
+            boxShadow: `0 4px 16px ${step.color}22`,
+            aspectRatio: "16/7",
             background: step.bg,
           }}>
             <img
@@ -79,38 +79,36 @@ export default function Trasa2StepDetailPage() {
             />
           </div>
         ) : !imgLoading && (
-          <div style={{ display: "flex", justifyContent: "center", padding: "24px 0" }}>
+          <div style={{ display: "flex", justifyContent: "center", padding: "12px 0" }}>
             <div style={{
-              width: "80px", height: "80px", borderRadius: "24px",
+              width: "64px", height: "64px", borderRadius: "20px",
               background: step.bg, border: `2px solid ${step.color}55`,
               display: "flex", alignItems: "center", justifyContent: "center",
-              boxShadow: `0 0 32px ${step.color}33`,
+              boxShadow: `0 0 24px ${step.color}33`,
             }}>
-              <IconComp size={36} color={step.color} strokeWidth={1.5} />
+              <IconComp size={28} color={step.color} strokeWidth={1.5} />
             </div>
           </div>
         )}
 
         {/* Info card */}
         <div style={{
-          borderRadius: "16px",
+          borderRadius: "12px",
           background: "rgba(255,255,255,0.05)",
           border: "1px solid rgba(255,255,255,0.10)",
-          padding: "16px",
+          padding: "11px 12px",
         }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "10px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
-              <Info size={14} color={step.color} />
-              <span style={{ color: step.color, fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.05em" }}>
-                O tomto místě
-              </span>
-            </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "7px" }}>
+            <Info size={12} color={step.color} />
+            <span style={{ color: step.color, fontWeight: 700, fontSize: "0.73rem", letterSpacing: "0.05em" }}>
+              O tomto místě
+            </span>
           </div>
           <p style={{
             margin: 0,
             color: "rgba(255,255,255,0.80)",
-            fontSize: "0.88rem",
-            lineHeight: "1.65",
+            fontSize: "0.80rem",
+            lineHeight: "1.55",
           }}>
             {step.info}
           </p>
@@ -121,13 +119,13 @@ export default function Trasa2StepDetailPage() {
               rel="noopener noreferrer"
               style={{
                 display: "inline-flex", alignItems: "center", gap: "5px",
-                marginTop: "12px",
-                padding: "5px 10px", borderRadius: "8px",
+                marginTop: "9px",
+                padding: "4px 9px", borderRadius: "7px",
                 background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)",
-                color: "rgba(255,255,255,0.55)", fontSize: "0.74rem", textDecoration: "none",
+                color: "rgba(255,255,255,0.55)", fontSize: "0.70rem", textDecoration: "none",
               }}
             >
-              <ExternalLink size={11} />
+              <ExternalLink size={10} />
               Přečíst celý článek na Wikipedii
             </a>
           )}
@@ -136,22 +134,22 @@ export default function Trasa2StepDetailPage() {
         {/* Zajímavost card */}
         {step.zajimavost && (
           <div style={{
-            borderRadius: "16px",
+            borderRadius: "12px",
             background: "rgba(250,204,21,0.06)",
             border: "1px solid rgba(250,204,21,0.20)",
-            padding: "16px",
+            padding: "11px 12px",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "10px" }}>
-              <Star size={14} color="#facc15" fill="#facc15" />
-              <span style={{ color: "#facc15", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.05em" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "7px" }}>
+              <Star size={12} color="#facc15" fill="#facc15" />
+              <span style={{ color: "#facc15", fontWeight: 700, fontSize: "0.73rem", letterSpacing: "0.05em" }}>
                 Zajímavost
               </span>
             </div>
             <p style={{
               margin: 0,
               color: "rgba(255,255,255,0.80)",
-              fontSize: "0.88rem",
-              lineHeight: "1.65",
+              fontSize: "0.80rem",
+              lineHeight: "1.55",
             }}>
               {step.zajimavost}
             </p>
