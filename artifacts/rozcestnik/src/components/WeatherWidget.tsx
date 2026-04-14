@@ -41,7 +41,7 @@ async function reverseGeocode(lat: number, lon: number): Promise<string> {
   }
 }
 
-export default function WeatherWidget() {
+export default function WeatherWidget({ compact }: { compact?: boolean } = {}) {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -99,7 +99,10 @@ export default function WeatherWidget() {
     }
   }, []);
 
+  const textShadow = "0 1px 4px rgba(0,0,0,0.6)";
+
   if (loading) {
+    if (compact) return null;
     return (
       <div style={widgetStyle}>
         <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.75rem" }}>
@@ -113,6 +116,22 @@ export default function WeatherWidget() {
 
   const { label, icon } = getWeatherInfo(weather.code);
   const { label: dailyLabel } = getWeatherInfo(weather.dailyCode);
+
+  if (compact) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", gap: "7px", pointerEvents: "none", userSelect: "none" }}>
+        <span style={{ fontSize: "1.1rem", lineHeight: 1 }}>{icon}</span>
+        <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
+          <span style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.03em", lineHeight: 1.3, textShadow }}>
+            {weather.city} · {label}
+          </span>
+          <span style={{ color: "white", fontSize: "0.80rem", fontWeight: 700, lineHeight: 1.2, textShadow }}>
+            {weather.temp}°C · ↑{weather.maxTemp}° ↓{weather.minTemp}°
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={widgetStyle}>

@@ -160,9 +160,9 @@ export default function Home() {
           minHeight: "100vh",
         }}
       >
-        {/* Weather — top-left corner */}
-        <div style={{ position: "absolute", top: "12px", left: "12px", zIndex: 2, transform: "scale(0.82)", transformOrigin: "0 0" }}>
-          <WeatherWidget />
+        {/* Weather — top-left corner, same style as SunsetBadge */}
+        <div style={{ position: "absolute", top: "16px", left: "16px", zIndex: 10 }}>
+          <WeatherWidget compact />
         </div>
 
         <SunsetBadge />
@@ -272,7 +272,7 @@ export default function Home() {
             flexDirection: "column",
             alignItems: "center",
             gap: "8px",
-            padding: "0 20px 16px",
+            padding: "0 20px 40px",
           }}
         >
           <div style={{ width: "220px", height: "1px", background: "rgba(255,255,255,0.11)", marginBottom: "4px" }} />
