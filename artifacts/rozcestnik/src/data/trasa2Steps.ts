@@ -36,6 +36,7 @@ export const trasa2Steps: TrailStep[] = [
     place: "Věžický rybník",
     proof: "Rozcestník",
     info: "Věžický rybník (také Věžák) leží severovýchodně od Trosek a tvoří součást soustavy rybníků charakteristické pro tuto část Českého ráje. Břehy lemují rákosiny a luční porosty, které jsou domovem mnoha druhů ptáků. Při pohledu přes hladinu rybníka je za příznivého počasí vidět silueta hradu Trosky.",
+    zajimavost: "Věžický rybník ve stínu pískovcových věží je jedno z nejfilmovějších míst Českého ráje. Natáčely se tu romantické scény z pohádky Princ Bajaja, kde voda a skály tvoří kulisu pro Bajajova putování. Proslavil se i v legendární komedii Jak dostat tatínka do polepšovny, kde Vašek s tátou lezou na svou „první skálu". Objevil se také v modernější pohádce Zlatá princezna, která využila jeho pohádkovou atmosféru. A inspirací byl i pro herní svět – v Kingdom Come: Deliverance 2 připomíná Věžák scéna, kde Jindra poprvé potká Kateřinu u vody.",
     color: "#60a5fa",
     bg: "rgba(96,165,250,0.08)",
     border: "rgba(96,165,250,0.22)",
