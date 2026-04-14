@@ -1,15 +1,17 @@
 import PageLayout from "@/components/PageLayout";
-import { Route, ChevronRight, CheckCircle2, Construction, MapPin, FlaskConical, Circle } from "lucide-react";
+import { Route, ChevronRight, CheckCircle2, Construction, MapPin, FlaskConical } from "lucide-react";
 import { useLocation } from "wouter";
-import { useDenik } from "@/hooks/useDenik";
 
-function isTrasa1Completed(): boolean {
+function isTrasa1Done(): boolean {
   try {
-    const data = JSON.parse(localStorage.getItem("trasa1_times") || "{}");
-    return !!(data["START"] && data["CÍL"]);
-  } catch {
-    return false;
-  }
+    return !!localStorage.getItem("trasa1_result_sent");
+  } catch { return false; }
+}
+
+function isTrasa2Done(): boolean {
+  try {
+    return !!localStorage.getItem("trasa2_result_sent");
+  } catch { return false; }
 }
 
 const trasy = [
@@ -21,14 +23,14 @@ const trasy = [
 
 export default function TrasyPage() {
   const [, navigate] = useLocation();
-  const trasa1Done = isTrasa1Completed();
-  const { isCompleted, toggle, isSignedIn } = useDenik();
+  const trasa1Done = isTrasa1Done();
+  const trasa2Done = isTrasa2Done();
 
   return (
     <PageLayout title="Trasy" backPath="/vyzva">
       <div style={{ display: "flex", flexDirection: "column", gap: "12px", padding: "16px" }}>
         {trasy.map((trasa) => {
-          const done = trasa.id === 1 ? trasa1Done : false;
+          const done = trasa.id === 1 ? trasa1Done : trasa.id === 2 ? trasa2Done : false;
           const wip = trasa.wip;
           const isTest = (trasa as any).test === true;
           const handleClick = () => {
@@ -97,9 +99,10 @@ export default function TrasyPage() {
                     <span style={{ color: "#fbbf24", fontSize: "0.72rem", fontWeight: 600 }}>{trasa.location}</span>
                   )}
 
-                  {!wip && !isTest && (done
-                    ? <span style={{ color: "#4ade80", fontSize: "0.75rem", fontWeight: 600 }}>Splněno ✓</span>
-                    : <span style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.72rem" }}>{trasa.duration}</span>
+                  {!wip && !isTest && (
+                    <span style={{ color: done ? "#4ade80" : "rgba(255,255,255,0.40)", fontSize: "0.72rem" }}>
+                      {trasa.duration}
+                    </span>
                   )}
                 </div>
               </div>
@@ -109,44 +112,21 @@ export default function TrasyPage() {
                   onClick={(e) => { e.stopPropagation(); navigate(trasa.locationPath!); }}
                   style={{
                     display: "inline-flex", alignItems: "center", gap: "4px",
-                    flexShrink: 0, marginRight: "6px",
+                    flexShrink: 0, marginRight: done ? "6px" : "6px",
                     padding: "3px 9px", borderRadius: "8px",
-                    border: "1px solid rgba(14,165,233,0.40)",
-                    background: "rgba(14,165,233,0.12)",
-                    color: "rgba(255,255,255,0.80)",
+                    border: done ? "1px solid rgba(74,222,128,0.45)" : "1px solid rgba(14,165,233,0.40)",
+                    background: done ? "rgba(74,222,128,0.12)" : "rgba(14,165,233,0.12)",
+                    color: done ? "#86efac" : "rgba(255,255,255,0.80)",
                     fontSize: "0.72rem", fontWeight: 600,
                     cursor: "pointer",
                   }}
                 >
-                  <MapPin size={10} color="#38bdf8" />
+                  <MapPin size={10} color={done ? "#4ade80" : "#38bdf8"} />
                   {trasa.location}
+                  {done && (
+                    <CheckCircle2 size={11} color="#4ade80" style={{ marginLeft: "2px" }} />
+                  )}
                 </div>
-              )}
-
-              {!wip && !isTest && isSignedIn && (
-                <button
-                  onClick={(e) => { e.stopPropagation(); toggle("trasa", String(trasa.id), trasa.name); }}
-                  title={isCompleted("trasa", String(trasa.id)) ? "Odebrat ze den\u00edku" : "Ozna\u010dit jako spln\u011bno"}
-                  style={{
-                    flexShrink: 0, marginRight: "2px",
-                    width: 28, height: 28,
-                    borderRadius: "50%",
-                    border: isCompleted("trasa", String(trasa.id))
-                      ? "1.5px solid rgba(74,222,128,0.7)"
-                      : "1.5px solid rgba(255,255,255,0.2)",
-                    background: isCompleted("trasa", String(trasa.id))
-                      ? "rgba(74,222,128,0.18)"
-                      : "rgba(255,255,255,0.05)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    cursor: "pointer",
-                    transition: "all 0.2s",
-                  }}
-                >
-                  {isCompleted("trasa", String(trasa.id))
-                    ? <CheckCircle2 size={15} color="#4ade80" />
-                    : <Circle size={15} color="rgba(255,255,255,0.3)" />
-                  }
-                </button>
               )}
 
               {!wip && <ChevronRight size={18} color="rgba(255,255,255,0.4)" style={{ flexShrink: 0 }} />}
