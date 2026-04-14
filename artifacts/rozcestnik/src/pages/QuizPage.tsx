@@ -73,15 +73,30 @@ export default function QuizPage() {
   const [, navigate] = useLocation();
   const { session } = useClerk();
 
-  useEffect(() => {
-    localStorage.removeItem("rozcestnik_quiz_played");
-  }, []);
   const sessionRef = useRef(session);
   useEffect(() => { sessionRef.current = session; }, [session]);
 
-  const [current, setCurrent] = useState(0);
-  const [selected, setSelected] = useState<number | null>(null);
-  const [answers, setAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
+  const [current, setCurrent] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem("rozcestnik_quiz_progress");
+      if (saved) { const p = JSON.parse(saved); return typeof p.current === "number" ? p.current : 0; }
+    } catch {}
+    return 0;
+  });
+  const [selected, setSelected] = useState<number | null>(() => {
+    try {
+      const saved = localStorage.getItem("rozcestnik_quiz_progress");
+      if (saved) { const p = JSON.parse(saved); return typeof p.selected === "number" ? p.selected : null; }
+    } catch {}
+    return null;
+  });
+  const [answers, setAnswers] = useState<(number | null)[]>(() => {
+    try {
+      const saved = localStorage.getItem("rozcestnik_quiz_progress");
+      if (saved) { const p = JSON.parse(saved); return Array.isArray(p.answers) ? p.answers : Array(questions.length).fill(null); }
+    } catch {}
+    return Array(questions.length).fill(null);
+  });
   const [finished, setFinished] = useState(false);
 
   const [alreadyPlayed, setAlreadyPlayed] = useState(false);
@@ -178,15 +193,15 @@ export default function QuizPage() {
     const next = [...answers];
     next[current] = idx;
     setAnswers(next);
+    try { localStorage.setItem("rozcestnik_quiz_progress", JSON.stringify({ current, answers: next, selected: idx })); } catch {}
   }
 
   function handleNext() {
     if (current + 1 >= questions.length) {
-      const finalScore = answers.filter((a, i) => a === questions[i].correct).length +
-        (selected === questions[current].correct ? 0 : 0);
       const calculatedScore = [...answers];
       calculatedScore[current] = selected;
       const fs = calculatedScore.filter((a, i) => a === questions[i].correct).length;
+      localStorage.removeItem("rozcestnik_quiz_progress");
       setFinished(true);
       const name = nickname || (session?.user?.firstName ? `${session.user.firstName}` : null);
       if (name) {
@@ -196,8 +211,10 @@ export default function QuizPage() {
         setShowNameInput(true);
       }
     } else {
-      setCurrent((c) => c + 1);
+      const nextCurrent = current + 1;
+      setCurrent(nextCurrent);
       setSelected(null);
+      try { localStorage.setItem("rozcestnik_quiz_progress", JSON.stringify({ current: nextCurrent, answers, selected: null })); } catch {}
     }
   }
 
