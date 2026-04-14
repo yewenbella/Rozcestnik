@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "wouter";
-import { Map, Route, Trophy, BookOpen, UserCircle, Gamepad2, HelpCircle } from "lucide-react";
+import { Map, Mountain, UserCircle, Gamepad2, HelpCircle } from "lucide-react";
 import { Show } from "@clerk/react";
 import heroBg from "@/assets/hero-bg.jpg";
 import WeatherWidget from "@/components/WeatherWidget";
@@ -17,31 +17,13 @@ const mainButtons = [
     accent: "#4ade80",
   },
   {
-    label: "TRASY",
-    icon: Route,
-    path: "/trasy",
+    label: "TURISTICK\u00c1 V\u00ddZVA DVOJIC",
+    icon: Mountain,
+    path: "/vyzva",
     gradient: "linear-gradient(135deg, rgba(56,189,248,0.18), rgba(2,132,199,0.12))",
     border: "rgba(56,189,248,0.40)",
     glow: "#38bdf8",
     accent: "#7dd3fc",
-  },
-  {
-    label: "ŽEBŘÍČEK",
-    icon: Trophy,
-    path: "/zebricek",
-    gradient: "linear-gradient(135deg, rgba(251,146,60,0.18), rgba(234,88,12,0.12))",
-    border: "rgba(251,146,60,0.40)",
-    glow: "#fb923c",
-    accent: "#fdba74",
-  },
-  {
-    label: "PRAVIDLA",
-    icon: BookOpen,
-    path: "/pravidla",
-    gradient: "linear-gradient(135deg, rgba(34,197,94,0.18), rgba(22,163,74,0.12))",
-    border: "rgba(34,197,94,0.40)",
-    glow: "#22c55e",
-    accent: "#4ade80",
   },
 ];
 
@@ -70,6 +52,7 @@ function NavBtn({ label, Icon, path, gradient, border, glow, accent, navigate }:
   label: string; Icon: React.ElementType; path: string; gradient: string;
   border: string; glow: string; accent: string; navigate: (p: string) => void;
 }) {
+  const fontSize = label.length > 14 ? "0.63rem" : "0.78rem";
   return (
     <button
       onClick={() => navigate(path)}
@@ -78,7 +61,7 @@ function NavBtn({ label, Icon, path, gradient, border, glow, accent, navigate }:
         display: "flex",
         alignItems: "center",
         gap: "8px",
-        width: "220px",
+        width: "min(280px, 100%)",
         background: gradient,
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
@@ -98,7 +81,7 @@ function NavBtn({ label, Icon, path, gradient, border, glow, accent, navigate }:
         borderRadius: "6px", backgroundColor: "rgba(0,0,0,0.22)", border: "1px solid rgba(255,255,255,0.22)", flexShrink: 0 }}>
         <Icon size={13} color={accent} strokeWidth={2.3} />
       </div>
-      <span style={{ fontWeight: 800, color: "white", fontSize: "0.78rem", letterSpacing: "0.12em", textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
+      <span style={{ fontWeight: 800, color: "white", fontSize, letterSpacing: label.length > 14 ? "0.07em" : "0.12em", textShadow: "0 1px 3px rgba(0,0,0,0.4)", whiteSpace: "nowrap" }}>
         {label}
       </span>
       <div style={{ marginLeft: "auto", opacity: 0.65 }}>
@@ -188,19 +171,6 @@ export default function Home() {
           >
             Rozcestník
           </h1>
-          <p
-            style={{
-              color: "rgba(255,255,255,0.78)",
-              fontSize: "0.92rem",
-              fontWeight: 700,
-              marginTop: "4px",
-              letterSpacing: "0.05em",
-              textShadow: "0 1px 6px rgba(0,0,0,0.6)",
-            }}
-          >
-            Turistická výzva dvojic
-          </p>
-
           {/* Auth badge */}
           <div style={{ marginTop: "10px", display: "flex", justifyContent: "center" }}>
             <Show when="signed-out">
