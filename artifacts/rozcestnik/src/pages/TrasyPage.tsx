@@ -30,7 +30,7 @@ export default function TrasyPage() {
     <PageLayout title="Trasy" backPath="/vyzva">
       <div style={{ display: "flex", flexDirection: "column", gap: "12px", padding: "16px" }}>
         {trasy.map((trasa) => {
-          const done = trasa.id === 1 ? true : trasa.id === 2 ? trasa2Done : false; // PREVIEW
+          const done = trasa.id === 1 ? trasa1Done : trasa.id === 2 ? trasa2Done : false;
           const wip = trasa.wip;
           const isTest = (trasa as any).test === true;
           const handleClick = () => {
