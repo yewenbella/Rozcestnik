@@ -233,7 +233,7 @@ export default function Home() {
         <div
           style={{
             textAlign: "center",
-            paddingTop: "18px",
+            paddingTop: "60px",
             paddingBottom: "8px",
           }}
         >
