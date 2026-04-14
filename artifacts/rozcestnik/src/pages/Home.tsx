@@ -190,10 +190,10 @@ export default function Home() {
                   boxShadow: "0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 3px 8px rgba(0,0,0,0.45), 1px 0 0 rgba(255,255,255,0.08) inset",
                 }}
               >
-                <UserCircle size={14} color="rgba(255,255,255,0.85)" />
+                <UserCircle size={13} color="rgba(255,255,255,0.85)" />
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", lineHeight: 1.25 }}>
-                  <span style={{ color: "white", fontSize: "0.68rem", fontWeight: 800 }}>{"P\u0159ihl\u00e1sit"}</span>
-                  <span style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.58rem", fontWeight: 600 }}>{"M\u016fj t\u00fdm"}</span>
+                  <span style={{ color: "white", fontSize: "0.60rem", fontWeight: 800 }}>{"P\u0159ihl\u00e1sit"}</span>
+                  <span style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.53rem", fontWeight: 600 }}>{"M\u016fj t\u00fdm"}</span>
                 </div>
               </button>
             </Show>
@@ -209,8 +209,8 @@ export default function Home() {
                   boxShadow: "0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 3px 8px rgba(0,0,0,0.45), 1px 0 0 rgba(255,255,255,0.08) inset",
                 }}
               >
-                <UserCircle size={14} color="rgba(255,255,255,0.85)" />
-                <span style={{ color: "white", fontSize: "0.70rem", fontWeight: 800 }}>{"M\u016fj t\u00fdm"}</span>
+                <UserCircle size={13} color="rgba(255,255,255,0.85)" />
+                <span style={{ color: "white", fontSize: "0.62rem", fontWeight: 800 }}>{"M\u016fj t\u00fdm"}</span>
               </button>
             </Show>
           </div>

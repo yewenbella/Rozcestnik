@@ -126,17 +126,17 @@ export default function WeatherWidget({ compact, tile }: { compact?: boolean; ti
       <div style={{ display: "flex", alignItems: "center", gap: "7px", height: "100%", overflow: "hidden" }}>
         <span style={{ fontSize: "1.1rem", lineHeight: 1, flexShrink: 0 }}>{icon}</span>
         <div style={{ display: "flex", flexDirection: "column", gap: "2px", minWidth: 0 }}>
-          <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
-            <span style={{ color: "white", fontSize: "0.85rem", fontWeight: 800, textShadow }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: "3px" }}>
+            <span style={{ color: "white", fontSize: "0.75rem", fontWeight: 800, textShadow }}>
               {weather.temp}°C
             </span>
-            <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.62rem", fontWeight: 600 }}>{label}</span>
+            <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.56rem", fontWeight: 600 }}>{label}</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-            <span style={{ color: "#fca5a5", fontSize: "0.64rem", fontWeight: 700, textShadow }}>{"↑"}{weather.maxTemp}°</span>
-            <span style={{ color: "#93c5fd", fontSize: "0.64rem", fontWeight: 700, textShadow }}>{"↓"}{weather.minTemp}°</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
+            <span style={{ color: "#fca5a5", fontSize: "0.58rem", fontWeight: 700, textShadow }}>{"↑"}{weather.maxTemp}°</span>
+            <span style={{ color: "#93c5fd", fontSize: "0.58rem", fontWeight: 700, textShadow }}>{"↓"}{weather.minTemp}°</span>
           </div>
-          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.58rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.53rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
             {weather.city}
           </span>
         </div>
