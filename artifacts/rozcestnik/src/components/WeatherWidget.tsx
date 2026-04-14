@@ -132,13 +132,13 @@ export default function WeatherWidget({ compact, tile }: { compact?: boolean; ti
             </span>
             <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.56rem", fontWeight: 600 }}>{label}</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "3px", flexWrap: "nowrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
             <span style={{ color: "#fca5a5", fontSize: "0.57rem", fontWeight: 700, textShadow }}>{"↑"}{weather.maxTemp}°</span>
             <span style={{ color: "#93c5fd", fontSize: "0.57rem", fontWeight: 700, textShadow }}>{"↓"}{weather.minTemp}°</span>
-            <span style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.52rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", minWidth: 0 }}>
-              · {weather.city}
-            </span>
           </div>
+          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.53rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            {weather.city}
+          </span>
         </div>
       </div>
     );

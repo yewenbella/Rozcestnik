@@ -168,7 +168,7 @@ export default function Home() {
             flex: 1, minWidth: 0,
             background: "linear-gradient(160deg, rgba(60,70,60,0.72) 0%, rgba(20,28,20,0.82) 100%)",
             borderRadius: "10px",
-            height: "52px", padding: "6px 9px", boxSizing: "border-box",
+            height: "60px", padding: "6px 9px", boxSizing: "border-box",
             pointerEvents: "none", userSelect: "none",
             boxShadow: "0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 3px 8px rgba(0,0,0,0.45), 1px 0 0 rgba(255,255,255,0.08) inset",
             border: "1px solid rgba(100,110,100,0.45)",
@@ -177,7 +177,7 @@ export default function Home() {
           </div>
 
           {/* Můj tým tile — center */}
-          <div style={{ flex: 1, minWidth: 0, height: "52px", boxSizing: "border-box" }}>
+          <div style={{ flex: 1, minWidth: 0, height: "60px", boxSizing: "border-box" }}>
             <Show when="signed-out">
               <button
                 onClick={() => navigate("/sign-in")}
@@ -220,7 +220,7 @@ export default function Home() {
             flex: 1, minWidth: 0,
             background: "linear-gradient(160deg, rgba(60,70,60,0.72) 0%, rgba(20,28,20,0.82) 100%)",
             borderRadius: "10px",
-            height: "52px", padding: "6px 9px", boxSizing: "border-box",
+            height: "60px", padding: "6px 9px", boxSizing: "border-box",
             pointerEvents: "none", userSelect: "none",
             boxShadow: "0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 3px 8px rgba(0,0,0,0.45), 1px 0 0 rgba(255,255,255,0.08) inset",
             border: "1px solid rgba(100,110,100,0.45)",
