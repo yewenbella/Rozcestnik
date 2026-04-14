@@ -31,6 +31,25 @@ router.post("/", async (req: any, res) => {
   }
 });
 
+router.get("/mine", async (req: any, res) => {
+  try {
+    const auth = getAuth(req);
+    if (!auth?.userId) return res.json({ played: false });
+    const row = await pool.query(
+      `SELECT COALESCE(up.nickname, qs.player_name) AS player_name, qs.score
+       FROM quiz_scores qs
+       LEFT JOIN user_profiles up ON qs.user_id = up.user_id
+       WHERE qs.user_id = $1 LIMIT 1`,
+      [auth.userId]
+    );
+    if (row.rows.length === 0) return res.json({ played: false });
+    res.json({ played: true, score: row.rows[0].score, player_name: row.rows[0].player_name });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 router.get("/top", async (_req, res) => {
   try {
     const rows = await pool.query(

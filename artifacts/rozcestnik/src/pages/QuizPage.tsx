@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation } from "wouter";
 import { useClerk } from "@clerk/react";
-import { ArrowLeft, RotateCcw, CheckCircle2, XCircle, Trophy, X } from "lucide-react";
+import { ArrowLeft, CheckCircle2, XCircle, Trophy, X } from "lucide-react";
 
 interface Question {
   question: string;
@@ -80,6 +80,11 @@ export default function QuizPage() {
   const [answers, setAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
   const [finished, setFinished] = useState(false);
 
+  const [alreadyPlayed, setAlreadyPlayed] = useState(false);
+  const [previousScore, setPreviousScore] = useState<number | null>(null);
+  const [previousName, setPreviousName] = useState<string>("");
+  const [checkingPlayed, setCheckingPlayed] = useState(true);
+
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [topScores, setTopScores] = useState<ScoreEntry[]>([]);
   const [submitting, setSubmitting] = useState(false);
@@ -103,6 +108,35 @@ export default function QuizPage() {
   useEffect(() => { fetchTop(); }, [fetchTop]);
 
   useEffect(() => {
+    const saved = localStorage.getItem("rozcestnik_quiz_played");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setAlreadyPlayed(true);
+        setPreviousScore(parsed.score ?? null);
+        setPreviousName(parsed.player_name ?? "");
+        setCheckingPlayed(false);
+        return;
+      } catch {}
+    }
+    if (!session) { setCheckingPlayed(false); return; }
+    session.getToken().then(async (token) => {
+      if (!token) { setCheckingPlayed(false); return; }
+      try {
+        const r = await fetch("/api/quiz-scores/mine", { headers: { Authorization: `Bearer ${token}` }, credentials: "include" });
+        const d = await r.json();
+        if (d.played) {
+          setAlreadyPlayed(true);
+          setPreviousScore(d.score ?? null);
+          setPreviousName(d.player_name ?? "");
+          localStorage.setItem("rozcestnik_quiz_played", JSON.stringify({ score: d.score, player_name: d.player_name }));
+        }
+      } catch {}
+      setCheckingPlayed(false);
+    }).catch(() => setCheckingPlayed(false));
+  }, [session]);
+
+  useEffect(() => {
     if (!session) return;
     session.getToken().then((token) => {
       if (!token) return;
@@ -124,6 +158,10 @@ export default function QuizPage() {
         body: JSON.stringify({ score: finalScore, playerName }),
       });
       setSubmitted(true);
+      localStorage.setItem("rozcestnik_quiz_played", JSON.stringify({ score: finalScore, player_name: playerName }));
+      setAlreadyPlayed(true);
+      setPreviousScore(finalScore);
+      setPreviousName(playerName);
       fetchTop();
     } catch {} finally {
       setSubmitting(false);
@@ -157,17 +195,6 @@ export default function QuizPage() {
       setCurrent((c) => c + 1);
       setSelected(null);
     }
-  }
-
-  function handleRestart() {
-    setCurrent(0);
-    setSelected(null);
-    setAnswers(Array(questions.length).fill(null));
-    setFinished(false);
-    setSubmitted(false);
-    setShowNameInput(false);
-    setPendingScore(null);
-    setGuestName("");
   }
 
   function getEmoji(sc: number) {
@@ -287,6 +314,69 @@ export default function QuizPage() {
     </div>
   );
 
+  if (checkingPlayed) {
+    return (
+      <div style={{ ...pageStyle, alignItems: "center", justifyContent: "center" }}>
+        <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.9rem" }}>Načítám...</div>
+      </div>
+    );
+  }
+
+  if (alreadyPlayed && !finished) {
+    const sc = previousScore ?? 0;
+    return (
+      <div style={{ ...pageStyle, position: "relative" }}>
+        {Header}
+        <div style={{ flex: 1, overflowY: "auto", padding: "20px 16px", display: "flex", flexDirection: "column", gap: "16px" }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", paddingTop: "8px" }}>
+            <div style={{ fontSize: "3.5rem", lineHeight: 1 }}>{getEmoji(sc)}</div>
+            <div style={{ textAlign: "center" }}>
+              <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.78rem", marginBottom: "4px" }}>
+                {previousName ? `${previousName} · ` : ""}Tvoje skóre
+              </div>
+              <div style={{ color: "white", fontSize: "2.5rem", fontWeight: 900, lineHeight: 1 }}>{sc} / {questions.length}</div>
+              <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.82rem", marginTop: "3px" }}>správných odpovědí</div>
+            </div>
+            <div style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.25)", borderRadius: "12px", padding: "10px 18px", textAlign: "center" }}>
+              <span style={{ color: "#fbbf24", fontSize: "0.85rem", fontWeight: 700 }}>
+                {"Kvíz jsi již absolvoval/a \u2014 výsledek byl zaznamenán do žebříčku."}
+              </span>
+            </div>
+          </div>
+          <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: "16px", overflow: "hidden" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "12px 14px", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+              <Trophy size={15} color="#fbbf24" />
+              <span style={{ color: "white", fontWeight: 700, fontSize: "0.88rem", letterSpacing: "0.04em" }}>ŽEBŘÍČEK KVÍZU</span>
+            </div>
+            {topScores.length === 0 ? (
+              <div style={{ padding: "16px 14px", color: "rgba(255,255,255,0.35)", fontSize: "0.82rem", textAlign: "center" }}>
+                Žebříček je zatím prázdný
+              </div>
+            ) : topScores.map((entry, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", borderBottom: i < topScores.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none", background: i === 0 ? "rgba(251,191,36,0.05)" : "transparent" }}>
+                <span style={{ fontSize: "1.1rem", width: "24px", textAlign: "center" }}>
+                  {i < 3 ? MEDALS[i] : `${i + 1}.`}
+                </span>
+                <span style={{ flex: 1, color: i === 0 ? "white" : "rgba(255,255,255,0.75)", fontWeight: i === 0 ? 700 : 500, fontSize: "0.88rem" }}>
+                  {entry.player_name}
+                </span>
+                <div style={{ display: "flex", alignItems: "baseline", gap: "3px" }}>
+                  <span style={{ color: i === 0 ? "#fbbf24" : "rgba(255,255,255,0.6)", fontWeight: 700, fontSize: "0.95rem" }}>{entry.score}</span>
+                  <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.72rem" }}>b.</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button onClick={() => navigate("/")}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "7px", padding: "12px", borderRadius: "13px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.7)", fontWeight: 700, fontSize: "0.88rem", cursor: "pointer" }}>
+            <ArrowLeft size={15} /> Zpět na hlavní stránku
+          </button>
+        </div>
+        {leaderboardOverlay}
+      </div>
+    );
+  }
+
   if (finished) {
     return (
       <div style={{ ...pageStyle, position: "relative" }}>
@@ -381,11 +471,9 @@ export default function QuizPage() {
             })}
           </div>
 
-          <button
-            onClick={handleRestart}
-            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "7px", padding: "12px", borderRadius: "13px", background: "linear-gradient(135deg, rgba(251,191,36,0.22), rgba(251,191,36,0.10))", border: "1px solid rgba(251,191,36,0.40)", color: "#fbbf24", fontWeight: 800, fontSize: "0.92rem", cursor: "pointer" }}
-          >
-            <RotateCcw size={15} /> Hrát znovu
+          <button onClick={() => navigate("/")}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "7px", padding: "12px", borderRadius: "13px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.7)", fontWeight: 700, fontSize: "0.88rem", cursor: "pointer" }}>
+            <ArrowLeft size={15} /> Zpět na hlavní stránku
           </button>
         </div>
       {leaderboardOverlay}
