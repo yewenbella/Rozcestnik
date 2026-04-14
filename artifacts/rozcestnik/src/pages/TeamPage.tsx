@@ -247,11 +247,11 @@ export default function TeamPage() {
                   {nickname ? (
                     <span style={{ color: "#4ade80", fontWeight: 800, fontSize: "1.05rem" }}>
                       {nickname}
-                      {nicknameSaved && <span style={{ color: "rgba(74,222,128,0.6)", fontWeight: 400, fontSize: "0.72rem", marginLeft: 6 }}>\u2714 Ulo\u017eeno</span>}
+                      {nicknameSaved && <span style={{ color: "rgba(74,222,128,0.6)", fontWeight: 400, fontSize: "0.72rem", marginLeft: 6 }}>{"\u2714 Ulo\u017eeno"}</span>}
                     </span>
                   ) : (
                     <span style={{ color: "rgba(255,255,255,0.28)", fontSize: "0.82rem", fontStyle: "italic" }}>
-                      Nastav p\u0159ezd\xedvku\u2026
+                      {"Nastav p\u0159ezd\xedvku\u2026"}
                     </span>
                   )}
                   <button
