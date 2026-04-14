@@ -71,9 +71,12 @@ export default function GamePage() {
 
   const submitScore = useCallback(async (score: number, playerName: string) => {
     try {
+      const token = await sessionRef.current?.getToken().catch(() => null);
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (token) headers["Authorization"] = `Bearer ${token}`;
       await fetch("/api/game-scores", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({ score, playerName }),
       });
     } catch {}

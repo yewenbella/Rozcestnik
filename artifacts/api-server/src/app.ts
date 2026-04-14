@@ -17,6 +17,14 @@ async function runMigrations() {
     if (res.rowCount === 0) {
       await pool.query(`ALTER TABLE game_scores ADD CONSTRAINT unique_game_player UNIQUE (player_name)`);
     }
+    await pool.query(`
+      UPDATE game_scores gs
+      SET player_name = up.nickname
+      FROM user_profiles up
+      WHERE gs.user_id = up.user_id
+        AND up.nickname IS NOT NULL
+        AND gs.player_name != up.nickname
+    `);
     logger.info("DB migrations OK");
   } catch (e) {
     logger.error({ e }, "DB migration error");
