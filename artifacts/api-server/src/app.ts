@@ -5,6 +5,25 @@ import { clerkMiddleware } from "@clerk/express";
 import { CLERK_PROXY_PATH, clerkProxyMiddleware } from "./middlewares/clerkProxyMiddleware";
 import router from "./routes";
 import { logger } from "./lib/logger";
+import { pool } from "@workspace/db";
+
+async function runMigrations() {
+  try {
+    await pool.query(`ALTER TABLE game_scores DROP CONSTRAINT IF EXISTS unique_game_user`);
+    await pool.query(`ALTER TABLE game_scores ALTER COLUMN user_id DROP NOT NULL`);
+    const res = await pool.query(`
+      SELECT 1 FROM pg_constraint WHERE conname = 'unique_game_player'
+    `);
+    if (res.rowCount === 0) {
+      await pool.query(`ALTER TABLE game_scores ADD CONSTRAINT unique_game_player UNIQUE (player_name)`);
+    }
+    logger.info("DB migrations OK");
+  } catch (e) {
+    logger.error({ e }, "DB migration error");
+  }
+}
+
+runMigrations();
 
 const app: Express = express();
 
