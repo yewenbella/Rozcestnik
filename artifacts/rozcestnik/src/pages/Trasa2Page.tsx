@@ -373,10 +373,10 @@ export default function Trasa2Page() {
               <Bus size={15} color="#60a5fa" style={{ flexShrink: 0 }} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem", marginBottom: "2px" }}>Zastávka</div>
-                <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Hrubá Skála, Borek</div>
+                <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Hrubá skála,Borek</div>
               </div>
               <a
-                href="https://idos.cz/autobusy/spojeni/?t=Hrub%C3%A1+Sk%C3%A1la%2C+Borek"
+                href="https://idos.cz/autobusy/spojeni/?t=Hrub%C3%A1+sk%C3%A1la%2CBorek"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

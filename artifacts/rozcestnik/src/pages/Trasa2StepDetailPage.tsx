@@ -1,11 +1,35 @@
 import { useParams } from "wouter";
+import { useEffect, useState } from "react";
 import { MapPin, Navigation, Flag, Info, ExternalLink } from "lucide-react";
 import { trasa2Steps } from "@/data/trasa2Steps";
 import PageLayout from "@/components/PageLayout";
 
+function wikiArticleTitle(wikiUrl?: string): string | null {
+  if (!wikiUrl) return null;
+  try {
+    const url = new URL(wikiUrl);
+    const parts = url.pathname.split("/wiki/");
+    return parts[1] ? decodeURIComponent(parts[1]) : null;
+  } catch {
+    return null;
+  }
+}
+
 export default function Trasa2StepDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const step = trasa2Steps.find((s) => s.slug === slug);
+  const [thumbnail, setThumbnail] = useState<string | null>(null);
+  const [imgLoading, setImgLoading] = useState(true);
+
+  useEffect(() => {
+    const title = wikiArticleTitle(step?.wikiUrl);
+    if (!title) { setImgLoading(false); return; }
+    fetch(`https://cs.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`)
+      .then((r) => r.json())
+      .then((d) => { if (d.thumbnail?.source) setThumbnail(d.thumbnail.source); })
+      .catch(() => {})
+      .finally(() => setImgLoading(false));
+  }, [step?.wikiUrl]);
 
   if (!step) {
     return (
@@ -33,7 +57,8 @@ export default function Trasa2StepDetailPage() {
           {step.label}
         </div>
 
-        {step.imageUrl ? (
+        {/* Photo */}
+        {thumbnail ? (
           <div style={{
             borderRadius: "16px",
             overflow: "hidden",
@@ -43,12 +68,12 @@ export default function Trasa2StepDetailPage() {
             background: step.bg,
           }}>
             <img
-              src={step.imageUrl}
+              src={thumbnail}
               alt={step.place}
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
-        ) : (
+        ) : !imgLoading && (
           <div style={{ display: "flex", justifyContent: "center", padding: "24px 0" }}>
             <div style={{
               width: "80px", height: "80px", borderRadius: "24px",
@@ -61,6 +86,7 @@ export default function Trasa2StepDetailPage() {
           </div>
         )}
 
+        {/* Info card */}
         <div style={{
           borderRadius: "16px",
           background: "rgba(255,255,255,0.05)",
