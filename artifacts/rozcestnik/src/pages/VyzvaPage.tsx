@@ -109,9 +109,6 @@ export default function VyzvaPage() {
           <h1 style={{ fontSize: "2.1rem", fontWeight: 900, color: "white", letterSpacing: "0.03em", textShadow: "0 2px 16px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)", margin: 0, lineHeight: 1.15 }}>
             {"Turistick\u00e1 v\u00fdzva"}
           </h1>
-          <h1 style={{ fontSize: "2.1rem", fontWeight: 900, color: "white", letterSpacing: "0.03em", textShadow: "0 2px 16px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)", margin: 0, lineHeight: 1.15 }}>
-            dvojic
-          </h1>
         </div>
 
         {/* Buttons */}
