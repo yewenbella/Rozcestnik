@@ -16,7 +16,7 @@ interface TeamData {
 
 export default function TeamPage() {
   const { user, isLoaded } = useUser();
-  const { signOut } = useClerk();
+  const { signOut, session } = useClerk();
   const [, navigate] = useLocation();
 
   const [team, setTeam] = useState<TeamData | null>(null);
@@ -45,13 +45,36 @@ export default function TeamPage() {
       .catch(() => {});
   }, []);
 
+  const getToken = async (): Promise<string | null> => {
+    try {
+      if (!session) return null;
+      return await session.getToken();
+    } catch {
+      return null;
+    }
+  };
+
+  const authFetch = async (url: string, options: RequestInit = {}) => {
+    const token = await getToken();
+    const headers: Record<string, string> = {
+      ...(options.headers as Record<string, string> || {}),
+    };
+    if (token) headers["Authorization"] = `Bearer ${token}`;
+    const res = await fetch(url, { ...options, credentials: "include", headers });
+    if (res.status === 401) {
+      navigate(`${BASE}/sign-in`);
+      throw new Error("session-expired");
+    }
+    return res;
+  };
+
   const fetchTeam = async () => {
     try {
-      const res = await fetch("/api/teams/me", { credentials: "include" });
+      const res = await authFetch("/api/teams/me");
       const data = await res.json();
       setTeam(data.team ? { ...data.team, memberCount: data.memberCount } : null);
-    } catch {
-      setTeam(null);
+    } catch (e: any) {
+      if (e?.message !== "session-expired") setTeam(null);
     } finally {
       setLoading(false);
     }
@@ -62,17 +85,16 @@ export default function TeamPage() {
     setSubmitting(true);
     setError("");
     try {
-      const res = await fetch("/api/teams", {
+      const res = await authFetch("/api/teams", {
         method: "POST",
-        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: teamName }),
       });
       const data = await res.json();
       if (!res.ok) return setError(data.error || "Chyba");
       setTeam({ ...data.team, memberCount: 1 });
-    } catch {
-      setError("Chyba připojení");
+    } catch (e: any) {
+      if (e?.message !== "session-expired") setError("Chyba připojení");
     } finally {
       setSubmitting(false);
     }
@@ -83,17 +105,16 @@ export default function TeamPage() {
     setSubmitting(true);
     setError("");
     try {
-      const res = await fetch("/api/teams/join", {
+      const res = await authFetch("/api/teams/join", {
         method: "POST",
-        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ inviteCode }),
       });
       const data = await res.json();
       if (!res.ok) return setError(data.error || "Chyba");
       setTeam({ ...data.team, memberCount: 2 });
-    } catch {
-      setError("Chyba připojení");
+    } catch (e: any) {
+      if (e?.message !== "session-expired") setError("Chyba připojení");
     } finally {
       setSubmitting(false);
     }
