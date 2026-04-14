@@ -12,9 +12,9 @@ function isTrasa1Completed(): boolean {
 }
 
 const trasy = [
-  { id: 1, label: "Trasa č.1\u00A0\u00A0\u00A0\u00A0\u00A0(Janov nad Nisou)", duration: "⏱ odh. 4–5 h", wip: false },
-  { id: 2, label: "Trasa č.2\u00A0\u00A0\u00A0\u00A0\u00A0(Rozpracováno)", duration: "", wip: true },
-  { id: 3, label: "Trasa č.3\u00A0\u00A0\u00A0\u00A0\u00A0(Rozpracováno)", duration: "", wip: true },
+  { id: 1, name: "Trasa č.1", location: "Janov nad Nisou", duration: "⏱ odh. 4–5 h", wip: false },
+  { id: 2, name: "Trasa č.2", location: "Rozpracováno", duration: "", wip: true },
+  { id: 3, name: "Trasa č.3", location: "Rozpracováno", duration: "", wip: true },
 ];
 
 export default function TrasyPage() {
@@ -56,7 +56,7 @@ export default function TrasyPage() {
                 transition: "all 0.3s",
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", flex: 1, minWidth: 0 }}>
                 <div
                   style={{
                     width: "38px",
@@ -85,16 +85,32 @@ export default function TrasyPage() {
                       : <Route size={18} color="#38bdf8" strokeWidth={1.8} />
                   }
                 </div>
-                <div>
-                  <span style={{ color: wip ? "rgba(255,255,255,0.55)" : "white", fontWeight: 700, fontSize: "1rem", display: "block" }}>
-                    {trasa.label}
+                <div style={{ display: "flex", flexDirection: "column", gap: "2px", flex: 1, minWidth: 0 }}>
+                  <span style={{ color: wip ? "rgba(255,255,255,0.55)" : "white", fontWeight: 700, fontSize: "1rem" }}>
+                    {trasa.name}
                   </span>
+                  {!wip && (
+                    <span style={{
+                      alignSelf: "flex-end",
+                      color: "rgba(255,255,255,0.60)",
+                      fontSize: "0.76rem",
+                      fontWeight: 500,
+                      fontStyle: "italic",
+                    }}>
+                      {trasa.location}
+                    </span>
+                  )}
+                  {wip && (
+                    <span style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.72rem" }}>
+                      {trasa.location}
+                    </span>
+                  )}
                   {!wip && (done ? (
                     <span style={{ color: "#4ade80", fontSize: "0.75rem", fontWeight: 600 }}>
                       Splněno ✓
                     </span>
                   ) : (
-                    <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem" }}>
+                    <span style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.72rem" }}>
                       {trasa.duration}
                     </span>
                   ))}
