@@ -171,7 +171,7 @@ export default function Home() {
         <div
           style={{
             textAlign: "center",
-            paddingTop: "72px",
+            paddingTop: "115px",
             paddingBottom: "8px",
           }}
         >
