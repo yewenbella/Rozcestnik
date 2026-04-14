@@ -18,8 +18,8 @@ export const zkusebniSteps: ZkusebniStep[] = [
     label: "Checkpoint 1",
     type: "checkpoint",
     address: "Zastávka Horní Hanychov",
-    lat: 50.7382,
-    lng: 15.0121,
+    lat: 50.7381875,
+    lng: 15.0119375,
   },
   {
     label: "Checkpoint 2",
