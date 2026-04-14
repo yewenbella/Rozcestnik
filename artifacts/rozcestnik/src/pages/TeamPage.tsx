@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useUser, useClerk } from "@clerk/react";
 import { useLocation } from "wouter";
-import { Users, Plus, LogIn, Copy, Check, LogOut, Mountain } from "lucide-react";
+import { Users, Plus, LogIn, Copy, Check, LogOut, Mountain, QrCode, Share2 } from "lucide-react";
+import QRCode from "qrcode";
 import PageLayout from "@/components/PageLayout";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -26,6 +27,7 @@ export default function TeamPage() {
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [qrDataUrl, setQrDataUrl] = useState("");
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -35,6 +37,13 @@ export default function TeamPage() {
     }
     fetchTeam();
   }, [isLoaded, user]);
+
+  useEffect(() => {
+    const url = window.location.origin + (import.meta.env.BASE_URL || "/");
+    QRCode.toDataURL(url, { width: 200, margin: 1, color: { dark: "#1a2a1a", light: "#ffffff" } })
+      .then(setQrDataUrl)
+      .catch(() => {});
+  }, []);
 
   const fetchTeam = async () => {
     try {
@@ -177,6 +186,55 @@ export default function TeamPage() {
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* QR invite section */}
+            <div style={{ ...glassCard, marginTop: 14 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
+                <QrCode size={17} color="#4ade80" />
+                <span style={{ color: "white", fontWeight: 700, fontSize: "0.95rem" }}>Pozvat hráče</span>
+              </div>
+              <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.78rem", margin: "0 0 14px", lineHeight: 1.5 }}>
+                Nech partnera/partnerku naskenovat QR kód — otevře se mu/jí přímo tato aplikace.
+              </p>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                {qrDataUrl ? (
+                  <img
+                    src={qrDataUrl}
+                    alt="QR kód pro pozvání"
+                    style={{
+                      width: 200, height: 200,
+                      borderRadius: "14px",
+                      boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
+                      background: "white",
+                      padding: "8px",
+                    }}
+                  />
+                ) : (
+                  <div style={{ width: 200, height: 200, background: "rgba(255,255,255,0.05)", borderRadius: "14px" }} />
+                )}
+              </div>
+              <div style={{ textAlign: "center", marginTop: "10px" }}>
+                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.70rem" }}>
+                  {window.location.origin + (import.meta.env.BASE_URL || "/")}
+                </span>
+              </div>
+              {navigator.share && (
+                <button
+                  onClick={() => navigator.share({ title: "Rozcestník", url: window.location.origin + (import.meta.env.BASE_URL || "/") })}
+                  style={{
+                    width: "100%", marginTop: "12px", padding: "10px",
+                    borderRadius: "10px", display: "flex", alignItems: "center",
+                    justifyContent: "center", gap: "7px",
+                    background: "rgba(74,222,128,0.12)",
+                    border: "1px solid rgba(74,222,128,0.35)",
+                    color: "#4ade80", fontWeight: 700, fontSize: "0.82rem", cursor: "pointer",
+                  }}
+                >
+                  <Share2 size={14} />
+                  Sdílet odkaz
+                </button>
+              )}
             </div>
 
             <button onClick={leaveTeam} style={{ ...leaveBtn, marginTop: 14 }}>
