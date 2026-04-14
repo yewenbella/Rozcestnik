@@ -69,7 +69,7 @@ export default function Trasa2StepDetailPage() {
             overflow: "hidden",
             border: `1px solid ${step.color}33`,
             boxShadow: `0 4px 16px ${step.color}22`,
-            aspectRatio: "16/7",
+            aspectRatio: "16/9",
             background: step.bg,
           }}>
             <img
