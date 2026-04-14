@@ -74,11 +74,7 @@ export default function QuizPage() {
   const { session } = useClerk();
 
   useEffect(() => {
-    if (window.location.search.includes("reset")) {
-      localStorage.removeItem("rozcestnik_quiz_played");
-      window.history.replaceState({}, "", window.location.pathname);
-      window.location.reload();
-    }
+    localStorage.removeItem("rozcestnik_quiz_played");
   }, []);
   const sessionRef = useRef(session);
   useEffect(() => { sessionRef.current = session; }, [session]);
