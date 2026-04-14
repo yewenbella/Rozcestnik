@@ -72,6 +72,14 @@ interface ScoreEntry { player_name: string; score: number; }
 export default function QuizPage() {
   const [, navigate] = useLocation();
   const { session } = useClerk();
+
+  useEffect(() => {
+    if (window.location.search.includes("reset")) {
+      localStorage.removeItem("rozcestnik_quiz_played");
+      window.history.replaceState({}, "", window.location.pathname);
+      window.location.reload();
+    }
+  }, []);
   const sessionRef = useRef(session);
   useEffect(() => { sessionRef.current = session; }, [session]);
 
