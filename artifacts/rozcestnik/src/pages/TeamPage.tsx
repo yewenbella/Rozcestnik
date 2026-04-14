@@ -172,9 +172,28 @@ export default function TeamPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const dennikBtn = (
+    <button
+      onClick={() => navigate(`${BASE}/denik`)}
+      title={"Cestovn\u00ed den\u00edk"}
+      style={{
+        width: 38, height: 38,
+        borderRadius: "50%",
+        background: "rgba(10,45,50,0.85)",
+        border: "1.5px solid rgba(20,184,166,0.5)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        cursor: "pointer",
+        boxShadow: "0 2px 10px rgba(20,184,166,0.2)",
+        flexShrink: 0,
+      }}
+    >
+      <BookOpen size={17} color="#5eead4" />
+    </button>
+  );
+
   if (!isLoaded || loading) {
     return (
-      <PageLayout title={"M\u016fj t\u00fdm"} backPath="/">
+      <PageLayout title={"M\u016fj t\u00fdm"} backPath="/" rightSlot={dennikBtn}>
         <div style={centerStyle}>
           <p style={{ color: "rgba(255,255,255,0.5)" }}>{"Na\u010d\u00edt\u00e1m\u2026"}</p>
         </div>
@@ -183,7 +202,7 @@ export default function TeamPage() {
   }
 
   return (
-    <PageLayout title={"M\u016fj t\u00fdm"} backPath="/">
+    <PageLayout title={"M\u016fj t\u00fdm"} backPath="/" rightSlot={dennikBtn}>
       <div style={{ padding: "10px 14px", maxWidth: "480px", margin: "0 auto" }}>
 
         {/* User info */}
@@ -287,40 +306,6 @@ export default function TeamPage() {
             </button>
           </div>
         </div>
-
-        {/* Cestovní deník */}
-        <button
-          onClick={() => navigate(`${BASE}/denik`)}
-          style={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            padding: "12px 16px",
-            marginTop: "8px",
-            borderRadius: "12px",
-            border: "1.5px solid rgba(20,184,166,0.45)",
-            background: "rgba(10,45,50,0.80)",
-            cursor: "pointer",
-            boxShadow: "0 2px 12px rgba(20,184,166,0.15)",
-          }}
-        >
-          <div style={{
-            width: 32, height: 32, borderRadius: "8px",
-            background: "rgba(20,184,166,0.18)",
-            border: "1px solid rgba(20,184,166,0.35)",
-            display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-          }}>
-            <BookOpen size={15} color="#5eead4" />
-          </div>
-          <div style={{ flex: 1, textAlign: "left" }}>
-            <div style={{ color: "white", fontWeight: 700, fontSize: "0.88rem" }}>{"Cestovn\u00ed den\u00edk"}</div>
-            <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.70rem" }}>{"Tvoje osobn\u00ed z\u00e1znamy z v\u00fdlet\u016f"}</div>
-          </div>
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-            <path d="M5 3l5 4.5L5 12" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
 
         {team ? (
           <>
