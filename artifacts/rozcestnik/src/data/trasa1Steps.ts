@@ -5,6 +5,7 @@ export interface TrailStep {
   place: string;
   proof: string;
   info: string;
+  zajimavost?: string;
   wikiUrl?: string;
   imageUrl?: string;
   color: string;

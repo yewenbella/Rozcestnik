@@ -49,6 +49,7 @@ export const trasa2Steps: TrailStep[] = [
     place: "Podsemínský most",
     proof: "Rozcestník",
     info: "Podsemínský most je historický kamenný most překlenující potok v oblasti Semína v Českém ráji. Stojí na starém obchodním spojení mezi vesnicemi u rybniční soustavy a je součástí turistické trasy kolem troseckých rybníků. Jeho okolí je klidné a romantické, ideální pro odpočinek uprostřed trasy.",
+    zajimavost: "Podsemínský most se také objevil v několika filmech. Tím prvním a asi nejznámějším byla v roce 1978 komedie od režisérky Marie Poledňákové s názvem Jak dostat tatínka do polepšovny. Ve filmu po něm jezdili na kole Tomáš Holý i jeho filmovi rodiče František Němec a Jana Preissová. V roce 2005 sem zavítali hollywoodští herci Matt Damon a Heath Ledger v rámci natáčení filmu Kletba bratří Grimmů. A v roce 2007 se most objevil v pohádce O uloupené divožence s Romanem Vojtkem a Danou Markovou v hlavních rolích.",
     wikiUrl: "https://cs.wikipedia.org/wiki/Podsem%C3%ADnsk%C3%BD_most",
     color: "#60a5fa",
     bg: "rgba(96,165,250,0.08)",
