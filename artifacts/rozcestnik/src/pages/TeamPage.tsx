@@ -302,9 +302,9 @@ export default function TeamPage() {
                 </span>
               </div>
 
-              <div style={{ background: "rgba(0,0,0,0.45)", borderRadius: "10px", padding: "10px 12px" }}>
+              <div style={{ background: "rgba(0,0,0,0.45)", borderRadius: "10px", padding: "10px 12px", marginBottom: "10px" }}>
                 <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.70rem", margin: "0 0 3px" }}>
-                  Kód pro přizvání
+                  {"K\u00f3d pro p\u0159izv\u00e1n\u00ed"}
                 </p>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <span style={{ color: "white", fontWeight: 800, fontSize: "1.3rem", letterSpacing: "0.15em" }}>
@@ -318,20 +318,24 @@ export default function TeamPage() {
                   </button>
                 </div>
               </div>
+
+              <button onClick={leaveTeam} style={leaveBtn}>
+                {"Opustit t\u00fdm"}
+              </button>
             </div>
 
-            {/* QR invite section */}
+            {/* QR invite section — bottom */}
             <div style={{ ...glassCard, marginTop: 8, padding: "10px 14px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
                 <QrCode size={15} color="#4ade80" />
-                <span style={{ color: "white", fontWeight: 700, fontSize: "0.88rem" }}>Pozvat hráče</span>
+                <span style={{ color: "white", fontWeight: 700, fontSize: "0.88rem" }}>{"Pozvat hr\u00e1\u010de"}</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                 <div>
                   {qrDataUrl ? (
                     <img
                       src={qrDataUrl}
-                      alt="QR kód pro pozvání"
+                      alt={"QR k\u00f3d pro pozv\u00e1n\u00ed"}
                       style={{
                         width: 130, height: 130,
                         borderRadius: "10px",
@@ -347,11 +351,11 @@ export default function TeamPage() {
                 </div>
                 <div style={{ flex: 1 }}>
                   <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.76rem", margin: "0 0 10px", lineHeight: 1.5 }}>
-                    Naskenuj QR kód a otevře se aplikace — každý si pak může vytvořit vlastní tým nebo se připojit ke stávajícímu.
+                    {"Naskenuj QR k\u00f3d a otev\u0159e se aplikace \u2014 ka\u017ed\u00fd si pak m\u016f\u017ee vytvo\u0159it vlastn\u00ed t\u00fdm nebo se p\u0159ipojit ke st\u00e1vaj\u00edc\u00edmu."}
                   </p>
                   {navigator.share && (
                     <button
-                      onClick={() => navigator.share({ title: "Rozcestník", url: window.location.origin + (import.meta.env.BASE_URL || "/") })}
+                      onClick={() => navigator.share({ title: "Rozcestn\u00edk", url: window.location.origin + (import.meta.env.BASE_URL || "/") })}
                       style={{
                         width: "100%", padding: "8px",
                         borderRadius: "8px", display: "flex", alignItems: "center",
@@ -362,16 +366,12 @@ export default function TeamPage() {
                       }}
                     >
                       <Share2 size={13} />
-                      Sdílet odkaz
+                      {"Sd\u00edlet odkaz"}
                     </button>
                   )}
                 </div>
               </div>
             </div>
-
-            <button onClick={leaveTeam} style={{ ...leaveBtn, marginTop: 8 }}>
-              Opustit tým
-            </button>
           </>
         ) : (
           <div style={{ marginTop: 10 }}>
