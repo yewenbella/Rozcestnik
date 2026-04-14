@@ -3,10 +3,10 @@ import { MapPin, Info, ExternalLink, Sparkles } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
 const zajimavosti = [
-  { emoji: "⛷️", text: "Domov lyžařského areálu Severák — oblíbené středisko běžeckého i sjezdového lyžování v Jizerských horách." },
-  { emoji: "🚂", text: "Obcí prochází historická horská železnice Tanvald–Harrachov, která překonává prudké stoupání ozubnicovým pohonem." },
-  { emoji: "🌲", text: "Leží na hranici CHKO Jizerské hory — okolní lesy jsou součástí jednoho z největších smrkových masivů v Čechách." },
-  { emoji: "🏔️", text: "Nadmořská výška obce se pohybuje mezi 500 a 700 m n. m., což zajišťuje spolehlivou sněhovou pokrývku v zimě." },
+  { emoji: "🛷", text: "V areálu Severák je oblíbená bobová dráha — zábava pro celou rodinu i mimo lyžařskou sezónu." },
+  { emoji: "🚂", text: "Přes obec jezdí unikátní ozubnicová železnice Tanvald–Harrachov — jedna z mála svého druhu v Česku." },
+  { emoji: "🏊", text: "Nedaleko se nachází přehrada Josefův důl, která je jednou ze zastávek vaší trasy a v létě lákavým místem k odpočinku." },
+  { emoji: "🧇", text: "V místních hospůdkách a penzionech se podávají tradiční krkonošské i jizerské speciality — doporučujeme bramborové placky." },
 ];
 
 export default function JanovPage() {
