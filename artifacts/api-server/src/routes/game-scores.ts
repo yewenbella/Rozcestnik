@@ -1,34 +1,27 @@
 import { Router } from "express";
 import { getAuth } from "@clerk/express";
 import { pool } from "@workspace/db";
-import { db } from "@workspace/db";
-import { gameScoresTable, teamsTable } from "@workspace/db";
-import { desc } from "drizzle-orm";
 
 const router = Router();
 
-const requireAuth = (req: any, res: any, next: any) => {
-  const auth = getAuth(req);
-  const userId = auth?.sessionClaims?.userId || auth?.userId;
-  if (!userId) return res.status(401).json({ error: "Unauthorized" });
-  req.userId = userId;
-  next();
-};
-
-router.post("/", requireAuth, async (req: any, res) => {
+router.post("/", async (req: any, res) => {
   try {
     const { score, playerName } = req.body;
     if (!score || typeof score !== "number") {
-      return res.status(400).json({ error: "score je povinné" });
+      return res.status(400).json({ error: "score je povinne" });
     }
-    const name = (playerName || "Turista").slice(0, 40);
+    const name = (playerName || "Turista").trim().slice(0, 40);
+    if (!name) return res.status(400).json({ error: "playerName je povinne" });
+
+    const auth = getAuth(req);
+    const userId = auth?.userId || null;
 
     await pool.query(
       `INSERT INTO game_scores (user_id, player_name, score) VALUES ($1, $2, $3)
-       ON CONFLICT (user_id) DO UPDATE
-         SET score = EXCLUDED.score, player_name = EXCLUDED.player_name, achieved_at = now()
+       ON CONFLICT (player_name) DO UPDATE
+         SET score = EXCLUDED.score, user_id = EXCLUDED.user_id, achieved_at = now()
          WHERE game_scores.score < EXCLUDED.score`,
-      [req.userId, name, score]
+      [userId, name, score]
     );
 
     res.json({ ok: true });

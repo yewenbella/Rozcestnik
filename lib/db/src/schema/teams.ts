@@ -43,12 +43,12 @@ export const gameScoresTable = pgTable(
   "game_scores",
   {
     id: serial("id").primaryKey(),
-    userId: text("user_id").notNull(),
+    userId: text("user_id"),
     playerName: text("player_name").notNull(),
     score: integer("score").notNull(),
     achievedAt: timestamp("achieved_at").defaultNow(),
   },
-  (t) => [unique("unique_game_user").on(t.userId)]
+  (t) => [unique("unique_game_player").on(t.playerName)]
 );
 
 export const routeRatingsTable = pgTable(
