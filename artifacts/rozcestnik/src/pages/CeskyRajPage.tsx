@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MapPin, Info, ExternalLink, Sparkles } from "lucide-react";
+import { Info, ExternalLink, Sparkles } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
 const zajimavosti = [
@@ -10,18 +10,14 @@ const zajimavosti = [
 
 export default function CeskyRajPage() {
   const [text, setText] = useState("");
-  const [thumbnail, setThumbnail] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://cs.wikipedia.org/api/rest_v1/page/summary/Český_ráj")
       .then((r) => r.json())
       .then((d) => {
         setText(d.extract || "Informace nejsou k dispozici.");
-        if (d.thumbnail?.source) setThumbnail(d.thumbnail.source);
       })
-      .catch(() => setText("Nepodařilo se načíst informace z Wikipedie."))
-      .finally(() => setLoading(false));
+      .catch(() => setText("Nepodařilo se načíst informace z Wikipedie."));
   }, []);
 
   return (
@@ -32,31 +28,18 @@ export default function CeskyRajPage() {
           Výchozí oblast trasy
         </div>
 
-        {thumbnail ? (
-          <div style={{
-            borderRadius: "12px", overflow: "hidden",
-            border: "1px solid rgba(14,165,233,0.25)",
-            boxShadow: "0 4px 16px rgba(14,165,233,0.15)",
-            aspectRatio: "16/7",
-          }}>
-            <img
-              src={thumbnail}
-              alt="Český ráj"
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-            />
-          </div>
-        ) : !loading && (
-          <div style={{ display: "flex", justifyContent: "center", padding: "12px 0" }}>
-            <div style={{
-              width: "64px", height: "64px", borderRadius: "20px",
-              background: "rgba(14,165,233,0.12)", border: "2px solid rgba(14,165,233,0.35)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              boxShadow: "0 0 24px rgba(14,165,233,0.20)",
-            }}>
-              <MapPin size={28} color="#38bdf8" strokeWidth={1.5} />
-            </div>
-          </div>
-        )}
+        <div style={{
+          borderRadius: "12px", overflow: "hidden",
+          border: "1px solid rgba(14,165,233,0.25)",
+          boxShadow: "0 4px 16px rgba(14,165,233,0.15)",
+          aspectRatio: "16/7",
+        }}>
+          <img
+            src="/cesky-raj.jpg"
+            alt="Český ráj"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        </div>
 
         <div style={{
           borderRadius: "12px",
@@ -74,13 +57,9 @@ export default function CeskyRajPage() {
             <span style={{ color: "rgba(255,255,255,0.25)", fontSize: "0.65rem" }}>zdroj: Wikipedie</span>
           </div>
 
-          {loading ? (
-            <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.80rem" }}>Načítání…</div>
-          ) : (
-            <p style={{ margin: 0, color: "rgba(255,255,255,0.80)", fontSize: "0.80rem", lineHeight: "1.55" }}>
-              {text}
-            </p>
-          )}
+          <p style={{ margin: 0, color: "rgba(255,255,255,0.80)", fontSize: "0.80rem", lineHeight: "1.55" }}>
+            {text || "Načítání…"}
+          </p>
 
           <a
             href="https://cs.wikipedia.org/wiki/Český_ráj"
