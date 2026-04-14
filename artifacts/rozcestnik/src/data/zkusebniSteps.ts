@@ -29,10 +29,10 @@ export const zkusebniSteps: ZkusebniStep[] = [
     lng: 15.0211875,
   },
   {
-    label: "CÍL",
+    label: "C\u00CDL",
     type: "finish",
-    address: "Zastávka Dolní Hanychov",
-    lat: 50.7476,
-    lng: 15.0280,
+    address: "Zast\u00e1vka Doln\u00ed Hanychov",
+    lat: 50.74825,
+    lng: 15.02969,
   },
 ];
