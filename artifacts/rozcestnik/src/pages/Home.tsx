@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "wouter";
-import { Map, Mountain, Landmark, Eye, UserCircle, Gamepad2, HelpCircle, BookOpen } from "lucide-react";
+import { Map, Mountain, Landmark, Eye, UserCircle, Gamepad2, HelpCircle } from "lucide-react";
 import { Show } from "@clerk/react";
 import heroBg from "@/assets/hero-bg.jpg";
 import WeatherWidget from "@/components/WeatherWidget";
@@ -42,15 +42,6 @@ const mainButtons = [
     border: "rgba(167,139,250,0.55)",
     glow: "#a78bfa",
     accent: "#c4b5fd",
-  },
-  {
-    label: "CESTOVN\u00cd DEN\u00cdK",
-    icon: BookOpen,
-    path: "/denik",
-    gradient: "linear-gradient(135deg, rgba(10,45,50,0.82), rgba(20,184,166,0.28))",
-    border: "rgba(20,184,166,0.55)",
-    glow: "#14b8a6",
-    accent: "#5eead4",
   },
 ];
 
