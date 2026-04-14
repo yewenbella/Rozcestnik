@@ -1,5 +1,6 @@
 import { useLocation } from "wouter";
 import { ArrowLeft } from "lucide-react";
+import heroBg from "@/assets/hero-bg.jpg";
 
 interface PageLayoutProps {
   title: string;
@@ -15,13 +16,46 @@ export default function PageLayout({ title, backPath, children, rightSlot }: Pag
     <div
       style={{
         minHeight: "100vh",
-        backgroundColor: "#1a2a1a",
         maxWidth: "480px",
         margin: "0 auto",
         display: "flex",
         flexDirection: "column",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      {/* Background photo */}
+      <img
+        src={heroBg}
+        alt=""
+        style={{
+          position: "fixed",
+          top: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "100%",
+          maxWidth: "480px",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
+          zIndex: 0,
+        }}
+      />
+      {/* Dark overlay */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "100%",
+          maxWidth: "480px",
+          height: "100%",
+          background: "linear-gradient(to bottom, rgba(5,15,5,0.70) 0%, rgba(5,15,5,0.85) 100%)",
+          zIndex: 0,
+        }}
+      />
+
       {/* Header */}
       <div
         style={{
@@ -30,11 +64,10 @@ export default function PageLayout({ title, backPath, children, rightSlot }: Pag
           gap: "12px",
           padding: "16px 16px",
           borderBottom: "1px solid rgba(255,255,255,0.08)",
-          background: "rgba(0,0,0,0.25)",
-          backdropFilter: "blur(12px)",
           position: "sticky",
           top: 0,
           zIndex: 10,
+          background: "rgba(5,15,5,0.75)",
         }}
       >
         <button
@@ -74,7 +107,9 @@ export default function PageLayout({ title, backPath, children, rightSlot }: Pag
       </div>
 
       {/* Content */}
-      <div style={{ flex: 1, overflowY: "auto" }}>{children}</div>
+      <div style={{ flex: 1, overflowY: "auto", position: "relative", zIndex: 1 }}>
+        {children}
+      </div>
     </div>
   );
 }
