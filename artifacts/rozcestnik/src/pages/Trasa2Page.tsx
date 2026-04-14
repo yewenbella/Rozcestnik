@@ -350,6 +350,7 @@ export default function Trasa2Page() {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem", marginBottom: "2px" }}>Parkoviště</div>
                 <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Hrubá Skála – Borek</div>
+                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.74rem", marginTop: "2px" }}>(naproti stánku Zmrzlina v Ráji)</div>
               </div>
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=Hrub%C3%A1+Sk%C3%A1la%2C+Borek"
