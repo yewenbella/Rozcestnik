@@ -31,6 +31,19 @@ async function runMigrations() {
       WHERE user_id = 'user_3CLenR2GuqyElaCgkiBUbgBxka3'
         AND score < 1812
     `);
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS quiz_scores (
+        id serial PRIMARY KEY,
+        user_id varchar,
+        player_name varchar(40) NOT NULL,
+        score integer NOT NULL DEFAULT 0,
+        achieved_at timestamptz NOT NULL DEFAULT now()
+      )
+    `);
+    const qc = await pool.query(`SELECT 1 FROM pg_constraint WHERE conname = 'unique_quiz_player'`);
+    if (qc.rowCount === 0) {
+      await pool.query(`ALTER TABLE quiz_scores ADD CONSTRAINT unique_quiz_player UNIQUE (player_name)`);
+    }
     logger.info("DB migrations OK");
   } catch (e) {
     logger.error({ e }, "DB migration error");
