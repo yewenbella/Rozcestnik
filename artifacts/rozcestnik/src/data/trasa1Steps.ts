@@ -6,6 +6,7 @@ export interface TrailStep {
   proof: string;
   info: string;
   zajimavost?: string;
+  openInfo?: string;
   wikiUrl?: string;
   imageUrl?: string;
   color: string;
@@ -38,6 +39,7 @@ export const trasa1Steps: TrailStep[] = [
     place: "Rozhledna Slovanka",
     proof: "Rozcestník",
     info: "Slovanka je 819 m vysoký zalesněný vrch v Maxovském hřebeni Jizerských hor nad Hraběticemi, nedaleko lyžařského střediska Severák. Kopec se dříve jmenoval Seibtův vrch — jméno Slovanka nese po podnikové chatě, která na jeho vrcholu stávala.",
+    openInfo: "Otevřeno celoročně 24/7 · vstup zdarma",
     zajimavost: "Rozhledna Slovanka z roku 1887 je nejstarší železná rozhledna v Čechách. Její litinová konstrukce původně stála na výstavě ve Vídni a do Jizerek ji přivezli po částech. Tři dělníci ji smontovali za pouhých 17 dní na třímetrové podezdívce. Na vyhlídkovou plošinu ve výšce 14 metrů vede 56 schodů. V 90. letech jí hrozila demolice, ale díky sbírce byla v roce 2000 zachráněna. Dnes je chráněnou technickou památkou s krásnými výhledy na Jizerské hory i Ještěd.",
     wikiUrl: "https://cs.wikipedia.org/wiki/Slovanka_(Jizersk%C3%A9_hory)",
     imageUrl: `${import.meta.env.BASE_URL}slovanka.jpg`,

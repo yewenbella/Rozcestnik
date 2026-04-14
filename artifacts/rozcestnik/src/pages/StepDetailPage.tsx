@@ -1,5 +1,5 @@
 import { useParams } from "wouter";
-import { MapPin, Navigation, Flag, Info, ExternalLink, Star } from "lucide-react";
+import { MapPin, Navigation, Flag, Info, ExternalLink, Star, Clock } from "lucide-react";
 import { trasa1Steps } from "@/data/trasa1Steps";
 import PageLayout from "@/components/PageLayout";
 
@@ -24,24 +24,24 @@ export default function StepDetailPage() {
       <div style={{
         display: "flex",
         flexDirection: "column",
-        padding: "16px 16px 24px",
+        padding: "10px 12px",
         boxSizing: "border-box",
-        gap: "16px",
+        gap: "10px",
       }}>
 
         {/* Colored label */}
-        <div style={{ fontSize: "0.70rem", fontWeight: 800, letterSpacing: "0.12em", color: step.color, textTransform: "uppercase" }}>
+        <div style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.12em", color: step.color, textTransform: "uppercase" }}>
           {step.label}
         </div>
 
         {/* Photo or icon fallback */}
         {step.imageUrl ? (
           <div style={{
-            borderRadius: "16px",
+            borderRadius: "12px",
             overflow: "hidden",
             border: `1px solid ${step.color}33`,
-            boxShadow: `0 4px 24px ${step.color}22`,
-            aspectRatio: "16/9",
+            boxShadow: `0 4px 20px ${step.color}22`,
+            aspectRatio: "16/7",
             background: step.bg,
           }}>
             <img
@@ -51,42 +51,48 @@ export default function StepDetailPage() {
             />
           </div>
         ) : (
-          <div style={{
-            display: "flex", justifyContent: "center", padding: "24px 0",
-          }}>
+          <div style={{ display: "flex", justifyContent: "center", padding: "12px 0" }}>
             <div style={{
-              width: "80px", height: "80px", borderRadius: "24px",
+              width: "64px", height: "64px", borderRadius: "20px",
               background: step.bg, border: `2px solid ${step.color}55`,
               display: "flex", alignItems: "center", justifyContent: "center",
-              boxShadow: `0 0 32px ${step.color}33`,
+              boxShadow: `0 0 24px ${step.color}33`,
             }}>
-              <IconComp size={36} color={step.color} strokeWidth={1.5} />
+              <IconComp size={30} color={step.color} strokeWidth={1.5} />
             </div>
+          </div>
+        )}
+
+        {/* Opening hours badge */}
+        {step.openInfo && (
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: "6px",
+            padding: "5px 10px", borderRadius: "8px",
+            background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.22)",
+            alignSelf: "flex-start",
+          }}>
+            <Clock size={12} color="#4ade80" />
+            <span style={{ color: "#4ade80", fontSize: "0.73rem", fontWeight: 600 }}>{step.openInfo}</span>
           </div>
         )}
 
         {/* Info card */}
         <div style={{
-          borderRadius: "16px",
+          borderRadius: "12px",
           background: "rgba(255,255,255,0.05)",
           border: "1px solid rgba(255,255,255,0.10)",
-          padding: "16px",
+          padding: "12px",
         }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "10px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
-              <Info size={14} color={step.color} />
-              <span style={{ color: step.color, fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.05em" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "8px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+              <Info size={13} color={step.color} />
+              <span style={{ color: step.color, fontWeight: 700, fontSize: "0.73rem", letterSpacing: "0.05em" }}>
                 O tomto místě
               </span>
             </div>
-            <span style={{ color: "rgba(255,255,255,0.25)", fontSize: "0.68rem" }}>zdroj: Wikipedie</span>
+            <span style={{ color: "rgba(255,255,255,0.25)", fontSize: "0.65rem" }}>zdroj: Wikipedie</span>
           </div>
-          <p style={{
-            margin: 0,
-            color: "rgba(255,255,255,0.80)",
-            fontSize: "0.88rem",
-            lineHeight: "1.65",
-          }}>
+          <p style={{ margin: 0, color: "rgba(255,255,255,0.80)", fontSize: "0.80rem", lineHeight: "1.55" }}>
             {step.info}
           </p>
           {step.wikiUrl && (
@@ -96,13 +102,13 @@ export default function StepDetailPage() {
               rel="noopener noreferrer"
               style={{
                 display: "inline-flex", alignItems: "center", gap: "5px",
-                marginTop: "12px",
-                padding: "5px 10px", borderRadius: "8px",
+                marginTop: "10px",
+                padding: "4px 9px", borderRadius: "7px",
                 background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)",
-                color: "rgba(255,255,255,0.55)", fontSize: "0.74rem", textDecoration: "none",
+                color: "rgba(255,255,255,0.55)", fontSize: "0.72rem", textDecoration: "none",
               }}
             >
-              <ExternalLink size={11} />
+              <ExternalLink size={10} />
               Přečíst celý článek na Wikipedii
             </a>
           )}
@@ -111,23 +117,18 @@ export default function StepDetailPage() {
         {/* Zajímavost card */}
         {step.zajimavost && (
           <div style={{
-            borderRadius: "16px",
+            borderRadius: "12px",
             background: "rgba(251,191,36,0.07)",
             border: "1px solid rgba(251,191,36,0.25)",
-            padding: "16px",
+            padding: "12px",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "10px" }}>
-              <Star size={14} color="#fbbf24" fill="#fbbf24" />
-              <span style={{ color: "#fbbf24", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.05em" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "8px" }}>
+              <Star size={13} color="#fbbf24" fill="#fbbf24" />
+              <span style={{ color: "#fbbf24", fontWeight: 700, fontSize: "0.73rem", letterSpacing: "0.05em" }}>
                 Zajímavost
               </span>
             </div>
-            <p style={{
-              margin: 0,
-              color: "rgba(255,255,255,0.80)",
-              fontSize: "0.88rem",
-              lineHeight: "1.65",
-            }}>
+            <p style={{ margin: 0, color: "rgba(255,255,255,0.80)", fontSize: "0.80rem", lineHeight: "1.55" }}>
               {step.zajimavost}
             </p>
           </div>
