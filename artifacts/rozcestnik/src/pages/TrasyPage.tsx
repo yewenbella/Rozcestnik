@@ -74,26 +74,6 @@ export default function TrasyPage() {
                     {trasa.name}
                   </span>
 
-                  {!wip && trasa.locationPath && (
-                    <div
-                      onClick={(e) => { e.stopPropagation(); navigate(trasa.locationPath!); }}
-                      style={{
-                        display: "inline-flex", alignItems: "center", gap: "4px",
-                        alignSelf: "flex-start",
-                        marginLeft: "18px",
-                        padding: "3px 9px", borderRadius: "8px",
-                        border: "1px solid rgba(14,165,233,0.40)",
-                        background: "rgba(14,165,233,0.12)",
-                        color: "rgba(255,255,255,0.80)",
-                        fontSize: "0.72rem", fontWeight: 600,
-                        cursor: "pointer",
-                      }}
-                    >
-                      <MapPin size={10} color="#38bdf8" />
-                      {trasa.location}
-                    </div>
-                  )}
-
                   {wip && (
                     <span style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.72rem" }}>{trasa.location}</span>
                   )}
@@ -104,6 +84,25 @@ export default function TrasyPage() {
                   )}
                 </div>
               </div>
+
+              {!wip && trasa.locationPath && (
+                <div
+                  onClick={(e) => { e.stopPropagation(); navigate(trasa.locationPath!); }}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: "4px",
+                    flexShrink: 0, marginRight: "6px",
+                    padding: "3px 9px", borderRadius: "8px",
+                    border: "1px solid rgba(14,165,233,0.40)",
+                    background: "rgba(14,165,233,0.12)",
+                    color: "rgba(255,255,255,0.80)",
+                    fontSize: "0.72rem", fontWeight: 600,
+                    cursor: "pointer",
+                  }}
+                >
+                  <MapPin size={10} color="#38bdf8" />
+                  {trasa.location}
+                </div>
+              )}
 
               {!wip && <ChevronRight size={18} color="rgba(255,255,255,0.4)" style={{ flexShrink: 0 }} />}
             </div>
