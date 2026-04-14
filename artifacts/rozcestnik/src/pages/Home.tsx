@@ -1,5 +1,5 @@
 import { useLocation } from "wouter";
-import { Map, Route, Trophy, BookOpen, UserCircle } from "lucide-react";
+import { Map, Route, Trophy, BookOpen, UserCircle, Gamepad2 } from "lucide-react";
 import { Show } from "@clerk/react";
 import heroBg from "@/assets/hero-bg.png";
 import WeatherWidget from "@/components/WeatherWidget";
@@ -41,6 +41,15 @@ const buttons = [
     border: "rgba(34,197,94,0.40)",
     glow: "#22c55e",
     accent: "#4ade80",
+  },
+  {
+    label: "MINI HRA",
+    icon: Gamepad2,
+    path: "/hra",
+    gradient: "linear-gradient(135deg, rgba(168,85,247,0.18), rgba(126,34,206,0.12))",
+    border: "rgba(168,85,247,0.40)",
+    glow: "#a855f7",
+    accent: "#d8b4fe",
   },
 ];
 
