@@ -4,7 +4,6 @@ import PageLayout from "@/components/PageLayout";
 
 const zajimavosti = [
   { emoji: "🛷", text: "Bobová dráha na Severáku měří přes 600 metrů a sjezd trvá jen pár minut plných adrenalinu — jezdí se celoročně, i v létě." },
-  { emoji: "🚂", text: "Přes obec jezdí unikátní ozubnicová železnice Tanvald–Harrachov — jedna z mála svého druhu v Česku." },
   { emoji: "⛷️", text: "Areál Severák nabízí sjezdové i běžecké tratě — v zimě je to jedno z nejspolehlivějších středisek v Jizerských horách." },
   { emoji: "🧇", text: "V místních hospůdkách a penzionech se podávají tradiční krkonošské i jizerské speciality — doporučujeme bramborové placky." },
 ];
