@@ -166,31 +166,34 @@ export default function Home() {
           {/* Počasí tile */}
           <div style={{
             flex: 1, minWidth: 0,
-            background: "rgba(0,0,0,0.38)",
-            border: "1px solid rgba(255,255,255,0.13)", borderRadius: "10px",
-            height: "50px", padding: "5px 8px", boxSizing: "border-box",
+            background: "linear-gradient(160deg, rgba(60,70,60,0.72) 0%, rgba(20,28,20,0.82) 100%)",
+            borderRadius: "10px",
+            height: "52px", padding: "6px 9px", boxSizing: "border-box",
             pointerEvents: "none", userSelect: "none",
+            boxShadow: "0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 3px 8px rgba(0,0,0,0.45), 1px 0 0 rgba(255,255,255,0.08) inset",
+            border: "1px solid rgba(100,110,100,0.45)",
           }}>
             <WeatherWidget tile />
           </div>
 
           {/* Můj tým tile — center */}
-          <div style={{ flex: 1, minWidth: 0, height: "50px", boxSizing: "border-box" }}>
+          <div style={{ flex: 1, minWidth: 0, height: "52px", boxSizing: "border-box" }}>
             <Show when="signed-out">
               <button
                 onClick={() => navigate("/sign-in")}
                 style={{
                   width: "100%", height: "100%",
                   display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
-                  background: "rgba(0,0,0,0.38)",
-                  border: "1px solid rgba(255,255,255,0.16)", borderRadius: "10px",
+                  background: "linear-gradient(160deg, rgba(60,70,60,0.72) 0%, rgba(20,28,20,0.82) 100%)",
+                  border: "1px solid rgba(100,110,100,0.45)", borderRadius: "10px",
                   cursor: "pointer", boxSizing: "border-box",
+                  boxShadow: "0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 3px 8px rgba(0,0,0,0.45), 1px 0 0 rgba(255,255,255,0.08) inset",
                 }}
               >
-                <UserCircle size={14} color="rgba(255,255,255,0.75)" />
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", lineHeight: 1.2 }}>
-                  <span style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.66rem", fontWeight: 700 }}>{"P\u0159ihl\u00e1sit"}</span>
-                  <span style={{ color: "rgba(255,255,255,0.42)", fontSize: "0.58rem" }}>{"M\u016fj t\u00fdm"}</span>
+                <UserCircle size={14} color="rgba(255,255,255,0.85)" />
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", lineHeight: 1.25 }}>
+                  <span style={{ color: "white", fontSize: "0.68rem", fontWeight: 800 }}>{"P\u0159ihl\u00e1sit"}</span>
+                  <span style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.58rem", fontWeight: 600 }}>{"M\u016fj t\u00fdm"}</span>
                 </div>
               </button>
             </Show>
@@ -200,13 +203,14 @@ export default function Home() {
                 style={{
                   width: "100%", height: "100%",
                   display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
-                  background: "rgba(0,0,0,0.38)",
-                  border: "1px solid rgba(255,255,255,0.16)", borderRadius: "10px",
+                  background: "linear-gradient(160deg, rgba(60,70,60,0.72) 0%, rgba(20,28,20,0.82) 100%)",
+                  border: "1px solid rgba(100,110,100,0.45)", borderRadius: "10px",
                   cursor: "pointer", boxSizing: "border-box",
+                  boxShadow: "0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 3px 8px rgba(0,0,0,0.45), 1px 0 0 rgba(255,255,255,0.08) inset",
                 }}
               >
-                <UserCircle size={14} color="rgba(255,255,255,0.75)" />
-                <span style={{ color: "white", fontSize: "0.68rem", fontWeight: 700 }}>{"M\u016fj t\u00fdm"}</span>
+                <UserCircle size={14} color="rgba(255,255,255,0.85)" />
+                <span style={{ color: "white", fontSize: "0.70rem", fontWeight: 800 }}>{"M\u016fj t\u00fdm"}</span>
               </button>
             </Show>
           </div>
@@ -214,10 +218,12 @@ export default function Home() {
           {/* Západ slunce tile */}
           <div style={{
             flex: 1, minWidth: 0,
-            background: "rgba(0,0,0,0.38)",
-            border: "1px solid rgba(255,255,255,0.13)", borderRadius: "10px",
-            height: "50px", padding: "5px 8px", boxSizing: "border-box",
+            background: "linear-gradient(160deg, rgba(60,70,60,0.72) 0%, rgba(20,28,20,0.82) 100%)",
+            borderRadius: "10px",
+            height: "52px", padding: "6px 9px", boxSizing: "border-box",
             pointerEvents: "none", userSelect: "none",
+            boxShadow: "0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 3px 8px rgba(0,0,0,0.45), 1px 0 0 rgba(255,255,255,0.08) inset",
+            border: "1px solid rgba(100,110,100,0.45)",
           }}>
             <SunsetBadge tile />
           </div>

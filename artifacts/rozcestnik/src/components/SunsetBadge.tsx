@@ -156,14 +156,16 @@ export default function SunsetBadge({ tile }: { tile?: boolean } = {}) {
     const sunsetTime = info.line1.replace("Z\u00e1pad slunce ", "").replace(" \u2014 ji\u017e nastal", "");
     const ts = "0 1px 6px rgba(0,0,0,0.9), 0 0px 2px rgba(0,0,0,0.8)";
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: "6px", height: "100%", overflow: "hidden" }}>
-        <span style={{ fontSize: "1.05rem", lineHeight: 1, flexShrink: 0 }}>{info.passed ? "🌙" : "🌅"}</span>
-        <div style={{ display: "flex", flexDirection: "column", gap: "1px", minWidth: 0 }}>
-          <span style={{ color: "white", fontSize: "0.80rem", fontWeight: 700, textShadow: ts }}>{sunsetTime}</span>
-          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.60rem" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "7px", height: "100%", overflow: "hidden" }}>
+        <span style={{ fontSize: "1.1rem", lineHeight: 1, flexShrink: 0 }}>{info.passed ? "🌙" : "🌅"}</span>
+        <div style={{ display: "flex", flexDirection: "column", gap: "2px", minWidth: 0 }}>
+          <span style={{ color: "white", fontSize: "0.85rem", fontWeight: 800, textShadow: ts, lineHeight: 1 }}>
+            {sunsetTime}
+          </span>
+          <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.62rem", fontWeight: 600, lineHeight: 1 }}>
             {info.passed ? "ji\u017e nastal" : info.line2}
           </span>
-          <span style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.57rem" }}>{"Z\u00e1pad slunce"}</span>
+          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.58rem" }}>{"Z\u00e1pad slunce"}</span>
         </div>
       </div>
     );
