@@ -199,20 +199,20 @@ export default function TeamPage() {
             <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
 
               {/* Uživatelské jméno */}
-              <div>
-                <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", margin: "0 0 2px" }}>
-                  {"U\u017eivatelsk\u00e9 jm\u00e9no"}
-                </p>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <span style={{ color: "rgba(255,255,255,0.5)", fontWeight: 600, fontSize: "0.82rem", flexShrink: 0 }}>
+                  {"U\u017eivatelsk\u00e9 jm\u00e9no:"}
+                </span>
                 <span style={{ color: "white", fontWeight: 700, fontSize: "0.95rem" }}>
                   {user?.username || user?.fullName || user?.firstName || "Uživatel"}
                 </span>
               </div>
 
               {/* Přezdívka */}
-              <div>
-                <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", margin: "0 0 2px" }}>
-                  {"P\u0159ezd\u00edvka"}
-                </p>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <span style={{ color: "rgba(255,255,255,0.5)", fontWeight: 600, fontSize: "0.82rem", flexShrink: 0 }}>
+                  {"P\u0159ezd\u00edvka:"}
+                </span>
                 {editingNickname ? (
                   <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
                     <input
