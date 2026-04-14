@@ -69,6 +69,7 @@ export const trasa2Steps: TrailStep[] = [
     place: "Semín hradiště",
     proof: "Rozcestník",
     info: "Semín hradiště je pozůstatek raně středověkého slovanského opevnění nad vesnicí Semín v Českém ráji. Valy a příkopy hradiště jsou dodnes dobře patrné v terénu a skýtají výhled na okolní rybniční krajinu. Místo bylo strategicky vybráno pro přehled nad zemskými stezkami a přechody přes rybníky.",
+    zajimavost: "Hradiště Semín je rozsáhlé keltské oppidum pod Troskami, kde dnes stojí replika původního opevnění. Uvnitř najdeš expozice achátů, minerálů a ukázky keltských řemesel i života. V terénu jsou dodnes patrné zbytky starých valů a ohnišť, které dokazují dávné osídlení. Místo slouží jako kulturní areál s akcemi, slavnostmi a výstavami. A zajímavost navíc: Semín se objevil i v Kingdom Come: Deliverance 2, kde inspiroval jednu z herních lokací s dřevěným opevněním na návrší.",
     color: "#60a5fa",
     bg: "rgba(96,165,250,0.08)",
     border: "rgba(96,165,250,0.22)",
