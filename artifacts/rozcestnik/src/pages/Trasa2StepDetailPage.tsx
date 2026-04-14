@@ -53,9 +53,9 @@ export default function Trasa2StepDetailPage() {
       <div style={{
         display: "flex",
         flexDirection: "column",
-        padding: "10px 12px 16px",
+        padding: "8px 10px",
         boxSizing: "border-box",
-        gap: "10px",
+        gap: "8px",
       }}>
 
         <div style={{ fontSize: "0.66rem", fontWeight: 800, letterSpacing: "0.12em", color: step.color, textTransform: "uppercase" }}>
@@ -69,7 +69,7 @@ export default function Trasa2StepDetailPage() {
             overflow: "hidden",
             border: `1px solid ${step.color}33`,
             boxShadow: `0 4px 16px ${step.color}22`,
-            aspectRatio: "16/9",
+            aspectRatio: "16/8",
             background: step.bg,
           }}>
             <img
@@ -140,19 +140,19 @@ export default function Trasa2StepDetailPage() {
           borderRadius: "12px",
           background: "rgba(255,255,255,0.05)",
           border: "1px solid rgba(255,255,255,0.10)",
-          padding: "11px 12px",
+          padding: "9px 10px",
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "7px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "5px" }}>
             <Info size={12} color={step.color} />
-            <span style={{ color: step.color, fontWeight: 700, fontSize: "0.73rem", letterSpacing: "0.05em" }}>
+            <span style={{ color: step.color, fontWeight: 700, fontSize: "0.71rem", letterSpacing: "0.05em" }}>
               O tomto místě
             </span>
           </div>
           <p style={{
             margin: 0,
             color: "rgba(255,255,255,0.80)",
-            fontSize: "0.80rem",
-            lineHeight: "1.55",
+            fontSize: "0.75rem",
+            lineHeight: "1.45",
           }}>
             {step.info}
           </p>
@@ -163,7 +163,7 @@ export default function Trasa2StepDetailPage() {
               rel="noopener noreferrer"
               style={{
                 display: "inline-flex", alignItems: "center", gap: "5px",
-                marginTop: "9px",
+                marginTop: "7px",
                 padding: "4px 9px", borderRadius: "7px",
                 background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)",
                 color: "rgba(255,255,255,0.55)", fontSize: "0.70rem", textDecoration: "none",
@@ -181,19 +181,19 @@ export default function Trasa2StepDetailPage() {
             borderRadius: "12px",
             background: "rgba(250,204,21,0.06)",
             border: "1px solid rgba(250,204,21,0.20)",
-            padding: "11px 12px",
+            padding: "9px 10px",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "7px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "5px" }}>
               <Star size={12} color="#facc15" fill="#facc15" />
-              <span style={{ color: "#facc15", fontWeight: 700, fontSize: "0.73rem", letterSpacing: "0.05em" }}>
+              <span style={{ color: "#facc15", fontWeight: 700, fontSize: "0.71rem", letterSpacing: "0.05em" }}>
                 Zajímavost
               </span>
             </div>
             <p style={{
               margin: 0,
               color: "rgba(255,255,255,0.80)",
-              fontSize: "0.80rem",
-              lineHeight: "1.55",
+              fontSize: "0.75rem",
+              lineHeight: "1.45",
             }}>
               {step.zajimavost}
             </p>
