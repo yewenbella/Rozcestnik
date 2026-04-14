@@ -41,7 +41,10 @@ router.post("/", requireAuth, async (req: any, res) => {
 router.get("/top", async (_req, res) => {
   try {
     const rows = await pool.query(
-      `SELECT player_name, score FROM game_scores ORDER BY score DESC LIMIT 3`
+      `SELECT COALESCE(up.nickname, gs.player_name) AS player_name, gs.score
+       FROM game_scores gs
+       LEFT JOIN user_profiles up ON gs.user_id = up.user_id
+       ORDER BY gs.score DESC LIMIT 3`
     );
     res.json({ scores: rows.rows });
   } catch (e) {
