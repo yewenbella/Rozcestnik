@@ -188,102 +188,89 @@ export default function TeamPage() {
 
         {/* User info */}
         <div style={{ ...glassCard, padding: "12px 14px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: nickname || editingNickname ? "10px" : 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             {user?.imageUrl && (
               <img
                 src={user.imageUrl}
                 alt="avatar"
-                style={{ width: 36, height: 36, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.2)" }}
+                style={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.2)", flexShrink: 0 }}
               />
             )}
-            <div>
-              <p style={{ color: "white", fontWeight: 700, fontSize: "0.88rem", margin: 0 }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.72rem", margin: "0 0 1px" }}>
                 {user?.fullName || user?.firstName || "Uživatel"}
               </p>
-              <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.72rem", margin: 0 }}>
-                {user?.primaryEmailAddress?.emailAddress}
-              </p>
+              {/* Nickname — inline edit */}
+              {editingNickname ? (
+                <div style={{ display: "flex", gap: "6px", alignItems: "center", marginTop: "2px" }}>
+                  <input
+                    ref={nicknameRef}
+                    value={nicknameInput}
+                    onChange={(e) => setNicknameInput(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === "Enter") saveNickname(); if (e.key === "Escape") { setEditingNickname(false); setNicknameInput(nickname || ""); } }}
+                    maxLength={30}
+                    placeholder="Nap\u0159. LesniBehoun"
+                    autoFocus
+                    style={{
+                      flex: 1, minWidth: 0,
+                      background: "rgba(0,0,0,0.35)",
+                      border: "1px solid rgba(74,222,128,0.5)",
+                      borderRadius: "7px",
+                      padding: "5px 9px",
+                      color: "white",
+                      fontSize: "0.90rem",
+                      fontWeight: 700,
+                      outline: "none",
+                    }}
+                  />
+                  <button
+                    onClick={saveNickname}
+                    disabled={savingNickname || !nicknameInput.trim()}
+                    style={{
+                      background: "rgba(74,222,128,0.2)",
+                      border: "1px solid rgba(74,222,128,0.4)",
+                      borderRadius: "7px",
+                      padding: "5px 10px",
+                      color: "#4ade80",
+                      fontWeight: 700,
+                      fontSize: "0.78rem",
+                      cursor: "pointer",
+                      whiteSpace: "nowrap",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {savingNickname ? "\u2026" : "Ulo\u017eit"}
+                  </button>
+                </div>
+              ) : (
+                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                  {nickname ? (
+                    <span style={{ color: "#4ade80", fontWeight: 800, fontSize: "1.05rem" }}>
+                      {nickname}
+                      {nicknameSaved && <span style={{ color: "rgba(74,222,128,0.6)", fontWeight: 400, fontSize: "0.72rem", marginLeft: 6 }}>\u2714 Ulo\u017eeno</span>}
+                    </span>
+                  ) : (
+                    <span style={{ color: "rgba(255,255,255,0.28)", fontSize: "0.82rem", fontStyle: "italic" }}>
+                      Nastav p\u0159ezd\xedvku\u2026
+                    </span>
+                  )}
+                  <button
+                    onClick={() => { setEditingNickname(true); setTimeout(() => nicknameRef.current?.focus(), 50); }}
+                    style={{ ...iconBtn, padding: "2px" }}
+                    title="Upravit p\u0159ezd\xedvku"
+                  >
+                    <Pencil size={12} color="rgba(255,255,255,0.35)" />
+                  </button>
+                </div>
+              )}
             </div>
             <button
               onClick={() => signOut({ redirectUrl: "/" })}
-              style={{ marginLeft: "auto", ...iconBtn }}
+              style={{ ...iconBtn, flexShrink: 0 }}
               title="Odhlásit se"
             >
               <LogOut size={15} color="rgba(255,255,255,0.45)" />
             </button>
-          </div>
-
-          {/* Nickname section */}
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "10px" }}>
-            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.70rem", margin: "0 0 6px", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-              P\u0159ezd\xedvka v \u017eebr\xed\u010dku
-            </p>
-            {editingNickname ? (
-              <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-                <input
-                  ref={nicknameRef}
-                  value={nicknameInput}
-                  onChange={(e) => setNicknameInput(e.target.value)}
-                  onKeyDown={(e) => { if (e.key === "Enter") saveNickname(); if (e.key === "Escape") setEditingNickname(false); }}
-                  maxLength={30}
-                  placeholder="Nap\u0159. LesniBehoun"
-                  autoFocus
-                  style={{
-                    flex: 1,
-                    background: "rgba(0,0,0,0.3)",
-                    border: "1px solid rgba(74,222,128,0.4)",
-                    borderRadius: "8px",
-                    padding: "7px 10px",
-                    color: "white",
-                    fontSize: "0.88rem",
-                    outline: "none",
-                  }}
-                />
-                <button
-                  onClick={saveNickname}
-                  disabled={savingNickname || !nicknameInput.trim()}
-                  style={{
-                    background: "rgba(74,222,128,0.2)",
-                    border: "1px solid rgba(74,222,128,0.4)",
-                    borderRadius: "8px",
-                    padding: "7px 12px",
-                    color: "#4ade80",
-                    fontWeight: 700,
-                    fontSize: "0.80rem",
-                    cursor: "pointer",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {savingNickname ? "Ukl\xe1d\xe1m\u2026" : "Ulo\u017eit"}
-                </button>
-                <button
-                  onClick={() => { setEditingNickname(false); setNicknameInput(nickname || ""); }}
-                  style={{ ...iconBtn }}
-                >
-                  <Check size={15} color="rgba(255,255,255,0.3)" />
-                </button>
-              </div>
-            ) : (
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                {nickname ? (
-                  <>
-                    <span style={{ color: "#4ade80", fontWeight: 700, fontSize: "0.95rem" }}>{nickname}</span>
-                    {nicknameSaved && <span style={{ color: "rgba(74,222,128,0.7)", fontSize: "0.72rem" }}>\u2714 Ulo\u017eeno</span>}
-                  </>
-                ) : (
-                  <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.82rem", fontStyle: "italic" }}>
-                    Nezad\xe1no — nastav si p\u0159ezd\xedvku
-                  </span>
-                )}
-                <button
-                  onClick={() => { setEditingNickname(true); setTimeout(() => nicknameRef.current?.focus(), 50); }}
-                  style={{ ...iconBtn, marginLeft: nickname ? "4px" : "auto" }}
-                  title="Upravit p\u0159ezd\xedvku"
-                >
-                  <Pencil size={13} color="rgba(255,255,255,0.4)" />
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
