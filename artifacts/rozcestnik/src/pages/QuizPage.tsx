@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useLocation } from "wouter";
 import { ArrowLeft, RotateCcw, CheckCircle2, XCircle, Trophy } from "lucide-react";
 
@@ -135,14 +135,43 @@ export default function QuizPage() {
     return "Ještě trochu procvičit!";
   }
 
+  const pageStyle: React.CSSProperties = {
+    minHeight: "100vh",
+    backgroundColor: "#1a2a1a",
+    maxWidth: "480px",
+    margin: "0 auto",
+    display: "flex",
+    flexDirection: "column",
+  };
+
+  const headerStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    padding: "16px",
+    borderBottom: "1px solid rgba(255,255,255,0.08)",
+    background: "rgba(0,0,0,0.25)",
+    backdropFilter: "blur(12px)",
+    position: "sticky",
+    top: 0,
+    zIndex: 10,
+  };
+
+  const backBtnStyle: React.CSSProperties = {
+    display: "flex", alignItems: "center", justifyContent: "center",
+    width: "38px", height: "38px", borderRadius: "12px",
+    background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)",
+    color: "white", cursor: "pointer", flexShrink: 0,
+  };
+
   if (finished) {
     return (
-      <div style={{ minHeight: "100vh", background: "linear-gradient(160deg, #0f1f0f 0%, #1a2e1a 100%)", display: "flex", flexDirection: "column" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "16px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-          <button onClick={() => navigate("/")} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.6)", cursor: "pointer", display: "flex", alignItems: "center", gap: "4px", fontSize: "0.85rem" }}>
-            <ArrowLeft size={16} /> Zpět
+      <div style={pageStyle}>
+        <div style={headerStyle}>
+          <button onClick={() => navigate("/")} style={backBtnStyle}>
+            <ArrowLeft size={18} strokeWidth={2.2} />
           </button>
-          <span style={{ color: "white", fontWeight: 700, fontSize: "1rem", letterSpacing: "0.08em" }}>KVÍZ</span>
+          <span style={{ color: "white", fontWeight: 800, fontSize: "1.3rem", letterSpacing: "0.04em", textTransform: "uppercase", flex: 1 }}>KVÍZ</span>
         </div>
 
         <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "32px 24px", gap: "20px" }}>
@@ -184,13 +213,13 @@ export default function QuizPage() {
   }
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(160deg, #0f1f0f 0%, #1a2e1a 100%)", display: "flex", flexDirection: "column" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "16px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-        <button onClick={() => navigate("/")} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.6)", cursor: "pointer", display: "flex", alignItems: "center", gap: "4px", fontSize: "0.85rem" }}>
-          <ArrowLeft size={16} /> Zpět
+    <div style={pageStyle}>
+      <div style={headerStyle}>
+        <button onClick={() => navigate("/")} style={backBtnStyle}>
+          <ArrowLeft size={18} strokeWidth={2.2} />
         </button>
-        <span style={{ color: "white", fontWeight: 700, fontSize: "1rem", letterSpacing: "0.08em", flex: 1 }}>KVÍZ</span>
-        <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.82rem" }}>{current + 1} / {questions.length}</span>
+        <span style={{ color: "white", fontWeight: 800, fontSize: "1.3rem", letterSpacing: "0.04em", textTransform: "uppercase", flex: 1 }}>KVÍZ</span>
+        <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.82rem", fontWeight: 600 }}>{current + 1} / {questions.length}</span>
       </div>
 
       <div style={{ height: "3px", background: "rgba(255,255,255,0.08)" }}>
