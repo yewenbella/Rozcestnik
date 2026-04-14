@@ -4,12 +4,16 @@ import PageLayout from "@/components/PageLayout";
 
 export default function JanovPage() {
   const [text, setText] = useState("");
+  const [thumbnail, setThumbnail] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://cs.wikipedia.org/api/rest_v1/page/summary/Janov_nad_Nisou")
       .then((r) => r.json())
-      .then((d) => setText(d.extract || "Informace nejsou k dispozici."))
+      .then((d) => {
+        setText(d.extract || "Informace nejsou k dispozici.");
+        if (d.thumbnail?.source) setThumbnail(d.thumbnail.source);
+      })
       .catch(() => setText("Nepodařilo se načíst informace z Wikipedie."))
       .finally(() => setLoading(false));
   }, []);
@@ -22,16 +26,31 @@ export default function JanovPage() {
           Výchozí město trasy
         </div>
 
-        <div style={{ display: "flex", justifyContent: "center", padding: "16px 0" }}>
+        {thumbnail ? (
           <div style={{
-            width: "80px", height: "80px", borderRadius: "24px",
-            background: "rgba(14,165,233,0.12)", border: "2px solid rgba(14,165,233,0.35)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            boxShadow: "0 0 32px rgba(14,165,233,0.20)",
+            borderRadius: "16px", overflow: "hidden",
+            border: "1px solid rgba(14,165,233,0.25)",
+            boxShadow: "0 4px 24px rgba(14,165,233,0.15)",
+            aspectRatio: "16/9",
           }}>
-            <MapPin size={36} color="#38bdf8" strokeWidth={1.5} />
+            <img
+              src={thumbnail}
+              alt="Janov nad Nisou"
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
           </div>
-        </div>
+        ) : !loading && (
+          <div style={{ display: "flex", justifyContent: "center", padding: "16px 0" }}>
+            <div style={{
+              width: "80px", height: "80px", borderRadius: "24px",
+              background: "rgba(14,165,233,0.12)", border: "2px solid rgba(14,165,233,0.35)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: "0 0 32px rgba(14,165,233,0.20)",
+            }}>
+              <MapPin size={36} color="#38bdf8" strokeWidth={1.5} />
+            </div>
+          </div>
+        )}
 
         <div style={{
           borderRadius: "16px",

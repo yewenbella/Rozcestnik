@@ -80,6 +80,7 @@ export default function TrasyPage() {
                       style={{
                         display: "inline-flex", alignItems: "center", gap: "4px",
                         alignSelf: "flex-start",
+                        marginLeft: "18px",
                         padding: "3px 9px", borderRadius: "8px",
                         border: "1px solid rgba(14,165,233,0.40)",
                         background: "rgba(14,165,233,0.12)",
