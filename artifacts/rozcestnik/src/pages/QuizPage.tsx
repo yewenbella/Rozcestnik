@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation } from "wouter";
 import { useClerk } from "@clerk/react";
-import { ArrowLeft, RotateCcw, CheckCircle2, XCircle, Trophy, Medal } from "lucide-react";
+import { ArrowLeft, RotateCcw, CheckCircle2, XCircle, Trophy, X } from "lucide-react";
 
 interface Question {
   question: string;
@@ -80,6 +80,7 @@ export default function QuizPage() {
   const [answers, setAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
   const [finished, setFinished] = useState(false);
 
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [topScores, setTopScores] = useState<ScoreEntry[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -219,12 +220,76 @@ export default function QuizPage() {
           {current + 1} / {questions.length}
         </span>
       )}
+      <button
+        onClick={() => setShowLeaderboard(v => !v)}
+        style={{
+          display: "flex", alignItems: "center", justifyContent: "center",
+          width: "38px", height: "38px", borderRadius: "12px",
+          background: showLeaderboard ? "rgba(245,158,11,0.25)" : "rgba(255,255,255,0.08)",
+          border: `1px solid ${showLeaderboard ? "rgba(245,158,11,0.5)" : "rgba(255,255,255,0.12)"}`,
+          color: "white", cursor: "pointer", flexShrink: 0,
+        }}
+      >
+        <Trophy size={18} color={showLeaderboard ? "#f59e0b" : "rgba(255,255,255,0.6)"} />
+      </button>
+    </div>
+  );
+
+  const leaderboardOverlay = showLeaderboard && (
+    <div style={{
+      position: "absolute", bottom: 0, left: 0, right: 0,
+      background: "rgba(6,14,10,0.97)",
+      backdropFilter: "blur(20px)",
+      WebkitBackdropFilter: "blur(20px)",
+      borderTop: "1px solid rgba(251,191,36,0.25)",
+      borderRadius: "20px 20px 0 0",
+      padding: "18px 20px 32px",
+      zIndex: 20,
+    }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <Trophy size={16} color="#f59e0b" />
+          <span style={{ color: "#f59e0b", fontWeight: 800, fontSize: "0.85rem", letterSpacing: "0.07em" }}>
+            TOP 10 ŽEBŘÍČEK
+          </span>
+        </div>
+        <button
+          onClick={() => setShowLeaderboard(false)}
+          style={{ background: "rgba(255,255,255,0.08)", border: "none", borderRadius: "8px", width: 28, height: 28, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
+        >
+          <X size={14} color="rgba(255,255,255,0.6)" />
+        </button>
+      </div>
+      {topScores.length === 0 ? (
+        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem", textAlign: "center", margin: "16px 0" }}>
+          {"Žebříček je zatím prázdný — buď první!"}
+        </p>
+      ) : topScores.map((sc, i) => {
+        const medals = ["🥇", "🥈", "🥉"];
+        const colors = ["#f59e0b", "#9ca3af", "#cd7c34"];
+        return (
+          <div key={i} style={{
+            display: "grid",
+            gridTemplateColumns: "28px 1fr auto",
+            alignItems: "center",
+            gap: "10px",
+            padding: "10px 0",
+            borderBottom: i < topScores.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
+          }}>
+            <span style={{ fontSize: "1.1rem", textAlign: "center" }}>{i < 3 ? medals[i] : `${i + 1}.`}</span>
+            <span style={{ color: "white", fontSize: "0.92rem", fontWeight: i === 0 ? 700 : 500 }}>{sc.player_name}</span>
+            <span style={{ color: i < 3 ? colors[i] : "rgba(255,255,255,0.6)", fontWeight: 800, fontSize: "0.95rem" }}>
+              {sc.score} b.
+            </span>
+          </div>
+        );
+      })}
     </div>
   );
 
   if (finished) {
     return (
-      <div style={pageStyle}>
+      <div style={{ ...pageStyle, position: "relative" }}>
         {Header}
         <div style={{ flex: 1, overflowY: "auto", padding: "20px 16px", display: "flex", flexDirection: "column", gap: "16px" }}>
 
@@ -323,12 +388,13 @@ export default function QuizPage() {
             <RotateCcw size={15} /> Hrát znovu
           </button>
         </div>
+      {leaderboardOverlay}
       </div>
     );
   }
 
   return (
-    <div style={pageStyle}>
+    <div style={{ ...pageStyle, position: "relative" }}>
       {Header}
       <div style={{ height: "3px", background: "rgba(255,255,255,0.07)" }}>
         <div style={{ height: "100%", width: `${((current + (isAnswered ? 1 : 0)) / questions.length) * 100}%`, background: "linear-gradient(90deg, #fbbf24, #f59e0b)", borderRadius: "2px", transition: "width 0.4s ease" }} />
@@ -388,6 +454,7 @@ export default function QuizPage() {
           </button>
         )}
       </div>
+      {leaderboardOverlay}
     </div>
   );
 }
