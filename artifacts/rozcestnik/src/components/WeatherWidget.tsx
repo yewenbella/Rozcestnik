@@ -119,7 +119,11 @@ export default function WeatherWidget({ compact }: { compact?: boolean } = {}) {
 
   if (compact) {
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: "7px", pointerEvents: "none", userSelect: "none" }}>
+      <div style={{
+        display: "flex", alignItems: "center", gap: "7px", pointerEvents: "none", userSelect: "none",
+        background: "rgba(0,0,0,0.38)", borderRadius: "10px", padding: "4px 9px 4px 7px",
+        backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)",
+      }}>
         <span style={{ fontSize: "1.1rem", lineHeight: 1 }}>{icon}</span>
         <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
           <span style={{ color: "white", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.03em", lineHeight: 1.3, textShadow }}>
