@@ -85,17 +85,19 @@ export default function TrasyPage() {
                       : <Route size={18} color="#38bdf8" strokeWidth={1.8} />
                   }
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "2px", flex: 1, minWidth: 0 }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "4px", flex: 1, minWidth: 0 }}>
                   <span style={{ color: wip ? "rgba(255,255,255,0.55)" : "white", fontWeight: 700, fontSize: "1rem" }}>
                     {trasa.name}
                   </span>
                   {!wip && (
                     <span style={{
-                      alignSelf: "flex-end",
-                      color: "rgba(255,255,255,0.60)",
-                      fontSize: "0.76rem",
-                      fontWeight: 500,
-                      fontStyle: "italic",
+                      alignSelf: "flex-start",
+                      display: "inline-flex", alignItems: "center", gap: "4px",
+                      padding: "2px 8px", borderRadius: "8px",
+                      border: "1px solid rgba(14,165,233,0.35)",
+                      background: "rgba(14,165,233,0.10)",
+                      color: "rgba(255,255,255,0.75)",
+                      fontSize: "0.72rem", fontWeight: 600,
                     }}>
                       {trasa.location}
                     </span>
