@@ -75,6 +75,7 @@ export const trasa1Steps: TrailStep[] = [
     place: "Přehrada Josefův důl",
     proof: "Rozcestník",
     info: "Přehrada Josefův Důl se nachází v Jizerských horách v severních Čechách a byla vystavěna v letech 1976–1980. Řadí se k nejmladším přehradám vybudovaným v Česku. Přehradní jezero má rozlohu 1,38 km² a průměrnou hloubku 10 m. Celkový objem nádrže dosahuje 22,6 milionu m³.",
+    zajimavost: "Přehrada Josefův Důl je největší a zároveň nejmladší přehrada Jizerských hor, dokončená v roce 1982. Tvoří ji dvě mohutné sypané hráze vysoké 43–44 metrů, které zadržují přes 22 milionů m³ vody. Slouží výhradně jako zdroj pitné vody, takže vstup k hladině i koupání jsou přísně zakázané. Voda odtud putuje 2,4 km dlouhou podzemní štolou až do úpravny v Bedřichově. Zajímavostí je 60metrová odběrná věž, jejíž větší část se skrývá pod hladinou. Hráze jsou přístupné a nabízejí krásné výhledy na tichou krajinu Jizerských hor.",
     wikiUrl: "https://cs.wikipedia.org/wiki/Josef%C5%AFv_D%C5%AFl_(p%C5%99ehrada)",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Josdul.jpg/500px-Josdul.jpg",
     color: "#60a5fa",
