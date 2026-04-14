@@ -125,7 +125,7 @@ export default function WeatherWidget({ compact, tile }: { compact?: boolean; ti
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "7px", height: "100%", overflow: "hidden" }}>
         <span style={{ fontSize: "1.1rem", lineHeight: 1, flexShrink: 0 }}>{icon}</span>
-        <div style={{ display: "flex", flexDirection: "column", gap: "2px", minWidth: 0 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0px", minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: "3px" }}>
             <span style={{ color: "white", fontSize: "0.75rem", fontWeight: 800, textShadow }}>
               {weather.temp}°C
