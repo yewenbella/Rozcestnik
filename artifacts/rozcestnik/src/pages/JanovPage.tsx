@@ -3,9 +3,9 @@ import { MapPin, Info, ExternalLink, Sparkles } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
 const zajimavosti = [
-  { emoji: "🛷", text: "V areálu Severák je oblíbená bobová dráha — zábava pro celou rodinu i mimo lyžařskou sezónu." },
+  { emoji: "🛷", text: "Bobová dráha na Severáku měří přes 600 metrů a sjezd trvá jen pár minut plných adrenalinu — jezdí se celoročně, i v létě." },
   { emoji: "🚂", text: "Přes obec jezdí unikátní ozubnicová železnice Tanvald–Harrachov — jedna z mála svého druhu v Česku." },
-  { emoji: "🏊", text: "Nedaleko se nachází přehrada Josefův důl, která je jednou ze zastávek vaší trasy a v létě lákavým místem k odpočinku." },
+  { emoji: "⛷️", text: "Areál Severák nabízí sjezdové i běžecké tratě — v zimě je to jedno z nejspolehlivějších středisek v Jizerských horách." },
   { emoji: "🧇", text: "V místních hospůdkách a penzionech se podávají tradiční krkonošské i jizerské speciality — doporučujeme bramborové placky." },
 ];
 
