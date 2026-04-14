@@ -89,6 +89,8 @@ export default function ZkusebniTrasaPage() {
 
     let bestDist = Infinity;
     let bestAcc = Infinity;
+    let bestLat = 0;
+    let bestLng = 0;
     let finished = false;
 
     const finish = (success: boolean) => {
@@ -106,7 +108,7 @@ export default function ZkusebniTrasaPage() {
         const distStr = bestDist < 1000 ? `${Math.round(bestDist)} m` : `${(bestDist / 1000).toFixed(1)} km`;
         setGeoError((p) => ({
           ...p,
-          [step.label]: `Jsi ${distStr} od m\xedsta (p\u0159esnost GPS: \xb1${Math.round(bestAcc)} m)`,
+          [step.label]: `${distStr} od m\xedsta \u2022 tvoje GPS: ${bestLat.toFixed(5)},${bestLng.toFixed(5)} \u2022 c\xedl: ${step.lat.toFixed(5)},${step.lng.toFixed(5)} (\xb1${Math.round(bestAcc)} m)`,
         }));
       }
     };
@@ -120,7 +122,7 @@ export default function ZkusebniTrasaPage() {
         if (finished) return;
         const dist = haversineM(pos.coords.latitude, pos.coords.longitude, step.lat, step.lng);
         const acc = pos.coords.accuracy;
-        if (acc < bestAcc) { bestAcc = acc; bestDist = dist; }
+        if (acc < bestAcc) { bestAcc = acc; bestDist = dist; bestLat = pos.coords.latitude; bestLng = pos.coords.longitude; }
         if (dist > RADIUS_M) {
           const distStr = dist < 1000 ? `${Math.round(dist)} m` : `${(dist / 1000).toFixed(1)} km`;
           setGeoError((p) => ({
