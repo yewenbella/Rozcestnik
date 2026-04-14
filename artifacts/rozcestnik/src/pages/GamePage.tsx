@@ -4,8 +4,8 @@ import { Trophy } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
 const W = 360;
-const H = 280;
-const GROUND = 210;
+const H = 380;
+const GROUND = 255;
 const PLAYER_W = 28;
 const PLAYER_H = 36;
 const PLAYER_X = 55;
@@ -106,15 +106,34 @@ export default function GamePage() {
 
       // Ground
       const grd = ctx.createLinearGradient(0, GROUND, 0, H);
-      grd.addColorStop(0, "#1a4a2e");
-      grd.addColorStop(1, "#0d2a1a");
+      grd.addColorStop(0, "#1a5e38");
+      grd.addColorStop(0.3, "#174d2e");
+      grd.addColorStop(1, "#0a1f12");
       ctx.fillStyle = grd;
       ctx.fillRect(0, GROUND, W, H - GROUND);
 
       // Ground line
-      ctx.strokeStyle = "rgba(74,222,128,0.5)";
+      ctx.strokeStyle = "rgba(74,222,128,0.6)";
       ctx.lineWidth = 2;
       ctx.beginPath(); ctx.moveTo(0, GROUND); ctx.lineTo(W, GROUND); ctx.stroke();
+
+      // Grass tufts along top of ground
+      ctx.strokeStyle = "rgba(74,222,128,0.5)";
+      ctx.lineWidth = 1.5;
+      [15, 40, 75, 110, 145, 190, 235, 270, 310, 345].forEach(gx => {
+        const offset = (s.frameCount * (s.running ? 1 : 0) * 1.2 + gx * 3) % (W + 20) - 10;
+        const bx = (gx - offset + W + 20) % (W + 20) - 10;
+        ctx.beginPath(); ctx.moveTo(bx, GROUND); ctx.lineTo(bx - 3, GROUND - 8); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(bx + 4, GROUND); ctx.lineTo(bx + 4, GROUND - 10); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(bx + 8, GROUND); ctx.lineTo(bx + 11, GROUND - 7); ctx.stroke();
+      });
+
+      // Ground texture dots
+      ctx.fillStyle = "rgba(0,0,0,0.15)";
+      [20, 55, 100, 150, 200, 250, 300, 340].forEach((dx, i) => {
+        const ox = (dx - (s.frameCount * (s.running ? 1 : 0) * 0.8) % W + W) % W;
+        ctx.fillRect(ox, GROUND + 12 + (i % 3) * 8, 3, 2);
+      });
 
       if (s.running && !s.dead) {
         s.frameCount++;
@@ -252,7 +271,7 @@ export default function GamePage() {
 
   return (
     <PageLayout title="Mini hra" backPath="/">
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "20px 16px", gap: "16px" }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "8px 10px", gap: "10px" }}>
 
         <div style={{ display: "flex", justifyContent: "space-between", width: "100%", maxWidth: `${W}px` }}>
           <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.78rem" }}>
