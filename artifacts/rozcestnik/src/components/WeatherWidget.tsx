@@ -123,17 +123,23 @@ export default function WeatherWidget({ compact, tile }: { compact?: boolean; ti
 
   if (tile) {
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px", height: "100%" }}>
-        <span style={{ fontSize: "1.2rem", lineHeight: 1 }}>{icon}</span>
-        <span style={{ color: "white", fontSize: "0.82rem", fontWeight: 700, lineHeight: 1.2, textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}>
-          {weather.temp}°C
-        </span>
-        <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.60rem", fontWeight: 600, textAlign: "center", lineHeight: 1.2 }}>
-          {label}
-        </span>
-        <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.58rem", textAlign: "center" }}>
-          {weather.city}
-        </span>
+      <div style={{ display: "flex", alignItems: "center", gap: "6px", height: "100%", overflow: "hidden" }}>
+        <span style={{ fontSize: "1.05rem", lineHeight: 1, flexShrink: 0 }}>{icon}</span>
+        <div style={{ display: "flex", flexDirection: "column", gap: "1px", minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
+            <span style={{ color: "white", fontSize: "0.80rem", fontWeight: 700, textShadow }}>
+              {weather.temp}°C
+            </span>
+            <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.60rem" }}>{label}</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
+            <span style={{ color: "#fca5a5", fontSize: "0.62rem", fontWeight: 700, textShadow }}>{"↑"}{weather.maxTemp}°</span>
+            <span style={{ color: "#93c5fd", fontSize: "0.62rem", fontWeight: 700, textShadow }}>{"↓"}{weather.minTemp}°</span>
+          </div>
+          <span style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.57rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            {weather.city}
+          </span>
+        </div>
       </div>
     );
   }

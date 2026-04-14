@@ -153,19 +153,18 @@ export default function SunsetBadge({ tile }: { tile?: boolean } = {}) {
   if (!info) return null;
 
   if (tile) {
-    const sunsetTime = info.line1.replace("Západ slunce ", "").replace(" — již nastal", "");
+    const sunsetTime = info.line1.replace("Z\u00e1pad slunce ", "").replace(" \u2014 ji\u017e nastal", "");
+    const ts = "0 1px 6px rgba(0,0,0,0.9), 0 0px 2px rgba(0,0,0,0.8)";
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px", height: "100%" }}>
-        <span style={{ fontSize: "1.2rem", lineHeight: 1 }}>{info.passed ? "🌙" : "🌅"}</span>
-        <span style={{ color: "white", fontSize: "0.75rem", fontWeight: 700, lineHeight: 1.2, textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}>
-          {sunsetTime}
-        </span>
-        <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.60rem", fontWeight: 600, textAlign: "center", lineHeight: 1.2 }}>
-          {info.passed ? "ji\u017e nastal" : info.line2}
-        </span>
-        <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.58rem", textAlign: "center" }}>
-          {"Z\u00e1pad slunce"}
-        </span>
+      <div style={{ display: "flex", alignItems: "center", gap: "6px", height: "100%", overflow: "hidden" }}>
+        <span style={{ fontSize: "1.05rem", lineHeight: 1, flexShrink: 0 }}>{info.passed ? "🌙" : "🌅"}</span>
+        <div style={{ display: "flex", flexDirection: "column", gap: "1px", minWidth: 0 }}>
+          <span style={{ color: "white", fontSize: "0.80rem", fontWeight: 700, textShadow: ts }}>{sunsetTime}</span>
+          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.60rem" }}>
+            {info.passed ? "ji\u017e nastal" : info.line2}
+          </span>
+          <span style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.57rem" }}>{"Z\u00e1pad slunce"}</span>
+        </div>
       </div>
     );
   }

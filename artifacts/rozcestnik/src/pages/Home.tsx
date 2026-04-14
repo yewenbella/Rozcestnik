@@ -162,39 +162,36 @@ export default function Home() {
         }}
       >
         {/* Top bar — 3 tiles in a row */}
-        <div style={{ display: "flex", gap: "8px", padding: "14px 14px 0", zIndex: 10 }}>
+        <div style={{ display: "flex", gap: "7px", padding: "12px 12px 0", zIndex: 10 }}>
           {/* Počasí tile */}
           <div style={{
             flex: 1, minWidth: 0,
-            background: "rgba(0,0,0,0.30)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-            border: "1px solid rgba(255,255,255,0.15)", borderRadius: "12px",
-            height: "72px", padding: "6px 8px", boxSizing: "border-box",
+            background: "rgba(0,0,0,0.38)",
+            border: "1px solid rgba(255,255,255,0.13)", borderRadius: "10px",
+            height: "50px", padding: "5px 8px", boxSizing: "border-box",
             pointerEvents: "none", userSelect: "none",
           }}>
             <WeatherWidget tile />
           </div>
 
           {/* Můj tým tile — center */}
-          <div style={{ flex: 1, minWidth: 0, height: "72px", boxSizing: "border-box" }}>
+          <div style={{ flex: 1, minWidth: 0, height: "50px", boxSizing: "border-box" }}>
             <Show when="signed-out">
               <button
                 onClick={() => navigate("/sign-in")}
                 style={{
                   width: "100%", height: "100%",
-                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px",
-                  background: "rgba(0,0,0,0.30)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-                  border: "1px solid rgba(255,255,255,0.18)", borderRadius: "12px",
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                  background: "rgba(0,0,0,0.38)",
+                  border: "1px solid rgba(255,255,255,0.16)", borderRadius: "10px",
                   cursor: "pointer", boxSizing: "border-box",
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
                 }}
               >
-                <UserCircle size={18} color="rgba(255,255,255,0.75)" />
-                <span style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.62rem", fontWeight: 700, textAlign: "center", lineHeight: 1.2 }}>
-                  {"P\u0159ihl\u00e1sit"}
-                </span>
-                <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.56rem", textAlign: "center", lineHeight: 1.2 }}>
-                  {"M\u016fj t\u00fdm"}
-                </span>
+                <UserCircle size={14} color="rgba(255,255,255,0.75)" />
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", lineHeight: 1.2 }}>
+                  <span style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.66rem", fontWeight: 700 }}>{"P\u0159ihl\u00e1sit"}</span>
+                  <span style={{ color: "rgba(255,255,255,0.42)", fontSize: "0.58rem" }}>{"M\u016fj t\u00fdm"}</span>
+                </div>
               </button>
             </Show>
             <Show when="signed-in">
@@ -202,17 +199,14 @@ export default function Home() {
                 onClick={() => navigate("/team")}
                 style={{
                   width: "100%", height: "100%",
-                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px",
-                  background: "rgba(0,0,0,0.30)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-                  border: "1px solid rgba(255,255,255,0.18)", borderRadius: "12px",
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                  background: "rgba(0,0,0,0.38)",
+                  border: "1px solid rgba(255,255,255,0.16)", borderRadius: "10px",
                   cursor: "pointer", boxSizing: "border-box",
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
                 }}
               >
-                <UserCircle size={18} color="rgba(255,255,255,0.75)" />
-                <span style={{ color: "white", fontSize: "0.65rem", fontWeight: 700, textAlign: "center", lineHeight: 1.2 }}>
-                  {"M\u016fj t\u00fdm"}
-                </span>
+                <UserCircle size={14} color="rgba(255,255,255,0.75)" />
+                <span style={{ color: "white", fontSize: "0.68rem", fontWeight: 700 }}>{"M\u016fj t\u00fdm"}</span>
               </button>
             </Show>
           </div>
@@ -220,9 +214,9 @@ export default function Home() {
           {/* Západ slunce tile */}
           <div style={{
             flex: 1, minWidth: 0,
-            background: "rgba(0,0,0,0.30)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-            border: "1px solid rgba(255,255,255,0.15)", borderRadius: "12px",
-            height: "72px", padding: "6px 8px", boxSizing: "border-box",
+            background: "rgba(0,0,0,0.38)",
+            border: "1px solid rgba(255,255,255,0.13)", borderRadius: "10px",
+            height: "50px", padding: "5px 8px", boxSizing: "border-box",
             pointerEvents: "none", userSelect: "none",
           }}>
             <SunsetBadge tile />
