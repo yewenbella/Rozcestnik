@@ -124,23 +124,23 @@ export default function TeamPage() {
 
   return (
     <PageLayout title="Tým" backPath="/">
-      <div style={{ padding: "20px 18px", maxWidth: "480px", margin: "0 auto" }}>
+      <div style={{ padding: "10px 14px", maxWidth: "480px", margin: "0 auto" }}>
 
         {/* User info */}
-        <div style={glassCard}>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <div style={{ ...glassCard, padding: "10px 14px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             {user?.imageUrl && (
               <img
                 src={user.imageUrl}
                 alt="avatar"
-                style={{ width: 42, height: 42, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.2)" }}
+                style={{ width: 36, height: 36, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.2)" }}
               />
             )}
             <div>
-              <p style={{ color: "white", fontWeight: 700, fontSize: "0.95rem", margin: 0 }}>
+              <p style={{ color: "white", fontWeight: 700, fontSize: "0.88rem", margin: 0 }}>
                 {user?.fullName || user?.firstName || "Uživatel"}
               </p>
-              <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.78rem", margin: 0 }}>
+              <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.72rem", margin: 0 }}>
                 {user?.primaryEmailAddress?.emailAddress}
               </p>
             </div>
@@ -149,7 +149,7 @@ export default function TeamPage() {
               style={{ marginLeft: "auto", ...iconBtn }}
               title="Odhlásit se"
             >
-              <LogOut size={16} color="rgba(255,255,255,0.5)" />
+              <LogOut size={15} color="rgba(255,255,255,0.45)" />
             </button>
           </div>
         </div>
@@ -157,31 +157,28 @@ export default function TeamPage() {
         {team ? (
           <>
             {/* Team info */}
-            <div style={{ ...glassCard, marginTop: 14 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
-                <Mountain size={20} color="#4ade80" />
-                <span style={{ color: "white", fontWeight: 800, fontSize: "1.1rem" }}>{team.name}</span>
-              </div>
-
-              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
-                <Users size={15} color="rgba(255,255,255,0.4)" />
-                <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.82rem" }}>
+            <div style={{ ...glassCard, marginTop: 8, padding: "10px 14px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+                <Mountain size={17} color="#4ade80" />
+                <span style={{ color: "white", fontWeight: 800, fontSize: "1rem" }}>{team.name}</span>
+                <span style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "5px", color: "rgba(255,255,255,0.5)", fontSize: "0.75rem" }}>
+                  <Users size={12} color="rgba(255,255,255,0.4)" />
                   {team.memberCount} {team.memberCount === 1 ? "člen" : team.memberCount < 5 ? "členové" : "členů"}
                 </span>
               </div>
 
-              <div style={{ background: "rgba(0,0,0,0.25)", borderRadius: "10px", padding: "12px 14px" }}>
-                <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.72rem", margin: "0 0 4px" }}>
-                  Kód pro přizvání partnera
+              <div style={{ background: "rgba(0,0,0,0.25)", borderRadius: "10px", padding: "10px 12px" }}>
+                <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.70rem", margin: "0 0 3px" }}>
+                  Kód pro přizvání
                 </p>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <span style={{ color: "white", fontWeight: 800, fontSize: "1.4rem", letterSpacing: "0.15em" }}>
+                  <span style={{ color: "white", fontWeight: 800, fontSize: "1.3rem", letterSpacing: "0.15em" }}>
                     {team.inviteCode}
                   </span>
                   <button onClick={copyCode} style={iconBtn}>
                     {copied
-                      ? <Check size={18} color="#4ade80" />
-                      : <Copy size={18} color="rgba(255,255,255,0.5)" />
+                      ? <Check size={17} color="#4ade80" />
+                      : <Copy size={17} color="rgba(255,255,255,0.5)" />
                     }
                   </button>
                 </div>
@@ -189,60 +186,60 @@ export default function TeamPage() {
             </div>
 
             {/* QR invite section */}
-            <div style={{ ...glassCard, marginTop: 14 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
-                <QrCode size={17} color="#4ade80" />
-                <span style={{ color: "white", fontWeight: 700, fontSize: "0.95rem" }}>Pozvat hráče</span>
+            <div style={{ ...glassCard, marginTop: 8, padding: "10px 14px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
+                <QrCode size={15} color="#4ade80" />
+                <span style={{ color: "white", fontWeight: 700, fontSize: "0.88rem" }}>Pozvat hráče</span>
               </div>
-              <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.78rem", margin: "0 0 14px", lineHeight: 1.5 }}>
-                Nech partnera/partnerku naskenovat QR kód — otevře se mu/jí přímo tato aplikace.
-              </p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                {qrDataUrl ? (
-                  <img
-                    src={qrDataUrl}
-                    alt="QR kód pro pozvání"
-                    style={{
-                      width: 200, height: 200,
-                      borderRadius: "14px",
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
-                      background: "white",
-                      padding: "8px",
-                    }}
-                  />
-                ) : (
-                  <div style={{ width: 200, height: 200, background: "rgba(255,255,255,0.05)", borderRadius: "14px" }} />
-                )}
+              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                <div>
+                  {qrDataUrl ? (
+                    <img
+                      src={qrDataUrl}
+                      alt="QR kód pro pozvání"
+                      style={{
+                        width: 130, height: 130,
+                        borderRadius: "10px",
+                        boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+                        background: "white",
+                        padding: "6px",
+                        display: "block",
+                      }}
+                    />
+                  ) : (
+                    <div style={{ width: 130, height: 130, background: "rgba(255,255,255,0.05)", borderRadius: "10px" }} />
+                  )}
+                </div>
+                <div style={{ flex: 1 }}>
+                  <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.76rem", margin: "0 0 10px", lineHeight: 1.5 }}>
+                    Naskenuj QR kód a otevře se aplikace — každý si pak může vytvořit vlastní tým nebo se připojit ke stávajícímu.
+                  </p>
+                  {navigator.share && (
+                    <button
+                      onClick={() => navigator.share({ title: "Rozcestník", url: window.location.origin + (import.meta.env.BASE_URL || "/") })}
+                      style={{
+                        width: "100%", padding: "8px",
+                        borderRadius: "8px", display: "flex", alignItems: "center",
+                        justifyContent: "center", gap: "6px",
+                        background: "rgba(74,222,128,0.12)",
+                        border: "1px solid rgba(74,222,128,0.3)",
+                        color: "#4ade80", fontWeight: 700, fontSize: "0.78rem", cursor: "pointer",
+                      }}
+                    >
+                      <Share2 size={13} />
+                      Sdílet odkaz
+                    </button>
+                  )}
+                </div>
               </div>
-              <div style={{ textAlign: "center", marginTop: "10px" }}>
-                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.70rem" }}>
-                  {window.location.origin + (import.meta.env.BASE_URL || "/")}
-                </span>
-              </div>
-              {navigator.share && (
-                <button
-                  onClick={() => navigator.share({ title: "Rozcestník", url: window.location.origin + (import.meta.env.BASE_URL || "/") })}
-                  style={{
-                    width: "100%", marginTop: "12px", padding: "10px",
-                    borderRadius: "10px", display: "flex", alignItems: "center",
-                    justifyContent: "center", gap: "7px",
-                    background: "rgba(74,222,128,0.12)",
-                    border: "1px solid rgba(74,222,128,0.35)",
-                    color: "#4ade80", fontWeight: 700, fontSize: "0.82rem", cursor: "pointer",
-                  }}
-                >
-                  <Share2 size={14} />
-                  Sdílet odkaz
-                </button>
-              )}
             </div>
 
-            <button onClick={leaveTeam} style={{ ...leaveBtn, marginTop: 14 }}>
+            <button onClick={leaveTeam} style={{ ...leaveBtn, marginTop: 8 }}>
               Opustit tým
             </button>
           </>
         ) : (
-          <div style={{ marginTop: 16 }}>
+          <div style={{ marginTop: 10 }}>
             {/* Tabs */}
             <div style={{ display: "flex", borderRadius: "10px", overflow: "hidden", border: "1.5px solid rgba(255,255,255,0.12)", marginBottom: 16 }}>
               {(["create", "join"] as const).map((t) => (
@@ -276,7 +273,7 @@ export default function TeamPage() {
             {tab === "create" ? (
               <div style={glassCard}>
                 <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.82rem", marginTop: 0, marginBottom: 12 }}>
-                  Vytvoř tým pro sebe a svého partnera. Poté mu/jí pošli kód pro přizvání.
+                  Vytvoř tým a pošli kamarádovi kód nebo QR kód pro přizvání.
                 </p>
                 <input
                   type="text"
@@ -295,7 +292,7 @@ export default function TeamPage() {
             ) : (
               <div style={glassCard}>
                 <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.82rem", marginTop: 0, marginBottom: 12 }}>
-                  Zadej 6-místný kód, který ti poslal tvůj partner/partnerka.
+                  Zadej 6-místný kód, který ti poslal vedoucí týmu.
                 </p>
                 <input
                   type="text"
