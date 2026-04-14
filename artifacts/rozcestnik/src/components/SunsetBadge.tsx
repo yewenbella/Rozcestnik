@@ -159,13 +159,13 @@ export default function SunsetBadge({ tile }: { tile?: boolean } = {}) {
       <div style={{ display: "flex", alignItems: "center", gap: "7px", height: "100%", overflow: "hidden" }}>
         <span style={{ fontSize: "1rem", lineHeight: 1, flexShrink: 0 }}>{info.passed ? "🌙" : "🌅"}</span>
         <div style={{ display: "flex", flexDirection: "column", gap: "1px", minWidth: 0 }}>
-          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.53rem", fontWeight: 600, lineHeight: 1 }}>
+          <span style={{ color: "white", fontSize: "0.72rem", fontWeight: 800, textShadow: ts, lineHeight: 1 }}>
             {"Z\u00e1pad slunce"}
           </span>
-          <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.56rem", fontWeight: 600, lineHeight: 1.2 }}>
+          <span style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.57rem", fontWeight: 600, lineHeight: 1.2 }}>
             {info.passed ? "ji\u017e nastal" : info.line2}
           </span>
-          <span style={{ color: "white", fontSize: "0.72rem", fontWeight: 800, textShadow: ts, lineHeight: 1 }}>
+          <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.50rem", fontWeight: 500, lineHeight: 1 }}>
             {sunsetTime}
           </span>
         </div>
