@@ -4,7 +4,7 @@ import PageLayout from "@/components/PageLayout";
 
 const zajimavosti = [
   { emoji: "🏰", text: "Zřícenina hradu Trosky — dvojice věží Baba a Panna na čedičových kupách — je nejtypičtějším symbolem Českého ráje a viditelná z desítek kilometrů." },
-  { emoji: "🪨", text: "Hruboskalské skalní město tvoří labyrint pískovcových věží a roklin; přes skály vede síť turistických tras a ferrat pro všechny úrovně zdatnosti." },
+  { emoji: "🐟", text: "Trasa prochází kolem malebných rybníků Vidlák, Věžák a Nebák — srdcem rybniční krajiny Českého ráje. Součástí cesty je i historický Podsemínský most, který tyto vody překlenuje." },
   { emoji: "🦆", text: "Přírodní rezervací protéká řeka Jizera s čistou vodou — ideální pro rybaření, koupání i vodní turistiku na raftech či kánoích." },
 ];
 

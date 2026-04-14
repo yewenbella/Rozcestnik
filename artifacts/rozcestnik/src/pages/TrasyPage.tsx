@@ -13,7 +13,7 @@ function isTrasa1Completed(): boolean {
 
 const trasy = [
   { id: 1, name: "Trasa č.1", location: "Janov nad Nisou", locationPath: "/janov", duration: "⏱ odh. 3–4 h", wip: false },
-  { id: 2, name: "Trasa č.2", location: "Český ráj", locationPath: "/cesky-raj", duration: "⏱ odh. 4–5 h", wip: false },
+  { id: 2, name: "Trasa č.2", location: "Český ráj", locationPath: "/cesky-raj", duration: "⏱ odh. 3–4 h", wip: false },
   { id: 3, name: "Trasa č.3", location: "Rozpracováno", locationPath: null, duration: "", wip: true },
 ];
 
