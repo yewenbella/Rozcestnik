@@ -106,12 +106,12 @@ export default function VyzvaPage() {
 
         {/* Title */}
         <div style={{ textAlign: "center", paddingTop: "115px", paddingBottom: "8px" }}>
-          <h1 style={{ fontSize: "1.6rem", fontWeight: 900, color: "white", letterSpacing: "0.04em", textShadow: "0 2px 16px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)", margin: 0, lineHeight: 1.2 }}>
+          <h1 style={{ fontSize: "2.1rem", fontWeight: 900, color: "white", letterSpacing: "0.03em", textShadow: "0 2px 16px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)", margin: 0, lineHeight: 1.15 }}>
             {"Turistick\u00e1 v\u00fdzva"}
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.88rem", fontWeight: 700, marginTop: "4px", letterSpacing: "0.05em", textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}>
+          <h1 style={{ fontSize: "2.1rem", fontWeight: 900, color: "white", letterSpacing: "0.03em", textShadow: "0 2px 16px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)", margin: 0, lineHeight: 1.15 }}>
             dvojic
-          </p>
+          </h1>
         </div>
 
         {/* Buttons */}
