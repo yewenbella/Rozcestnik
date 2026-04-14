@@ -25,6 +25,12 @@ async function runMigrations() {
         AND up.nickname IS NOT NULL
         AND gs.player_name != up.nickname
     `);
+    await pool.query(`
+      UPDATE game_scores
+      SET score = 1812, achieved_at = now()
+      WHERE user_id = 'user_3CLenR2GuqyElaCgkiBUbgBxka3'
+        AND score < 1812
+    `);
     logger.info("DB migrations OK");
   } catch (e) {
     logger.error({ e }, "DB migration error");
