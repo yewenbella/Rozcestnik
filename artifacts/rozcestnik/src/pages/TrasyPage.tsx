@@ -85,23 +85,10 @@ export default function TrasyPage() {
                       : <Route size={18} color="#38bdf8" strokeWidth={1.8} />
                   }
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "4px", flex: 1, minWidth: 0 }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "2px", flex: 1, minWidth: 0 }}>
                   <span style={{ color: wip ? "rgba(255,255,255,0.55)" : "white", fontWeight: 700, fontSize: "1rem" }}>
                     {trasa.name}
                   </span>
-                  {!wip && (
-                    <span style={{
-                      alignSelf: "flex-start",
-                      display: "inline-flex", alignItems: "center", gap: "4px",
-                      padding: "2px 8px", borderRadius: "8px",
-                      border: "1px solid rgba(14,165,233,0.35)",
-                      background: "rgba(14,165,233,0.10)",
-                      color: "rgba(255,255,255,0.75)",
-                      fontSize: "0.72rem", fontWeight: 600,
-                    }}>
-                      {trasa.location}
-                    </span>
-                  )}
                   {wip && (
                     <span style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.72rem" }}>
                       {trasa.location}
@@ -118,6 +105,18 @@ export default function TrasyPage() {
                   ))}
                 </div>
               </div>
+              {!wip && (
+                <span style={{
+                  display: "inline-flex", alignItems: "center", flexShrink: 0,
+                  padding: "3px 9px", borderRadius: "8px",
+                  border: "1px solid rgba(14,165,233,0.35)",
+                  background: "rgba(14,165,233,0.10)",
+                  color: "rgba(255,255,255,0.75)",
+                  fontSize: "0.72rem", fontWeight: 600, whiteSpace: "nowrap",
+                }}>
+                  {trasa.location}
+                </span>
+              )}
               {!wip && <ChevronRight size={18} color="rgba(255,255,255,0.4)" />}
             </button>
           );
