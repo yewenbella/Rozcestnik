@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "wouter";
-import { Map, Mountain, Landmark, UserCircle, Gamepad2, HelpCircle } from "lucide-react";
+import { Map, Mountain, Landmark, Eye, UserCircle, Gamepad2, HelpCircle } from "lucide-react";
 import { Show } from "@clerk/react";
 import heroBg from "@/assets/hero-bg.jpg";
 import WeatherWidget from "@/components/WeatherWidget";
@@ -26,13 +26,22 @@ const mainButtons = [
     accent: "#7dd3fc",
   },
   {
-    label: "ROZHLEDNY, HRADY A Z\u00c1MKY",
-    icon: Landmark,
+    label: "ROZHLEDNY",
+    icon: Eye,
     path: "/rozhledny",
     gradient: "linear-gradient(135deg, rgba(251,146,60,0.18), rgba(180,83,9,0.12))",
     border: "rgba(251,146,60,0.40)",
     glow: "#fb923c",
     accent: "#fdba74",
+  },
+  {
+    label: "HRADY A Z\u00c1MKY",
+    icon: Landmark,
+    path: "/hrady",
+    gradient: "linear-gradient(135deg, rgba(167,139,250,0.18), rgba(109,40,217,0.12))",
+    border: "rgba(167,139,250,0.40)",
+    glow: "#a78bfa",
+    accent: "#c4b5fd",
   },
 ];
 
