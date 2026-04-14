@@ -11,8 +11,8 @@ export const zkusebniSteps: ZkusebniStep[] = [
     label: "START",
     type: "start",
     address: "Ještědská 46, Liberec 8, 46008",
-    lat: 50.7355,
-    lng: 15.0085,
+    lat: 50.73722,
+    lng: 15.00660,
   },
   {
     label: "Checkpoint 1",
