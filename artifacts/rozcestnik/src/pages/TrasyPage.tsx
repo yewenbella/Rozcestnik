@@ -12,7 +12,7 @@ function isTrasa1Completed(): boolean {
 }
 
 const trasy = [
-  { id: 1, label: "Trasa č.1\u00A0\u00A0\u00A0\u00A0\u00A0(Janov nad Nisou)" },
+  { id: 1, label: "Trasa č.1\u00A0\u00A0\u00A0\u00A0\u00A0(Janov nad Nisou)", duration: "⏱ odh. 4–5 h" },
 ];
 
 export default function TrasyPage() {
@@ -74,9 +74,13 @@ export default function TrasyPage() {
                   <span style={{ color: "white", fontWeight: 700, fontSize: "1rem", display: "block" }}>
                     {trasa.label}
                   </span>
-                  {done && (
+                  {done ? (
                     <span style={{ color: "#4ade80", fontSize: "0.75rem", fontWeight: 600 }}>
                       Splněno ✓
+                    </span>
+                  ) : (
+                    <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem" }}>
+                      {trasa.duration}
                     </span>
                   )}
                 </div>
