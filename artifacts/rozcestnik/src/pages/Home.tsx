@@ -177,7 +177,7 @@ export default function Home() {
         >
           <h1
             style={{
-              fontSize: "2.1rem",
+              fontSize: "2.9rem",
               fontWeight: 900,
               color: "white",
               letterSpacing: "0.04em",
