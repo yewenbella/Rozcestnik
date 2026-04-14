@@ -1,3 +1,4 @@
+import React from "react";
 import { useLocation } from "wouter";
 import { Map, Route, Trophy, BookOpen, UserCircle, Gamepad2, HelpCircle } from "lucide-react";
 import { Show } from "@clerk/react";
@@ -5,7 +6,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 import WeatherWidget from "@/components/WeatherWidget";
 import SunsetBadge from "@/components/SunsetBadge";
 
-const buttons = [
+const mainButtons = [
   {
     label: "MAPA",
     icon: Map,
@@ -42,6 +43,9 @@ const buttons = [
     glow: "#22c55e",
     accent: "#4ade80",
   },
+];
+
+const extraButtons = [
   {
     label: "MINI HRA",
     icon: Gamepad2,
@@ -61,6 +65,50 @@ const buttons = [
     accent: "#fde68a",
   },
 ];
+
+function NavBtn({ label, Icon, path, gradient, border, glow, accent, navigate }: {
+  label: string; Icon: React.ElementType; path: string; gradient: string;
+  border: string; glow: string; accent: string; navigate: (p: string) => void;
+}) {
+  return (
+    <button
+      onClick={() => navigate(path)}
+      style={{
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        width: "220px",
+        background: gradient,
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        border: `1.5px solid ${border}`,
+        borderRadius: "10px",
+        padding: "12px 14px",
+        minHeight: "52px",
+        cursor: "pointer",
+        boxShadow: `0 4px 16px 0 ${glow}30, inset 0 1px 0 rgba(255,255,255,0.18)`,
+        overflow: "hidden",
+      }}
+    >
+      <div style={{ position: "absolute", inset: 0, opacity: 0.07, pointerEvents: "none",
+        backgroundImage: "repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px)" }}
+      />
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "24px", height: "24px",
+        borderRadius: "6px", backgroundColor: "rgba(0,0,0,0.22)", border: "1px solid rgba(255,255,255,0.22)", flexShrink: 0 }}>
+        <Icon size={13} color={accent} strokeWidth={2.3} />
+      </div>
+      <span style={{ fontWeight: 800, color: "white", fontSize: "0.78rem", letterSpacing: "0.12em", textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
+        {label}
+      </span>
+      <div style={{ marginLeft: "auto", opacity: 0.65 }}>
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M5 3l5 4.5L5 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+    </button>
+  );
+}
 
 export default function Home() {
   const [, navigate] = useLocation();
@@ -206,74 +254,14 @@ export default function Home() {
             flex: 1,
           }}
         >
-          {buttons.map(({ label, icon: Icon, path, gradient, border, glow, accent }) => (
-            <button
-              key={label}
-              onClick={() => navigate(path)}
-              style={{
-                position: "relative",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                width: "220px",
-                background: gradient,
-                backdropFilter: "blur(12px)",
-                WebkitBackdropFilter: "blur(12px)",
-                border: `1.5px solid ${border}`,
-                borderRadius: "10px",
-                padding: "12px 14px",
-                minHeight: "52px",
-                cursor: "pointer",
-                boxShadow: `0 4px 16px 0 ${glow}30, inset 0 1px 0 rgba(255,255,255,0.18)`,
-                overflow: "hidden",
-              }}
-            >
-              {/* Wood grain texture */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  opacity: 0.07,
-                  pointerEvents: "none",
-                  backgroundImage:
-                    "repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px)",
-                }}
-              />
-              {/* Icon */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: "24px",
-                  height: "24px",
-                  borderRadius: "6px",
-                  backgroundColor: "rgba(0,0,0,0.22)",
-                  border: "1px solid rgba(255,255,255,0.22)",
-                  flexShrink: 0,
-                }}
-              >
-                <Icon size={13} color={accent} strokeWidth={2.3} />
-              </div>
-              {/* Label */}
-              <span
-                style={{
-                  fontWeight: 800,
-                  color: "white",
-                  fontSize: "0.78rem",
-                  letterSpacing: "0.12em",
-                  textShadow: "0 1px 3px rgba(0,0,0,0.4)",
-                }}
-              >
-                {label}
-              </span>
-              {/* Arrow */}
-              <div style={{ marginLeft: "auto", opacity: 0.65 }}>
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                  <path d="M5 3l5 4.5L5 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-            </button>
+          {mainButtons.map(({ label, icon: Icon, path, gradient, border, glow, accent }) => (
+            <NavBtn key={label} label={label} Icon={Icon} path={path} gradient={gradient} border={border} glow={glow} accent={accent} navigate={navigate} />
+          ))}
+
+          <div style={{ width: "220px", height: "1px", background: "rgba(255,255,255,0.13)", margin: "8px 0" }} />
+
+          {extraButtons.map(({ label, icon: Icon, path, gradient, border, glow, accent }) => (
+            <NavBtn key={label} label={label} Icon={Icon} path={path} gradient={gradient} border={border} glow={glow} accent={accent} navigate={navigate} />
           ))}
         </div>
 
