@@ -1,5 +1,5 @@
 import { useParams } from "wouter";
-import { MapPin, Navigation, Flag, Info, ExternalLink } from "lucide-react";
+import { MapPin, Navigation, Flag, Info, ExternalLink, Star } from "lucide-react";
 import { trasa1Steps } from "@/data/trasa1Steps";
 import PageLayout from "@/components/PageLayout";
 
@@ -107,6 +107,31 @@ export default function StepDetailPage() {
             </a>
           )}
         </div>
+
+        {/* Zajímavost card */}
+        {step.zajimavost && (
+          <div style={{
+            borderRadius: "16px",
+            background: "rgba(251,191,36,0.07)",
+            border: "1px solid rgba(251,191,36,0.25)",
+            padding: "16px",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "10px" }}>
+              <Star size={14} color="#fbbf24" fill="#fbbf24" />
+              <span style={{ color: "#fbbf24", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.05em" }}>
+                Zajímavost
+              </span>
+            </div>
+            <p style={{
+              margin: 0,
+              color: "rgba(255,255,255,0.80)",
+              fontSize: "0.88rem",
+              lineHeight: "1.65",
+            }}>
+              {step.zajimavost}
+            </p>
+          </div>
+        )}
 
       </div>
     </PageLayout>
