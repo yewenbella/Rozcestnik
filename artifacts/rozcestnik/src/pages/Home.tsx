@@ -70,7 +70,7 @@ function NavBtn({ label, Icon, path, gradient, border, glow, accent, navigate }:
   label: string; Icon: React.ElementType; path: string; gradient: string;
   border: string; glow: string; accent: string; navigate: (p: string) => void;
 }) {
-  const fontSize = label.length > 14 ? "0.63rem" : "0.78rem";
+  const fontSize = "0.72rem";
   return (
     <button
       onClick={() => navigate(path)}
@@ -99,7 +99,7 @@ function NavBtn({ label, Icon, path, gradient, border, glow, accent, navigate }:
         borderRadius: "6px", backgroundColor: "rgba(0,0,0,0.22)", border: "1px solid rgba(255,255,255,0.22)", flexShrink: 0 }}>
         <Icon size={13} color={accent} strokeWidth={2.3} />
       </div>
-      <span style={{ fontWeight: 800, color: "white", fontSize, letterSpacing: label.length > 14 ? "0.07em" : "0.12em", textShadow: "0 1px 3px rgba(0,0,0,0.4)", whiteSpace: "nowrap" }}>
+      <span style={{ fontWeight: 800, color: "white", fontSize, letterSpacing: "0.09em", textShadow: "0 1px 3px rgba(0,0,0,0.4)", whiteSpace: "nowrap" }}>
         {label}
       </span>
       <div style={{ marginLeft: "auto", opacity: 0.65 }}>
