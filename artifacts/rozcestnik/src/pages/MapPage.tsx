@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import PageLayout from "@/components/PageLayout";
-import { Search, X } from "lucide-react";
+import { useLocation } from "wouter";
+import { Search, X, ArrowLeft } from "lucide-react";
 
 interface Suggestion {
   display_name: string;
@@ -10,6 +10,7 @@ interface Suggestion {
 }
 
 export default function MapPage() {
+  const [, navigate] = useLocation();
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
@@ -67,61 +68,86 @@ export default function MapPage() {
   }, []);
 
   return (
-    <PageLayout title="Mapa" backPath="/">
-      <div style={{ display: "flex", flexDirection: "column", height: "calc(100vh - 70px)" }}>
+    <div style={{
+      minHeight: "100vh",
+      maxWidth: "480px",
+      margin: "0 auto",
+      display: "flex",
+      flexDirection: "column",
+      backgroundColor: "#111a11",
+    }}>
+      {/* Header */}
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+        padding: "12px 12px 8px",
+        backgroundColor: "#111a11",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+        flexShrink: 0,
+        zIndex: 10,
+      }}>
+        <button
+          onClick={() => navigate("/")}
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center",
+            width: "38px", height: "38px", borderRadius: "12px",
+            background: "rgba(255,255,255,0.08)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            color: "white", cursor: "pointer", flexShrink: 0,
+          }}
+        >
+          <ArrowLeft size={18} strokeWidth={2.2} />
+        </button>
 
-        {/* Search bar */}
-        <div style={{ padding: "8px 12px", backgroundColor: "#1a2a1a", position: "relative", zIndex: 100, flexShrink: 0 }}>
-          <div style={{ position: "relative" }}>
-            <Search
-              size={16}
-              color="rgba(255,255,255,0.4)"
-              style={{ position: "absolute", left: "11px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
-            />
-            <input
-              type="text"
-              placeholder="Hledat město nebo místo..."
-              value={searchText}
-              onChange={handleInput}
-              onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
-              style={{
-                width: "100%",
-                padding: "9px 36px 9px 34px",
-                borderRadius: "10px",
-                border: "1.5px solid rgba(255,255,255,0.12)",
-                backgroundColor: "rgba(255,255,255,0.08)",
-                color: "white",
-                fontSize: "0.88rem",
-                outline: "none",
-                boxSizing: "border-box",
-              }}
-            />
-            {searchText.length > 0 && (
-              <button
-                onClick={clearSearch}
-                style={{ position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", padding: 0, lineHeight: 0 }}
-              >
-                <X size={15} color="rgba(255,255,255,0.4)" />
-              </button>
-            )}
-          </div>
+        {/* Search bar inline */}
+        <div style={{ flex: 1, position: "relative" }}>
+          <Search
+            size={15}
+            color="rgba(255,255,255,0.4)"
+            style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
+          />
+          <input
+            type="text"
+            placeholder={"Hledat m\u011bsto nebo m\u00edsto\u2026"}
+            value={searchText}
+            onChange={handleInput}
+            onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
+            style={{
+              width: "100%",
+              padding: "9px 32px 9px 32px",
+              borderRadius: "10px",
+              border: "1.5px solid rgba(255,255,255,0.12)",
+              backgroundColor: "rgba(255,255,255,0.07)",
+              color: "white",
+              fontSize: "0.88rem",
+              outline: "none",
+              boxSizing: "border-box",
+            }}
+          />
+          {searchText.length > 0 && (
+            <button
+              onClick={clearSearch}
+              style={{ position: "absolute", right: "9px", top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", padding: 0, lineHeight: 0 }}
+            >
+              <X size={14} color="rgba(255,255,255,0.4)" />
+            </button>
+          )}
 
           {/* Suggestions dropdown */}
           {showSuggestions && suggestions.length > 0 && (
-            <div
-              style={{
-                position: "absolute",
-                top: "calc(100% - 4px)",
-                left: "12px",
-                right: "12px",
-                backgroundColor: "#1e3020",
-                border: "1.5px solid rgba(255,255,255,0.12)",
-                borderRadius: "10px",
-                overflow: "hidden",
-                zIndex: 200,
-                boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
-              }}
-            >
+            <div style={{
+              position: "absolute",
+              top: "calc(100% + 4px)",
+              left: 0,
+              right: 0,
+              backgroundColor: "#1a2e1a",
+              border: "1.5px solid rgba(255,255,255,0.12)",
+              borderRadius: "10px",
+              overflow: "hidden",
+              zIndex: 200,
+              boxShadow: "0 8px 24px rgba(0,0,0,0.6)",
+            }}>
               {suggestions.map((s, i) => {
                 const parts = s.display_name.split(",");
                 const city = parts[0];
@@ -131,16 +157,11 @@ export default function MapPage() {
                     key={i}
                     onClick={() => handleSelect(s)}
                     style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      width: "100%",
-                      padding: "10px 14px",
-                      background: "none",
-                      border: "none",
+                      display: "flex", flexDirection: "column", alignItems: "flex-start",
+                      width: "100%", padding: "10px 14px",
+                      background: "none", border: "none",
                       borderBottom: i < suggestions.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
-                      cursor: "pointer",
-                      textAlign: "left",
+                      cursor: "pointer", textAlign: "left",
                     }}
                   >
                     <span style={{ color: "white", fontSize: "0.88rem", fontWeight: 600 }}>{city}</span>
@@ -151,17 +172,17 @@ export default function MapPage() {
             </div>
           )}
         </div>
-
-        {/* Mapy.cz tourist map iframe */}
-        <iframe
-          ref={iframeRef}
-          key={mapSrc}
-          src={mapSrc}
-          style={{ flex: 1, width: "100%", border: "none", display: "block" }}
-          title="Turistická mapa ze Seznam.cz"
-          allowFullScreen
-        />
       </div>
-    </PageLayout>
+
+      {/* Mapy.cz iframe — fills all remaining space */}
+      <iframe
+        ref={iframeRef}
+        key={mapSrc}
+        src={mapSrc}
+        style={{ flex: 1, width: "100%", border: "none", display: "block", minHeight: 0 }}
+        title={"Turistick\u00e1 mapa ze Seznam.cz"}
+        allowFullScreen
+      />
+    </div>
   );
 }
