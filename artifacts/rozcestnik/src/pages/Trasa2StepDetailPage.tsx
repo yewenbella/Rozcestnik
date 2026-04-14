@@ -1,6 +1,6 @@
 import { useParams } from "wouter";
 import { useEffect, useState } from "react";
-import { MapPin, Navigation, Flag, Info, ExternalLink, Star } from "lucide-react";
+import { MapPin, Navigation, Flag, Info, ExternalLink, Star, Clock, Ticket } from "lucide-react";
 import { trasa2Steps } from "@/data/trasa2Steps";
 import PageLayout from "@/components/PageLayout";
 
@@ -88,6 +88,50 @@ export default function Trasa2StepDetailPage() {
             }}>
               <IconComp size={28} color={step.color} strokeWidth={1.5} />
             </div>
+          </div>
+        )}
+
+        {/* Hours + entry badges */}
+        {(step.openHours || step.entryFee) && (
+          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+            {step.openHours && (
+              step.googleMapsUrl ? (
+                <a
+                  href={step.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: "6px",
+                    padding: "5px 10px", borderRadius: "8px",
+                    background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.25)",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Clock size={12} color="#4ade80" />
+                  <span style={{ color: "#4ade80", fontSize: "0.73rem", fontWeight: 600 }}>{step.openHours}</span>
+                  <ExternalLink size={10} color="rgba(74,222,128,0.55)" />
+                </a>
+              ) : (
+                <div style={{
+                  display: "inline-flex", alignItems: "center", gap: "6px",
+                  padding: "5px 10px", borderRadius: "8px",
+                  background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.25)",
+                }}>
+                  <Clock size={12} color="#4ade80" />
+                  <span style={{ color: "#4ade80", fontSize: "0.73rem", fontWeight: 600 }}>{step.openHours}</span>
+                </div>
+              )
+            )}
+            {step.entryFee && (
+              <div style={{
+                display: "inline-flex", alignItems: "center", gap: "6px",
+                padding: "5px 10px", borderRadius: "8px",
+                background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.25)",
+              }}>
+                <Ticket size={12} color="#a78bfa" />
+                <span style={{ color: "#a78bfa", fontSize: "0.73rem", fontWeight: 600 }}>{step.entryFee}</span>
+              </div>
+            )}
           </div>
         )}
 
