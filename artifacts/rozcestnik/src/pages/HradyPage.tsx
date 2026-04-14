@@ -7,13 +7,10 @@ import { useDenik } from "@/hooks/useDenik";
 
 const PAGE_SIZE = 30;
 
-type TypeFilter = "vse" | "hrad" | "zamek";
-
 export default function HradyPage() {
   const [, navigate] = useLocation();
   const [query, setQuery] = useState("");
   const [kraj, setKraj] = useState("");
-  const [typeFilter, setTypeFilter] = useState<TypeFilter>("vse");
   const [page, setPage] = useState(1);
   const [showKrajDropdown, setShowKrajDropdown] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
@@ -24,28 +21,24 @@ export default function HradyPage() {
     return hrady.filter(h => {
       const matchName = !q || h.name.toLowerCase().includes(q);
       const matchKraj = !kraj || h.kraj === kraj;
-      const matchType = typeFilter === "vse" || h.type === typeFilter;
-      return matchName && matchKraj && matchType;
+      return matchName && matchKraj;
     });
-  }, [query, kraj, typeFilter]);
+  }, [query, kraj]);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const visible = filtered.slice(0, page * PAGE_SIZE);
 
   function handleQueryChange(v: string) { setQuery(v); setPage(1); }
   function handleKrajChange(v: string) { setKraj(v); setPage(1); setShowKrajDropdown(false); }
-  function handleTypeChange(t: TypeFilter) { setTypeFilter(t); setPage(1); }
-
-  const hradyCount = useMemo(() => hrady.filter(h => h.type === "hrad").length, []);
-  const zamkyCount = useMemo(() => hrady.filter(h => h.type === "zamek").length, []);
 
   return (
     <div style={{
       minHeight: "100vh", width: "100%", maxWidth: "480px", margin: "0 auto",
       position: "relative", display: "flex", flexDirection: "column", overflow: "hidden",
     }}>
+      {/* Background */}
       <img src={heroBg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(10,18,5,0.85) 100%)" }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(10,18,5,0.82) 100%)" }} />
 
       <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", minHeight: "100vh" }}>
 
@@ -68,8 +61,8 @@ export default function HradyPage() {
           </button>
 
           <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ fontSize: "1.1rem" }}>{"🏰"}</span>
-            <span style={{ color: "white", fontWeight: 900, fontSize: "1.05rem", letterSpacing: "0.04em" }}>{"HRADY & Z\u00c1MKY"}</span>
+            <span style={{ fontSize: "1.15rem", lineHeight: 1 }}>{"🏰"}</span>
+            <span style={{ color: "white", fontWeight: 900, fontSize: "1.05rem", letterSpacing: "0.04em" }}>{"HRADY A Z\u00c1MKY"}</span>
             <span style={{
               background: "rgba(251,191,36,0.2)", border: "1px solid rgba(251,191,36,0.4)",
               borderRadius: "20px", padding: "1px 8px", color: "#fbbf24",
@@ -78,36 +71,9 @@ export default function HradyPage() {
           </div>
         </div>
 
-        {/* Type Filter Pills */}
-        <div style={{ padding: "12px 16px 0", display: "flex", gap: "6px" }}>
-          {(["vse", "hrad", "zamek"] as TypeFilter[]).map(t => {
-            const label = t === "vse"
-              ? `V\u0161e (${hrady.length})`
-              : t === "hrad"
-                ? `Hrady (${hradyCount})`
-                : `Z\u00e1mky (${zamkyCount})`;
-            const active = typeFilter === t;
-            return (
-              <button
-                key={t}
-                onClick={() => handleTypeChange(t)}
-                style={{
-                  padding: "6px 12px", borderRadius: "20px", fontSize: "0.78rem", fontWeight: 700,
-                  cursor: "pointer", border: "1px solid",
-                  background: active ? "rgba(251,191,36,0.18)" : "rgba(255,255,255,0.07)",
-                  borderColor: active ? "rgba(251,191,36,0.6)" : "rgba(255,255,255,0.15)",
-                  color: active ? "#fbbf24" : "rgba(255,255,255,0.6)",
-                  transition: "all 0.15s",
-                }}
-              >
-                {label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Search + Kraj Filter */}
-        <div style={{ padding: "10px 16px 8px", display: "flex", flexDirection: "column", gap: "8px" }}>
+        {/* Search + Filter */}
+        <div style={{ padding: "12px 16px 8px", display: "flex", flexDirection: "column", gap: "8px" }}>
+          {/* Search bar */}
           <div style={{
             display: "flex", alignItems: "center", gap: "8px",
             background: "rgba(255,255,255,0.12)",
@@ -120,7 +86,10 @@ export default function HradyPage() {
               placeholder={"Hledat hrad nebo z\u00e1mek\u2026"}
               value={query}
               onChange={e => handleQueryChange(e.target.value)}
-              style={{ flex: 1, background: "none", border: "none", outline: "none", color: "white", fontSize: "0.88rem" }}
+              style={{
+                flex: 1, background: "none", border: "none", outline: "none",
+                color: "white", fontSize: "0.88rem",
+              }}
             />
             {query && (
               <button onClick={() => handleQueryChange("")} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex" }}>
@@ -129,6 +98,7 @@ export default function HradyPage() {
             )}
           </div>
 
+          {/* Kraj filter */}
           <div style={{ position: "relative" }}>
             <button
               onClick={() => setShowKrajDropdown(p => !p)}
@@ -141,11 +111,7 @@ export default function HradyPage() {
               }}
             >
               <span>{kraj || "V\u0161echny kraje"}</span>
-              <ChevronDown
-                size={14}
-                color={kraj ? "#fbbf24" : "rgba(255,255,255,0.5)"}
-                style={{ transform: showKrajDropdown ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}
-              />
+              <ChevronDown size={14} color={kraj ? "#fbbf24" : "rgba(255,255,255,0.5)"} style={{ transform: showKrajDropdown ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
             </button>
 
             {showKrajDropdown && (
@@ -202,19 +168,17 @@ export default function HradyPage() {
               {visible.map(h => {
                 const hid = String(h.id);
                 const done = isCompleted("hrad", hid);
-                const isHradType = h.type === "hrad";
-                const typeColor = isHradType ? "#f97316" : "#fbbf24";
-                const typeBg = isHradType ? "rgba(249,115,22,0.15)" : "rgba(251,191,36,0.15)";
-                const typeBorder = isHradType ? "rgba(249,115,22,0.35)" : "rgba(251,191,36,0.35)";
                 return (
                   <div
                     key={h.id}
                     style={{
                       display: "flex", alignItems: "center",
                       background: done ? "rgba(251,191,36,0.07)" : "rgba(255,255,255,0.10)",
-                      border: done ? "1px solid rgba(251,191,36,0.35)" : "1px solid rgba(255,255,255,0.12)",
-                      borderRadius: "10px", padding: "11px 14px",
-                      transition: "background 0.15s", gap: "10px",
+                      border: done ? "1px solid rgba(251,191,36,0.3)" : "1px solid rgba(255,255,255,0.12)",
+                      borderRadius: "10px",
+                      padding: "11px 14px",
+                      transition: "background 0.15s",
+                      gap: "10px",
                     }}
                   >
                     <a
@@ -229,19 +193,21 @@ export default function HradyPage() {
                       }}>
                         {h.name}
                       </div>
-                      <div style={{ marginTop: "4px", display: "flex", flexWrap: "wrap", gap: "4px" }}>
+                      <div style={{ marginTop: "3px", display: "flex", flexWrap: "wrap", gap: "4px" }}>
                         <span style={{
-                          background: typeBg, border: `1px solid ${typeBorder}`,
+                          background: h.type === "hrad" ? "rgba(249,115,22,0.15)" : "rgba(251,191,36,0.13)",
+                          border: h.type === "hrad" ? "1px solid rgba(249,115,22,0.35)" : "1px solid rgba(251,191,36,0.3)",
                           borderRadius: "6px", padding: "1px 6px",
-                          color: typeColor, fontSize: "0.67rem", fontWeight: 700, textTransform: "uppercase",
+                          color: h.type === "hrad" ? "#f97316" : "#fbbf24",
+                          fontSize: "0.68rem", fontWeight: 700,
                         }}>
-                          {h.type === "hrad" ? "hrad" : h.type === "zamek" ? "z\u00e1mek" : "tvrz"}
+                          {h.type === "hrad" ? "hrad" : "z\u00e1mek"}
                         </span>
                         {h.kraj && (
                           <span style={{
-                            background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)",
+                            background: "rgba(251,191,36,0.10)", border: "1px solid rgba(251,191,36,0.22)",
                             borderRadius: "6px", padding: "1px 6px",
-                            color: "rgba(255,255,255,0.55)", fontSize: "0.67rem",
+                            color: "#fbbf24", fontSize: "0.68rem", fontWeight: 600,
                           }}>
                             {h.kraj.replace(" kraj", "")}
                           </span>
@@ -254,11 +220,14 @@ export default function HradyPage() {
                         onClick={() => toggle("hrad", hid, h.name)}
                         title={done ? "Odebrat z den\u00edku" : "Ozna\u010dit jako nav\u0161t\u00edveno"}
                         style={{
-                          flexShrink: 0, width: 30, height: 30, borderRadius: "50%",
+                          flexShrink: 0,
+                          width: 30, height: 30,
+                          borderRadius: "50%",
                           border: done ? "1.5px solid rgba(251,191,36,0.7)" : "1.5px solid rgba(255,255,255,0.22)",
                           background: done ? "rgba(251,191,36,0.18)" : "rgba(255,255,255,0.06)",
                           display: "flex", alignItems: "center", justifyContent: "center",
-                          cursor: "pointer", transition: "all 0.18s",
+                          cursor: "pointer",
+                          transition: "all 0.18s",
                         }}
                       >
                         {done
