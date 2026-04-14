@@ -52,6 +52,23 @@ export default function GamePage() {
   const scoreSentRef = useRef(false);
   const sessionRef = useRef(session);
   useEffect(() => { sessionRef.current = session; }, [session]);
+  const [nickname, setNickname] = useState<string | null>(null);
+  const nicknameRef = useRef<string | null>(null);
+  useEffect(() => { nicknameRef.current = nickname; }, [nickname]);
+
+  useEffect(() => {
+    if (!session) return;
+    (async () => {
+      try {
+        const token = await session.getToken().catch(() => null);
+        const headers: Record<string, string> = {};
+        if (token) headers["Authorization"] = `Bearer ${token}`;
+        const res = await fetch("/api/profile", { headers, credentials: "include" });
+        const data = await res.json();
+        if (data.nickname) setNickname(data.nickname);
+      } catch {}
+    })();
+  }, [session]);
 
   const fetchTop = useCallback(async () => {
     try {
@@ -187,9 +204,8 @@ export default function GamePage() {
             setDisplay({ score: finalScore, dead: true, started: true });
             if (!scoreSentRef.current) {
               scoreSentRef.current = true;
-              const playerName = user
-                ? (user.fullName || user.firstName || user.username || "Turista")
-                : null;
+              const playerName = nicknameRef.current
+                || (user ? (user.fullName || user.firstName || user.username || "Turista") : null);
               if (playerName) {
                 (async () => {
                   const token = await sessionRef.current?.getToken().catch(() => null);

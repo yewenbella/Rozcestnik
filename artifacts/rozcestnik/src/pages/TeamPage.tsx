@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useUser, useClerk } from "@clerk/react";
 import { useLocation } from "wouter";
-import { Users, Plus, LogIn, Copy, Check, LogOut, Mountain, QrCode, Share2 } from "lucide-react";
+import { Users, Plus, LogIn, Copy, Check, LogOut, Mountain, QrCode, Share2, Pencil } from "lucide-react";
 import QRCode from "qrcode";
 import PageLayout from "@/components/PageLayout";
 
@@ -28,6 +28,12 @@ export default function TeamPage() {
   const [submitting, setSubmitting] = useState(false);
   const [copied, setCopied] = useState(false);
   const [qrDataUrl, setQrDataUrl] = useState("");
+  const [nickname, setNickname] = useState<string | null>(null);
+  const [nicknameInput, setNicknameInput] = useState("");
+  const [editingNickname, setEditingNickname] = useState(false);
+  const [savingNickname, setSavingNickname] = useState(false);
+  const [nicknameSaved, setNicknameSaved] = useState(false);
+  const nicknameRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -36,6 +42,7 @@ export default function TeamPage() {
       return;
     }
     fetchTeam();
+    fetchNickname();
   }, [isLoaded, user]);
 
   useEffect(() => {
@@ -77,6 +84,38 @@ export default function TeamPage() {
       if (e?.message !== "session-expired") setTeam(null);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchNickname = async () => {
+    try {
+      const res = await authFetch("/api/profile");
+      const data = await res.json();
+      if (data.nickname) {
+        setNickname(data.nickname);
+        setNicknameInput(data.nickname);
+      }
+    } catch { }
+  };
+
+  const saveNickname = async () => {
+    if (!nicknameInput.trim()) return;
+    setSavingNickname(true);
+    try {
+      const res = await authFetch("/api/profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nickname: nicknameInput.trim() }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setNickname(data.nickname);
+        setEditingNickname(false);
+        setNicknameSaved(true);
+        setTimeout(() => setNicknameSaved(false), 2500);
+      }
+    } catch { } finally {
+      setSavingNickname(false);
     }
   };
 
@@ -148,8 +187,8 @@ export default function TeamPage() {
       <div style={{ padding: "10px 14px", maxWidth: "480px", margin: "0 auto" }}>
 
         {/* User info */}
-        <div style={{ ...glassCard, padding: "10px 14px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div style={{ ...glassCard, padding: "12px 14px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: nickname || editingNickname ? "10px" : 0 }}>
             {user?.imageUrl && (
               <img
                 src={user.imageUrl}
@@ -172,6 +211,79 @@ export default function TeamPage() {
             >
               <LogOut size={15} color="rgba(255,255,255,0.45)" />
             </button>
+          </div>
+
+          {/* Nickname section */}
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "10px" }}>
+            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.70rem", margin: "0 0 6px", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+              P\u0159ezd\xedvka v \u017eebr\xed\u010dku
+            </p>
+            {editingNickname ? (
+              <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                <input
+                  ref={nicknameRef}
+                  value={nicknameInput}
+                  onChange={(e) => setNicknameInput(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === "Enter") saveNickname(); if (e.key === "Escape") setEditingNickname(false); }}
+                  maxLength={30}
+                  placeholder="Nap\u0159. LesniBehoun"
+                  autoFocus
+                  style={{
+                    flex: 1,
+                    background: "rgba(0,0,0,0.3)",
+                    border: "1px solid rgba(74,222,128,0.4)",
+                    borderRadius: "8px",
+                    padding: "7px 10px",
+                    color: "white",
+                    fontSize: "0.88rem",
+                    outline: "none",
+                  }}
+                />
+                <button
+                  onClick={saveNickname}
+                  disabled={savingNickname || !nicknameInput.trim()}
+                  style={{
+                    background: "rgba(74,222,128,0.2)",
+                    border: "1px solid rgba(74,222,128,0.4)",
+                    borderRadius: "8px",
+                    padding: "7px 12px",
+                    color: "#4ade80",
+                    fontWeight: 700,
+                    fontSize: "0.80rem",
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {savingNickname ? "Ukl\xe1d\xe1m\u2026" : "Ulo\u017eit"}
+                </button>
+                <button
+                  onClick={() => { setEditingNickname(false); setNicknameInput(nickname || ""); }}
+                  style={{ ...iconBtn }}
+                >
+                  <Check size={15} color="rgba(255,255,255,0.3)" />
+                </button>
+              </div>
+            ) : (
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                {nickname ? (
+                  <>
+                    <span style={{ color: "#4ade80", fontWeight: 700, fontSize: "0.95rem" }}>{nickname}</span>
+                    {nicknameSaved && <span style={{ color: "rgba(74,222,128,0.7)", fontSize: "0.72rem" }}>\u2714 Ulo\u017eeno</span>}
+                  </>
+                ) : (
+                  <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.82rem", fontStyle: "italic" }}>
+                    Nezad\xe1no — nastav si p\u0159ezd\xedvku
+                  </span>
+                )}
+                <button
+                  onClick={() => { setEditingNickname(true); setTimeout(() => nicknameRef.current?.focus(), 50); }}
+                  style={{ ...iconBtn, marginLeft: nickname ? "4px" : "auto" }}
+                  title="Upravit p\u0159ezd\xedvku"
+                >
+                  <Pencil size={13} color="rgba(255,255,255,0.4)" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
 

@@ -67,6 +67,15 @@ export const routeRatingsTable = pgTable(
 
 export type RouteRating = typeof routeRatingsTable.$inferSelect;
 
+export const userProfilesTable = pgTable("user_profiles", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull().unique(),
+  nickname: text("nickname").notNull(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export type UserProfile = typeof userProfilesTable.$inferSelect;
+
 export const insertTeamSchema = createInsertSchema(teamsTable).omit({
   id: true,
   createdAt: true,
