@@ -18,6 +18,7 @@ import SignInPage from "@/pages/SignInPage";
 import SignUpPage from "@/pages/SignUpPage";
 import TeamPage from "@/pages/TeamPage";
 import ZkusebniTrasaPage from "@/pages/ZkusebniTrasaPage";
+import QuizPage from "@/pages/QuizPage";
 import NotFound from "@/pages/not-found";
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -68,6 +69,7 @@ function AppRoutes() {
       <Route path="/cesky-raj" component={CeskyRajPage} />
       <Route path="/zkusebni" component={ZkusebniTrasaPage} />
       <Route path="/hra" component={GamePage} />
+      <Route path="/kviz" component={QuizPage} />
       <Route path="/zebricek" component={ZebricekPage} />
       <Route path="/pravidla" component={PravidlaPage} />
       <Route component={NotFound} />

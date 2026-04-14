@@ -1,5 +1,5 @@
 import { useLocation } from "wouter";
-import { Map, Route, Trophy, BookOpen, UserCircle, Gamepad2 } from "lucide-react";
+import { Map, Route, Trophy, BookOpen, UserCircle, Gamepad2, HelpCircle } from "lucide-react";
 import { Show } from "@clerk/react";
 import heroBg from "@/assets/hero-bg.jpg";
 import WeatherWidget from "@/components/WeatherWidget";
@@ -50,6 +50,15 @@ const buttons = [
     border: "rgba(168,85,247,0.40)",
     glow: "#a855f7",
     accent: "#d8b4fe",
+  },
+  {
+    label: "KVÍZ",
+    icon: HelpCircle,
+    path: "/kviz",
+    gradient: "linear-gradient(135deg, rgba(251,191,36,0.18), rgba(217,119,6,0.12))",
+    border: "rgba(251,191,36,0.40)",
+    glow: "#fbbf24",
+    accent: "#fde68a",
   },
 ];
 
@@ -108,7 +117,7 @@ export default function Home() {
         <div
           style={{
             textAlign: "center",
-            paddingTop: "120px",
+            paddingTop: "72px",
             paddingBottom: "8px",
           }}
         >
@@ -193,7 +202,7 @@ export default function Home() {
             justifyContent: "center",
             alignItems: "center",
             gap: "10px",
-            padding: "0 20px",
+            padding: "0 20px 24px",
             flex: 1,
           }}
         >
