@@ -20,6 +20,7 @@ import TeamPage from "@/pages/TeamPage";
 import ZkusebniTrasaPage from "@/pages/ZkusebniTrasaPage";
 import QuizPage from "@/pages/QuizPage";
 import VyzvaPage from "@/pages/VyzvaPage";
+import RozhlednyPage from "@/pages/RozhlednyPage";
 import NotFound from "@/pages/not-found";
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -72,6 +73,7 @@ function AppRoutes() {
       <Route path="/hra" component={GamePage} />
       <Route path="/kviz" component={QuizPage} />
       <Route path="/vyzva" component={VyzvaPage} />
+      <Route path="/rozhledny" component={RozhlednyPage} />
       <Route path="/zebricek" component={ZebricekPage} />
       <Route path="/pravidla" component={PravidlaPage} />
       <Route component={NotFound} />
