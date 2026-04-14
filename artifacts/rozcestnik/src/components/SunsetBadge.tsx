@@ -161,10 +161,14 @@ export default function SunsetBadge() {
         display: "flex",
         alignItems: "center",
         gap: "7px",
-        padding: "4px 8px",
+        padding: "4px 9px 4px 7px",
         zIndex: 10,
         pointerEvents: "none",
         userSelect: "none",
+        background: "rgba(0,0,0,0.38)",
+        borderRadius: "10px",
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
       }}
     >
       <span style={{ fontSize: "1.1rem", lineHeight: 1 }}>
