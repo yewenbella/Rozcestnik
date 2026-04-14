@@ -122,11 +122,14 @@ export default function WeatherWidget({ compact }: { compact?: boolean } = {}) {
       <div style={{ display: "flex", alignItems: "center", gap: "7px", pointerEvents: "none", userSelect: "none" }}>
         <span style={{ fontSize: "1.1rem", lineHeight: 1 }}>{icon}</span>
         <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
-          <span style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.03em", lineHeight: 1.3, textShadow }}>
+          <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.03em", lineHeight: 1.3, textShadow }}>
             {weather.city} · {label}
           </span>
-          <span style={{ color: "white", fontSize: "0.80rem", fontWeight: 700, lineHeight: 1.2, textShadow }}>
-            {weather.temp}°C · ↑{weather.maxTemp}° ↓{weather.minTemp}°
+          <span style={{ fontSize: "0.80rem", fontWeight: 700, lineHeight: 1.2, display: "flex", gap: "4px", alignItems: "baseline" }}>
+            <span style={{ color: "rgba(255,255,255,0.55)", textShadow }}>{weather.temp}°C</span>
+            <span style={{ color: "rgba(255,255,255,0.3)", textShadow }}>·</span>
+            <span style={{ color: "#fca5a5", textShadow }}>↑{weather.maxTemp}°</span>
+            <span style={{ color: "#93c5fd", textShadow }}>↓{weather.minTemp}°</span>
           </span>
         </div>
       </div>
