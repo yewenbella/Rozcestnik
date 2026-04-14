@@ -174,7 +174,8 @@ export default function RozhlednyPage() {
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {visible.map(r => {
-                const done = isCompleted("rozhledna", r.id);
+                const rid = String(r.id);
+                const done = isCompleted("rozhledna", rid);
                 return (
                   <div
                     key={r.id}
@@ -215,26 +216,36 @@ export default function RozhlednyPage() {
                       )}
                     </a>
                     <ExternalLink size={13} color="rgba(255,255,255,0.25)" style={{ flexShrink: 0 }} />
-                    {isSignedIn && (
+                    {isSignedIn ? (
                       <button
-                        onClick={() => toggle("rozhledna", r.id, r.name)}
+                        onClick={() => toggle("rozhledna", rid, r.name)}
                         title={done ? "Odebrat z den\u00edku" : "Ozna\u010dit jako nav\u0161t\u00edveno"}
                         style={{
                           flexShrink: 0,
-                          width: 26, height: 26,
+                          width: 30, height: 30,
                           borderRadius: "50%",
-                          border: done ? "1.5px solid rgba(74,222,128,0.7)" : "1.5px solid rgba(255,255,255,0.2)",
-                          background: done ? "rgba(74,222,128,0.18)" : "rgba(255,255,255,0.05)",
+                          border: done ? "1.5px solid rgba(74,222,128,0.7)" : "1.5px solid rgba(255,255,255,0.22)",
+                          background: done ? "rgba(74,222,128,0.18)" : "rgba(255,255,255,0.06)",
                           display: "flex", alignItems: "center", justifyContent: "center",
                           cursor: "pointer",
-                          transition: "all 0.2s",
+                          transition: "all 0.18s",
                         }}
                       >
                         {done
-                          ? <CheckCircle2 size={14} color="#4ade80" />
-                          : <Circle size={14} color="rgba(255,255,255,0.3)" />
+                          ? <CheckCircle2 size={16} color="#4ade80" />
+                          : <Circle size={16} color="rgba(255,255,255,0.35)" />
                         }
                       </button>
+                    ) : (
+                      <div style={{
+                        flexShrink: 0, width: 30, height: 30, borderRadius: "50%",
+                        border: "1.5px solid rgba(255,255,255,0.10)",
+                        background: "rgba(255,255,255,0.03)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        opacity: 0.4,
+                      }}>
+                        <Circle size={16} color="rgba(255,255,255,0.3)" />
+                      </div>
                     )}
                   </div>
                 );
