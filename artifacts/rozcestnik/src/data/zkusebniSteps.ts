@@ -1,7 +1,6 @@
 export interface ZkusebniStep {
   label: string;
   type: "start" | "checkpoint" | "finish";
-  description: string;
   address: string;
   lat: number;
   lng: number;
@@ -11,25 +10,29 @@ export const zkusebniSteps: ZkusebniStep[] = [
   {
     label: "START",
     type: "start",
-    description: "Ještědská 46, Liberec 8",
     address: "Ještědská 46, Liberec 8, 46008",
     lat: 50.7280,
     lng: 15.0430,
   },
   {
-    label: "Kontrolní bod",
+    label: "Checkpoint 1",
     type: "checkpoint",
-    description: "Kontrolní bod trasy",
-    address: "",
-    lat: 0,
-    lng: 0,
+    address: "Zastávka Horní Hanychov",
+    lat: 50.7268,
+    lng: 15.0398,
+  },
+  {
+    label: "Checkpoint 2",
+    type: "checkpoint",
+    address: "Zastávka Hanychov kostel",
+    lat: 50.7284,
+    lng: 15.0425,
   },
   {
     label: "CÍL",
     type: "finish",
-    description: "Cíl trasy",
-    address: "",
-    lat: 0,
-    lng: 0,
+    address: "Zastávka Dolní Hanychov",
+    lat: 50.7303,
+    lng: 15.0453,
   },
 ];
