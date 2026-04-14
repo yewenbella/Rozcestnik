@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useUser } from "@clerk/react";
 import { Trophy } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
@@ -28,6 +29,7 @@ function drawRoundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: n
 }
 
 export default function GamePage() {
+  const { user } = useUser();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef({
     playerY: GROUND - PLAYER_H,
@@ -44,7 +46,7 @@ export default function GamePage() {
   });
   const rafRef = useRef<number>(0);
   const [display, setDisplay] = useState<{ score: number; dead: boolean; started: boolean }>({ score: 0, dead: false, started: false });
-  const [topScores, setTopScores] = useState<{ teamName: string; score: number }[]>([]);
+  const [topScores, setTopScores] = useState<{ player_name: string; score: number }[]>([]);
   const scoreSentRef = useRef(false);
 
   const fetchTop = useCallback(async () => {
@@ -154,12 +156,19 @@ export default function GamePage() {
             setDisplay({ score: finalScore, dead: true, started: true });
             if (!scoreSentRef.current) {
               scoreSentRef.current = true;
-              fetch("/api/game-scores", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify({ score: finalScore }),
-              }).then(() => fetchTop()).catch(() => {});
+              const playerName = user
+                ? (user.fullName || user.firstName || user.username || "Turista")
+                : null;
+              if (playerName) {
+                fetch("/api/game-scores", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  credentials: "include",
+                  body: JSON.stringify({ score: finalScore, playerName }),
+                }).then(() => fetchTop()).catch(() => {});
+              } else {
+                fetchTop();
+              }
             }
             break;
           }
@@ -298,12 +307,12 @@ export default function GamePage() {
           <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "12px" }}>
             <Trophy size={14} color="#f59e0b" />
             <span style={{ color: "#f59e0b", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.06em" }}>
-              TOP 3 TÝMY
+              TOP 3 HRÁČI
             </span>
           </div>
           {topScores.length === 0 ? (
             <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.80rem", textAlign: "center", padding: "8px 0" }}>
-              Zatím žádná skóre — buď první!
+              Zatím žádné skóre — buď první!
             </div>
           ) : topScores.map((s, i) => {
             const medals = ["🥇", "🥈", "🥉"];
@@ -316,7 +325,7 @@ export default function GamePage() {
               }}>
                 <span style={{ fontSize: "1.1rem", flexShrink: 0 }}>{medals[i]}</span>
                 <span style={{ flex: 1, color: "rgba(255,255,255,0.85)", fontSize: "0.85rem", fontWeight: 600 }}>
-                  {s.teamName}
+                  {s.player_name}
                 </span>
                 <span style={{ color: colors[i], fontWeight: 700, fontSize: "0.90rem" }}>
                   {s.score} m

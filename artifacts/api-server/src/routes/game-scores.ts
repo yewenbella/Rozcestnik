@@ -1,8 +1,9 @@
 import { Router } from "express";
 import { getAuth } from "@clerk/express";
-import { db, pool } from "@workspace/db";
-import { gameScoresTable, teamsTable, teamMembersTable } from "@workspace/db";
-import { eq, desc } from "drizzle-orm";
+import { pool } from "@workspace/db";
+import { db } from "@workspace/db";
+import { gameScoresTable, teamsTable } from "@workspace/db";
+import { desc } from "drizzle-orm";
 
 const router = Router();
 
@@ -16,28 +17,18 @@ const requireAuth = (req: any, res: any, next: any) => {
 
 router.post("/", requireAuth, async (req: any, res) => {
   try {
-    const { score } = req.body;
+    const { score, playerName } = req.body;
     if (!score || typeof score !== "number") {
       return res.status(400).json({ error: "score je povinné" });
     }
-
-    const memberships = await db
-      .select()
-      .from(teamMembersTable)
-      .where(eq(teamMembersTable.userId, req.userId));
-
-    if (memberships.length === 0) {
-      return res.status(400).json({ error: "Nejsi v žádném týmu" });
-    }
-
-    const teamId = memberships[0].teamId;
+    const name = (playerName || "Turista").slice(0, 40);
 
     await pool.query(
-      `INSERT INTO game_scores (team_id, score) VALUES ($1, $2)
-       ON CONFLICT (team_id) DO UPDATE
-         SET score = EXCLUDED.score, achieved_at = now()
+      `INSERT INTO game_scores (user_id, player_name, score) VALUES ($1, $2, $3)
+       ON CONFLICT (user_id) DO UPDATE
+         SET score = EXCLUDED.score, player_name = EXCLUDED.player_name, achieved_at = now()
          WHERE game_scores.score < EXCLUDED.score`,
-      [teamId, score]
+      [req.userId, name, score]
     );
 
     res.json({ ok: true });
@@ -49,17 +40,10 @@ router.post("/", requireAuth, async (req: any, res) => {
 
 router.get("/top", async (_req, res) => {
   try {
-    const rows = await db
-      .select({
-        teamName: teamsTable.name,
-        score: gameScoresTable.score,
-      })
-      .from(gameScoresTable)
-      .innerJoin(teamsTable, eq(gameScoresTable.teamId, teamsTable.id))
-      .orderBy(desc(gameScoresTable.score))
-      .limit(3);
-
-    res.json({ scores: rows });
+    const rows = await pool.query(
+      `SELECT player_name, score FROM game_scores ORDER BY score DESC LIMIT 3`
+    );
+    res.json({ scores: rows.rows });
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: "Server error" });

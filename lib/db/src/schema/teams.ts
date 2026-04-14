@@ -43,13 +43,12 @@ export const gameScoresTable = pgTable(
   "game_scores",
   {
     id: serial("id").primaryKey(),
-    teamId: integer("team_id")
-      .notNull()
-      .references(() => teamsTable.id, { onDelete: "cascade" }),
+    userId: text("user_id").notNull(),
+    playerName: text("player_name").notNull(),
     score: integer("score").notNull(),
     achievedAt: timestamp("achieved_at").defaultNow(),
   },
-  (t) => [unique("unique_game_team").on(t.teamId)]
+  (t) => [unique("unique_game_user").on(t.userId)]
 );
 
 export const insertTeamSchema = createInsertSchema(teamsTable).omit({
