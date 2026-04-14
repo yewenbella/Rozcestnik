@@ -37,7 +37,7 @@ router.get("/top", async (_req, res) => {
       `SELECT COALESCE(up.nickname, qs.player_name) AS player_name, qs.score
        FROM quiz_scores qs
        LEFT JOIN user_profiles up ON qs.user_id = up.user_id
-       ORDER BY qs.score DESC LIMIT 10`
+       ORDER BY qs.score DESC LIMIT 5`
     );
     res.json({ scores: rows.rows });
   } catch (e) {

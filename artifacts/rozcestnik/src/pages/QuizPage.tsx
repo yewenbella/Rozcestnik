@@ -250,7 +250,7 @@ export default function QuizPage() {
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <Trophy size={16} color="#f59e0b" />
           <span style={{ color: "#f59e0b", fontWeight: 800, fontSize: "0.85rem", letterSpacing: "0.07em" }}>
-            TOP 10 ŽEBŘÍČEK
+            TOP 5 ŽEBŘÍČEK
           </span>
         </div>
         <button
