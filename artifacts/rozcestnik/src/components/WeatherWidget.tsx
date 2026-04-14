@@ -75,13 +75,27 @@ export default function WeatherWidget() {
       }
     };
 
+    const fallbackToIp = async () => {
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+        if (data.latitude && data.longitude) {
+          fetchWeather(data.latitude, data.longitude);
+        } else {
+          fetchWeather(50.08, 14.43);
+        }
+      } catch {
+        fetchWeather(50.08, 14.43);
+      }
+    };
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => fetchWeather(pos.coords.latitude, pos.coords.longitude),
-        () => fetchWeather(50.08, 14.43)
+        () => fallbackToIp()
       );
     } else {
-      fetchWeather(50.08, 14.43);
+      fallbackToIp();
     }
   }, []);
 
