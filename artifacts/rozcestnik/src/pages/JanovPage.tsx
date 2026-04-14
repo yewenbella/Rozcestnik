@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
-import { MapPin, Info, ExternalLink } from "lucide-react";
+import { MapPin, Info, ExternalLink, Sparkles } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
+
+const zajimavosti = [
+  { emoji: "⛷️", text: "Domov lyžařského areálu Severák — oblíbené středisko běžeckého i sjezdového lyžování v Jizerských horách." },
+  { emoji: "🚂", text: "Obcí prochází historická horská železnice Tanvald–Harrachov, která překonává prudké stoupání ozubnicovým pohonem." },
+  { emoji: "🌲", text: "Leží na hranici CHKO Jizerské hory — okolní lesy jsou součástí jednoho z největších smrkových masivů v Čechách." },
+  { emoji: "🏔️", text: "Nadmořská výška obce se pohybuje mezi 500 a 700 m n. m., což zajišťuje spolehlivou sněhovou pokrývku v zimě." },
+];
 
 export default function JanovPage() {
   const [text, setText] = useState("");
@@ -91,6 +98,30 @@ export default function JanovPage() {
             <ExternalLink size={11} />
             Přečíst celý článek na Wikipedii
           </a>
+        </div>
+
+        <div style={{
+          borderRadius: "16px",
+          background: "rgba(255,255,255,0.05)",
+          border: "1px solid rgba(255,255,255,0.10)",
+          padding: "16px",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "12px" }}>
+            <Sparkles size={14} color="#f59e0b" />
+            <span style={{ color: "#f59e0b", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.05em" }}>
+              Zajímavosti
+            </span>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            {zajimavosti.map((z, i) => (
+              <div key={i} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+                <span style={{ fontSize: "1.1rem", flexShrink: 0, lineHeight: 1.4 }}>{z.emoji}</span>
+                <p style={{ margin: 0, color: "rgba(255,255,255,0.75)", fontSize: "0.83rem", lineHeight: "1.6" }}>
+                  {z.text}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
