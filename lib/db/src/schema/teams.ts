@@ -39,6 +39,19 @@ export const routeResultsTable = pgTable(
 
 export type RouteResult = typeof routeResultsTable.$inferSelect;
 
+export const gameScoresTable = pgTable(
+  "game_scores",
+  {
+    id: serial("id").primaryKey(),
+    teamId: integer("team_id")
+      .notNull()
+      .references(() => teamsTable.id, { onDelete: "cascade" }),
+    score: integer("score").notNull(),
+    achievedAt: timestamp("achieved_at").defaultNow(),
+  },
+  (t) => [unique("unique_game_team").on(t.teamId)]
+);
+
 export const insertTeamSchema = createInsertSchema(teamsTable).omit({
   id: true,
   createdAt: true,

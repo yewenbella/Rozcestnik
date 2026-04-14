@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { Trophy } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
 const W = 360;
@@ -43,6 +44,18 @@ export default function GamePage() {
   });
   const rafRef = useRef<number>(0);
   const [display, setDisplay] = useState<{ score: number; dead: boolean; started: boolean }>({ score: 0, dead: false, started: false });
+  const [topScores, setTopScores] = useState<{ teamName: string; score: number }[]>([]);
+  const scoreSentRef = useRef(false);
+
+  const fetchTop = useCallback(async () => {
+    try {
+      const res = await fetch("/api/game-scores/top");
+      const data = await res.json();
+      if (data.scores) setTopScores(data.scores);
+    } catch {}
+  }, []);
+
+  useEffect(() => { fetchTop(); }, [fetchTop]);
 
   function jump() {
     const s = stateRef.current;
@@ -64,6 +77,7 @@ export default function GamePage() {
     s.dead = false;
     s.nextObstacle = 80;
     s.legPhase = 0;
+    scoreSentRef.current = false;
     setDisplay({ score: 0, dead: false, started: true });
   }
 
@@ -136,7 +150,17 @@ export default function GamePage() {
         for (const o of s.obstacles) {
           if (px < o.x + o.w && px + pw > o.x && py < GROUND && py + ph > GROUND - o.h) {
             s.dead = true;
-            setDisplay({ score: s.score, dead: true, started: true });
+            const finalScore = s.score;
+            setDisplay({ score: finalScore, dead: true, started: true });
+            if (!scoreSentRef.current) {
+              scoreSentRef.current = true;
+              fetch("/api/game-scores", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ score: finalScore }),
+              }).then(() => fetchTop()).catch(() => {});
+            }
             break;
           }
         }
@@ -262,6 +286,45 @@ export default function GamePage() {
             </div>
           </div>
         )}
+
+        {/* Leaderboard */}
+        <div style={{
+          width: "100%", maxWidth: `${W}px`,
+          borderRadius: "14px",
+          background: "rgba(255,255,255,0.05)",
+          border: "1px solid rgba(255,255,255,0.10)",
+          padding: "14px 16px",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "12px" }}>
+            <Trophy size={14} color="#f59e0b" />
+            <span style={{ color: "#f59e0b", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.06em" }}>
+              TOP 3 TÝMY
+            </span>
+          </div>
+          {topScores.length === 0 ? (
+            <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.80rem", textAlign: "center", padding: "8px 0" }}>
+              Zatím žádná skóre — buď první!
+            </div>
+          ) : topScores.map((s, i) => {
+            const medals = ["🥇", "🥈", "🥉"];
+            const colors = ["#f59e0b", "#9ca3af", "#b45309"];
+            return (
+              <div key={i} style={{
+                display: "flex", alignItems: "center", gap: "10px",
+                padding: "7px 0",
+                borderBottom: i < topScores.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
+              }}>
+                <span style={{ fontSize: "1.1rem", flexShrink: 0 }}>{medals[i]}</span>
+                <span style={{ flex: 1, color: "rgba(255,255,255,0.85)", fontSize: "0.85rem", fontWeight: 600 }}>
+                  {s.teamName}
+                </span>
+                <span style={{ color: colors[i], fontWeight: 700, fontSize: "0.90rem" }}>
+                  {s.score} m
+                </span>
+              </div>
+            );
+          })}
+        </div>
 
       </div>
     </PageLayout>
