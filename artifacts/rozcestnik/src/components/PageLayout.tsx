@@ -24,17 +24,15 @@ export default function PageLayout({ title, backPath, children, rightSlot }: Pag
         overflow: "hidden",
       }}
     >
-      {/* Background photo */}
+      {/* Background photo — same as Home, no transform, no fixed */}
       <img
         src={heroBg}
         alt=""
+        aria-hidden="true"
         style={{
-          position: "fixed",
-          top: 0,
-          left: "50%",
-          transform: "translateX(-50%)",
+          position: "absolute",
+          inset: 0,
           width: "100%",
-          maxWidth: "480px",
           height: "100%",
           objectFit: "cover",
           objectPosition: "center",
@@ -44,14 +42,9 @@ export default function PageLayout({ title, backPath, children, rightSlot }: Pag
       {/* Dark overlay */}
       <div
         style={{
-          position: "fixed",
-          top: 0,
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "100%",
-          maxWidth: "480px",
-          height: "100%",
-          background: "linear-gradient(to bottom, rgba(5,15,5,0.70) 0%, rgba(5,15,5,0.85) 100%)",
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(to bottom, rgba(5,15,5,0.72) 0%, rgba(5,15,5,0.88) 100%)",
           zIndex: 0,
         }}
       />
@@ -67,7 +60,7 @@ export default function PageLayout({ title, backPath, children, rightSlot }: Pag
           position: "sticky",
           top: 0,
           zIndex: 10,
-          background: "rgba(5,15,5,0.75)",
+          background: "rgba(5,15,5,0.80)",
         }}
       >
         <button
@@ -106,7 +99,7 @@ export default function PageLayout({ title, backPath, children, rightSlot }: Pag
         )}
       </div>
 
-      {/* Content */}
+      {/* Content — scrollable, above background */}
       <div style={{ flex: 1, overflowY: "auto", position: "relative", zIndex: 1 }}>
         {children}
       </div>

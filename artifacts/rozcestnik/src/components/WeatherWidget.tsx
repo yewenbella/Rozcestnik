@@ -149,7 +149,6 @@ export default function WeatherWidget({ compact, tile }: { compact?: boolean; ti
       <div style={{
         display: "flex", alignItems: "center", gap: "7px", pointerEvents: "none", userSelect: "none",
         background: "rgba(0,0,0,0.38)", borderRadius: "10px", padding: "4px 9px 4px 7px",
-        backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)",
       }}>
         <span style={{ fontSize: "1.1rem", lineHeight: 1 }}>{icon}</span>
         <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
@@ -202,8 +201,6 @@ const widgetStyle: React.CSSProperties = {
   padding: "9px 13px",
   borderRadius: "10px",
   background: "rgba(255,255,255,0.08)",
-  backdropFilter: "blur(12px)",
-  WebkitBackdropFilter: "blur(12px)",
   border: "1px solid rgba(255,255,255,0.14)",
   boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
   boxSizing: "border-box",

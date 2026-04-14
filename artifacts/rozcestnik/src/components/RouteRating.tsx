@@ -102,7 +102,6 @@ export default function RouteRating({ routeId }: Props) {
               border: "1px solid rgba(251,191,36,0.25)",
               borderRadius: "14px",
               padding: "14px 16px",
-              backdropFilter: "blur(16px)",
               boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
               minWidth: "200px",
             }}

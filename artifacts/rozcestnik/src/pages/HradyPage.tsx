@@ -16,7 +16,7 @@ export default function HradyPage() {
           style={{
             position: "absolute", top: "16px", left: "16px",
             display: "flex", alignItems: "center", gap: "6px",
-            background: "rgba(0,0,0,0.3)", backdropFilter: "blur(8px)",
+            background: "rgba(0,0,0,0.50)",
             border: "1px solid rgba(255,255,255,0.2)", borderRadius: "8px",
             padding: "6px 12px", color: "rgba(255,255,255,0.85)", fontSize: "0.78rem",
             fontWeight: 700, cursor: "pointer",

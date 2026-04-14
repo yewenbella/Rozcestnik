@@ -437,9 +437,7 @@ export default function TeamPage() {
 }
 
 const glassCard: React.CSSProperties = {
-  background: "rgba(255,255,255,0.06)",
-  backdropFilter: "blur(12px)",
-  WebkitBackdropFilter: "blur(12px)",
+  background: "rgba(255,255,255,0.09)",
   border: "1.5px solid rgba(255,255,255,0.12)",
   borderRadius: "14px",
   padding: "16px",

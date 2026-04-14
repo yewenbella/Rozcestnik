@@ -54,7 +54,7 @@ export default function RozhlednyPage() {
             onClick={() => navigate("/")}
             style={{
               display: "flex", alignItems: "center", gap: "6px",
-              background: "rgba(0,0,0,0.3)", backdropFilter: "blur(8px)",
+              background: "rgba(0,0,0,0.50)",
               border: "1px solid rgba(255,255,255,0.2)", borderRadius: "8px",
               padding: "7px 12px", color: "rgba(255,255,255,0.85)", fontSize: "0.78rem",
               fontWeight: 700, cursor: "pointer", flexShrink: 0,
@@ -82,7 +82,7 @@ export default function RozhlednyPage() {
           {/* Search bar */}
           <div style={{
             display: "flex", alignItems: "center", gap: "8px",
-            background: "rgba(255,255,255,0.1)", backdropFilter: "blur(12px)",
+            background: "rgba(255,255,255,0.12)",
             border: "1px solid rgba(255,255,255,0.2)", borderRadius: "10px",
             padding: "9px 12px",
           }}>
@@ -110,7 +110,7 @@ export default function RozhlednyPage() {
               onClick={() => setShowKrajDropdown(p => !p)}
               style={{
                 width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
-                background: "rgba(255,255,255,0.08)", backdropFilter: "blur(12px)",
+                background: "rgba(255,255,255,0.10)",
                 border: kraj ? "1px solid rgba(134,239,172,0.5)" : "1px solid rgba(255,255,255,0.15)",
                 borderRadius: "10px", padding: "9px 12px", cursor: "pointer",
                 color: kraj ? "#86efac" : "rgba(255,255,255,0.6)", fontSize: "0.85rem", fontWeight: kraj ? 700 : 400,
@@ -123,7 +123,7 @@ export default function RozhlednyPage() {
             {showKrajDropdown && (
               <div style={{
                 position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0, zIndex: 50,
-                background: "rgba(10,30,10,0.97)", backdropFilter: "blur(16px)",
+                background: "rgba(10,30,10,0.98)",
                 border: "1px solid rgba(134,239,172,0.25)", borderRadius: "10px",
                 maxHeight: "220px", overflowY: "auto",
               }}>
@@ -179,7 +179,7 @@ export default function RozhlednyPage() {
                   rel="noopener noreferrer"
                   style={{
                     display: "flex", alignItems: "center", justifyContent: "space-between",
-                    background: "rgba(255,255,255,0.07)", backdropFilter: "blur(8px)",
+                    background: "rgba(255,255,255,0.10)",
                     border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px",
                     padding: "11px 14px", textDecoration: "none",
                     transition: "background 0.15s",

@@ -188,8 +188,6 @@ export default function SunsetBadge({ tile }: { tile?: boolean } = {}) {
         userSelect: "none",
         background: "rgba(0,0,0,0.38)",
         borderRadius: "10px",
-        backdropFilter: "blur(4px)",
-        WebkitBackdropFilter: "blur(4px)",
       }}
     >
       <span style={{ fontSize: "1.1rem", lineHeight: 1 }}>

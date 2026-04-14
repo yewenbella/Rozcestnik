@@ -355,8 +355,7 @@ export default function GamePage() {
         {showNameInput && (
           <div style={{
             position: "absolute", inset: 0,
-            background: "rgba(0,0,0,0.75)",
-            backdropFilter: "blur(8px)",
+            background: "rgba(0,0,0,0.88)",
             display: "flex", alignItems: "center", justifyContent: "center",
             zIndex: 30, padding: "20px",
           }}>
@@ -434,9 +433,7 @@ export default function GamePage() {
             style={{
               position: "absolute",
               bottom: 0, left: 0, right: 0,
-              background: "rgba(6,14,10,0.97)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
+              background: "rgba(6,14,10,0.98)",
               borderTop: "1px solid rgba(74,222,128,0.25)",
               borderRadius: "20px 20px 0 0",
               padding: "18px 20px 32px",

@@ -240,7 +240,7 @@ export default function QuizPage() {
   const headerStyle: React.CSSProperties = {
     display: "flex", alignItems: "center", gap: "12px", padding: "12px 16px",
     borderBottom: "1px solid rgba(255,255,255,0.08)", background: "rgba(0,0,0,0.25)",
-    backdropFilter: "blur(12px)", position: "sticky", top: 0, zIndex: 10,
+    position: "sticky", top: 0, zIndex: 10,
   };
 
   const backBtnStyle: React.CSSProperties = {
@@ -286,9 +286,7 @@ export default function QuizPage() {
   const leaderboardOverlay = showLeaderboard && (
     <div style={{
       position: "absolute", bottom: 0, left: 0, right: 0,
-      background: "rgba(6,14,10,0.97)",
-      backdropFilter: "blur(20px)",
-      WebkitBackdropFilter: "blur(20px)",
+      background: "rgba(6,14,10,0.98)",
       borderTop: "1px solid rgba(251,191,36,0.25)",
       borderRadius: "20px 20px 0 0",
       padding: "18px 20px 32px",

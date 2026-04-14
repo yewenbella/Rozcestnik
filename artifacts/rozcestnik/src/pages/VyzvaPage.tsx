@@ -47,8 +47,6 @@ function NavBtn({ label, Icon, path, gradient, border, glow, accent, navigate }:
         gap: "8px",
         width: "220px",
         background: gradient,
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
         border: `1.5px solid ${border}`,
         borderRadius: "10px",
         padding: "12px 14px",
@@ -92,7 +90,7 @@ export default function VyzvaPage() {
           style={{
             position: "absolute", top: "16px", left: "16px",
             display: "flex", alignItems: "center", gap: "6px",
-            background: "rgba(0,0,0,0.3)", backdropFilter: "blur(8px)",
+            background: "rgba(0,0,0,0.50)",
             border: "1px solid rgba(255,255,255,0.2)", borderRadius: "8px",
             padding: "6px 12px", color: "rgba(255,255,255,0.85)", fontSize: "0.78rem",
             fontWeight: 700, cursor: "pointer", letterSpacing: "0.05em",

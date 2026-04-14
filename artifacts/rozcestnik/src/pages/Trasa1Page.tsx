@@ -289,7 +289,7 @@ export default function Trasa1Page() {
             borderRadius: "12px",
             border: totalDuration ? "1px solid rgba(253,230,138,0.45)" : "1px dashed rgba(253,230,138,0.25)",
             background: totalDuration ? "rgba(253,230,138,0.15)" : "rgba(253,230,138,0.05)",
-            backdropFilter: "blur(10px)",
+            
             minWidth: "160px",
             transition: "all 0.4s",
           }}>
@@ -322,7 +322,7 @@ export default function Trasa1Page() {
             padding: "8px 10px", borderRadius: "12px",
             border: hotelOpen ? "1px solid rgba(232,121,249,0.45)" : "1px solid rgba(255,255,255,0.15)",
             background: hotelOpen ? "rgba(232,121,249,0.15)" : "rgba(255,255,255,0.07)",
-            backdropFilter: "blur(10px)", color: "rgba(255,255,255,0.8)",
+             color: "rgba(255,255,255,0.8)",
             fontWeight: 700, fontSize: "0.80rem", cursor: "pointer", transition: "all 0.2s",
           }}>
             <Hotel size={15} color={hotelOpen ? "#e879f9" : "rgba(255,255,255,0.7)"} />
@@ -371,7 +371,7 @@ export default function Trasa1Page() {
               padding: "8px 10px", borderRadius: "12px",
               border: parkOpen ? "1px solid rgba(74,222,128,0.45)" : "1px solid rgba(255,255,255,0.15)",
               background: parkOpen ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.07)",
-              backdropFilter: "blur(10px)", color: "rgba(255,255,255,0.8)",
+               color: "rgba(255,255,255,0.8)",
               fontWeight: 700, fontSize: "0.80rem", cursor: "pointer", transition: "all 0.2s",
             }}>
               <Car size={15} color={parkOpen ? "#4ade80" : "rgba(255,255,255,0.7)"} />
@@ -384,7 +384,7 @@ export default function Trasa1Page() {
               padding: "8px 10px", borderRadius: "12px",
               border: busOpen ? "1px solid rgba(96,165,250,0.45)" : "1px solid rgba(255,255,255,0.15)",
               background: busOpen ? "rgba(96,165,250,0.15)" : "rgba(255,255,255,0.07)",
-              backdropFilter: "blur(10px)", color: "rgba(255,255,255,0.8)",
+               color: "rgba(255,255,255,0.8)",
               fontWeight: 700, fontSize: "0.80rem", cursor: "pointer", transition: "all 0.2s",
             }}>
               <Bus size={15} color={busOpen ? "#60a5fa" : "rgba(255,255,255,0.7)"} />

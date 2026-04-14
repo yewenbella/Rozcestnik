@@ -59,7 +59,6 @@ export default function TrasyPage() {
                     : done
                       ? "rgba(74,222,128,0.10)"
                       : "rgba(14,165,233,0.10)",
-                backdropFilter: "blur(12px)",
                 cursor: wip ? "default" : "pointer",
                 opacity: wip ? 0.5 : 1,
                 transition: "all 0.3s",

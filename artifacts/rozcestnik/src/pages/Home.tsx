@@ -81,8 +81,6 @@ function NavBtn({ label, Icon, path, gradient, border, glow, accent, navigate }:
         gap: "8px",
         width: "min(280px, 100%)",
         background: gradient,
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
         border: `1.5px solid ${border}`,
         borderRadius: "10px",
         padding: "12px 14px",
