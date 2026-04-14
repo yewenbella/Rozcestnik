@@ -1,112 +1,126 @@
-import { BookOpen, Plus, MapPin, Calendar } from "lucide-react";
+import { BookOpen, MapPin, Route, Eye, Landmark, Loader2 } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
+import { useDenik, type DennikItem } from "@/hooks/useDenik";
 
-const mockZaznamy = [
-  {
-    id: 1,
-    datum: "12. 4. 2026",
-    misto: "Trosky",
-    text: "Dnes jsme zdolali Trosky za kr\u00e1sn\u00e9ho po\u010das\u00ed. V\u00fdhled na \u010cesk\u00fd r\u00e1j byl neskute\u010dn\u00fd!",
-  },
-  {
-    id: 2,
-    datum: "5. 4. 2026",
-    misto: "Pravick\u00e1 br\u00e1na",
-    text: "Dlouh\u00fd v\u00fdstup, ale stoj\u00ed to za to. Br\u00e1na je monumentn\u00ed.",
-  },
-];
+const typeIcon = (type: DennikItem["type"]) => {
+  if (type === "trasa") return <Route size={15} color="#38bdf8" />;
+  if (type === "rozhledna") return <Eye size={15} color="#fb923c" />;
+  return <Landmark size={15} color="#a78bfa" />;
+};
+
+const typeLabel = (type: DennikItem["type"]) => {
+  if (type === "trasa") return "Trasa";
+  if (type === "rozhledna") return "Rozhledna";
+  return "Hrad / z\u00e1mek";
+};
+
+const typeColor: Record<DennikItem["type"], string> = {
+  trasa: "#38bdf8",
+  rozhledna: "#fb923c",
+  hrad: "#a78bfa",
+};
+
+function formatDate(iso: string) {
+  try {
+    return new Date(iso).toLocaleDateString("cs-CZ", { day: "numeric", month: "long", year: "numeric" });
+  } catch {
+    return iso;
+  }
+}
 
 export default function DennikPage() {
+  const { items, loading, isSignedIn } = useDenik();
+
+  const grouped: Record<string, DennikItem[]> = { trasa: [], rozhledna: [], hrad: [] };
+  for (const item of items) {
+    (grouped[item.type] ||= []).push(item);
+  }
+
+  const sections = [
+    { type: "trasa" as const, label: "Trasy", icon: Route, color: "#38bdf8", bg: "rgba(14,165,233,0.12)", border: "rgba(14,165,233,0.25)" },
+    { type: "rozhledna" as const, label: "Rozhledny", icon: Eye, color: "#fb923c", bg: "rgba(251,146,60,0.12)", border: "rgba(251,146,60,0.25)" },
+    { type: "hrad" as const, label: "Hrady a z\u00e1mky", icon: Landmark, color: "#a78bfa", bg: "rgba(167,139,250,0.12)", border: "rgba(167,139,250,0.25)" },
+  ];
+
   return (
-    <PageLayout title={"Cestovn\u00ed den\u00edk"} backPath="/">
+    <PageLayout title={"Cestovn\u00ed den\u00edk"} backPath="/team">
       <div style={{ padding: "10px 14px", maxWidth: "480px", margin: "0 auto" }}>
 
-        {/* Add entry button */}
-        <button
-          style={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "8px",
-            padding: "13px",
-            borderRadius: "12px",
-            border: "1.5px dashed rgba(20,184,166,0.5)",
-            background: "rgba(10,45,50,0.70)",
-            color: "#5eead4",
-            fontWeight: 700,
-            fontSize: "0.88rem",
-            cursor: "pointer",
-            marginBottom: "14px",
-          }}
-        >
-          <Plus size={16} />
-          {"P\u0159idat z\u00e1znam"}
-        </button>
-
-        {/* Entries */}
-        {mockZaznamy.length === 0 ? (
-          <div style={{
-            textAlign: "center",
-            padding: "50px 20px",
-            color: "rgba(255,255,255,0.35)",
-          }}>
+        {!isSignedIn ? (
+          <div style={{ textAlign: "center", padding: "60px 20px", color: "rgba(255,255,255,0.4)" }}>
+            <BookOpen size={38} style={{ marginBottom: 12, opacity: 0.3 }} />
+            <p style={{ fontSize: "0.88rem", margin: 0 }}>{"P\u0159ihla\u0161 se pro zobrazen\u00ed den\u00edku"}</p>
+          </div>
+        ) : loading ? (
+          <div style={{ display: "flex", justifyContent: "center", paddingTop: 60 }}>
+            <Loader2 size={28} color="rgba(255,255,255,0.3)" style={{ animation: "spin 1s linear infinite" }} />
+          </div>
+        ) : items.length === 0 ? (
+          <div style={{ textAlign: "center", padding: "60px 20px", color: "rgba(255,255,255,0.35)" }}>
             <BookOpen size={40} style={{ marginBottom: 12, opacity: 0.3 }} />
-            <p style={{ fontSize: "0.9rem", margin: 0 }}>{"Den\u00edk je pr\u00e1zdn\u00fd \u2014 p\u0159idej sv\u016fj prvn\u00ed z\u00e1znam!"}</p>
+            <p style={{ fontSize: "0.9rem", margin: "0 0 6px", fontWeight: 600 }}>{"Den\u00edk je pr\u00e1zdn\u00fd"}</p>
+            <p style={{ fontSize: "0.76rem", margin: 0, color: "rgba(255,255,255,0.25)" }}>
+              {"Ozna\u010d spln\u011bn\u00e9 trasy nebo rozhledny \u2714 a objev\u00ed se zde"}
+            </p>
           </div>
         ) : (
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            {mockZaznamy.map((z) => (
-              <div
-                key={z.id}
-                style={{
-                  background: "rgba(5,18,5,0.82)",
-                  border: "1.5px solid rgba(20,184,166,0.22)",
-                  borderRadius: "14px",
-                  padding: "14px 16px",
-                }}
-              >
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-                  <div style={{
-                    width: 32, height: 32, borderRadius: "8px",
-                    background: "rgba(20,184,166,0.15)",
-                    border: "1px solid rgba(20,184,166,0.3)",
-                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-                  }}>
-                    <BookOpen size={15} color="#5eead4" />
+          <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+            {sections.map(({ type, label, icon: Icon, color, bg, border }) => {
+              const sectionItems = grouped[type];
+              if (!sectionItems.length) return null;
+              return (
+                <div key={type}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "8px" }}>
+                    <Icon size={14} color={color} />
+                    <span style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                      {label}
+                    </span>
+                    <span style={{
+                      background: bg, border: `1px solid ${border}`,
+                      borderRadius: "20px", padding: "1px 7px",
+                      color, fontSize: "0.65rem", fontWeight: 700,
+                    }}>{sectionItems.length}</span>
                   </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                      <MapPin size={11} color="rgba(255,255,255,0.4)" />
-                      <span style={{ color: "white", fontWeight: 700, fontSize: "0.88rem" }}>{z.misto}</span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "5px", marginTop: "2px" }}>
-                      <Calendar size={10} color="rgba(255,255,255,0.3)" />
-                      <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.70rem" }}>{z.datum}</span>
-                    </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    {sectionItems.map((item) => (
+                      <div key={item.id} style={{
+                        background: "rgba(5,18,5,0.82)",
+                        border: `1.5px solid ${border}`,
+                        borderRadius: "12px",
+                        padding: "12px 14px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                      }}>
+                        <div style={{
+                          width: 32, height: 32, borderRadius: "8px",
+                          background: bg, border: `1px solid ${border}`,
+                          display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                        }}>
+                          {typeIcon(item.type)}
+                        </div>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ color: "white", fontWeight: 700, fontSize: "0.88rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                            {item.itemName}
+                          </div>
+                          <div style={{ display: "flex", alignItems: "center", gap: "5px", marginTop: "2px" }}>
+                            <MapPin size={9} color="rgba(255,255,255,0.3)" />
+                            <span style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.68rem" }}>
+                              {typeLabel(item.type)} &bull; {formatDate(item.completedAt)}
+                            </span>
+                          </div>
+                        </div>
+                        <span style={{ fontSize: "1rem" }}>✓</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <p style={{
-                  color: "rgba(255,255,255,0.75)",
-                  fontSize: "0.82rem",
-                  lineHeight: 1.55,
-                  margin: 0,
-                }}>
-                  {z.text}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 
-        <p style={{
-          textAlign: "center",
-          color: "rgba(255,255,255,0.22)",
-          fontSize: "0.68rem",
-          marginTop: "20px",
-        }}>
-          {"Uk\u00e1zkov\u00e9 z\u00e1znamy \u2014 funkce se dok\u00f3ncuje"}
-        </p>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </div>
     </PageLayout>
   );

@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useRef } from "react";
 import { useLocation } from "wouter";
-import { Eye, Search, X, ExternalLink, ChevronDown } from "lucide-react";
+import { Eye, Search, X, ExternalLink, ChevronDown, CheckCircle2, Circle } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { rozhledny, krajeList } from "@/data/rozhledny";
+import { useDenik } from "@/hooks/useDenik";
 
 const PAGE_SIZE = 30;
 
@@ -13,6 +14,7 @@ export default function RozhlednyPage() {
   const [page, setPage] = useState(1);
   const [showKrajDropdown, setShowKrajDropdown] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
+  const { isCompleted, toggle, isSignedIn } = useDenik();
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
@@ -171,44 +173,72 @@ export default function RozhlednyPage() {
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-              {visible.map(r => (
-                <a
-                  key={r.id}
-                  href={r.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "flex", alignItems: "center", justifyContent: "space-between",
-                    background: "rgba(255,255,255,0.10)",
-                    border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px",
-                    padding: "11px 14px", textDecoration: "none",
-                    transition: "background 0.15s",
-                  }}
-                >
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{
-                      color: "white", fontWeight: 700, fontSize: "0.9rem",
-                      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-                    }}>
-                      {r.name}
-                    </div>
-                    {r.kraj.filter(k => k.endsWith("kraj")).length > 0 && (
-                      <div style={{ marginTop: "3px", display: "flex", flexWrap: "wrap", gap: "4px" }}>
-                        {r.kraj.filter(k => k.endsWith("kraj")).map(k => (
-                          <span key={k} style={{
-                            background: "rgba(134,239,172,0.12)", border: "1px solid rgba(134,239,172,0.25)",
-                            borderRadius: "6px", padding: "1px 6px",
-                            color: "#86efac", fontSize: "0.68rem", fontWeight: 600,
-                          }}>
-                            {k.replace(" kraj", "")}
-                          </span>
-                        ))}
+              {visible.map(r => {
+                const done = isCompleted("rozhledna", r.id);
+                return (
+                  <div
+                    key={r.id}
+                    style={{
+                      display: "flex", alignItems: "center",
+                      background: done ? "rgba(74,222,128,0.07)" : "rgba(255,255,255,0.10)",
+                      border: done ? "1px solid rgba(74,222,128,0.3)" : "1px solid rgba(255,255,255,0.12)",
+                      borderRadius: "10px",
+                      padding: "11px 14px",
+                      transition: "background 0.15s",
+                      gap: "10px",
+                    }}
+                  >
+                    <a
+                      href={r.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ flex: 1, minWidth: 0, textDecoration: "none" }}
+                    >
+                      <div style={{
+                        color: "white", fontWeight: 700, fontSize: "0.9rem",
+                        whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                      }}>
+                        {r.name}
                       </div>
+                      {r.kraj.filter(k => k.endsWith("kraj")).length > 0 && (
+                        <div style={{ marginTop: "3px", display: "flex", flexWrap: "wrap", gap: "4px" }}>
+                          {r.kraj.filter(k => k.endsWith("kraj")).map(k => (
+                            <span key={k} style={{
+                              background: "rgba(134,239,172,0.12)", border: "1px solid rgba(134,239,172,0.25)",
+                              borderRadius: "6px", padding: "1px 6px",
+                              color: "#86efac", fontSize: "0.68rem", fontWeight: 600,
+                            }}>
+                              {k.replace(" kraj", "")}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </a>
+                    <ExternalLink size={13} color="rgba(255,255,255,0.25)" style={{ flexShrink: 0 }} />
+                    {isSignedIn && (
+                      <button
+                        onClick={() => toggle("rozhledna", r.id, r.name)}
+                        title={done ? "Odebrat z den\u00edku" : "Ozna\u010dit jako nav\u0161t\u00edveno"}
+                        style={{
+                          flexShrink: 0,
+                          width: 26, height: 26,
+                          borderRadius: "50%",
+                          border: done ? "1.5px solid rgba(74,222,128,0.7)" : "1.5px solid rgba(255,255,255,0.2)",
+                          background: done ? "rgba(74,222,128,0.18)" : "rgba(255,255,255,0.05)",
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          cursor: "pointer",
+                          transition: "all 0.2s",
+                        }}
+                      >
+                        {done
+                          ? <CheckCircle2 size={14} color="#4ade80" />
+                          : <Circle size={14} color="rgba(255,255,255,0.3)" />
+                        }
+                      </button>
                     )}
                   </div>
-                  <ExternalLink size={14} color="rgba(255,255,255,0.35)" style={{ flexShrink: 0, marginLeft: "10px" }} />
-                </a>
-              ))}
+                );
+              })}
 
               {page < totalPages && (
                 <button

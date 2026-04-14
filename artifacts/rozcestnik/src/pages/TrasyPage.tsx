@@ -1,6 +1,7 @@
 import PageLayout from "@/components/PageLayout";
-import { Route, ChevronRight, CheckCircle2, Construction, MapPin, FlaskConical } from "lucide-react";
+import { Route, ChevronRight, CheckCircle2, Construction, MapPin, FlaskConical, Circle } from "lucide-react";
 import { useLocation } from "wouter";
+import { useDenik } from "@/hooks/useDenik";
 
 function isTrasa1Completed(): boolean {
   try {
@@ -12,15 +13,16 @@ function isTrasa1Completed(): boolean {
 }
 
 const trasy = [
-  { id: 1, name: "Trasa č.1", location: "Janov nad Nisou", locationPath: "/janov", duration: "⏱ odh. 3–4 h", wip: false },
-  { id: 2, name: "Trasa č.2", location: "Český ráj", locationPath: "/cesky-raj", duration: "⏱ odh. 3–4 h", wip: false },
-  { id: 3, name: "Trasa č.3", location: "Rozpracováno", locationPath: null, duration: "", wip: true },
-  { id: 0, name: "Zkušební trasa", location: "Test GPS záznamu", locationPath: null, duration: "⏱ jen pár minut", wip: false, test: true },
+  { id: 1, name: "Trasa \u010d.1", location: "Janov nad Nisou", locationPath: "/janov", duration: "\u23f1 odh. 3\u20134 h", wip: false },
+  { id: 2, name: "Trasa \u010d.2", location: "\u010cesk\u00fd r\u00e1j", locationPath: "/cesky-raj", duration: "\u23f1 odh. 3\u20134 h", wip: false },
+  { id: 3, name: "Trasa \u010d.3", location: "Rozpracov\u00e1no", locationPath: null, duration: "", wip: true },
+  { id: 0, name: "Zku\u0161ebn\u00ed trasa", location: "Test GPS z\u00e1znamu", locationPath: null, duration: "\u23f1 jen p\u00e1r minut", wip: false, test: true },
 ];
 
 export default function TrasyPage() {
   const [, navigate] = useLocation();
   const trasa1Done = isTrasa1Completed();
+  const { isCompleted, toggle, isSignedIn } = useDenik();
 
   return (
     <PageLayout title="Trasy" backPath="/vyzva">
@@ -119,6 +121,32 @@ export default function TrasyPage() {
                   <MapPin size={10} color="#38bdf8" />
                   {trasa.location}
                 </div>
+              )}
+
+              {!wip && !isTest && isSignedIn && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); toggle("trasa", String(trasa.id), trasa.name); }}
+                  title={isCompleted("trasa", String(trasa.id)) ? "Odebrat ze den\u00edku" : "Ozna\u010dit jako spln\u011bno"}
+                  style={{
+                    flexShrink: 0, marginRight: "2px",
+                    width: 28, height: 28,
+                    borderRadius: "50%",
+                    border: isCompleted("trasa", String(trasa.id))
+                      ? "1.5px solid rgba(74,222,128,0.7)"
+                      : "1.5px solid rgba(255,255,255,0.2)",
+                    background: isCompleted("trasa", String(trasa.id))
+                      ? "rgba(74,222,128,0.18)"
+                      : "rgba(255,255,255,0.05)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    cursor: "pointer",
+                    transition: "all 0.2s",
+                  }}
+                >
+                  {isCompleted("trasa", String(trasa.id))
+                    ? <CheckCircle2 size={15} color="#4ade80" />
+                    : <Circle size={15} color="rgba(255,255,255,0.3)" />
+                  }
+                </button>
               )}
 
               {!wip && <ChevronRight size={18} color="rgba(255,255,255,0.4)" style={{ flexShrink: 0 }} />}

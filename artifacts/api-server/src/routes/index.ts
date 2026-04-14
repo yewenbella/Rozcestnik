@@ -6,6 +6,7 @@ import gameScoresRouter from "./game-scores";
 import quizScoresRouter from "./quiz-scores";
 import ratingsRouter from "./ratings";
 import profileRouter from "./profile";
+import dennikRouter from "./denik";
 
 const router: IRouter = Router();
 
@@ -16,5 +17,6 @@ router.use("/game-scores", gameScoresRouter);
 router.use("/quiz-scores", quizScoresRouter);
 router.use("/ratings", ratingsRouter);
 router.use("/profile", profileRouter);
+router.use("/denik", dennikRouter);
 
 export default router;

@@ -76,6 +76,21 @@ export const userProfilesTable = pgTable("user_profiles", {
 
 export type UserProfile = typeof userProfilesTable.$inferSelect;
 
+export const completedItemsTable = pgTable(
+  "completed_items",
+  {
+    id: serial("id").primaryKey(),
+    userId: text("user_id").notNull(),
+    type: text("type").notNull(),
+    itemId: text("item_id").notNull(),
+    itemName: text("item_name").notNull(),
+    completedAt: timestamp("completed_at").defaultNow().notNull(),
+  },
+  (t) => [unique("unique_completed_item").on(t.userId, t.type, t.itemId)]
+);
+
+export type CompletedItem = typeof completedItemsTable.$inferSelect;
+
 export const insertTeamSchema = createInsertSchema(teamsTable).omit({
   id: true,
   createdAt: true,

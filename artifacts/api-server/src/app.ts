@@ -44,6 +44,17 @@ async function runMigrations() {
     if (qc.rowCount === 0) {
       await pool.query(`ALTER TABLE quiz_scores ADD CONSTRAINT unique_quiz_player UNIQUE (player_name)`);
     }
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS completed_items (
+        id serial PRIMARY KEY,
+        user_id text NOT NULL,
+        type text NOT NULL,
+        item_id text NOT NULL,
+        item_name text NOT NULL,
+        completed_at timestamptz NOT NULL DEFAULT now(),
+        CONSTRAINT unique_completed_item UNIQUE (user_id, type, item_id)
+      )
+    `);
     logger.info("DB migrations OK");
   } catch (e) {
     logger.error({ e }, "DB migration error");
