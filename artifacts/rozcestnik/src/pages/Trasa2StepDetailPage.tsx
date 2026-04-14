@@ -22,6 +22,11 @@ export default function Trasa2StepDetailPage() {
   const [imgLoading, setImgLoading] = useState(true);
 
   useEffect(() => {
+    if (step?.imageUrl) {
+      setThumbnail(step.imageUrl);
+      setImgLoading(false);
+      return;
+    }
     const title = wikiArticleTitle(step?.wikiUrl);
     if (!title) { setImgLoading(false); return; }
     fetch(`https://cs.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`)
@@ -29,7 +34,7 @@ export default function Trasa2StepDetailPage() {
       .then((d) => { if (d.thumbnail?.source) setThumbnail(d.thumbnail.source); })
       .catch(() => {})
       .finally(() => setImgLoading(false));
-  }, [step?.wikiUrl]);
+  }, [step?.imageUrl, step?.wikiUrl]);
 
   if (!step) {
     return (
