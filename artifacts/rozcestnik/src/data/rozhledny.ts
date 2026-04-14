@@ -1385,7 +1385,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 15075,
-    "name": "Helfenburk &#8211; Bergfrit",
+    "name": "Helfenburk – Bergfrit",
     "slug": "helfenburk-bergfrit",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/helfenburk-bergfrit/",
     "kraj": [
@@ -1395,7 +1395,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 10213,
-    "name": "Helfenburk &#8211; Hrádek",
+    "name": "Helfenburk – Hrádek",
     "slug": "helfenburk-hradek",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/helfenburk-hradek/",
     "kraj": [
@@ -1675,7 +1675,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 13196,
-    "name": "Hradec nad Moravicí &#8211; Bílá věž",
+    "name": "Hradec nad Moravicí – Bílá věž",
     "slug": "hradec-nad-moravici-bila-vez",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/hradec-nad-moravici-bila-vez/",
     "kraj": [
@@ -1685,7 +1685,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 14121,
-    "name": "Hradec nad Moravicí &#8211; Hodinová věž",
+    "name": "Hradec nad Moravicí – Hodinová věž",
     "slug": "hradec-nad-moravici-hodinova-vez",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/hradec-nad-moravici-hodinova-vez/",
     "kraj": [
@@ -2265,7 +2265,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 17713,
-    "name": "Karviná &#8211; Lipiny",
+    "name": "Karviná – Lipiny",
     "slug": "karvina-lipiny",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/karvina-lipiny/",
     "kraj": [
@@ -2804,7 +2804,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 15105,
-    "name": "Křivoklát &#8211; Huderka",
+    "name": "Křivoklát – Huderka",
     "slug": "krivoklat-huderka",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/krivoklat-huderka/",
     "kraj": [
@@ -2814,7 +2814,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 11421,
-    "name": "Křivoklát &#8211; Velká věž",
+    "name": "Křivoklát – Velká věž",
     "slug": "krivoklat-velka-vez",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/krivoklat-velka-vez/",
     "kraj": [
@@ -2993,7 +2993,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 11221,
-    "name": "Lednice &#8211; kolonáda",
+    "name": "Lednice – kolonáda",
     "slug": "lednice-kolonada",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/lednice-kolonada/",
     "kraj": [
@@ -3473,7 +3473,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 325,
-    "name": "Modřany &#8211; Dům dětí a mládeže",
+    "name": "Modřany – Dům dětí a mládeže",
     "slug": "modrany-dum-deti-a-mladeze",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/modrany-dum-deti-a-mladeze/",
     "kraj": [
@@ -4178,7 +4178,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 3979,
-    "name": "Pohoř &#8211; Olšová",
+    "name": "Pohoř – Olšová",
     "slug": "pohor-olsova",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/pohor-olsova/",
     "kraj": [
@@ -4502,7 +4502,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 15010,
-    "name": "Rožmberk &#8211; Anglická věž",
+    "name": "Rožmberk – Anglická věž",
     "slug": "rozmberk-anglicka-vez",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/rozmberk-anglicka-vez/",
     "kraj": [
@@ -4512,7 +4512,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 15012,
-    "name": "Rožmberk &#8211; Jakobínka",
+    "name": "Rožmberk – Jakobínka",
     "slug": "rozmberk-jakobinka",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/rozmberk-jakobinka/",
     "kraj": [
@@ -4960,7 +4960,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 11025,
-    "name": "Stezka korunami stromů &#8211; Krkonoše",
+    "name": "Stezka korunami stromů – Krkonoše",
     "slug": "stezka-korunami-stromu-krkonose",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/stezka-korunami-stromu-krkonose/",
     "kraj": [
@@ -4970,7 +4970,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 2979,
-    "name": "Stezka korunami stromů &#8211; Lipno",
+    "name": "Stezka korunami stromů – Lipno",
     "slug": "kramolin",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/kramolin/",
     "kraj": [
