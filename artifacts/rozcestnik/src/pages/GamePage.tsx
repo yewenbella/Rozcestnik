@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useUser } from "@clerk/react";
+import { useUser, useClerk } from "@clerk/react";
 import { Trophy, X } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
@@ -30,6 +30,7 @@ function drawRoundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: n
 
 export default function GamePage() {
   const { user } = useUser();
+  const { session } = useClerk();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef({
     playerY: GROUND - PLAYER_H,
@@ -49,6 +50,8 @@ export default function GamePage() {
   const [topScores, setTopScores] = useState<{ player_name: string; score: number }[]>([]);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const scoreSentRef = useRef(false);
+  const sessionRef = useRef(session);
+  useEffect(() => { sessionRef.current = session; }, [session]);
 
   const fetchTop = useCallback(async () => {
     try {
@@ -188,12 +191,17 @@ export default function GamePage() {
                 ? (user.fullName || user.firstName || user.username || "Turista")
                 : null;
               if (playerName) {
-                fetch("/api/game-scores", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  credentials: "include",
-                  body: JSON.stringify({ score: finalScore, playerName }),
-                }).then(() => fetchTop()).catch(() => {});
+                (async () => {
+                  const token = await sessionRef.current?.getToken().catch(() => null);
+                  const headers: Record<string, string> = { "Content-Type": "application/json" };
+                  if (token) headers["Authorization"] = `Bearer ${token}`;
+                  fetch("/api/game-scores", {
+                    method: "POST",
+                    headers,
+                    credentials: "include",
+                    body: JSON.stringify({ score: finalScore, playerName }),
+                  }).then(() => fetchTop()).catch(() => {});
+                })();
               } else {
                 fetchTop();
               }
@@ -319,54 +327,58 @@ export default function GamePage() {
           }}
         />
 
-        {/* Leaderboard overlay */}
+        {/* Leaderboard overlay — bottom sheet */}
         {showLeaderboard && (
           <div
             style={{
               position: "absolute",
-              top: 0, right: 0,
-              width: "220px",
-              background: "rgba(10,20,15,0.96)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
-              border: "1px solid rgba(74,222,128,0.2)",
-              borderRadius: "0 0 0 16px",
-              padding: "14px 16px",
+              bottom: 0, left: 0, right: 0,
+              background: "rgba(6,14,10,0.97)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              borderTop: "1px solid rgba(74,222,128,0.25)",
+              borderRadius: "20px 20px 0 0",
+              padding: "18px 20px 32px",
               zIndex: 20,
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                <Trophy size={14} color="#f59e0b" />
-                <span style={{ color: "#f59e0b", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "0.06em" }}>
+            {/* Header */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <Trophy size={16} color="#f59e0b" />
+                <span style={{ color: "#f59e0b", fontWeight: 800, fontSize: "0.85rem", letterSpacing: "0.07em" }}>
                   TOP 3 HRÁČI
                 </span>
               </div>
               <button
                 onClick={() => setShowLeaderboard(false)}
-                style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex" }}
+                style={{ background: "rgba(255,255,255,0.08)", border: "none", borderRadius: "8px", width: 28, height: 28, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
               >
-                <X size={14} color="rgba(255,255,255,0.4)" />
+                <X size={14} color="rgba(255,255,255,0.6)" />
               </button>
             </div>
+
             {topScores.length === 0 ? (
-              <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.78rem", textAlign: "center", padding: "8px 0" }}>
-                Zatím žádné skóre
-              </div>
+              <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem", textAlign: "center", margin: "16px 0" }}>
+                Zatím žádné skóre — buď první!
+              </p>
             ) : topScores.map((sc, i) => {
               const medals = ["🥇", "🥈", "🥉"];
               const colors = ["#f59e0b", "#9ca3af", "#cd7c34"];
               return (
                 <div key={i} style={{
-                  display: "flex", alignItems: "center", gap: "8px",
-                  padding: "6px 0",
-                  borderBottom: i < topScores.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
+                  display: "grid",
+                  gridTemplateColumns: "28px 1fr auto",
+                  alignItems: "center",
+                  gap: "10px",
+                  padding: "10px 0",
+                  borderBottom: i < topScores.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
                 }}>
-                  <span style={{ fontSize: "1rem", flexShrink: 0 }}>{medals[i]}</span>
-                  <span style={{ flex: 1, minWidth: 0, color: "white", fontSize: "0.80rem", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  <span style={{ fontSize: "1.2rem", textAlign: "center" }}>{medals[i]}</span>
+                  <span style={{ color: "white", fontSize: "0.95rem", fontWeight: 600 }}>
                     {sc.player_name}
                   </span>
-                  <span style={{ color: colors[i], fontWeight: 700, fontSize: "0.82rem", flexShrink: 0, paddingLeft: "6px" }}>
+                  <span style={{ color: colors[i], fontWeight: 800, fontSize: "1rem" }}>
                     {sc.score} m
                   </span>
                 </div>
@@ -375,11 +387,12 @@ export default function GamePage() {
 
             {display.score > 0 && (
               <div style={{
-                marginTop: "12px", paddingTop: "10px",
-                borderTop: "1px solid rgba(255,255,255,0.1)",
-                color: "rgba(255,255,255,0.45)", fontSize: "0.72rem", textAlign: "center",
+                marginTop: "14px", paddingTop: "12px",
+                borderTop: "1px solid rgba(255,255,255,0.08)",
+                textAlign: "center",
+                color: "rgba(255,255,255,0.5)", fontSize: "0.80rem",
               }}>
-                Tvoje skóre: <span style={{ color: "#4ade80", fontWeight: 700 }}>{display.score} m</span>
+                Tvoje aktuální skóre: <span style={{ color: "#4ade80", fontWeight: 800 }}>{display.score} m</span>
               </div>
             )}
           </div>
