@@ -50,7 +50,7 @@ function NavBtn({ label, Icon, path, gradient, border, glow, accent, navigate }:
         border: `1.5px solid ${border}`,
         borderRadius: "10px",
         padding: "12px 14px",
-        minHeight: "52px",
+        minHeight: "60px",
         cursor: "pointer",
         boxShadow: `0 4px 16px 0 ${glow}30, inset 0 1px 0 rgba(255,255,255,0.18)`,
         overflow: "hidden",
@@ -110,7 +110,7 @@ export default function VyzvaPage() {
         </div>
 
         {/* Buttons */}
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "10px", padding: "0 20px", flex: 1 }}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "20px", padding: "0 20px", flex: 1 }}>
           {vyzvaButtons.map(({ label, icon: Icon, path, gradient, border, glow, accent }) => (
             <NavBtn key={label} label={label} Icon={Icon} path={path} gradient={gradient} border={border} glow={glow} accent={accent} navigate={navigate} />
           ))}
