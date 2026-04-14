@@ -272,7 +272,7 @@ export default function Home() {
             flexDirection: "column",
             alignItems: "center",
             gap: "8px",
-            padding: "0 20px 40px",
+            padding: "0 20px 90px",
           }}
         >
           <div style={{ width: "220px", height: "1px", background: "rgba(255,255,255,0.11)", marginBottom: "4px" }} />
