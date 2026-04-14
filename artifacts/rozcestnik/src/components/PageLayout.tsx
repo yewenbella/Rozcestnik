@@ -5,9 +5,10 @@ interface PageLayoutProps {
   title: string;
   backPath: string;
   children: React.ReactNode;
+  rightSlot?: React.ReactNode;
 }
 
-export default function PageLayout({ title, backPath, children }: PageLayoutProps) {
+export default function PageLayout({ title, backPath, children, rightSlot }: PageLayoutProps) {
   const [, navigate] = useLocation();
 
   return (
@@ -49,6 +50,7 @@ export default function PageLayout({ title, backPath, children }: PageLayoutProp
             border: "1px solid rgba(255,255,255,0.12)",
             color: "white",
             cursor: "pointer",
+            flexShrink: 0,
           }}
         >
           <ArrowLeft size={18} strokeWidth={2.2} />
@@ -61,10 +63,14 @@ export default function PageLayout({ title, backPath, children }: PageLayoutProp
             letterSpacing: "0.04em",
             textTransform: "uppercase",
             margin: 0,
+            flex: 1,
           }}
         >
           {title}
         </h1>
+        {rightSlot && (
+          <div style={{ flexShrink: 0 }}>{rightSlot}</div>
+        )}
       </div>
 
       {/* Content */}

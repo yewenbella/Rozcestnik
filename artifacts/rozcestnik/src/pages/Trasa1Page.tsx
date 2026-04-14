@@ -7,6 +7,7 @@ import {
   Loader2, AlertCircle, CheckCircle2, Timer, ExternalLink, Hotel,
 } from "lucide-react";
 import { trasa1Steps } from "@/data/trasa1Steps";
+import RouteRating from "@/components/RouteRating";
 
 const STORAGE_KEY = "trasa1_times";
 const RADIUS_M = 100;
@@ -117,7 +118,7 @@ export default function Trasa1Page() {
   }
 
   return (
-    <PageLayout title="Trasa č.1" backPath="/trasy">
+    <PageLayout title="Trasa č.1" backPath="/trasy" rightSlot={<RouteRating routeId={1} />}>
       <div style={{ display: "flex", flexDirection: "column", minHeight: "calc(100vh - 71px)", padding: "16px" }}>
 
         {/* Route timeline */}

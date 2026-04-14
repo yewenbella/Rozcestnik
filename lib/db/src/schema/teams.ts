@@ -51,6 +51,22 @@ export const gameScoresTable = pgTable(
   (t) => [unique("unique_game_user").on(t.userId)]
 );
 
+export const routeRatingsTable = pgTable(
+  "route_ratings",
+  {
+    id: serial("id").primaryKey(),
+    teamId: integer("team_id")
+      .notNull()
+      .references(() => teamsTable.id, { onDelete: "cascade" }),
+    routeId: integer("route_id").notNull(),
+    rating: integer("rating").notNull(),
+    ratedAt: timestamp("rated_at").defaultNow(),
+  },
+  (t) => [unique("unique_team_route_rating").on(t.teamId, t.routeId)]
+);
+
+export type RouteRating = typeof routeRatingsTable.$inferSelect;
+
 export const insertTeamSchema = createInsertSchema(teamsTable).omit({
   id: true,
   createdAt: true,
