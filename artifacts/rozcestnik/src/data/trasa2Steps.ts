@@ -9,6 +9,7 @@ export const trasa2Steps: TrailStep[] = [
     place: "Motomuzeum Borek pod Troskami",
     proof: "Rozcestník",
     info: "Motomuzeum v Borku pod Troskami je unikátní sbírka historických motocyklů a veteránů zasazená přímo pod dominantou Českého ráje — hradem Trosky. Muzeum mapuje historii dvoukolé techniky od počátků motorismu až po socialistickou éru. Výchozí bod okružní trasy kolem rybníků a hradu.",
+    zajimavost: "MOTOMUZEUM Borek pod Troskami sídlí v bývalé sýpce z roku 1935, která dnes ukrývá víc než 150 historických motocyklů \u2013 od Jawy a ČZ až po americké Harley-Davidsony a Indy. Najdeš tu i raritní kousky jako dřevěný motocykl v životní velikosti s pískovcovými koly nebo motorku z proutí, na které se můžeš vyfotit. Sbírku založil Jaromír Pácal, který svou první předválečnou Jawu získal díky sázce s vlastním tátou \u2013 a tím odstartoval celé muzeum. Venku je dětské hřiště se sajdkárou a posezení s výhledem přímo na Trosky, které jsou odtud jen tři kilometry.",
     imageUrl: "/motomuzeum-borek.jpg",
     wikiUrl: "https://cs.wikipedia.org/wiki/Trosky_(hrad)",
     color: "#4ade80",
