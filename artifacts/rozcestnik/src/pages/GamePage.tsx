@@ -362,11 +362,11 @@ export default function GamePage() {
                   padding: "6px 0",
                   borderBottom: i < topScores.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
                 }}>
-                  <span style={{ fontSize: "1rem" }}>{medals[i]}</span>
-                  <span style={{ flex: 1, color: "rgba(255,255,255,0.85)", fontSize: "0.80rem", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  <span style={{ fontSize: "1rem", flexShrink: 0 }}>{medals[i]}</span>
+                  <span style={{ flex: 1, minWidth: 0, color: "white", fontSize: "0.80rem", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {sc.player_name}
                   </span>
-                  <span style={{ color: colors[i], fontWeight: 700, fontSize: "0.82rem", flexShrink: 0 }}>
+                  <span style={{ color: colors[i], fontWeight: 700, fontSize: "0.82rem", flexShrink: 0, paddingLeft: "6px" }}>
                     {sc.score} m
                   </span>
                 </div>
