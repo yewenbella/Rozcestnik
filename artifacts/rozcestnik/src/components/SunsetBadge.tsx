@@ -157,15 +157,14 @@ export default function SunsetBadge({ tile }: { tile?: boolean } = {}) {
     const ts = "0 1px 6px rgba(0,0,0,0.9), 0 0px 2px rgba(0,0,0,0.8)";
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "7px", height: "100%", overflow: "hidden" }}>
-        <span style={{ fontSize: "1.1rem", lineHeight: 1, flexShrink: 0 }}>{info.passed ? "🌙" : "🌅"}</span>
+        <span style={{ fontSize: "1rem", lineHeight: 1, flexShrink: 0 }}>{info.passed ? "🌙" : "🌅"}</span>
         <div style={{ display: "flex", flexDirection: "column", gap: "2px", minWidth: 0 }}>
-          <span style={{ color: "white", fontSize: "0.75rem", fontWeight: 800, textShadow: ts, lineHeight: 1 }}>
+          <span style={{ color: "white", fontSize: "0.70rem", fontWeight: 800, textShadow: ts, lineHeight: 1 }}>
             {sunsetTime}
           </span>
-          <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.56rem", fontWeight: 600, lineHeight: 1 }}>
-            {info.passed ? "ji\u017e nastal" : info.line2}
+          <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.52rem", fontWeight: 500, lineHeight: 1.2, whiteSpace: "nowrap" }}>
+            {info.passed ? "ji\u017e nastal" : info.line2} · {"Z\u00e1pad slunce"}
           </span>
-          <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.53rem" }}>{"Z\u00e1pad slunce"}</span>
         </div>
       </div>
     );
