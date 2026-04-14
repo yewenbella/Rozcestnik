@@ -160,7 +160,13 @@ export default function Home() {
           minHeight: "100vh",
         }}
       >
+        {/* Weather — top-left corner */}
+        <div style={{ position: "absolute", top: "12px", left: "12px", zIndex: 2, transform: "scale(0.82)", transformOrigin: "0 0" }}>
+          <WeatherWidget />
+        </div>
+
         <SunsetBadge />
+
         {/* Title */}
         <div
           style={{
@@ -242,7 +248,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Buttons — centered vertically in remaining space */}
+        {/* Main buttons — centered in remaining space */}
         <div
           style={{
             display: "flex",
@@ -250,29 +256,34 @@ export default function Home() {
             justifyContent: "center",
             alignItems: "center",
             gap: "10px",
-            padding: "0 20px 24px",
+            padding: "0 20px",
             flex: 1,
           }}
         >
           {mainButtons.map(({ label, icon: Icon, path, gradient, border, glow, accent }) => (
             <NavBtn key={label} label={label} Icon={Icon} path={path} gradient={gradient} border={border} glow={glow} accent={accent} navigate={navigate} />
           ))}
+        </div>
 
-          <div style={{ width: "220px", height: "1px", background: "rgba(255,255,255,0.13)", margin: "20px 0 8px" }} />
-
+        {/* Extra buttons (Mini hra + Kvíz) — bottom */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "8px",
+            padding: "0 20px 16px",
+          }}
+        >
+          <div style={{ width: "220px", height: "1px", background: "rgba(255,255,255,0.11)", marginBottom: "4px" }} />
           {extraButtons.map(({ label, icon: Icon, path, gradient, border, glow, accent }) => (
             <NavBtn key={label} label={label} Icon={Icon} path={path} gradient={gradient} border={border} glow={glow} accent={accent} navigate={navigate} />
           ))}
         </div>
 
-        {/* Weather */}
-        <div style={{ display: "flex", justifyContent: "center", paddingBottom: "10px" }}>
-          <WeatherWidget />
-        </div>
-
         {/* Footer */}
-        <div style={{ textAlign: "center", paddingBottom: "20px", paddingTop: "4px" }}>
-          <p style={{ color: "rgba(255,255,255,0.42)", fontSize: "0.75rem", letterSpacing: "0.02em" }}>
+        <div style={{ textAlign: "center", paddingBottom: "16px", paddingTop: "2px" }}>
+          <p style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.72rem", letterSpacing: "0.02em" }}>
             Vyberte si směr a vydejte se na cestu
           </p>
         </div>
