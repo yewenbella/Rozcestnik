@@ -7,6 +7,11 @@ import { useDenik } from "@/hooks/useDenik";
 
 const PAGE_SIZE = 24;
 
+const DEFUNCT_TOWERS: Record<string, string> = {
+  "cisarsky-kamen": "Zaniklá – nahrazena rozhlednou Císařský kámen II",
+  "rozhledna-na-grosscedlobi": "Zaniklá rozhledna",
+};
+
 function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn }: {
   r: Rozhledna;
   onClose: () => void;
@@ -16,6 +21,8 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn }: {
 }) {
   const rid = String(r.id);
   const done = isCompleted("rozhledna", rid);
+  const defunctNote = DEFUNCT_TOWERS[r.slug];
+  const mapsUrl = `https://maps.google.com/maps/search/${encodeURIComponent(r.name + " rozhledna")}`;
 
   return (
     <div
@@ -35,63 +42,70 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn }: {
           border: "1px solid rgba(134,239,172,0.2)",
           borderRadius: "20px 20px 0 0",
           overflow: "hidden",
-          maxHeight: "88vh",
+          maxHeight: "90vh",
           display: "flex",
           flexDirection: "column",
         }}
       >
-        {/* Photo */}
-        {r.photo ? (
-          <div style={{ position: "relative", width: "100%", height: "220px", flexShrink: 0 }}>
+        {/* Photo area — full tower visible */}
+        <div style={{
+          position: "relative", width: "100%", height: "240px", flexShrink: 0,
+          background: "#050e05", display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          {r.photo ? (
             <img
               src={r.photo}
               alt={r.name}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center top" }}
             />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 50%, rgba(8,22,8,0.95) 100%)" }} />
-            <button
-              onClick={onClose}
-              style={{
-                position: "absolute", top: "12px", right: "12px",
-                width: "32px", height: "32px", borderRadius: "50%",
-                background: "rgba(0,0,0,0.55)", border: "1px solid rgba(255,255,255,0.2)",
-                color: "white", cursor: "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}
-            >
-              <X size={16} />
-            </button>
-            <div style={{
-              position: "absolute", bottom: "12px", left: "16px", right: "16px",
-              color: "white", fontWeight: 900, fontSize: "1.2rem", lineHeight: 1.2,
-            }}>
-              {r.name}
-            </div>
+          ) : (
+            <Eye size={40} color="rgba(134,239,172,0.2)" />
+          )}
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "60%", background: "linear-gradient(to bottom, transparent, rgba(8,22,8,0.98))", pointerEvents: "none" }} />
+          <button
+            onClick={onClose}
+            style={{
+              position: "absolute", top: "12px", right: "12px",
+              width: "32px", height: "32px", borderRadius: "50%",
+              background: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.2)",
+              color: "white", cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}
+          >
+            <X size={16} />
+          </button>
+          <div style={{
+            position: "absolute", bottom: "10px", left: "16px", right: "50px",
+            color: "white", fontWeight: 900, fontSize: "1.15rem", lineHeight: 1.2,
+          }}>
+            {r.name}
           </div>
-        ) : (
-          <div style={{ position: "relative", background: "rgba(134,239,172,0.05)", height: "120px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <button onClick={onClose} style={{ position: "absolute", top: "12px", right: "12px", width: "32px", height: "32px", borderRadius: "50%", background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "white", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <X size={16} />
-            </button>
-            <Eye size={32} color="rgba(134,239,172,0.3)" />
-          </div>
-        )}
+        </div>
 
         {/* Content */}
-        <div style={{ padding: "16px", overflowY: "auto", flex: 1 }}>
-          {!r.photo && (
-            <div style={{ color: "white", fontWeight: 900, fontSize: "1.1rem", marginBottom: "12px" }}>{r.name}</div>
+        <div style={{ padding: "12px 16px 20px", overflowY: "auto", flex: 1 }}>
+
+          {/* Defunct warning */}
+          {defunctNote && (
+            <div style={{
+              display: "flex", alignItems: "flex-start", gap: "8px",
+              background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.3)",
+              borderRadius: "10px", padding: "10px 12px", marginBottom: "12px",
+            }}>
+              <span style={{ fontSize: "1rem", flexShrink: 0 }}>{"⚠️"}</span>
+              <span style={{ color: "#fbbf24", fontSize: "0.82rem", fontWeight: 600, lineHeight: 1.4 }}>{defunctNote}</span>
+            </div>
           )}
 
           {/* Kraj tags */}
           {r.kraj.filter(k => krajeList.includes(k)).length > 0 && (
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "12px" }}>
-              <MapPin size={12} color="#86efac" style={{ marginTop: "3px", flexShrink: 0 }} />
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "12px", alignItems: "center" }}>
+              <MapPin size={11} color="#86efac" style={{ flexShrink: 0 }} />
               {r.kraj.filter(k => krajeList.includes(k)).map(k => (
                 <span key={k} style={{
                   background: "rgba(134,239,172,0.12)", border: "1px solid rgba(134,239,172,0.25)",
                   borderRadius: "6px", padding: "2px 8px",
-                  color: "#86efac", fontSize: "0.75rem", fontWeight: 600,
+                  color: "#86efac", fontSize: "0.74rem", fontWeight: 600,
                 }}>
                   {k.replace(" kraj", "")}
                 </span>
@@ -101,67 +115,71 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn }: {
 
           {/* Description */}
           {r.desc && (
-            <p style={{
-              color: "rgba(255,255,255,0.75)", fontSize: "0.87rem", lineHeight: 1.6,
-              margin: "0 0 16px", 
-            }}>
+            <p style={{ color: "rgba(255,255,255,0.72)", fontSize: "0.86rem", lineHeight: 1.6, margin: "0 0 14px" }}>
               {r.desc}
             </p>
           )}
 
-          {/* Info note */}
-          <div style={{
-            background: "rgba(134,239,172,0.06)", border: "1px solid rgba(134,239,172,0.15)",
-            borderRadius: "10px", padding: "10px 12px", marginBottom: "14px",
-            color: "rgba(255,255,255,0.5)", fontSize: "0.78rem", lineHeight: 1.4,
-          }}>
-            {"Otev\u00edrac\u00ed dobu a vstupn\u00e9 zjist\u00edte na webu rozhledny."}
-          </div>
-
-          {/* Buttons */}
-          <div style={{ display: "flex", gap: "10px" }}>
+          {/* Buttons row 1: Maps + info */}
+          <div style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
+            <a
+              href={mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                padding: "11px 8px", borderRadius: "10px",
+                background: "rgba(66,133,244,0.12)", border: "1px solid rgba(66,133,244,0.35)",
+                color: "#93c5fd", fontWeight: 700, fontSize: "0.82rem",
+                textDecoration: "none",
+              }}
+            >
+              <span style={{ fontSize: "0.9rem" }}>{"🗺️"}</span>
+              {"Otev\u00edrac\u00ed doby"}
+            </a>
             <a
               href={r.url}
               target="_blank"
               rel="noopener noreferrer"
               style={{
                 flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
-                padding: "12px", borderRadius: "10px",
-                background: "rgba(134,239,172,0.1)", border: "1px solid rgba(134,239,172,0.3)",
-                color: "#86efac", fontWeight: 700, fontSize: "0.85rem",
+                padding: "11px 8px", borderRadius: "10px",
+                background: "rgba(134,239,172,0.08)", border: "1px solid rgba(134,239,172,0.25)",
+                color: "#86efac", fontWeight: 700, fontSize: "0.82rem",
                 textDecoration: "none",
               }}
             >
-              <ExternalLink size={14} />
-              {"Info a vstupn\u00e9"}
+              <ExternalLink size={13} />
+              {"Popis rozhledny"}
             </a>
-
-            {isSignedIn ? (
-              <button
-                onClick={() => toggle("rozhledna", rid, r.name)}
-                style={{
-                  flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-                  padding: "12px", borderRadius: "10px",
-                  background: done ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.07)",
-                  border: done ? "1px solid rgba(74,222,128,0.45)" : "1px solid rgba(255,255,255,0.15)",
-                  color: done ? "#4ade80" : "rgba(255,255,255,0.7)",
-                  fontWeight: 700, fontSize: "0.85rem", cursor: "pointer",
-                }}
-              >
-                {done ? <CheckCircle2 size={15} /> : <Circle size={15} />}
-                {done ? "Nav\u0161t\u00edveno" : "Ozna\u010dit"}
-              </button>
-            ) : (
-              <div style={{
-                flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
-                padding: "12px", borderRadius: "10px",
-                background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
-                color: "rgba(255,255,255,0.3)", fontSize: "0.8rem",
-              }}>
-                {"P\u0159ihlas se"}
-              </div>
-            )}
           </div>
+
+          {/* Mark visited button */}
+          {isSignedIn ? (
+            <button
+              onClick={() => toggle("rozhledna", rid, r.name)}
+              style={{
+                width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                padding: "12px", borderRadius: "10px",
+                background: done ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.07)",
+                border: done ? "1px solid rgba(74,222,128,0.45)" : "1px solid rgba(255,255,255,0.15)",
+                color: done ? "#4ade80" : "rgba(255,255,255,0.7)",
+                fontWeight: 700, fontSize: "0.88rem", cursor: "pointer",
+              }}
+            >
+              {done ? <CheckCircle2 size={16} /> : <Circle size={16} />}
+              {done ? "Nav\u0161t\u00edveno \u2013 odebrat z den\u00edku" : "Ozna\u010dit jako nav\u0161t\u00edveno"}
+            </button>
+          ) : (
+            <div style={{
+              width: "100%", display: "flex", alignItems: "center", justifyContent: "center",
+              padding: "11px", borderRadius: "10px",
+              background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
+              color: "rgba(255,255,255,0.3)", fontSize: "0.82rem",
+            }}>
+              {"P\u0159ihlas se pro ozna\u010dov\u00e1n\u00ed nav\u0161t\u00edven\u00fdch"}
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -339,6 +357,7 @@ export default function RozhlednyPage() {
                   const rid = String(r.id);
                   const done = isCompleted("rozhledna", rid);
                   const regionTag = r.kraj.filter(k => krajeList.includes(k))[0];
+                  const isDefunct = !!DEFUNCT_TOWERS[r.slug];
                   return (
                     <div
                       key={r.id}
@@ -349,34 +368,42 @@ export default function RozhlednyPage() {
                         overflow: "hidden",
                         cursor: "pointer",
                         border: done ? "2px solid rgba(74,222,128,0.5)" : "1px solid rgba(255,255,255,0.12)",
-                        background: "rgba(5,15,5,0.7)",
+                        background: "#050e05",
                         transition: "border-color 0.15s",
-                        aspectRatio: "3/4",
-                        display: "flex",
-                        flexDirection: "column",
+                        aspectRatio: "2/3",
                       }}
                     >
-                      {/* Photo */}
+                      {/* Full-height photo with contain so whole tower is visible */}
                       {r.photo ? (
                         <img
                           src={r.photo}
                           alt={r.name}
                           loading="lazy"
-                          style={{ width: "100%", height: "70%", objectFit: "cover", display: "block", flexShrink: 0 }}
+                          style={{
+                            position: "absolute", inset: 0,
+                            width: "100%", height: "85%",
+                            objectFit: "contain",
+                            objectPosition: "center top",
+                          }}
                         />
                       ) : (
-                        <div style={{ width: "100%", height: "70%", background: "rgba(134,239,172,0.05)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                          <Eye size={28} color="rgba(134,239,172,0.25)" />
+                        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "85%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <Eye size={26} color="rgba(134,239,172,0.2)" />
                         </div>
                       )}
 
-                      {/* Gradient overlay on image */}
-                      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "70%", background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 40%, rgba(5,15,5,0.6) 100%)", pointerEvents: "none" }} />
+                      {/* Bottom gradient into text area */}
+                      <div style={{ position: "absolute", bottom: "15%", left: 0, right: 0, height: "40%", background: "linear-gradient(to bottom, transparent, #050e05)", pointerEvents: "none" }} />
 
-                      {/* Done badge */}
-                      {done && (
-                        <div style={{ position: "absolute", top: "8px", left: "8px", background: "rgba(74,222,128,0.85)", borderRadius: "50%", width: "24px", height: "24px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                          <CheckCircle2 size={14} color="#052805" />
+                      {/* Defunct badge */}
+                      {isDefunct && (
+                        <div style={{
+                          position: "absolute", top: "6px", left: "6px",
+                          background: "rgba(251,191,36,0.9)", borderRadius: "6px",
+                          padding: "2px 6px", fontSize: "0.6rem", fontWeight: 800, color: "#1a0f00",
+                          letterSpacing: "0.03em",
+                        }}>
+                          {"ZAN\u00cdKL\u00c1"}
                         </div>
                       )}
 
@@ -385,33 +412,34 @@ export default function RozhlednyPage() {
                         <button
                           onClick={e => { e.stopPropagation(); toggle("rozhledna", rid, r.name); }}
                           style={{
-                            position: "absolute", top: "8px", right: "8px",
-                            width: "28px", height: "28px", borderRadius: "50%",
-                            background: done ? "rgba(74,222,128,0.8)" : "rgba(0,0,0,0.55)",
-                            border: done ? "none" : "1.5px solid rgba(255,255,255,0.35)",
+                            position: "absolute", top: "6px", right: "6px",
+                            width: "26px", height: "26px", borderRadius: "50%",
+                            background: done ? "rgba(74,222,128,0.88)" : "rgba(0,0,0,0.6)",
+                            border: done ? "none" : "1.5px solid rgba(255,255,255,0.4)",
                             display: "flex", alignItems: "center", justifyContent: "center",
                             cursor: "pointer",
                           }}
                         >
-                          {done ? <CheckCircle2 size={14} color="#052805" /> : <Circle size={14} color="rgba(255,255,255,0.8)" />}
+                          {done ? <CheckCircle2 size={13} color="#052805" /> : <Circle size={13} color="rgba(255,255,255,0.85)" />}
                         </button>
                       )}
 
-                      {/* Name + region */}
-                      <div style={{ padding: "8px 8px 10px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                      {/* Name + region — bottom strip */}
+                      <div style={{
+                        position: "absolute", bottom: 0, left: 0, right: 0,
+                        height: "15%", padding: "0 7px 6px",
+                        display: "flex", flexDirection: "column", justifyContent: "flex-end",
+                        background: "#050e05",
+                      }}>
                         <div style={{
-                          color: "white", fontWeight: 800, fontSize: "0.78rem",
-                          lineHeight: 1.3, marginBottom: "4px",
-                          display: "-webkit-box", WebkitLineClamp: 2,
-                          WebkitBoxOrient: "vertical", overflow: "hidden",
+                          color: "white", fontWeight: 800, fontSize: "0.73rem",
+                          lineHeight: 1.25, marginBottom: "1px",
+                          overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
                         }}>
                           {r.name}
                         </div>
                         {regionTag && (
-                          <span style={{
-                            color: "#86efac", fontSize: "0.66rem", fontWeight: 600,
-                            opacity: 0.8,
-                          }}>
+                          <span style={{ color: "#86efac", fontSize: "0.61rem", fontWeight: 600, opacity: 0.85 }}>
                             {regionTag.replace(" kraj", "")}
                           </span>
                         )}
