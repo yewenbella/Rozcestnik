@@ -1,9 +1,18 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
-import { Eye, Search, X, ExternalLink, ChevronDown, CheckCircle2, Circle, MapPin } from "lucide-react";
+import { Eye, Search, X, ExternalLink, ChevronDown, CheckCircle2, Circle, MapPin, Navigation, Filter } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { rozhledny, krajeList, type Rozhledna } from "@/data/rozhledny";
+import { rozhlednyCoords } from "@/data/rozhlednyCoords";
 import { useDenik } from "@/hooks/useDenik";
+
+function distKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
 
 const PAGE_SIZE = 24;
 
@@ -193,17 +202,64 @@ export default function RozhlednyPage() {
   const [page, setPage] = useState(1);
   const [showKrajDropdown, setShowKrajDropdown] = useState(false);
   const [selected, setSelected] = useState<Rozhledna | null>(null);
+  const [showVisited, setShowVisited] = useState(false);
+  const [nearbyActive, setNearbyActive] = useState(false);
+  const [userLocation, setUserLocation] = useState<{ lat: number; lon: number } | null>(null);
+  const [locationLoading, setLocationLoading] = useState(false);
+  const [locationError, setLocationError] = useState<string | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const { isCompleted, toggle, isSignedIn } = useDenik();
 
+  const requestLocation = useCallback(() => {
+    if (!navigator.geolocation) {
+      setLocationError("Geolokace nen\u00ed podporov\u00e1na");
+      return;
+    }
+    setLocationLoading(true);
+    setLocationError(null);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setUserLocation({ lat: pos.coords.latitude, lon: pos.coords.longitude });
+        setLocationLoading(false);
+        setNearbyActive(true);
+      },
+      () => {
+        setLocationError("P\u0159\u00edstup k poloze odm\u00edtnut");
+        setLocationLoading(false);
+        setNearbyActive(false);
+      },
+      { timeout: 8000 }
+    );
+  }, []);
+
+  const distanceMap = useMemo(() => {
+    if (!userLocation) return {} as Record<string, number>;
+    const map: Record<string, number> = {};
+    for (const r of rozhledny) {
+      const c = rozhlednyCoords[r.slug];
+      if (c) map[r.slug] = distKm(userLocation.lat, userLocation.lon, c[0], c[1]);
+    }
+    return map;
+  }, [userLocation]);
+
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
-    return rozhledny.filter(r => {
+    let result = rozhledny.filter(r => {
       const matchName = !q || r.name.toLowerCase().includes(q);
       const matchKraj = !kraj || r.kraj.some(k => k === kraj);
-      return matchName && matchKraj;
+      const matchVisited = !showVisited || isCompleted("rozhledna", String(r.id));
+      return matchName && matchKraj && matchVisited;
     });
-  }, [query, kraj]);
+    if (nearbyActive && userLocation) {
+      result = result
+        .filter(r => {
+          const d = distanceMap[r.slug];
+          return d !== undefined && d <= 100;
+        })
+        .sort((a, b) => (distanceMap[a.slug] ?? Infinity) - (distanceMap[b.slug] ?? Infinity));
+    }
+    return result;
+  }, [query, kraj, showVisited, nearbyActive, userLocation, distanceMap, isCompleted]);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const visible = filtered.slice(0, page * PAGE_SIZE);
@@ -334,6 +390,60 @@ export default function RozhlednyPage() {
               </div>
             )}
           </div>
+
+          {/* Filter Pills */}
+          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+            {/* Navštívené */}
+            <button
+              onClick={() => { setShowVisited(p => !p); setPage(1); }}
+              style={{
+                display: "flex", alignItems: "center", gap: "6px",
+                padding: "7px 13px", borderRadius: "20px", fontSize: "0.82rem", fontWeight: 700, cursor: "pointer",
+                background: showVisited ? "rgba(74,222,128,0.18)" : "rgba(255,255,255,0.08)",
+                border: showVisited ? "1px solid rgba(74,222,128,0.6)" : "1px solid rgba(255,255,255,0.15)",
+                color: showVisited ? "#4ade80" : "rgba(255,255,255,0.65)",
+                transition: "all 0.18s",
+              }}
+            >
+              <CheckCircle2 size={14} />
+              {"Nav\u0161t\u00edven\u00e9"}
+            </button>
+
+            {/* V okolí */}
+            <button
+              onClick={() => {
+                if (nearbyActive) {
+                  setNearbyActive(false);
+                  setPage(1);
+                } else if (userLocation) {
+                  setNearbyActive(true);
+                  setPage(1);
+                } else {
+                  requestLocation();
+                  setPage(1);
+                }
+              }}
+              disabled={locationLoading}
+              style={{
+                display: "flex", alignItems: "center", gap: "6px",
+                padding: "7px 13px", borderRadius: "20px", fontSize: "0.82rem", fontWeight: 700, cursor: locationLoading ? "wait" : "pointer",
+                background: nearbyActive ? "rgba(96,165,250,0.18)" : "rgba(255,255,255,0.08)",
+                border: nearbyActive ? "1px solid rgba(96,165,250,0.6)" : "1px solid rgba(255,255,255,0.15)",
+                color: nearbyActive ? "#60a5fa" : "rgba(255,255,255,0.65)",
+                transition: "all 0.18s",
+                opacity: locationLoading ? 0.7 : 1,
+              }}
+            >
+              <Navigation size={14} />
+              {locationLoading ? "Hled\u00e1m polohu\u2026" : nearbyActive ? "Do 100\u00a0km" : "V\u00a0okol\u00ed"}
+            </button>
+
+            {locationError && (
+              <span style={{ fontSize: "0.75rem", color: "#f87171", display: "flex", alignItems: "center" }}>
+                {locationError}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Grid */}
@@ -358,6 +468,7 @@ export default function RozhlednyPage() {
                   const done = isCompleted("rozhledna", rid);
                   const regionTag = r.kraj.filter(k => krajeList.includes(k))[0];
                   const isDefunct = !!DEFUNCT_TOWERS[r.slug];
+                  const dist = nearbyActive ? distanceMap[r.slug] : undefined;
                   return (
                     <div
                       key={r.id}
@@ -438,11 +549,18 @@ export default function RozhlednyPage() {
                         }}>
                           {r.name}
                         </div>
-                        {regionTag && (
-                          <span style={{ color: "#86efac", fontSize: "0.61rem", fontWeight: 600, opacity: 0.85 }}>
-                            {regionTag.replace(" kraj", "")}
-                          </span>
-                        )}
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                          {regionTag && (
+                            <span style={{ color: "#86efac", fontSize: "0.61rem", fontWeight: 600, opacity: 0.85 }}>
+                              {regionTag.replace(" kraj", "")}
+                            </span>
+                          )}
+                          {dist !== undefined && (
+                            <span style={{ color: "#60a5fa", fontSize: "0.61rem", fontWeight: 700, marginLeft: "auto" }}>
+                              {dist < 1 ? "<1\u00a0km" : Math.round(dist) + "\u00a0km"}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </div>
                   );

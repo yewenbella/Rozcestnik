@@ -15,6 +15,10 @@ A mobile-optimized Czech hiking challenge web app. Features:
 - Pravidla (Rules) page explaining how to play and score points
 - Dark forest green theme, mobile-first layout (max-width 480px)
 - No backend required — all static data
+- RozhlednyPage: 676 rozhledny with photo grid, DetailModal, DEFUNCT_TOWERS badges, "Navštívené" & "V okolí" filters
+- rozhlednyCoords.ts: GPS coordinates for 666/676 rozhledny (scraped from rozhlednovymrajem.cz)
+- "V okolí" filter uses browser Geolocation API + haversine distance, shows distance badges on cards, filters to 100km radius
+- "Navštívené" filter shows only towers marked complete via useDenik hook
 
 ## Stack
 
