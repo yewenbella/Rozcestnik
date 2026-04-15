@@ -1,11 +1,172 @@
 import React, { useState, useMemo, useRef } from "react";
 import { useLocation } from "wouter";
-import { Eye, Search, X, ExternalLink, ChevronDown, CheckCircle2, Circle } from "lucide-react";
+import { Eye, Search, X, ExternalLink, ChevronDown, CheckCircle2, Circle, MapPin } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-import { rozhledny, krajeList } from "@/data/rozhledny";
+import { rozhledny, krajeList, type Rozhledna } from "@/data/rozhledny";
 import { useDenik } from "@/hooks/useDenik";
 
-const PAGE_SIZE = 30;
+const PAGE_SIZE = 24;
+
+function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn }: {
+  r: Rozhledna;
+  onClose: () => void;
+  isCompleted: (type: string, id: string) => boolean;
+  toggle: (type: string, id: string, name: string) => void;
+  isSignedIn: boolean;
+}) {
+  const rid = String(r.id);
+  const done = isCompleted("rozhledna", rid);
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 200,
+        background: "rgba(0,0,0,0.75)",
+        display: "flex", alignItems: "flex-end", justifyContent: "center",
+        maxWidth: "480px", margin: "0 auto",
+      }}
+    >
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          width: "100%",
+          background: "rgba(8,22,8,0.97)",
+          border: "1px solid rgba(134,239,172,0.2)",
+          borderRadius: "20px 20px 0 0",
+          overflow: "hidden",
+          maxHeight: "88vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {/* Photo */}
+        {r.photo ? (
+          <div style={{ position: "relative", width: "100%", height: "220px", flexShrink: 0 }}>
+            <img
+              src={r.photo}
+              alt={r.name}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 50%, rgba(8,22,8,0.95) 100%)" }} />
+            <button
+              onClick={onClose}
+              style={{
+                position: "absolute", top: "12px", right: "12px",
+                width: "32px", height: "32px", borderRadius: "50%",
+                background: "rgba(0,0,0,0.55)", border: "1px solid rgba(255,255,255,0.2)",
+                color: "white", cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}
+            >
+              <X size={16} />
+            </button>
+            <div style={{
+              position: "absolute", bottom: "12px", left: "16px", right: "16px",
+              color: "white", fontWeight: 900, fontSize: "1.2rem", lineHeight: 1.2,
+            }}>
+              {r.name}
+            </div>
+          </div>
+        ) : (
+          <div style={{ position: "relative", background: "rgba(134,239,172,0.05)", height: "120px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <button onClick={onClose} style={{ position: "absolute", top: "12px", right: "12px", width: "32px", height: "32px", borderRadius: "50%", background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "white", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <X size={16} />
+            </button>
+            <Eye size={32} color="rgba(134,239,172,0.3)" />
+          </div>
+        )}
+
+        {/* Content */}
+        <div style={{ padding: "16px", overflowY: "auto", flex: 1 }}>
+          {!r.photo && (
+            <div style={{ color: "white", fontWeight: 900, fontSize: "1.1rem", marginBottom: "12px" }}>{r.name}</div>
+          )}
+
+          {/* Kraj tags */}
+          {r.kraj.filter(k => krajeList.includes(k)).length > 0 && (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "12px" }}>
+              <MapPin size={12} color="#86efac" style={{ marginTop: "3px", flexShrink: 0 }} />
+              {r.kraj.filter(k => krajeList.includes(k)).map(k => (
+                <span key={k} style={{
+                  background: "rgba(134,239,172,0.12)", border: "1px solid rgba(134,239,172,0.25)",
+                  borderRadius: "6px", padding: "2px 8px",
+                  color: "#86efac", fontSize: "0.75rem", fontWeight: 600,
+                }}>
+                  {k.replace(" kraj", "")}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Description */}
+          {r.desc && (
+            <p style={{
+              color: "rgba(255,255,255,0.75)", fontSize: "0.87rem", lineHeight: 1.6,
+              margin: "0 0 16px", 
+            }}>
+              {r.desc}
+            </p>
+          )}
+
+          {/* Info note */}
+          <div style={{
+            background: "rgba(134,239,172,0.06)", border: "1px solid rgba(134,239,172,0.15)",
+            borderRadius: "10px", padding: "10px 12px", marginBottom: "14px",
+            color: "rgba(255,255,255,0.5)", fontSize: "0.78rem", lineHeight: 1.4,
+          }}>
+            {"Otev\u00edrac\u00ed dobu a vstupn\u00e9 zjist\u00edte na webu rozhledny."}
+          </div>
+
+          {/* Buttons */}
+          <div style={{ display: "flex", gap: "10px" }}>
+            <a
+              href={r.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                padding: "12px", borderRadius: "10px",
+                background: "rgba(134,239,172,0.1)", border: "1px solid rgba(134,239,172,0.3)",
+                color: "#86efac", fontWeight: 700, fontSize: "0.85rem",
+                textDecoration: "none",
+              }}
+            >
+              <ExternalLink size={14} />
+              {"Info a vstupn\u00e9"}
+            </a>
+
+            {isSignedIn ? (
+              <button
+                onClick={() => toggle("rozhledna", rid, r.name)}
+                style={{
+                  flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                  padding: "12px", borderRadius: "10px",
+                  background: done ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.07)",
+                  border: done ? "1px solid rgba(74,222,128,0.45)" : "1px solid rgba(255,255,255,0.15)",
+                  color: done ? "#4ade80" : "rgba(255,255,255,0.7)",
+                  fontWeight: 700, fontSize: "0.85rem", cursor: "pointer",
+                }}
+              >
+                {done ? <CheckCircle2 size={15} /> : <Circle size={15} />}
+                {done ? "Nav\u0161t\u00edveno" : "Ozna\u010dit"}
+              </button>
+            ) : (
+              <div style={{
+                flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+                padding: "12px", borderRadius: "10px",
+                background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
+                color: "rgba(255,255,255,0.3)", fontSize: "0.8rem",
+              }}>
+                {"P\u0159ihlas se"}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function RozhlednyPage() {
   const [, navigate] = useLocation();
@@ -13,6 +174,7 @@ export default function RozhlednyPage() {
   const [kraj, setKraj] = useState("");
   const [page, setPage] = useState(1);
   const [showKrajDropdown, setShowKrajDropdown] = useState(false);
+  const [selected, setSelected] = useState<Rozhledna | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const { isCompleted, toggle, isSignedIn } = useDenik();
 
@@ -81,7 +243,6 @@ export default function RozhlednyPage() {
 
         {/* Search + Filter */}
         <div style={{ padding: "12px 16px 8px", display: "flex", flexDirection: "column", gap: "8px" }}>
-          {/* Search bar */}
           <div style={{
             display: "flex", alignItems: "center", gap: "8px",
             background: "rgba(255,255,255,0.12)",
@@ -94,10 +255,7 @@ export default function RozhlednyPage() {
               placeholder={"Hledat rozhlednu\u2026"}
               value={query}
               onChange={e => handleQueryChange(e.target.value)}
-              style={{
-                flex: 1, background: "none", border: "none", outline: "none",
-                color: "white", fontSize: "0.88rem",
-              }}
+              style={{ flex: 1, background: "none", border: "none", outline: "none", color: "white", fontSize: "0.88rem" }}
             />
             {query && (
               <button onClick={() => handleQueryChange("")} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex" }}>
@@ -106,7 +264,6 @@ export default function RozhlednyPage() {
             )}
           </div>
 
-          {/* Kraj filter */}
           <div style={{ position: "relative" }}>
             <button
               onClick={() => setShowKrajDropdown(p => !p)}
@@ -161,101 +318,114 @@ export default function RozhlednyPage() {
           </div>
         </div>
 
-        {/* List */}
+        {/* Grid */}
         <div
           ref={listRef}
           onClick={() => showKrajDropdown && setShowKrajDropdown(false)}
-          style={{ flex: 1, overflowY: "auto", padding: "0 16px 24px" }}
+          style={{ flex: 1, overflowY: "auto", padding: "4px 16px 24px" }}
         >
           {filtered.length === 0 ? (
             <div style={{ textAlign: "center", color: "rgba(255,255,255,0.45)", padding: "60px 0", fontSize: "0.9rem" }}>
               {"Nic nenalezeno"}
             </div>
           ) : (
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-              {visible.map(r => {
-                const rid = String(r.id);
-                const done = isCompleted("rozhledna", rid);
-                return (
-                  <div
-                    key={r.id}
-                    style={{
-                      display: "flex", alignItems: "center",
-                      background: done ? "rgba(74,222,128,0.07)" : "rgba(255,255,255,0.10)",
-                      border: done ? "1px solid rgba(74,222,128,0.3)" : "1px solid rgba(255,255,255,0.12)",
-                      borderRadius: "10px",
-                      padding: "11px 14px",
-                      transition: "background 0.15s",
-                      gap: "10px",
-                    }}
-                  >
-                    <a
-                      href={r.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ flex: 1, minWidth: 0, textDecoration: "none" }}
+            <>
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "10px",
+              }}>
+                {visible.map(r => {
+                  const rid = String(r.id);
+                  const done = isCompleted("rozhledna", rid);
+                  const regionTag = r.kraj.filter(k => krajeList.includes(k))[0];
+                  return (
+                    <div
+                      key={r.id}
+                      onClick={() => setSelected(r)}
+                      style={{
+                        position: "relative",
+                        borderRadius: "12px",
+                        overflow: "hidden",
+                        cursor: "pointer",
+                        border: done ? "2px solid rgba(74,222,128,0.5)" : "1px solid rgba(255,255,255,0.12)",
+                        background: "rgba(5,15,5,0.7)",
+                        transition: "border-color 0.15s",
+                        aspectRatio: "3/4",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
                     >
-                      <div style={{
-                        color: "white", fontWeight: 700, fontSize: "0.9rem",
-                        whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-                      }}>
-                        {r.name}
-                      </div>
-                      {r.kraj.filter(k => krajeList.includes(k)).length > 0 && (
-                        <div style={{ marginTop: "3px", display: "flex", flexWrap: "wrap", gap: "4px" }}>
-                          {r.kraj.filter(k => krajeList.includes(k)).map(k => (
-                            <span key={k} style={{
-                              background: "rgba(134,239,172,0.12)", border: "1px solid rgba(134,239,172,0.25)",
-                              borderRadius: "6px", padding: "1px 6px",
-                              color: "#86efac", fontSize: "0.68rem", fontWeight: 600,
-                            }}>
-                              {k.replace(" kraj", "")}
-                            </span>
-                          ))}
+                      {/* Photo */}
+                      {r.photo ? (
+                        <img
+                          src={r.photo}
+                          alt={r.name}
+                          loading="lazy"
+                          style={{ width: "100%", height: "70%", objectFit: "cover", display: "block", flexShrink: 0 }}
+                        />
+                      ) : (
+                        <div style={{ width: "100%", height: "70%", background: "rgba(134,239,172,0.05)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                          <Eye size={28} color="rgba(134,239,172,0.25)" />
                         </div>
                       )}
-                    </a>
-                    <ExternalLink size={13} color="rgba(255,255,255,0.25)" style={{ flexShrink: 0 }} />
-                    {isSignedIn ? (
-                      <button
-                        onClick={() => toggle("rozhledna", rid, r.name)}
-                        title={done ? "Odebrat z den\u00edku" : "Ozna\u010dit jako nav\u0161t\u00edveno"}
-                        style={{
-                          flexShrink: 0,
-                          width: 30, height: 30,
-                          borderRadius: "50%",
-                          border: done ? "1.5px solid rgba(74,222,128,0.7)" : "1.5px solid rgba(255,255,255,0.22)",
-                          background: done ? "rgba(74,222,128,0.18)" : "rgba(255,255,255,0.06)",
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          cursor: "pointer",
-                          transition: "all 0.18s",
-                        }}
-                      >
-                        {done
-                          ? <CheckCircle2 size={16} color="#4ade80" />
-                          : <Circle size={16} color="rgba(255,255,255,0.35)" />
-                        }
-                      </button>
-                    ) : (
-                      <div style={{
-                        flexShrink: 0, width: 30, height: 30, borderRadius: "50%",
-                        border: "1.5px solid rgba(255,255,255,0.10)",
-                        background: "rgba(255,255,255,0.03)",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        opacity: 0.4,
-                      }}>
-                        <Circle size={16} color="rgba(255,255,255,0.3)" />
+
+                      {/* Gradient overlay on image */}
+                      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "70%", background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 40%, rgba(5,15,5,0.6) 100%)", pointerEvents: "none" }} />
+
+                      {/* Done badge */}
+                      {done && (
+                        <div style={{ position: "absolute", top: "8px", left: "8px", background: "rgba(74,222,128,0.85)", borderRadius: "50%", width: "24px", height: "24px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <CheckCircle2 size={14} color="#052805" />
+                        </div>
+                      )}
+
+                      {/* Check button */}
+                      {isSignedIn && (
+                        <button
+                          onClick={e => { e.stopPropagation(); toggle("rozhledna", rid, r.name); }}
+                          style={{
+                            position: "absolute", top: "8px", right: "8px",
+                            width: "28px", height: "28px", borderRadius: "50%",
+                            background: done ? "rgba(74,222,128,0.8)" : "rgba(0,0,0,0.55)",
+                            border: done ? "none" : "1.5px solid rgba(255,255,255,0.35)",
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {done ? <CheckCircle2 size={14} color="#052805" /> : <Circle size={14} color="rgba(255,255,255,0.8)" />}
+                        </button>
+                      )}
+
+                      {/* Name + region */}
+                      <div style={{ padding: "8px 8px 10px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                        <div style={{
+                          color: "white", fontWeight: 800, fontSize: "0.78rem",
+                          lineHeight: 1.3, marginBottom: "4px",
+                          display: "-webkit-box", WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical", overflow: "hidden",
+                        }}>
+                          {r.name}
+                        </div>
+                        {regionTag && (
+                          <span style={{
+                            color: "#86efac", fontSize: "0.66rem", fontWeight: 600,
+                            opacity: 0.8,
+                          }}>
+                            {regionTag.replace(" kraj", "")}
+                          </span>
+                        )}
                       </div>
-                    )}
-                  </div>
-                );
-              })}
+                    </div>
+                  );
+                })}
+              </div>
 
               {page < totalPages && (
                 <button
                   onClick={() => setPage(p => p + 1)}
                   style={{
-                    marginTop: "4px", padding: "12px",
+                    width: "100%", marginTop: "12px", padding: "12px",
                     background: "rgba(134,239,172,0.1)", border: "1px solid rgba(134,239,172,0.3)",
                     borderRadius: "10px", color: "#86efac", fontSize: "0.85rem",
                     fontWeight: 700, cursor: "pointer", letterSpacing: "0.05em",
@@ -264,10 +434,21 @@ export default function RozhlednyPage() {
                   {`Zobrazit dal\u0161\u00ed (${filtered.length - page * PAGE_SIZE} zb\u00fdv\u00e1)`}
                 </button>
               )}
-            </div>
+            </>
           )}
         </div>
       </div>
+
+      {/* Detail Modal */}
+      {selected && (
+        <DetailModal
+          r={selected}
+          onClose={() => setSelected(null)}
+          isCompleted={isCompleted}
+          toggle={toggle}
+          isSignedIn={isSignedIn}
+        />
+      )}
     </div>
   );
 }
