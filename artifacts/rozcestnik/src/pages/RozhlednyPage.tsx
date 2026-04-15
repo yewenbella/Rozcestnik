@@ -22,7 +22,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn }: {
   const rid = String(r.id);
   const done = isCompleted("rozhledna", rid);
   const defunctNote = DEFUNCT_TOWERS[r.slug];
-  const mapsUrl = `https://maps.google.com/maps/search/${encodeURIComponent(r.name + " rozhledna")}`;
+  const mapsUrl = `https://maps.google.com/maps/search/${encodeURIComponent(r.name)}`;
 
   return (
     <div
