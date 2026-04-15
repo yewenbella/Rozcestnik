@@ -55,25 +55,43 @@ export function useDenik() {
     if (token) headers["Authorization"] = `Bearer ${token}`;
 
     if (alreadyDone) {
-      await fetch(`/api/denik/${type}/${encodeURIComponent(itemId)}`, {
-        method: "DELETE",
-        headers,
-        credentials: "include",
-      });
+      // Optimistic remove
       setItems(prev => prev.filter(i => !(i.type === type && i.itemId === itemId)));
+      try {
+        await fetch(`/api/denik/${type}/${encodeURIComponent(itemId)}`, {
+          method: "DELETE", headers, credentials: "include",
+        });
+      } catch {
+        // Revert on error
+        fetchItems();
+      }
     } else {
-      const res = await fetch("/api/denik", {
-        method: "POST",
-        headers,
-        credentials: "include",
-        body: JSON.stringify({ type, itemId, itemName }),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setItems(prev => [...prev, data.item]);
+      // Optimistic add with temporary item
+      const tempItem: DennikItem = {
+        id: -Date.now(),
+        type, itemId, itemName,
+        completedAt: new Date().toISOString(),
+      };
+      setItems(prev => [...prev, tempItem]);
+      try {
+        const res = await fetch("/api/denik", {
+          method: "POST", headers, credentials: "include",
+          body: JSON.stringify({ type, itemId, itemName }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          // Replace temp item with real item from server
+          setItems(prev => prev.map(i => i.id === tempItem.id ? data.item : i));
+        } else {
+          // Revert on error
+          setItems(prev => prev.filter(i => i.id !== tempItem.id));
+        }
+      } catch {
+        // Revert on network error
+        setItems(prev => prev.filter(i => i.id !== tempItem.id));
       }
     }
-  }, [isSignedIn, items, getToken]);
+  }, [isSignedIn, items, getToken, fetchItems]);
 
   const markDone = useCallback(async (
     type: "trasa" | "rozhledna" | "hrad",
@@ -86,15 +104,25 @@ export function useDenik() {
     const token = await getToken();
     const headers: Record<string, string> = { "Content-Type": "application/json" };
     if (token) headers["Authorization"] = `Bearer ${token}`;
-    const res = await fetch("/api/denik", {
-      method: "POST",
-      headers,
-      credentials: "include",
-      body: JSON.stringify({ type, itemId, itemName }),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      setItems(prev => [...prev, data.item]);
+    const tempItem: DennikItem = {
+      id: -Date.now(),
+      type, itemId, itemName,
+      completedAt: new Date().toISOString(),
+    };
+    setItems(prev => [...prev, tempItem]);
+    try {
+      const res = await fetch("/api/denik", {
+        method: "POST", headers, credentials: "include",
+        body: JSON.stringify({ type, itemId, itemName }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setItems(prev => prev.map(i => i.id === tempItem.id ? data.item : i));
+      } else {
+        setItems(prev => prev.filter(i => i.id !== tempItem.id));
+      }
+    } catch {
+      setItems(prev => prev.filter(i => i.id !== tempItem.id));
     }
   }, [isSignedIn, items, getToken]);
 
