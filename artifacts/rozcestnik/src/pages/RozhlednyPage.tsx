@@ -143,8 +143,8 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn }: {
                 textDecoration: "none",
               }}
             >
-              <span style={{ fontSize: "0.9rem" }}>{"🗺️"}</span>
-              {"Otev\u00edrac\u00ed doby"}
+              <span style={{ fontSize: "0.9rem" }}>{"📍"}</span>
+              {"Google Maps"}
             </a>
             <a
               href={r.url}
