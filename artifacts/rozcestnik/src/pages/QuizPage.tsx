@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation } from "wouter";
-import { useClerk } from "@clerk/react";
+import { useClerk, useUser } from "@clerk/react";
 import { ArrowLeft, CheckCircle2, XCircle, Trophy, X } from "lucide-react";
 
 interface Question {
@@ -71,7 +71,8 @@ interface ScoreEntry { player_name: string; score: number; }
 
 export default function QuizPage() {
   const [, navigate] = useLocation();
-  const { session } = useClerk();
+  const { session, openSignIn } = useClerk();
+  const { isLoaded, isSignedIn } = useUser();
 
   const sessionRef = useRef(session);
   useEffect(() => { sessionRef.current = session; }, [session]);
@@ -332,6 +333,40 @@ export default function QuizPage() {
       })}
     </div>
   );
+
+  if (!isLoaded || !isSignedIn) {
+    return (
+      <div style={{ ...pageStyle, alignItems: "center", justifyContent: "center", gap: "20px" }}>
+        <div style={{ ...headerStyle, alignSelf: "stretch", position: "sticky" }}>
+          <button onClick={() => navigate("/")} style={backBtnStyle}>
+            <ArrowLeft size={18} />
+          </button>
+          <span style={{ color: "white", fontWeight: 900, fontSize: "1rem", letterSpacing: "0.04em" }}>{"KV\u00cdZ"}</span>
+        </div>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "20px", padding: "40px 32px" }}>
+          <div style={{ fontSize: "3rem" }}>{"🔒"}</div>
+          <div style={{ textAlign: "center" }}>
+            <div style={{ color: "white", fontWeight: 900, fontSize: "1.2rem", marginBottom: "8px" }}>{"P\u0159ihl\u00e1\u0161en\u00ed vy\u017eadov\u00e1no"}</div>
+            <div style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.88rem", lineHeight: 1.5 }}>{"Pro hran\u00ed kv\u00edzu je pot\u0159eba b\u00fdt p\u0159ihl\u00e1\u0161en."}</div>
+          </div>
+          {isLoaded && (
+            <button
+              onClick={() => openSignIn()}
+              style={{
+                padding: "13px 32px", borderRadius: "12px",
+                background: "linear-gradient(135deg, rgba(251,191,36,0.22), rgba(251,191,36,0.12))",
+                border: "1px solid rgba(251,191,36,0.45)",
+                color: "#fbbf24", fontWeight: 800, fontSize: "0.95rem",
+                cursor: "pointer", letterSpacing: "0.05em",
+              }}
+            >
+              {"P\u0159ihl\u00e1sit se"}
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   if (checkingPlayed) {
     return (

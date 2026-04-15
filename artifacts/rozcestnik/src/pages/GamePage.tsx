@@ -29,8 +29,8 @@ function drawRoundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: n
 }
 
 export default function GamePage() {
-  const { user } = useUser();
-  const { session } = useClerk();
+  const { user, isLoaded, isSignedIn } = useUser();
+  const { session, openSignIn } = useClerk();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef({
     playerY: GROUND - PLAYER_H,
@@ -119,7 +119,8 @@ export default function GamePage() {
   }
 
   useEffect(() => {
-    const canvas = canvasRef.current!;
+    if (!canvasRef.current) return;
+    const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d")!;
 
     function loop() {
@@ -325,6 +326,34 @@ export default function GamePage() {
       <Trophy size={18} color={showLeaderboard ? "#f59e0b" : "rgba(255,255,255,0.6)"} />
     </button>
   );
+
+  if (!isLoaded || !isSignedIn) {
+    return (
+      <PageLayout title="Mini hra" backPath="/">
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "40px 32px", gap: "20px" }}>
+          <div style={{ fontSize: "3rem" }}>{"🔒"}</div>
+          <div style={{ textAlign: "center" }}>
+            <div style={{ color: "white", fontWeight: 900, fontSize: "1.2rem", marginBottom: "8px" }}>{"P\u0159ihl\u00e1\u0161en\u00ed vy\u017eadov\u00e1no"}</div>
+            <div style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.88rem", lineHeight: 1.5 }}>{"Pro hran\u00ed mini hry je pot\u0159eba b\u00fdt p\u0159ihl\u00e1\u0161en."}</div>
+          </div>
+          {isLoaded && (
+            <button
+              onClick={() => openSignIn()}
+              style={{
+                padding: "13px 32px", borderRadius: "12px",
+                background: "linear-gradient(135deg, rgba(74,222,128,0.22), rgba(74,222,128,0.12))",
+                border: "1px solid rgba(74,222,128,0.45)",
+                color: "#4ade80", fontWeight: 800, fontSize: "0.95rem",
+                cursor: "pointer", letterSpacing: "0.05em",
+              }}
+            >
+              {"P\u0159ihl\u00e1sit se"}
+            </button>
+          )}
+        </div>
+      </PageLayout>
+    );
+  }
 
   return (
     <PageLayout title="Mini hra" backPath="/" rightSlot={trophyBtn}>
