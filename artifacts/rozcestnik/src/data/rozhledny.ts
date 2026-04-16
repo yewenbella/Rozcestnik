@@ -414,7 +414,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-boubin/",
     "kraj": ["Jihočeský kraj",
       "Prachatice"],
-    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-boubin-2021_7_7-163316.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-boubin-2021_7_7-163454.jpg",
     "desc": "Masivní dřevěná jedenadvacetimetrová rozhledna z roku 2005. Ochoz rozhledny převyšuje vrchol Plechého o 5 metrů a stává se tak nejvýše položeným pevným bodem tohoto pohoří na české straně Šumavy. Fantastický kruhový výhled z otevřené plošiny ve výšce"
   },
   {
@@ -2302,7 +2302,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-kelcsky-javornik/",
     "kraj": ["Kroměříž",
       "Zlínský kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/2025/rozhledna-kelcsky-javornik-2025_13_4-114949.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2025/rozhledna-kelcsky-javornik-2025_13_4-114958.jpg",
     "desc": "Šestatřicetimetrová dřevěná rozhledna s ocelovými výztužnými prvky a točitým schodištěm z&nbsp;roku 2015. Fantastický kruhový výhled z&nbsp;otevřené plošiny ve výšce 30 metrů téměř na celou Moravu (Hostýnské vrchy se sv."
   },
   {
@@ -2371,7 +2371,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-klet/",
     "kraj": ["Český Krumlov",
       "Jihočeský kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-klet-2020_13_6-202204.jpg",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Rozhledna_Kle%C5%A5_2.JPG",
     "desc": "Kamenná, válcová věž s címbuřím z roku 1825. Nádherný kruhový výhled z otevřeného ochozu ve výšce 18 metrů (jižní a centrální Šumava, Novohradské hory, jihočeská pánev, JE Temelín, Hluboká a za dobré viditelností rakousk"
   },
   {
@@ -3739,7 +3739,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-nisanka/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-nisanka-2023_12_7-160657.jpg",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Nov%C3%A1_Ves_nad_Nisou_-_rozhledna_Nisanka_%281%29.jpg/800px-Nov%C3%A1_Ves_nad_Nisou_-_rozhledna_Nisanka_%281%29.jpg",
     "desc": "Pětatřicetimetrový ocelový tubus s vnějším točitým schodištěm z roku 2007. Kruhový výhled z otevřené plošiny ve výšce 24 metrů (Černá Studnice, Ještěd, Jizerské hory, Krkonoše). Kilometrové stoupání k rozhledně začíná u "
   },
   {
@@ -4907,7 +4907,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/soumarske-raseliniste/",
     "kraj": ["Jihočeský kraj",
       "Prachatice"],
-    "photo": "https://turistickamapa.cz/data_fotos/2023/soumarske-raseliniste-2023_5_11-094934.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/soumarske-raseliniste-2023_5_11-094941.jpg",
     "desc": "Devítimetrová dřevěná rozhledna z roku 2011 je postavená na nejvyšším místě, do roku 2000 průmyslově využívaného rašeliniště. Kruhový výhled ze zastřešeného ochozu ve výšce 6 metrů (Stožec, hřeben Boubínu, Želnavská paho"
   },
   {
@@ -5217,7 +5217,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-svakov/",
     "kraj": ["Jihočeský kraj",
       "Tábor"],
-    "photo": "https://turistickamapa.cz/data_fotos/2025/rozhledna-svakov-2025_23_3-110549.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2025/rozhledna-svakov-2025_23_3-105524.jpg",
     "desc": "Čtrnáctimetrová dřevěná rozhledna z&nbsp;roku 2014. Půlkruhový výhled ze zastřešeného ochozu ve výšce 10 metrů je pouze východním směrem (Soběslav, údolí Lužnice, hrad Choustník). K&nbsp;rozhledně vedou 3 přístupové cest"
   },
   {
