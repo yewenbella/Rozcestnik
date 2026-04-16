@@ -103,10 +103,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1960,
     "name": "Babí lom",
     "slug": "babi-lom",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/babi-lom/",
+    "url": "https://turistickamapa.cz/rozhledna-babi-lom/",
     "kraj": ["Brno - venkov",
       "Jihomoravský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/babi-lom.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-babi-lom-2023_20_10-105553.jpg",
     "desc": "Patnáctimetrová válcová betonová věž z roku 1961. Kruhový výhled ze zastřešeného ochozu ve výšce 12 metrů (Drahanská vrchovina, Brno, Pavlovské vrchy). K rozhledně se lze přiblížit buď z Lelekovic po značené cyklistické cestě v délce 3 kilometry po h"
   },
   {
@@ -123,10 +123,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 5219,
     "name": "Babka",
     "slug": "babka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/babka/",
+    "url": "https://turistickamapa.cz/rozhledna-babka/",
     "kraj": ["Kutná Hora",
       "Středočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/babka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-babka-2023_18_5-164333.jpg",
     "desc": "Osmadvacetimetrová šestiúhelníková stavba z&nbsp;roku 2015. Až do druhého patra spočívá na ocelových stojinách, které jsou šikovně zakryté dřevěnými latěmi. Dále ke střeše pak konstrukce pokračuje mohutnými loupanými smrkovými kulatinami. Kruhový výh"
   },
   {
@@ -221,10 +221,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 14207,
     "name": "Bedřichova vyhlídka",
     "slug": "bedrichova-vyhlidka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/bedrichova-vyhlidka/",
+    "url": "https://turistickamapa.cz/bedrichova-vyhlidka/",
     "kraj": ["Kolín",
       "Středočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/bedrichova-vyhlidka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/bedrichova-vyhlidka-2022_26_10-104912.jpg",
     "desc": "Čtrnáctimetrová dřevěná rozhledna s&nbsp;kovovým točitým schodištěm stojí od roku 2018 na Novoveském vrchu na místě Prusko – Rakouské bitvy z&nbsp;roku 1757, po bitvě nazývaném mezi prostým lidem Bedřichov. Kruhový výhled z&nbsp;otevřeného ochozu ve "
   },
   {
@@ -261,10 +261,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1907,
     "name": "Bílá hora",
     "slug": "bila-hora",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/bila-hora/",
+    "url": "https://turistickamapa.cz/rozhledna-bila-hora/",
     "kraj": ["Moravskoslezský kraj",
       "Nový Jičín"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/bila-hora.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-bila-hora-2022_15_10-122411.jpg",
     "desc": "Třiačtyřicetimetrová vysoká betonová telekomunikační věž z roku 2000, obtočená vnějšim spirálovitě stoupajícím schodištěm. Kruhový výhled ze zastřešené plošiny ve výšce 26 metrů (Beskydy, Jeseníky, Kopřivnice, Ostrava). Na Bílou horu vede z nedalekéh"
   },
   {
@@ -361,10 +361,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 49,
     "name": "Bolfánek",
     "slug": "bolfanek",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/bolfanek/",
+    "url": "https://turistickamapa.cz/rozhledna-bolfanek/",
     "kraj": ["Klatovy",
       "Plzeňský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/bolfanek.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-bolfanek-2023_20_10-110743.jpg",
     "desc": "Zděná věž bývalého kostela svatého Wolfganga dostavěná v roce 1845 do výšky 45 metrů. Kruhový výhled ze zastřešeného ochozu ve výšce 25 metrů (Šumava s Ostrým, Javorem a Jezerní horu, Český les s Čerchovem, Starým Herštejnem, Lysou, Velkým Zvonem a P"
   },
   {
@@ -401,20 +401,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 1773,
     "name": "Borůvková hora",
     "slug": "boruvkova-hora",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/boruvkova-hora/",
+    "url": "https://turistickamapa.cz/rozhledna-boruvkova-hora/",
     "kraj": ["Jeseník",
       "Olomoucký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/boruvkova-hora.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-boruvkova-hora-2021_15_4-152443.jpg",
     "desc": "Šestadvacetimetrová&nbsp; ocelová věž z roku 2006 pobitá silnými smrkovými prkny. Kruhový výhled ze zastřešené plošiny ve výšce 24 metrů ( Rychlebské hory, Jeseníky – Šerák s Pradědem, Králický Sněžník, za dobré viditelnosti i Krkonoše, v Polsku pak "
   },
   {
     "id": 787,
     "name": "Boubín",
     "slug": "boubin",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/boubin/",
+    "url": "https://turistickamapa.cz/rozhledna-boubin/",
     "kraj": ["Jihočeský kraj",
       "Prachatice"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/boubin.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-boubin-2021_7_7-163316.jpg",
     "desc": "Masivní dřevěná jedenadvacetimetrová rozhledna z roku 2005. Ochoz rozhledny převyšuje vrchol Plechého o 5 metrů a stává se tak nejvýše položeným pevným bodem tohoto pohoří na české straně Šumavy. Fantastický kruhový výhled z otevřené plošiny ve výšce"
   },
   {
@@ -451,10 +451,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 903,
     "name": "Bramberk",
     "slug": "bramberk",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/bramberk/",
+    "url": "https://turistickamapa.cz/rozhledna-bramberk/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/bramberk.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-bramberk-2023_13_7-132037.jpg",
     "desc": "Masivní kamenná jedenadvaceti metrová vysoká věž z roku 1912. Kruhový výhled z kryté místnosti ve výšce 18 metrů je severním směrem částečně omezen vzrostlým lesem na hřebeni vyššího kopce (Jizerské hory, Krkonoše, Ještědský hřbet, Jablonec, Liberec,"
   },
   {
@@ -481,10 +481,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1861,
     "name": "Brdo",
     "slug": "brdo",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/brdo/",
+    "url": "https://turistickamapa.cz/rozhledna-brdo/",
     "kraj": ["Kroměříž",
       "Zlínský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/brdo.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-brdo-2020_6_6-145134.jpg",
     "desc": "Čtyřiadvacetimetrová kamenná věž z roku 2004. Kruhový výhled z prosklené místnosti ve výšce 20 metrů (Chřiby, Hostýnské vrchy, Bílé Karpaty, věže Velehradu, Buchlov, Uherské Hradiště, Zlín, Kroměříž, Pálava, za dobré viditelnosti Beskydy, Jeseníky, M"
   },
   {
@@ -601,10 +601,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 6689,
     "name": "Bukovka",
     "slug": "bukovka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/bukovka/",
+    "url": "https://turistickamapa.cz/rozhledna-bukovka/",
     "kraj": ["Olomoucký kraj",
       "Šumperk"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/bukovka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-bukovka-u-rapotina-2022_17_3-105754.jpg",
     "desc": "Masivní dřevěná jedenadvacetimetrová věž z roku 2016 spočívající na betonové podezdívce. V anketě o Rozhlednu roku 2016, pořádané Klubem přátel rozhleden, obsadila 1. místo. Nádherný kruhový výhled ze zastřešené plošiny ve 18 výšce metrů (Jeseníky od"
   },
   {
@@ -660,10 +660,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 910,
     "name": "Císařský kámen",
     "slug": "cisarsky-kamen",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/cisarsky-kamen/",
+    "url": "https://turistickamapa.cz/rozhledna-cisarsky-kamen/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/cisarsky-kamen.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2024/rozhledna-cisarsky-kamen-2024_18_8-153619.jpg",
     "desc": "Dvacetimetrová dřevěná rozhledna z roku 2009. Kruhový výhled z otevřeného ochozu ve výšce 19 metrů (Ještěd, Javorník, Liberec, Jablonec, Jizerské hory, západní Krkonoše a Trosky v Českém ráji). Východištěm ke zdolání této dřevěné rozhledny je obec Mi"
   },
   {
@@ -680,20 +680,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 1912,
     "name": "Cvilín",
     "slug": "cvilin",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/cvilin/",
+    "url": "https://turistickamapa.cz/rozhledna-cvilin/",
     "kraj": ["Bruntál",
       "Moravskoslezský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2026/02/cvilin-scaled.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-cvilin-2023_4_1-172546.jpg",
     "desc": "Původně pětatřicetimetrová, nyní devětadvacetimetrová kamenná válcová věž z roku 1903. Kruhový výhled z otevřeného ochozu ve výšce 25 metrů (Krnov, Opava, Jeseníky, Beskydy, Hraniční vrch, Polsko). Značená cesta k rozhledně odbočuje z hlavní silnice "
   },
   {
     "id": 3850,
     "name": "Čáp",
     "slug": "cap",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/cap/",
+    "url": "https://turistickamapa.cz/rozhledna-cap/",
     "kraj": ["Královéhradecký kraj",
       "Náchod"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/cap.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-cap-2022_25_6-104250.jpg",
     "desc": "Jedenáctimetrová dřevěná rozhledna s&nbsp;ocelovým točitým schodištěm z&nbsp;roku 2014, která jako jedna z&nbsp;mála u nás byla postavena pomocí vrtulníku. V anketě o rozhlednu roku 2014, vyhlášenou Klubem přátel rozhleden, obsadila spolu s Cibulkou "
   },
   {
@@ -740,10 +740,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 789,
     "name": "Čermákův vrch",
     "slug": "cermakuv-vrch",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/cermakuv-vrch/",
+    "url": "https://turistickamapa.cz/rozhledna-cermakuv-vrch/",
     "kraj": ["Jihočeský kraj",
       "Tábor"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/cermakuv-vrch.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-cermakuv-vrch-2022_4_5-153412.jpg",
     "desc": "Dvacetimetrová příhradová ocelová věž z roku 2001. Kruhový výhled z kryté prosklené buňky ve výšce 14 metrů nebo z otevřené plošiny ve výšce 17 metrů. (Tábor, Šumava, Kleť, Novohradské hory, Temelín). Přestože Čermákův vrch je na první pohled snadno "
   },
   {
@@ -760,10 +760,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 916,
     "name": "Černá studnice",
     "slug": "cerna-studnice",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/cerna-studnice/",
+    "url": "https://turistickamapa.cz/rozhledna-cerna-studnice/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2026/02/03-1.png",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-cerna-studnice-2023_31_1-171448.jpg",
     "desc": "Mohutná šestadvacetimetrová kamenná rozhledna z roku 1905 s horskou chatou a velkou restaurací. Nádherný kruhový výhled ze čtyř kamenných balkonů ve výšce 21 metrů (Jizerské hory, Ještěd, Krkonoše, Jablonec, Liberec, Kozákov, Trosky, Bezděz ). Odbočk"
   },
   {
@@ -840,10 +840,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 4007,
     "name": "Čížovka",
     "slug": "cizovka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/cizovka/",
+    "url": "https://turistickamapa.cz/rozhledna-cizovka/",
     "kraj": ["Mladá Boleslav",
       "Středočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/cizovka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-cizovka-2021_29_6-114445.jpg",
     "desc": "Třicet devět metrů vysoká dřevěná jehlanová věž s ocelovým točitým schodištěm, postavená v roce 2013 na mohutné betonové podstavě, která je obložena pískovcovým kamenem.&nbsp; Nádherný kruhový výhled z plošiny ve výšce 29 metrů (Mladá Boleslav, Bezdě"
   },
   {
@@ -860,30 +860,30 @@ export const rozhledny: Rozhledna[] = [
     "id": 2896,
     "name": "Dalibor",
     "slug": "dalibor",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/dalibor/",
+    "url": "https://turistickamapa.cz/rozhledna-dalibor/",
     "kraj": ["Břeclav",
       "Jihomoravský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/dalibor.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-dalibor-2022_25_5-202346.jpg",
     "desc": "Jedenáctimetrová zděná rozhledna z roku 2012 postavená na zalesněném vrcholku Kalvárie nad penzionem Vinařství U Kapličky v&nbsp;Zaječí. Kruhový výhled ze zastřešeného ochozu ve výšce 8 metrů (Pálava, Novomlýnské nádrže, Lednicko-valtický areál, Břec"
   },
   {
     "id": 16248,
     "name": "Dalimilova rozhledna",
     "slug": "dalimilova-rozhledna",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/dalimilova-rozhledna/",
+    "url": "https://turistickamapa.cz/dalimilova-rozhledna/",
     "kraj": ["Olomoucký kraj",
       "Šumperk"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2026/02/dalimilova-rozhledna-scaled.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/dalimilova-rozhledna-2021_22_9-162001.jpg",
     "desc": "Věrná replika mohutné kamenné rozhledny, která stála od roku 1899 na nejvyšším vrcholu Králického Sněžníku na území tehdejšího Pruska. Kvůli zanedbané péči a havarijnímu stavu byla 11. října 1973 odstřelena polskými ženisty. Nová čtyřiatřicetimetrová"
   },
   {
     "id": 1183,
     "name": "Děčínský Sněžník",
     "slug": "decinsky-sneznik",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/decinsky-sneznik/",
+    "url": "https://turistickamapa.cz/rozhledna-decinsky-sneznik/",
     "kraj": ["Děčín",
       "Ústecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2026/02/decinsky-sneznik-scaled.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-decinsky-sneznik-2020_21_8-155712.jpg",
     "desc": "Bohatě zdobená válcová pískovcová věž z roku 1864 byla postavena za účelem zeměměřičských prací. Jedinečný kruhový výhled z otevřeného ochozu ve výšce 33 metrů (Labské pískovce, Lužické hory, České středohoří, Krušné hory, Děčín, Drážďany). Jediná ce"
   },
   {
@@ -900,10 +900,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 393,
     "name": "Diana",
     "slug": "diana",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/diana/",
+    "url": "https://turistickamapa.cz/rozhledna-diana/",
     "kraj": ["Karlovarský kraj",
       "Karlovy Vary"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2026/03/diana-scaled.png",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-diana-2022_4_11-122828.jpg",
     "desc": "Elegantní 35 metrová zděná věž z roku 1914. Kruhový výhled ze zastřešeného dřevěného ochozu ve výšce 30 metrů (Karlovy Vary, Krušné a Doupovské hory, Slavkovský les). Nejznámější karlovarská rozhledna se nachazí na Výšině přátelství, kam nás od říčky"
   },
   {
@@ -920,10 +920,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 16798,
     "name": "Dobrá Voda",
     "slug": "dobra-voda",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/dobra-voda/",
+    "url": "https://turistickamapa.cz/rozhledna-dobra-voda/",
     "kraj": ["Český Krumlov",
       "Jihočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/dobra-voda.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-dobra-voda-2023_23_8-180806.jpg",
     "desc": "Šestatřicetimetrová masivní železná rozhledna, spočívající na čtyřech mírně rozkročených stojinách, stojí od roku 2021 na vrcholu stejnojmenného kopce severně od Horní Plané. Kruhový výhled ze zastřešeného ochozu ve výšce 33 metrů (hraniční vrcholky "
   },
   {
@@ -1059,10 +1059,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 923,
     "name": "Dubecko",
     "slug": "dubecko",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/dubecko/",
+    "url": "https://turistickamapa.cz/rozhledna-dubecko/",
     "kraj": ["Liberecký kraj",
       "Semily"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/dubecko.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-dubecko-2023_6_7-103921.jpg",
     "desc": "Padesátimetrový trubková ocelový stožár opatřený vnějším vinutým schodištěm z roku 2002. Kruhový výhled ze zastřešené, dřevem obložené vyhlídkové plošiny ve výšce 33 metrů (Kozákov, Trosky, Ještěd, Bezděz, Ralsko, Černá "
   },
   {
@@ -1209,10 +1209,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 400,
     "name": "Goethova vyhlídka",
     "slug": "goethova-vyhlidka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/goethova-vyhlidka/",
+    "url": "https://turistickamapa.cz/goethova-vyhlidka/",
     "kraj": ["Karlovarský kraj",
       "Karlovy Vary"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/goethova-vyhlidka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/goethova-vyhlidka-2023_31_1-161514.jpg",
     "desc": "Dvaačtyřicetimetrová cihlová novogotická věž se stylovou výletní restaurací z roku 1889. Kruhovému výhledu z otevřeného ochozu ve výšce 34 metrů částečně brání severovýchodním směrem vysoké stromy (Krušné hory s Klínovce"
   },
   {
@@ -1289,20 +1289,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 404,
     "name": "Hamelika",
     "slug": "hamelika",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/hamelika/",
+    "url": "https://turistickamapa.cz/rozhledna-hamelika/",
     "kraj": ["Cheb",
       "Karlovarský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/hamelika.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2024/rozhledna-hamelika-2024_6_4-151831.jpg",
     "desc": "Jedenadvacetimetrová válcová kamenná věž v podobě hradní zříceniny z roku 1876. Kvůli vysokému lesu je z otevřeného ochozu ve výšce 20 metrů pouze půlkruhový výhled jihozápadním směrem. V roce 2006 při celkové rekonstruk"
   },
   {
     "id": 22564,
     "name": "Hamštejn",
     "slug": "hamstejn",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/hamstejn/",
+    "url": "https://turistickamapa.cz/rozhledna-hamstejn/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2024/01/hamstejn2024.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2024/rozhledna-hamstejn-2024_18_8-151443.jpg",
     "desc": "Pětadvacetimetrový ocelový sloup z roku 2023 s točitým schodištěm, zpevněný třemi prohnutými dřevěnými podpěrami ve tvaru kalicha. V soutěži o Rozhlednu roku 2023, pořádanou Klubem přátel rozhleden, obsadila tato originá"
   },
   {
@@ -1369,10 +1369,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 135,
     "name": "Havran",
     "slug": "havran",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/havran/",
+    "url": "https://turistickamapa.cz/rozhledna-havran/",
     "kraj": ["Plzeňský kraj",
       "Tachov"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/havran.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2024/rozhledna-havran-2024_23_2-170914.jpg",
     "desc": "Bývalá vojenská ocelová věž z 80. let 20. století vybudovaná za účelem radiového odposlechu, podobně, jako čtyři další stavby na Dyleni, Velkém Zvonu, Čerchově a Poledníku. V roce 2011 byla značně zchátralá a k demolici odsouzená stavba převedena na "
   },
   {
@@ -1409,10 +1409,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 796,
     "name": "Helfenburk Okrouhlá věž",
     "slug": "helfenburk",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/helfenburk/",
+    "url": "https://turistickamapa.cz/helfenburk/",
     "kraj": ["Jihočeský kraj",
       "Strakonice"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/helfenburk.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/helfenburk-2021_11_3-113024.jpg",
     "desc": "Mohutná hradní Okrouhlá (Východní) věž ze 14. století byla rekonstruovaná v 60. a 70. letech 20. století a znovu zpřístupněná roce 1977. Kromě této věže se v areálu hradu nachází ještě nižší a v současné době nepřístupná věž &#8211; Bergfrit. Kruhový"
   },
   {
@@ -1439,10 +1439,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 3040,
     "name": "Heřmanice",
     "slug": "hermanice",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/hermanice/",
+    "url": "https://turistickamapa.cz/rozhledna-hermanice/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/hermanice.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-hermanice-2023_22_1-121612.jpg",
     "desc": "Originální čtyřiadvacetimetrová dřevěná rozhledna z&nbsp;roku 2012. Kruhový výhled z&nbsp;otevřeného ochozu ve výšce 23 metrů (Jizerské hory s dominantním Smrkem, Lužické hory se všemi nejznámějšími vrcholy Hvozdem, Luží"
   },
   {
@@ -1499,10 +1499,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1592,
     "name": "Hnědý vrch",
     "slug": "hnedy-vrch",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/hnedy-vrch/",
+    "url": "https://turistickamapa.cz/rozhledna-hnedy-vrch/",
     "kraj": ["Královéhradecký kraj",
       "Trutnov"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/hnedy-vrch.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-hnedy-vrch-2021_10_10-103542.jpg",
     "desc": "Masivní jednatřicetimetrová dřevěná věž z roku 2009 s ocelovým schodištěm, vyhlídkovými plošinami a výztuhami. Kruhový výhled znemožňuje severozápadním směrem hlavní vrchol Liščí hory. Přesto je z horní zastřešené plošin"
   },
   {
@@ -1619,10 +1619,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 798,
     "name": "Hoslovice",
     "slug": "hoslovice",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/hoslovice/",
+    "url": "https://turistickamapa.cz/rozhledna-hoslovice/",
     "kraj": ["Jihočeský kraj",
       "Strakonice"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/hoslovice.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-hoslovice-2023_11_9-140151.jpg",
     "desc": "Padesátimetrový ocelový telekomunikační stožár z roku 2005. Kruhový výhled z otevřené plošiny ve výšce 30 metrů. (Šumava s vévodícím Boubínem a Bobíkem, Javorník, JE Temelín). Obec Hoslovice, nad níž se tyčí tato nepřehl"
   },
   {
@@ -1739,20 +1739,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 14258,
     "name": "Hradišťský vrch",
     "slug": "hradistsky-vrch",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/hradistsky-vrch/",
+    "url": "https://turistickamapa.cz/rozhledna-hradistsky-vrch/",
     "kraj": ["Český Krumlov",
       "Jihočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/hradistsky-vrch.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-hradistsky-vrch-2020_4_7-131852.jpg",
     "desc": "Osmadvacetimetrová dřevěná rozhledna s točitým schodištěm stojí od roku 2019 na vrcholu Hradišťského vrchu. Nádherný kruhový výhled z otevřené vyhlídkové plošiny ve výšce 27 metrů (Kleť, Poluška, Kohout, Slepice, rozhled"
   },
   {
     "id": 3035,
     "name": "Hraniční vrch",
     "slug": "hranicni-vrch",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/hranicni-vrch/",
+    "url": "https://turistickamapa.cz/rozhledna-hranicni-vrch/",
     "kraj": ["Bruntál",
       "Moravskoslezský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/hranicni-vrch.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-hranicni-vrch-2021_29_10-160207.jpg",
     "desc": "Tato originální osmadvacetimetrová dvourozhledna vznikla v&nbsp;roce 2011 spojením dvou již nevyužívaných ocelových příhradových konstrukcí, které od roku 1980 sloužily pro přenos bezdrátového telefonního spojení. K&nbsp"
   },
   {
@@ -1909,10 +1909,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1984,
     "name": "Chocholík",
     "slug": "chocholik",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/chocholik/",
+    "url": "https://turistickamapa.cz/rozhledna-chocholik/",
     "kraj": ["Jihomoravský kraj",
       "Vyškov"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/chocholik.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2020_2-3-120625-cover.jpg",
     "desc": "Mohutná šestadvacetimetrová ocelová věž s točitým schodištěm z roku 2011. Kruhový výhled ze zastřešené plošiny ve výšce 23 metrů (Ždánický les, Vyškov, zámek Račice, Chřiby, Hostýnské vrchy, Pálava, při dobré viditelnost"
   },
   {
@@ -2089,10 +2089,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 929,
     "name": "Ještěd",
     "slug": "jested",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/jested/",
+    "url": "https://turistickamapa.cz/rozhledna-jested/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/jested.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2019_3-11-185537-cover.jpg",
     "desc": "Třiadevadesátimetrová&nbsp; konstrukce ve tvaru rotačního hyperboloidu z roku 1973 (stavba probíhala od roku 1966).V roce 1969 za ni architekt Hubáček získal prestižní Perretovu cenu Mezinárodní unie architektů. Fantasti"
   },
   {
@@ -2179,10 +2179,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 2812,
     "name": "Jurkovičova rozhledna",
     "slug": "jurkovicova-rozhledna",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/jurkovicova-rozhledna/",
+    "url": "https://turistickamapa.cz/jurkovicova-rozhledna/",
     "kraj": ["Vsetín",
       "Zlínský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2026/02/jurkovic-scaled.png",
+    "photo": "https://turistickamapa.cz/data_fotos/jurkovicova-rozhledna-2020_20_6-110406.jpg",
     "desc": "Stylová 31 metrů vysoká dřevěná (dub, jedle, smrk) rozhledna z&nbsp;roku 2012, postavená podle nákresů slovenského architekta Dušana Jurkoviče z&nbsp;roku 1896 (známý především svými lidově-secesními stavbami v&nbsp;Luha"
   },
   {
@@ -2299,10 +2299,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 5438,
     "name": "Kelčský Javorník",
     "slug": "kelcsky-javornik",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/kelcsky-javornik/",
+    "url": "https://turistickamapa.cz/rozhledna-kelcsky-javornik/",
     "kraj": ["Kroměříž",
       "Zlínský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/kelcsky-javornik.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2025/rozhledna-kelcsky-javornik-2025_13_4-114535.jpg",
     "desc": "Šestatřicetimetrová dřevěná rozhledna s ocelovými výztužnými prvky a točitým schodištěm z&nbsp;roku 2015. Fantastický kruhový výhled z&nbsp;otevřené plošiny ve výšce 30 metrů téměř na celou Moravu (Hostýnské vrchy se sv."
   },
   {
@@ -2368,30 +2368,30 @@ export const rozhledny: Rozhledna[] = [
     "id": 813,
     "name": "Kleť",
     "slug": "klet",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/klet/",
+    "url": "https://turistickamapa.cz/rozhledna-klet/",
     "kraj": ["Český Krumlov",
       "Jihočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/klet.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-klet-2020_13_6-202204.jpg",
     "desc": "Kamenná, válcová věž s címbuřím z roku 1825. Nádherný kruhový výhled z otevřeného ochozu ve výšce 18 metrů (jižní a centrální Šumava, Novohradské hory, jihočeská pánev, JE Temelín, Hluboká a za dobré viditelností rakousk"
   },
   {
     "id": 723,
     "name": "Klínovec",
     "slug": "klinovec",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/klinovec/",
+    "url": "https://turistickamapa.cz/rozhledna-klinovec/",
     "kraj": ["Karlovarský kraj",
       "Karlovy Vary"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/klinovec.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/hora-a-rozhledna-klinovec-2021_7_1-120109.jpg",
     "desc": "17 metrů vysoká zděná věž z roku 1884. Kvůli havarijnímu stavu byla po dlouhých průtazích v roce 2012 původní věž zcela demontována a&nbsp; zahájena výstavba nové rozhledny. Ta pak byla slavnostně otevřena 28. 10 2013. F"
   },
   {
     "id": 1988,
     "name": "Klucanina",
     "slug": "klucanina",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/klucanina/",
+    "url": "https://turistickamapa.cz/rozhledna-klucanina/",
     "kraj": ["Brno - venkov",
       "Jihomoravský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2026/02/klucanina.png",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-klucanina-2021_8_12-182924.jpg",
     "desc": "Osmadvacetimetrová věž z betonových tvárnic, postavená na původní kamenné podstavě rozhledny z roku 1934. Kruhový výhled ze dvou vyhlídkových ochozů &#8211; v úrovni podezdívky a ve výšce 21 metrů, nebo ze zastřešené plo"
   },
   {
@@ -2458,20 +2458,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 932,
     "name": "Kopanina",
     "slug": "kopanina",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/kopanina/",
+    "url": "https://turistickamapa.cz/rozhledna-kopanina/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/kopanina.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-kopanina-2023_22_1-122246.jpg",
     "desc": "Jedenadvacetimetrová cihlová válcová věž z roku 1894. Kruhový výhled z prosklené dřevěné nástavby ve výšce 18 metrů (Jizerské hory, Krkonoše, Ještědský hřbet, Český ráj s Kozákovem, Trosky, Bezděz, Milešovka). Osada Kopa"
   },
   {
     "id": 13416,
     "name": "Kopaninka",
     "slug": "kopaninka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/kopaninka/",
+    "url": "https://turistickamapa.cz/rozhledna-kopaninka/",
     "kraj": ["Olomoucký kraj",
       "Prostějov"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/kopaninka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-kopaninka-2022_28_1-124705.jpg",
     "desc": "Dvaadvacetimetrová dřevěná šestiboká věž z roku 2018 s kovovým točitým schodištěm. V anketě o rozhlednu roku 2018, pořádané Klubem přátel rozhleden, obsadila 3. místo. Kruhový výhled ze zastřešeného ochozu ve výšce 19 me"
   },
   {
@@ -2578,20 +2578,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 2697,
     "name": "Kovářka",
     "slug": "kovarka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/kovarka/",
+    "url": "https://turistickamapa.cz/rozhledna-kovarka/",
     "kraj": ["Jihočeský kraj",
       "Tábor"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/kovarka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-kovarka-2022_21_2-155933.jpg",
     "desc": "Třináctimetrová kamenná soukromá rozhledna z roku 2012 s&nbsp;vnitřním točitým kovovým schodištěm. Kruhový výhled z&nbsp;kryté dřevěné nástavby ve výšce 10 metrů (Blaník, stará měřící věž a vysílač Mezivrata). Nádherně p"
   },
   {
     "id": 937,
     "name": "Kozákov",
     "slug": "kozakov",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/kozakov/",
+    "url": "https://turistickamapa.cz/rozhledna-kozakov/",
     "kraj": ["Liberecký kraj",
       "Semily"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/kozakov.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-kozakov-2023_6_7-182349.jpg",
     "desc": "Padesátimetrová ocelová vojenská věž z roku 1995. Fantastický kruhový výhled z otevřené plošiny ve výšce 24 metrů (Český ráj, Krkonoše, Jizerské, Lužické a Orlické hory, České středohoří, Trosky, Říp, Bezděz, Tábor). Odb"
   },
   {
@@ -2618,20 +2618,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 1702,
     "name": "Kozlovský kopec",
     "slug": "kozlovsky-kopec",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/kozlovsky-kopec/",
+    "url": "https://turistickamapa.cz/rozhledna-kozlovsky-kopec/",
     "kraj": ["Pardubický kraj",
       "Ústí nad Orlicí"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/kozlovsky-kopec.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-kozlovsky-kopec-2020_7_6-120620.jpg",
     "desc": "Pětapadesátimetrová ocelová telekomunikační věž z roku 2001. Kruhový výhled z otevřeného ochozu ve výšce 32 metrů (Krkonoše, Orlické hory, Jeseníky, Králický Sněžník, Českomoravská vrchovina). Na Kozlovský kopec vede pěk"
   },
   {
     "id": 1921,
     "name": "Kozubová",
     "slug": "kozubova",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/kozubova/",
+    "url": "https://turistickamapa.cz/rozhledna-kozubova/",
     "kraj": ["Frýdek - Místek",
       "Moravskoslezský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/kozubova.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-kozubova-2023_18_2-134348.jpg",
     "desc": "Osmnáctimetrová kamenná kaple sv. Anny s vyhlídkovou věžičkou z roku 1936. Lesem částečně omezený výhled jižním směrem ze zastřešené místnosti ve výšce 15 metrů. Opačným směrem lze shlédnout Beskydy s Velkou Kyčerou, Ost"
   },
   {
@@ -2688,10 +2688,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 725,
     "name": "Krásenský vrch",
     "slug": "krasensky-vrch",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/krasensky-vrch/",
+    "url": "https://turistickamapa.cz/rozhledna-krasensky-vrch/",
     "kraj": ["Karlovarský kraj",
       "Sokolov"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2026/02/krasensky-vrch-scaled.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2019_18-10-154102-cover.jpg",
     "desc": "Na naše poměry zcela originální válcová kamenná věž z roku 1935 se spirálovitě vinutým vnějším schodištěm. Kruhový rozhled z otevřeného ochozu ve výšce 25 metrů (vrcholky Slavkovského lesa, panorama Krušných hor se všemi"
   },
   {
@@ -2708,10 +2708,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1251,
     "name": "Kratochvílova rozhledna",
     "slug": "kratochvilova-rozhledna",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/kratochvilova-rozhledna/",
+    "url": "https://turistickamapa.cz/kratochvilova-rozhledna/",
     "kraj": ["Litoměřice",
       "Ústecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/kratochvilova-rozhledna.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/kratochvilova-rozhledna-2021_9_7-190836.jpg",
     "desc": "Třináctimetrová betonová rozhledna z roku 1935. Kruhovému výhledu z kryté plošiny ve výšce 9 metrů brání jižním směrem vzrostlé stromy (České středohoří s dominantními vrcholky Milešovkou, Lovošem, Kletečnou, Hazmburkem,"
   },
   {
@@ -2728,10 +2728,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 815,
     "name": "Kraví hora",
     "slug": "kravi-hora",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/kravi-hora/",
+    "url": "https://turistickamapa.cz/rozhledna-kravi-hora/",
     "kraj": ["České Budějovice",
       "Jihočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/kravi-hora.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2019_18-10-131013-cover.jpg",
     "desc": "Původně vojenská čtyřicetimetrová ocelová hláska z osmdesátých let 20. století. V roce 2001 byly železné žebříky nahrazeny točitým schodištěm a věž byla zesílena šikmými opěrami. Kruhový výhled z otevřené plošiny ve výšc"
   },
   {
@@ -3237,20 +3237,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 2893,
     "name": "Maják",
     "slug": "majak",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/majak/",
+    "url": "https://turistickamapa.cz/rozhledna-majak/",
     "kraj": ["Břeclav",
       "Jihomoravský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/majak.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-majak-2022_28_5-115439.jpg",
     "desc": "Osmadvacetimetrová dřevěná věž s&nbsp;železným točitým schodištěm z&nbsp;roku 2012. Nádherný kruhový výhled ze zastřešeného ochozu ve výšce 21 metrů (Pálava, Svatý Kopeček, Novomlýnské nádrže, Bílé Karpaty s&nbsp;Velkou "
   },
   {
     "id": 3333,
     "name": "Maják Járy Cimrmana",
     "slug": "majak-jary-cimrmana",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/majak-jary-cimrmana/",
+    "url": "https://turistickamapa.cz/rozhledna-majak-jary-cimrmana/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/majak-jary-cimrmana.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-majak-jary-cimrmana-2023_2_4-134759.jpg",
     "desc": "Čtyřiadvacetimetrová dřevěná rozhledna z&nbsp;roku 2013. Kruhový výhled z&nbsp;otevřeného ochozu ve výšce 17 metrů (Jizerské hory, Ještěd, Tanvaldský Špičák, Černá Studnice, Štěpánka, Kozákov, Bezděz). Lyžařské středisko"
   },
   {
@@ -3277,10 +3277,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 4232,
     "name": "Máminka",
     "slug": "maminka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/maminka/",
+    "url": "https://turistickamapa.cz/rozhledna-maminka/",
     "kraj": ["Beroun",
       "Středočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/maminka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-maminka-2023_10_4-110313.jpg",
     "desc": "Třiatřicetimetrová dřevěná jehlanová věž s&nbsp;dubovým točitým schodištěm z&nbsp;roku 2015. Nádherný kruhový výhled z plošiny ve výšce 21 metrů, zastřešené originálním plastovým štítem &nbsp;(České středohoří s&nbsp;Mil"
   },
   {
@@ -3297,10 +3297,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 3952,
     "name": "Mariánka",
     "slug": "marianka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/marianka/",
+    "url": "https://turistickamapa.cz/rozhledna-marianka/",
     "kraj": ["Pardubický kraj",
       "Ústí nad Orlicí"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/marianka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-marianka-2023_11_11-150637.jpg",
     "desc": "Třiadvacetimetrová dřevěná rozhledna z&nbsp;roku 2014 s&nbsp;ocelovým točitým schodištěm. Kruhový výhled ze zastřešeného ochozu ve výšce 19 metrů (Orlické hory, Suchý vrch, Buková hora, Lázek, Jeseníky, Krkonoše, Českotř"
   },
   {
@@ -3327,10 +3327,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 3254,
     "name": "Mařenka",
     "slug": "marenka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/marenka/",
+    "url": "https://turistickamapa.cz/rozhledna-marenka/",
     "kraj": ["Třebíč",
       "Vysočina"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/marenka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-marenka-2022_26_5-115002.jpg",
     "desc": "Třiatřicetimetrová dřevěná rozhledna ve tvaru sférického trojúhelníku s&nbsp;ocelovými spojovacími a nosnými prvky postavená v&nbsp;roce 2012 na betonové podstavě obložené kameny. Kruhový výhled z&nbsp;kryté vyhlídkové p"
   },
   {
@@ -3417,10 +3417,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1263,
     "name": "Milešovka",
     "slug": "milesovka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/milesovka/",
+    "url": "https://turistickamapa.cz/milesovka/",
     "kraj": ["Litoměřice",
       "Ústecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/milesovka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/milesovka-2020_16_11-154711.jpg",
     "desc": "Meteorologická observatoř s devatenáctimetrovou zděnou vyhlídkovou věží z roku 1904. Fantastický kruhový výhled z nižšího ochozu ve výšce 10 metrů (České středohoří, Krušné hory, Děčínský Sněžník, Lužické a Jizerské hory"
   },
   {
@@ -3447,10 +3447,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 3327,
     "name": "Miloňová",
     "slug": "milonova",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/milonova/",
+    "url": "https://turistickamapa.cz/rozhledna-milonova/",
     "kraj": ["Vsetín",
       "Zlínský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2011/09/milonova-scaled.png",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-milonova-2023_7_7-102531.jpg",
     "desc": "Mohutná čtyřiadvacetimetrová dřevěná rozhledna z&nbsp;roku 2012. Kruhový výhled ze zastřešené plošiny ve výšce 20 metrů (Radhošť, Čartak, Vysoká, Velké Karlovice). Pokud projedeme Velké Karlovice ve směru na hraniční pře"
   },
   {
@@ -3467,10 +3467,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1882,
     "name": "Modrá",
     "slug": "modra",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/modra/",
+    "url": "https://turistickamapa.cz/rozhledna-modra/",
     "kraj": ["Uherské Hradiště",
       "Zlínský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/modra.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2019_30-10-112717-cover.jpg",
     "desc": "Původně dvoupatrová dřevěná rozhledna z roku 1999, byla zvýšena v roce 2003 o jedno poschodí do výše jedenácti&nbsp; metrů. Na rozhledně se však podepsal zub času a proto byl v roce 2011 z bezpečnostních důvodů odebrán s"
   },
   {
@@ -3636,10 +3636,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 2755,
     "name": "Na stráži",
     "slug": "na-strazi",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/na-strazi/",
+    "url": "https://turistickamapa.cz/rozhledna-na-strazi/",
     "kraj": ["Česká Lípa",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/na-strazi.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-na-strazi-2020_21_8-125601.jpg",
     "desc": "Třiatřicetimetrový ocelový tubus mobilního operátora z&nbsp;roku 2011 s&nbsp;vnějším vinutým kovovým schodištěm je celý opláštěn smrkovými prkny, takže v&nbsp;okolní krajině působí velmi přirozeně. Kruhovému výhledu z&nb"
   },
   {
@@ -3716,10 +3716,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 327,
     "name": "Neštětická hora",
     "slug": "nesteticka-hora",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/nesteticka-hora/",
+    "url": "https://turistickamapa.cz/rozhledna-nesteticka-hora/",
     "kraj": ["Benešov",
       "Středočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/nesteticka-hora.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-nesteticka-hora-2020_31_8-204747.jpg",
     "desc": "Šestnáctimetrová půlkruhová betonová věž z roku 1927, která vznikla jako památník selského povstání před třemi sty lety. V roce 1627 vzplanula vzpoura vedená Adamem Hodějovským a Matoušem Ulickým proti utiskovateli místn"
   },
   {
@@ -3736,10 +3736,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1071,
     "name": "Nisanka",
     "slug": "nisanka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/nisanka/",
+    "url": "https://turistickamapa.cz/rozhledna-nisanka/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/nisanka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-nisanka-2023_12_7-160657.jpg",
     "desc": "Pětatřicetimetrový ocelový tubus s vnějším točitým schodištěm z roku 2007. Kruhový výhled z otevřené plošiny ve výšce 24 metrů (Černá Studnice, Ještěd, Jizerské hory, Krkonoše). Kilometrové stoupání k rozhledně začíná u "
   },
   {
@@ -3934,10 +3934,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1851,
     "name": "Oslednice",
     "slug": "oslednice",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/oslednice/",
+    "url": "https://turistickamapa.cz/rozhledna-oslednice/",
     "kraj": ["Jihlava",
       "Vysočina"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/oslednice.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-oslednice-2022_18_4-102234.jpg",
     "desc": "Čtyřiatřicetimetrová ocelová telekomunikační věž z roku 2000. Kruhový výhled z otevřené plošiny ve výšce 31 metrů (Českomoravská vrchovina, Javořice, Telč). Rozhledna se nachází na východním okraji starobylé Telče a cest"
   },
   {
@@ -3984,10 +3984,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 222,
     "name": "Pancíř",
     "slug": "pancir",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/pancir/",
+    "url": "https://turistickamapa.cz/rozhledna-pancir/",
     "kraj": ["Klatovy",
       "Plzeňský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/pancir.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-pancir-na-sumave-2023_2_4-101055.jpg",
     "desc": "Mattušova zděná turistická chata s osmnáctimetrovou rozhlednou z roku 1923. Kruhovému výhledu z prosklené plošiny ve výšce 15 metrů brání severním směrem řídký les (západní Šumava s vévodícím Velkým Javorem, Jezerní horo"
   },
   {
@@ -4044,10 +4044,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 3993,
     "name": "Pekelný kopec",
     "slug": "pekelny-kopec",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/pekelny-kopec/",
+    "url": "https://turistickamapa.cz/rozhledna-pekelny-kopec/",
     "kraj": ["Třebíč",
       "Vysočina"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/pekelny-kopec.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-na-pekelnem-kopci-u-trebice-2023_2_5-104138.jpg",
     "desc": "Originální šestadvacetimetrová ocelová konstrukce z&nbsp;roku 2014 vyztužená příčnými dřevenými trámy. Kruhový výhled z&nbsp;otevřené plošiny ve výšce 23 metrů (Třebíč, rozhledna Babylon u Kozárova, Mařenka, hrad Sádek, "
   },
   {
@@ -4064,10 +4064,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 331,
     "name": "Pepř",
     "slug": "pepr",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/pepr/",
+    "url": "https://turistickamapa.cz/rozhledna-pepr/",
     "kraj": ["Praha - západ",
       "Středočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/pepr.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-pepr-2020_30_8-200252.jpg",
     "desc": "Třicetimetrová ocelová telekomunikační věž z roku 2007. Kruhový výhled z otevřeného ochozu ve výšce 18 metrů (Praha s Žižkovským vysílačem a Petřínem a za nimi Říp, Cukrák, Veselý vrch, Brdy, Hřebeny). K rozhledně vedou "
   },
   {
@@ -4192,10 +4192,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 226,
     "name": "Poledník",
     "slug": "polednik",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/polednik/",
+    "url": "https://turistickamapa.cz/rozhledna-polednik/",
     "kraj": ["Klatovy",
       "Plzeňský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2026/03/polednik-scaled.png",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-polednik-2022_28_9-125613.jpg",
     "desc": "Devětatřicetimetrová bývalá vojenská betonová radarová věž ze 70. let dvacátého století, pro veřejnost přístupná od roku 1998. Nádherný kruhový výhled z otevřené plošiny ve výšce 37 metrů (celé panorama Šumavy včetně vni"
   },
   {
@@ -4222,10 +4222,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1929,
     "name": "Praděd",
     "slug": "praded",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/praded/",
+    "url": "https://turistickamapa.cz/praded/",
     "kraj": ["Bruntál",
       "Moravskoslezský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/praded.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/praded-2021_25_9-134757.jpg",
     "desc": "Betonový vysílač z roku 1980 je 162 metrů vysoký. Praděd je zároveň naše nejvýše položená rozhledna. Špička antény je dokonce nejvyšším bodem v republice, neboť o 50 metrů převyšuje vrchol Sněžky. Fantastický kruhový výh"
   },
   {
@@ -4456,10 +4456,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 337,
     "name": "Romanka",
     "slug": "romanka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/romanka/",
+    "url": "https://turistickamapa.cz/rozhledna-romanka/",
     "kraj": ["Nymburk",
       "Středočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/romanka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-romanka-2020_10_7-160125.jpg",
     "desc": "Padesátimetrový betonový sloup z roku 2003 zakrytý do poloviny výšky kovovou konstrukcí rozhledny trojúhelníkového půdorysu. Ocelová konstrukce je navíc opláštěná dřevem. Celá stavba je postavena na umělém návrší, v jeho"
   },
   {
@@ -4586,10 +4586,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 2012,
     "name": "Rumburak",
     "slug": "rumburak",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/rumburak/",
+    "url": "https://turistickamapa.cz/rozhledna-rumburak/",
     "kraj": ["Jihomoravský kraj",
       "Znojmo"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/rumburak.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-rumburak-2023_2_5-152419.jpg",
     "desc": "Třicetimetrová zděná věž z roku 2009, která je součástí stejnojmenného penzionu. Kruhový výhled ze zastřešeného ochozu ve výšce 26 metrů (obec Bítov a Vranovská přehrada, hrad Cornštejn, Javořice, JE Dukovany, za dobré v"
   },
   {
@@ -4606,20 +4606,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 12170,
     "name": "Růženka",
     "slug": "ruzenka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/ruzenka/",
+    "url": "https://turistickamapa.cz/rozhledna-ruzenka/",
     "kraj": ["Děčín",
       "Ústecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/ruzenka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-ruzenka-2020_10_8-190811.jpg",
     "desc": "Šestimetrová betonová kupole z roku 2018 s kruhovými průzory, záměrně připomínající nedaleké vojenské bunkry nebo odvážný projekt národní knihovny architekta Kaplického. V anketě o rozhlednu roku 2018, pořádanou Klubem p"
   },
   {
     "id": 4316,
     "name": "Rýdův kopec",
     "slug": "ryduv-kopec",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/ryduv-kopec/",
+    "url": "https://turistickamapa.cz/rozhledna-ryduv-kopec/",
     "kraj": ["Jihočeský kraj",
       "Jindřichův Hradec"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/ryduv-kopec.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-ryduv-kopec-2020_27_12-161952.jpg",
     "desc": "Nepřehlédnutelná třiatřicetimetrová kombinovaná stavba převážně ze dřeva z&nbsp;roku 2015 spočívá na mohutné, kamenem obložené betonové podezdívce. Nosnou konstrukci pak tvoří tři dřevěné stojiny a tři ocelové sloupy. Na"
   },
   {
@@ -4666,10 +4666,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 5342,
     "name": "Salaš",
     "slug": "salas",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/salas/",
+    "url": "https://turistickamapa.cz/rozhledna-salas/",
     "kraj": ["Uherské Hradiště",
       "Zlínský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/salas.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-salas-2023_22_1-124719.jpg",
     "desc": "Futuristicky pojatá jedenadvacetimetrová ocelová rozhledna z&nbsp;roku 2015 ve tvaru hasáku nebo dvou proti sobě zakleslých sedmiček, částečně obložená modřínovými lamelami. V anketě o rozhlednu roku 2015, vyhlášenou Klu"
   },
   {
@@ -4686,10 +4686,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 252,
     "name": "Sedlo",
     "slug": "sedlo",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/sedlo/",
+    "url": "https://turistickamapa.cz/rozhledna-sedlo/",
     "kraj": ["Klatovy",
       "Plzeňský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2011/09/sedlo-scaled.png",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-na-sedle-2023_5_11-101943.jpg",
     "desc": "Osmadvacetimetrová dřevěná sedmiboká rozhledna z&nbsp;roku 2009. Kruhový výhled z&nbsp;krytého ochozu ve výšce 24 metrů (celé panorama Šumavy od Javoru a Jezerní hory, přes Ždánidla, Poledník, Huťskou horu a Roklan včetn"
   },
   {
@@ -4716,10 +4716,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 2780,
     "name": "Skalka",
     "slug": "skalka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/skalka/",
+    "url": "https://turistickamapa.cz/rozhledna-skalka/",
     "kraj": ["Praha - východ",
       "Středočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/skalka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-skalka-2021_13_12-162742.jpg",
     "desc": "Pětadvacetimetrová dřevěná rozhledna z&nbsp;roku 2011 se železným točitým schodištěm. Kruhový výhled ze zastřešené plošiny ve výšce 21 metrů (Krkonoše, Orlické hory, České středohoří, Bezděz, Ralsko, Říp, Ještěd, Milešov"
   },
   {
@@ -4755,10 +4755,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 829,
     "name": "Slabošovka",
     "slug": "slabosovka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/slabosovka/",
+    "url": "https://turistickamapa.cz/rozhledna-slabosovka/",
     "kraj": ["Český Krumlov",
       "Jihočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/slabosovka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2019_17-10-123600-cover.jpg",
     "desc": "Šestatřicet metrů vysoká ocelová telekomunikační věž z roku 2002. Kruhový výhled z otevřené plošiny ve výšce 24 metrů (Slepičí hory s Kohoutem a Slepicí,&nbsp; Novohradské hory s Vysokou, Hradišťský vrch s rozhlednou, Šu"
   },
   {
@@ -4835,10 +4835,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 2015,
     "name": "Slunečná",
     "slug": "slunecna",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/slunecna/",
+    "url": "https://turistickamapa.cz/rozhledna-slunecna/",
     "kraj": ["Břeclav",
       "Jihomoravský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2011/09/slunecna-scaled.png",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-slunecna-2022_20_5-110253.jpg",
     "desc": "Velmi atypická devatenáctimetrová dřevěná rozhledna z roku 2009 s točitým ocelovým schodištěm (nezapře podobný rukopis s východočeskou rozhlednou Borůvka od stejného architekta Antonína Olšiny). Kruhový výhled z částečně"
   },
   {
@@ -4855,10 +4855,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1089,
     "name": "Smrk",
     "slug": "smrk",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/smrk/",
+    "url": "https://turistickamapa.cz/rozhledna-smrk/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2011/09/rozhledna-smrk.jpeg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-smrk-2020_14_7-111434.jpg",
     "desc": "Dva zalomené dvacetimetrové ocelové sloupy nesoucí dvě vyhlídkové plošiny z roku 2003. Nádherný kruhový výhled ze dvou otevřených plošin ve výšce 10 a 17 metrů (Jizerské a Lužické hory, Krkonoše, Ještěd, Bezděz, Říp, Pol"
   },
   {
@@ -4904,10 +4904,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 2995,
     "name": "Soumarské rašeliniště",
     "slug": "soumarske-raseliniste",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/soumarske-raseliniste/",
+    "url": "https://turistickamapa.cz/soumarske-raseliniste/",
     "kraj": ["Jihočeský kraj",
       "Prachatice"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/soumarske-raseliniste.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/soumarske-raseliniste-2023_5_11-094656.jpg",
     "desc": "Devítimetrová dřevěná rozhledna z roku 2011 je postavená na nejvyšším místě, do roku 2000 průmyslově využívaného rašeliniště. Kruhový výhled ze zastřešeného ochozu ve výšce 6 metrů (Stožec, hřeben Boubínu, Želnavská paho"
   },
   {
@@ -4964,10 +4964,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 11025,
     "name": "Stezka korunami stromů – Krkonoše",
     "slug": "stezka-korunami-stromu-krkonose",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/stezka-korunami-stromu-krkonose/",
+    "url": "https://turistickamapa.cz/stezka-korunami-stromu-krkonose/",
     "kraj": ["Královéhradecký kraj",
       "Trutnov"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/stezka-korunami-stromu-krkonose.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/stezka-korunami-stromu-krkonose-2021_21_6-134503.jpg",
     "desc": "Masivní dvanáctiboká dřevěná věž z&nbsp;roku 2017 se tyčí do výšky necelých 46 metrů. Po Stezce korunami stromů na Lipně (2012) a Stezce v oblacích v Dolní Moravě (2015) je Stezka v Krkonoších v pořadí již třetí podobnou"
   },
   {
@@ -4984,10 +4984,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 13779,
     "name": "Stezka nad vinohrady",
     "slug": "stezka-nad-vinohrady",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/stezka-nad-vinohrady/",
+    "url": "https://turistickamapa.cz/stezka-nad-vinohrady/",
     "kraj": ["Břeclav",
       "Jihomoravský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/stezka-nad-vinohrady.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/stezka-nad-vinohrady-2023_4_1-163533.jpg",
     "desc": "Na naše poměry velice neobvykle pojatá ocelová spirálová konstrukce bez jediného schodu, na jejíž konec ve výšce necelých 8 metrů lze dojet na vozíku či s&nbsp;kočárkem. Kruhový výhled z&nbsp;libovolného místa chodníčku "
   },
   {
@@ -5114,10 +5114,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1287,
     "name": "Strážný vrch",
     "slug": "strazny-vrch",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/strazny-vrch/",
+    "url": "https://turistickamapa.cz/rozhledna-strazny-vrch/",
     "kraj": ["Děčín",
       "Ústecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/strazny-vrch.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-strazny-vrch-2022_20_5-162527.jpg",
     "desc": "Dvanáctimetrová dřevěná rozhledna z roku 2006. Kruhový výhled z kryté plošiny ve výšce 9 metrů&nbsp; (Buková, Děčínský Sněžník, České středohoří, Lužické hory, Česká Lípa). Z obce Velká Javorská stoupá od kapličky po dob"
   },
   {
@@ -5164,10 +5164,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1309,
     "name": "Studenec",
     "slug": "studenec",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/studenec/",
+    "url": "https://turistickamapa.cz/rozhledna-studenec/",
     "kraj": ["Děčín",
       "Ústecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/studenec.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-na-studenci-2021_26_10-130900.jpg",
     "desc": "Sedmnáctimetrová železná věž z roku 1888. Po jizerskohorské Slovance druhá naše nejstarší kovová rozhledna. Dokonalému kruhovému výhledu z otevřené plošiny brání vrcholky listnatých stromů (Lužické a Jizerské hory, Krkon"
   },
   {
@@ -5214,10 +5214,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 3924,
     "name": "Svákov",
     "slug": "svakov",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/svakov/",
+    "url": "https://turistickamapa.cz/rozhledna-svakov/",
     "kraj": ["Jihočeský kraj",
       "Tábor"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/svakov.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2025/rozhledna-svakov-2025_23_3-110549.jpg",
     "desc": "Čtrnáctimetrová dřevěná rozhledna z&nbsp;roku 2014. Půlkruhový výhled ze zastřešeného ochozu ve výšce 10 metrů je pouze východním směrem (Soběslav, údolí Lužnice, hrad Choustník). K&nbsp;rozhledně vedou 3 přístupové cest"
   },
   {
@@ -5244,20 +5244,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 1314,
     "name": "Svatý vrch",
     "slug": "svaty-vrch",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/svaty-vrch/",
+    "url": "https://turistickamapa.cz/rozhledna-svaty-vrch/",
     "kraj": ["Chomutov",
       "Ústecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/svaty-vrch.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-svaty-vrch-2023_30_7-101757.jpg",
     "desc": "Původně osmiboký gloriet z přelomu 19. a 20. století, dostavěný v roce 2003 do podoby patnáctimetrové rozhledny. Kruhový výhled z kryté plošiny ve výšce 9 metrů. (Krušné hory s Klínovcem, Doupovské hory, Kadaň, elektrárn"
   },
   {
     "id": 16571,
     "name": "Světlý vrch",
     "slug": "svetly-vrch",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/svetly-vrch/",
+    "url": "https://turistickamapa.cz/rozhledna-svetly-vrch/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/svetly-vrch.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2024/rozhledna-svetly-vrch-2024_16_1-171253.jpg",
     "desc": "Dvaadvacetimetrová dřevěná rozhledna s&nbsp;kovovým točitým schodištěm stojí od konce roku 2020 na stejnojmenném kopci severovýchodně od Albrechtic. Otevřena byla na Nový rok 2021 a z&nbsp;otevřené vyhlídkové plošiny ve "
   },
   {
@@ -5354,10 +5354,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1617,
     "name": "Šibeník v Trutnově",
     "slug": "sibenik",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/sibenik/",
+    "url": "https://turistickamapa.cz/rozhledna-sibenik/",
     "kraj": ["Královéhradecký kraj",
       "Trutnov"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/sibenik.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-sibenik-2021_4_8-161335.jpg",
     "desc": "Sedmnáctimetrový Gablenzův památník ve formě litinového obelisku z roku 1868. Výhled z vrcholu dutého obelisku je pouze severovýchodním směrem (Krkonoše, Trutnov). K památníku, stojícímu na jižním okraji Trutnova, vede z"
   },
   {
@@ -5393,10 +5393,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1092,
     "name": "Špičák",
     "slug": "spicak",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/spicak/",
+    "url": "https://turistickamapa.cz/rozhledna-spicak/",
     "kraj": ["Česká Lípa",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/spicak.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-spicak-2020_10_7-105943.jpg",
     "desc": "Čtrnáctimetrová cihlová věž z roku 1885 se doslova ztrácí v množství různých telekomunikačních antén. Kruhový výhled z otevřeného ochozu (Lužické hory, České středohoří, Bezděz, Česká Lípa). Odbočka ke věži se nachází na"
   },
   {
@@ -5443,20 +5443,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 14371,
     "name": "Šťastná věž",
     "slug": "stastna-vez",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/stastna-vez/",
+    "url": "https://turistickamapa.cz/rozhledna-stastna-vez/",
     "kraj": ["Plzeň - jih",
       "Plzeňský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/stastna-vez.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-stastna-vez-2023_17_5-150411.jpg",
     "desc": "Původní zděné silo na piliny ztratilo po zániku nábytkářské firmy svůj účel a v roce 2019 bylo pomocí čtyř rohových dřevných stojin navýšeno téměř o dvojnásobek na 22 metrů. Rozhledna s přízemní hospodou a venkovním pose"
   },
   {
     "id": 1101,
     "name": "Štěpánka",
     "slug": "stepanka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/stepanka/",
+    "url": "https://turistickamapa.cz/rozhledna-stepanka/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2026/02/stepanka-scaled.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-stepanka-2023_3_3-134355.jpg",
     "desc": "Čtyřiadvacetimetrová osmiboká cihlová věž na kamenné podstavě. Základy postaveny v roce 1847, ale dokončena byla až v roce 1892. Kruhový výhled ze zastřešené dřevěné nástavby (Krkonoše, Jizerské hory, Kozákov, Ještěd, Be"
   },
   {
@@ -5532,10 +5532,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1318,
     "name": "Tanečnice",
     "slug": "tanecnice",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/tanecnice/",
+    "url": "https://turistickamapa.cz/rozhledna-tanecnice/",
     "kraj": ["Děčín",
       "Ústecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/tanecnice.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-tanecnice-2020_16_6-142006.jpg",
     "desc": "Masivní šestadvacetimetrová cihlová osmiboká věž na žulové podezdívce z roku 1905, zpevněná vnějšími ocelovými pásy &#8211; naše nejsevernější rozhledna. Kruhový výhled ze zastřešené terasy ve výšce 22 metrů (Labské písk"
   },
   {
@@ -5552,10 +5552,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 12123,
     "name": "Těchanovická vyhlídka",
     "slug": "stare-techanovice",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/stare-techanovice/",
+    "url": "https://turistickamapa.cz/rozhledna-stare-techanovice/",
     "kraj": ["Moravskoslezský kraj",
       "Opava"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/stare-techanovice.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-stare-techanovice-2021_27_3-182257.jpg",
     "desc": "Dvanáctimetrová třípodlažní dřevěná rozhledna se od roku 2017 tyčí nad obcí Staré Těchanovice východně od Kružberské přehradní nádrže. Výhled ze zastřešené plošiny ve výšce 9 metrů omezuje jižním směrem hřeben vyššího ko"
   },
   {
@@ -5732,10 +5732,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 3258,
     "name": "U Jakuba",
     "slug": "u-jakuba",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/u-jakuba/",
+    "url": "https://turistickamapa.cz/rozhledna-u-jakuba/",
     "kraj": ["Jihočeský kraj",
       "Jindřichův Hradec"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2011/09/u-jakuba-scaled.png",
+    "photo": "https://turistickamapa.cz/data_fotos/2019_8-10-164223-cover.jpg",
     "desc": "Mohutná pětačtyřicetimetrová dřevěná věž s&nbsp;ocelovými spojovacími a nosnými prvky z&nbsp;roku 2013 postavená na mohutné betonové podstavě, kde se nachází celé zázemí rozhledny. Kruhový výhled ze zastřešené plošiny ve"
   },
   {
@@ -5892,10 +5892,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1322,
     "name": "Varhošť",
     "slug": "varhost",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/varhost/",
+    "url": "https://turistickamapa.cz/rozhledna-varhost/",
     "kraj": ["Litoměřice",
       "Ústecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/varhost.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-varhost-2020_10_8-204955.jpg",
     "desc": "Patnáctimetrová třípatrová ocelová věž z roku 1973 postavená na původní kamenné podezdívce. Kruhový výhled z otevřených ochozů, z nichž nejvyšší se nachází ve výšce 12 metrů. (České středohoří, Říp, Litoměřice, Ústí nad "
   },
   {
@@ -5912,10 +5912,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1889,
     "name": "Vartovna",
     "slug": "vartovna",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/vartovna/",
+    "url": "https://turistickamapa.cz/rozhledna-vartovna/",
     "kraj": ["Vsetín",
       "Zlínský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2011/09/rozhledny-2025-10-scaled.png",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-vartovna-2023_1_2-171928.jpg",
     "desc": "Impozantní sedmatřicetimetrová ocelová konstrukce na kamenné podstavě z roku 2009 se širokým točitým schodištěm. Nádherný kruhový výhled ze zastřešené vyhlídkové plošiny ve výšce 35 metrů (Beskydy, Chřiby, Javorníky, Vse"
   },
   {
@@ -5972,10 +5972,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 14916,
     "name": "Velká Deštná",
     "slug": "velka-destna",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/velka-destna/",
+    "url": "https://turistickamapa.cz/rozhledna-velka-destna/",
     "kraj": ["Královéhradecký kraj",
       "Rychnov nad Kněžnou"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/velka-destna.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-velka-destna-2023_4_1-171150.jpg",
     "desc": "Železná, téměř devatenáctimetrová (se stožárem dvaadvacetimetrová) rozhledna z roku 2019 ve tvaru nepravidelného pětiúhelníku je z vnější strany pobita šikmými modřínovými hranoly, symbolizující dešťové kapky ve větru, t"
   },
   {
@@ -6002,20 +6002,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 1325,
     "name": "Velký Chlum",
     "slug": "velky-chlum",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/velky-chlum/",
+    "url": "https://turistickamapa.cz/rozhledna-velky-chlum/",
     "kraj": ["Děčín",
       "Ústecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/velky-chlum.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2024/rozhledna-velky-chlum-2024_3_11-113530.jpg",
     "desc": "Devatenáctimetrová rozhledna z betonových tvárnic na kamenné podstavě z roku 1930. Půlkruhový výhled ze zastřešené plošiny ve výšce 16 metrů pouze severozápadním směrem (Děčín, Labské pískovce). Cesta k rozhledně začíná "
   },
   {
     "id": 3330,
     "name": "Velký Javorník",
     "slug": "velky-javornik",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/velky-javornik/",
+    "url": "https://turistickamapa.cz/rozhledna-velky-javornik/",
     "kraj": ["Moravskoslezský kraj",
       "Nový Jičín"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2011/09/javornik-scaled.png",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-velky-javornik-2020_26_12-121848.jpg",
     "desc": "Precizně řemeslně ztvárněná dřevěná šestadvacetimetrová rozhledna z roku 2013. Jedinečný kruhový výhled ze zastřešené plošiny ve výšce 20 metrů (hlavní hřeben Beskyd od Lysé hory, přes Smrk, Kněhyni, Pustevny až po Radho"
   },
   {
@@ -6032,20 +6032,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 3338,
     "name": "Velký Kosíř",
     "slug": "velky-kosir",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/velky-kosir/",
+    "url": "https://turistickamapa.cz/rozhledna-velky-kosir/",
     "kraj": ["Olomoucký kraj",
       "Prostějov"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/velky-kosir.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-velky-kosir-2020_6_6-135954.jpg",
     "desc": "Originálně řešená osmadvacetimetrová dřevěná rozhledna postavená na masivní kamenné podstavě s vnějším vinutým a zakrytým schodištěm z&nbsp;roku 2013. Nádherný kruhový výhled ze zastřešeného ochozu ve výšce 25 metrů (Olo"
   },
   {
     "id": 1893,
     "name": "Velký Lopeník",
     "slug": "velky-lopenik",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/velky-lopenik/",
+    "url": "https://turistickamapa.cz/rozhledna-velky-lopenik/",
     "kraj": ["Uherské Hradiště",
       "Zlínský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/velky-lopenik.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-velky-lopenik-2020_27_6-155831.jpg",
     "desc": "Tato mohutná dvaadvacetimetrová rozhledna z tvrdého dřeva z roku 2006 stojí přímo na česko &#8211; slovenské hranici, takže z jejího vrcholu vlají na každou stranu jiné státní vlajky. Kruhový výhled ze zastřešeného ochoz"
   },
   {
@@ -6192,10 +6192,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1338,
     "name": "Vlčí hora",
     "slug": "vlci-hora",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/vlci-hora/",
+    "url": "https://turistickamapa.cz/rozhledna-vlci-hora/",
     "kraj": ["Teplice",
       "Ústecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/vlci-hora.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-vlci-hora-2021_13_12-170153.jpg",
     "desc": "Devětačtyřicetimetrový ocelový monitorovací stožár z roku 2005. Kruhový výhled z otevřeného ochozu ve výšce 16 metrů (hřebeny Krušných hor, České středohoří, Most, Litvínov, Záluží a část Teplic). Samotný výjezd z osady "
   },
   {
@@ -6212,10 +6212,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 5245,
     "name": "Vodárna Kolín",
     "slug": "vodarna-kolin",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/vodarna-kolin/",
+    "url": "https://turistickamapa.cz/rozhledna-vodarna-kolin/",
     "kraj": ["Kolín",
       "Středočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/vodarna-kolin.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-vodarna-kolin-2022_12_11-134330.jpg",
     "desc": "Pětačtyřicetimetrový zděný vodojem z let 1928 -1929, který začal sloužit veřejnosti od 7. srpna 1930. &nbsp;Provoz vodárny byl ukončen v roce 1977 a objekt začal pomalu chátrat. V roce 2010 byl věžový vodojem prohlášen k"
   },
   {
@@ -6292,10 +6292,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 4012,
     "name": "Vrchbělá",
     "slug": "vrchbela",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/vrchbela/",
+    "url": "https://turistickamapa.cz/rozhledna-vrchbela/",
     "kraj": ["Mladá Boleslav",
       "Středočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/vrchbela.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-areal-vrchbela-2023_28_2-132935.jpg",
     "desc": "Šestadvacetimetrová dřevěná rozhledna z&nbsp;roku 2013 s&nbsp;železným točitým schodištěm stojí na nejvyšším bodě stejnojmenného sportovního areálu. Vzhledem k&nbsp;několikrát posunuté kolaudaci celého objektu však byla "
   },
   {
@@ -6522,10 +6522,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 2807,
     "name": "Zdenička",
     "slug": "zdenicka",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/zdenicka/",
+    "url": "https://turistickamapa.cz/rozhledna-zdenicka/",
     "kraj": ["Kroměříž",
       "Zlínský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/zdenicka.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2020_17-2-140656-cover.jpg",
     "desc": "Patnáctimetrová dřevěná rozhledna z&nbsp;roku 2012, ležící na nejvyšším bodě &nbsp;areálu hipodromu Gruntu Galatík. Kruhový výhled ze zastřešené plošiny ve výšce 12 metrů (Chřiby s&nbsp;kamennou rozhlednou na Brdu, Hostý"
   },
   {
@@ -6662,10 +6662,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 1634,
     "name": "Žaltman",
     "slug": "zaltman",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/zaltman/",
+    "url": "https://turistickamapa.cz/rozhledna-zaltman/",
     "kraj": ["Královéhradecký kraj",
       "Trutnov"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/zaltman.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-zaltman-2022_25_6-114230.jpg",
     "desc": "Patnáctimetrová železná vyhlídková věž z roku 1967 . Kruhový výhled z otevřeného ochozu ve výšce dvanáct metrů (Krkonoše, Orlické hory, Teplicko-adršpašské skály, Králický Sněžník). Odbočka k rozhledně se nachází těsně p"
   },
   {
