@@ -86,7 +86,7 @@ function AppRoutes() {
 
 function ClerkProviderWithRoutes() {
   const [, setLocation] = useLocation();
-  const proxyUrl = typeof window !== "undefined"
+  const proxyUrl = import.meta.env.PROD && typeof window !== "undefined"
     ? `${window.location.origin}/api/__clerk`
     : undefined;
 
