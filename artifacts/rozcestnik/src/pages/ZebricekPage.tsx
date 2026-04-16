@@ -28,7 +28,7 @@ export default function ZebricekPage() {
   useEffect(() => {
     setLoading(true);
     setError(null);
-    fetch(`/api/results/leaderboard/${activeRoute}`, { credentials: "include" })
+    fetch(`/api/results?routeId=${activeRoute}`, { credentials: "include" })
       .then((r) => r.json())
       .then((data) => {
         setResults(data.results || []);
