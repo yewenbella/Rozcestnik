@@ -34,7 +34,13 @@ export default function TeamPage() {
   const [editingNickname, setEditingNickname] = useState(false);
   const [savingNickname, setSavingNickname] = useState(false);
   const [nicknameSaved, setNicknameSaved] = useState(false);
+  const [clerkTimeout, setClerkTimeout] = useState(false);
   const nicknameRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => setClerkTimeout(true), 5000);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -182,7 +188,30 @@ export default function TeamPage() {
     return (
       <PageLayout title={"M\u016fj t\u00fdm"} backPath="/" rightSlot={dennikBtn}>
         <div style={centerStyle}>
-          <p style={{ color: "rgba(255,255,255,0.5)" }}>{"Na\u010d\u00edt\u00e1m\u2026"}</p>
+          {clerkTimeout ? (
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
+              <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.9rem", textAlign: "center" }}>
+                {"P\u0159ihla\u0161te se pro p\u0159\u00edstup k t\u00fdmu"}
+              </p>
+              <button
+                onClick={() => navigate(`${BASE}/sign-in`)}
+                style={{
+                  background: "linear-gradient(135deg, rgba(74,222,128,0.25), rgba(34,197,94,0.15))",
+                  border: "1px solid rgba(74,222,128,0.5)",
+                  borderRadius: "10px",
+                  padding: "12px 28px",
+                  color: "white",
+                  fontWeight: 700,
+                  fontSize: "0.95rem",
+                  cursor: "pointer",
+                }}
+              >
+                {"P\u0159ihl\u00e1sit se"}
+              </button>
+            </div>
+          ) : (
+            <p style={{ color: "rgba(255,255,255,0.5)" }}>{"Na\u010d\u00edt\u00e1m\u2026"}</p>
+          )}
         </div>
       </PageLayout>
     );
