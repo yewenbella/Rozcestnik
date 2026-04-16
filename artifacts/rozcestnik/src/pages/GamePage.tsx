@@ -58,7 +58,7 @@ export default function GamePage() {
 
   const fetchTop = useCallback(async () => {
     try {
-      const res = await fetch("/api/game-scores/top");
+      const res = await fetch("/api/game-scores");
       const data = await res.json();
       if (data.scores) setTopScores(data.scores);
     } catch {}

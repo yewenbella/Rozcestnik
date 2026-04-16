@@ -120,7 +120,7 @@ export default function QuizPage() {
 
   const fetchTop = useCallback(async () => {
     try {
-      const res = await fetch("/api/quiz-scores/top");
+      const res = await fetch("/api/quiz-scores");
       if (res.ok) { const d = await res.json(); setTopScores(d.scores || []); }
     } catch {}
   }, []);
@@ -143,7 +143,7 @@ export default function QuizPage() {
     session.getToken().then(async (token) => {
       if (!token) { setCheckingPlayed(false); return; }
       try {
-        const r = await fetch("/api/quiz-scores/mine", { headers: { Authorization: `Bearer ${token}` }, credentials: "include" });
+        const r = await fetch("/api/quiz-scores?mine=true", { headers: { Authorization: `Bearer ${token}` }, credentials: "include" });
         const d = await r.json();
         if (d.played) {
           setAlreadyPlayed(true);
