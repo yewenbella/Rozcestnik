@@ -4974,10 +4974,10 @@ export const rozhledny: Rozhledna[] = [
     "id": 2979,
     "name": "Stezka korunami stromů – Lipno",
     "slug": "kramolin",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/kramolin/",
+    "url": "https://www.dnesvyletujeme.cz/stezka-korunami-stromu-lipno",
     "kraj": ["Český Krumlov",
       "Jihočeský kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/kramolin.jpg",
+    "photo": "https://www.dnesvyletujeme.cz/photogallery/stezka-korunami-stromu-lipno/stezka-korunami-stromu-lipno-12037-v5.jpg",
     "desc": "Masivní čtyřicetimetrová devítiboká dřevěná věž z&nbsp;roku 2012. Nádherný kruhový výhled z&nbsp;otevřeného ochozu ve výšce 36 metrů (Lipenské jezero, jižní Šumava, vojenský prostor Boletice, Novohradské hory, Kleť, Alpy"
   },
   {
