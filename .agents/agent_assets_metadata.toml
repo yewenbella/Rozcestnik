@@ -1,0 +1,13 @@
+uploads = []
+
+[[generated]]
+id = "ataAAGKnM4ZSriHZcPjgT"
+uri = "file://artifacts/rozcestnik/src/assets/hero-bg.png"
+type = "image"
+title = "czech forest autumn trail hero"
+
+[[outputs]]
+id = "rKMF5I1TNkEBYc3U-AsjI"
+uri = "file://rozcestnik-export.tar.gz"
+type = "unspecified"
+title = "Rozcestník – zdrojový kód (tar.gz)"
