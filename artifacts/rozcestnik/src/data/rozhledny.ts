@@ -126,7 +126,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-babka/",
     "kraj": ["Kutná Hora",
       "Středočeský kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-babka-2023_18_5-164333.jpg",
+    "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/babka/DSCF5202.JPG",
     "desc": "Osmadvacetimetrová šestiúhelníková stavba z&nbsp;roku 2015. Až do druhého patra spočívá na ocelových stojinách, které jsou šikovně zakryté dřevěnými latěmi. Dále ke střeše pak konstrukce pokračuje mohutnými loupanými smrkovými kulatinami. Kruhový výh"
   },
   {
@@ -224,7 +224,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/bedrichova-vyhlidka/",
     "kraj": ["Kolín",
       "Středočeský kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/bedrichova-vyhlidka-2022_26_10-105218.jpg",
+    "photo": "https://foto.turistika.cz/foto/32623/152808/67419183889c6.jpg",
     "desc": "Čtrnáctimetrová dřevěná rozhledna s&nbsp;kovovým točitým schodištěm stojí od roku 2018 na Novoveském vrchu na místě Prusko – Rakouské bitvy z&nbsp;roku 1757, po bitvě nazývaném mezi prostým lidem Bedřichov. Kruhový výhled z&nbsp;otevřeného ochozu ve "
   },
   {
@@ -3639,7 +3639,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-na-strazi/",
     "kraj": ["Česká Lípa",
       "Liberecký kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-na-strazi-2020_21_8-125629.jpg",
+    "photo": "https://foto.turistika.cz/foto/234316/111552/lrg_p1030599.jpg",
     "desc": "Třiatřicetimetrový ocelový tubus mobilního operátora z&nbsp;roku 2011 s&nbsp;vnějším vinutým kovovým schodištěm je celý opláštěn smrkovými prkny, takže v&nbsp;okolní krajině působí velmi přirozeně. Kruhovému výhledu z&nb"
   },
   {
@@ -3719,7 +3719,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-nesteticka-hora/",
     "kraj": ["Benešov",
       "Středočeský kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/rozhledna-nesteticka-hora-2020_31_8-205507.jpg",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Nesteticka_hora.jpg/960px-Nesteticka_hora.jpg",
     "desc": "Šestnáctimetrová půlkruhová betonová věž z roku 1927, která vznikla jako památník selského povstání před třemi sty lety. V roce 1627 vzplanula vzpoura vedená Adamem Hodějovským a Matoušem Ulickým proti utiskovateli místn"
   },
   {
@@ -3739,7 +3739,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-nisanka/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Nov%C3%A1_Ves_nad_Nisou_-_rozhledna_Nisanka_%281%29.jpg/800px-Nov%C3%A1_Ves_nad_Nisou_-_rozhledna_Nisanka_%281%29.jpg",
+    "photo": "https://foto.turistika.cz/foto/14143/24002/full_052a50_f_normalFile1-p7279717.jpg",
     "desc": "Pětatřicetimetrový ocelový tubus s vnějším točitým schodištěm z roku 2007. Kruhový výhled z otevřené plošiny ve výšce 24 metrů (Černá Studnice, Ještěd, Jizerské hory, Krkonoše). Kilometrové stoupání k rozhledně začíná u "
   },
   {
@@ -3987,7 +3987,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-pancir/",
     "kraj": ["Klatovy",
       "Plzeňský kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-pancir-na-sumave-2023_2_4-101055.jpg",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Panc%C3%AD%C5%99_%28%C5%BDelezn%C3%A1_Ruda%29%2C_horsk%C3%A1_chata_%282%29.jpg/960px-Panc%C3%AD%C5%99_%28%C5%BDelezn%C3%A1_Ruda%29%2C_horsk%C3%A1_chata_%282%29.jpg",
     "desc": "Mattušova zděná turistická chata s osmnáctimetrovou rozhlednou z roku 1923. Kruhovému výhledu z prosklené plošiny ve výšce 15 metrů brání severním směrem řídký les (západní Šumava s vévodícím Velkým Javorem, Jezerní horo"
   },
   {
@@ -4907,7 +4907,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/soumarske-raseliniste/",
     "kraj": ["Jihočeský kraj",
       "Prachatice"],
-    "photo": "https://turistickamapa.cz/data_fotos/2023/soumarske-raseliniste-2023_5_11-094941.jpg",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Nau%C4%8Dn%C3%A1_stezka_Soumarsk%C3%A9_ra%C5%A1elini%C5%A1t%C4%9B_%2822%29.jpg/960px-Nau%C4%8Dn%C3%A1_stezka_Soumarsk%C3%A9_ra%C5%A1elini%C5%A1t%C4%9B_%2822%29.jpg",
     "desc": "Devítimetrová dřevěná rozhledna z roku 2011 je postavená na nejvyšším místě, do roku 2000 průmyslově využívaného rašeliniště. Kruhový výhled ze zastřešeného ochozu ve výšce 6 metrů (Stožec, hřeben Boubínu, Želnavská paho"
   },
   {
@@ -5217,7 +5217,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-svakov/",
     "kraj": ["Jihočeský kraj",
       "Tábor"],
-    "photo": "https://turistickamapa.cz/data_fotos/2025/rozhledna-svakov-2025_23_3-105524.jpg",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/1-Rozhledna.jpg/960px-1-Rozhledna.jpg",
     "desc": "Čtrnáctimetrová dřevěná rozhledna z&nbsp;roku 2014. Půlkruhový výhled ze zastřešeného ochozu ve výšce 10 metrů je pouze východním směrem (Soběslav, údolí Lužnice, hrad Choustník). K&nbsp;rozhledně vedou 3 přístupové cest"
   },
   {
