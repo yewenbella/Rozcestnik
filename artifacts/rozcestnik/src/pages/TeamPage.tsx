@@ -233,7 +233,7 @@ export default function TeamPage() {
                   {"P\u0159ezd\u00edvka:"}
                 </span>
                 {editingNickname ? (
-                  <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+                  <div style={{ display: "flex", gap: "6px", alignItems: "center", flex: 1, minWidth: 0 }}>
                     <input
                       ref={nicknameRef}
                       value={nicknameInput}
