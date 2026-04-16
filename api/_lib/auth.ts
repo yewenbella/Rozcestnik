@@ -1,21 +1,18 @@
-import { verifyToken } from "@clerk/backend";
+import { createRemoteJWKSet, jwtVerify, decodeJwt } from "jose";
 
 export async function getUserId(authHeader: string | undefined): Promise<string | null> {
-  if (!authHeader?.startsWith("Bearer ")) {
-    console.log("[auth] No Bearer token found");
-    return null;
-  }
+  if (!authHeader?.startsWith("Bearer ")) return null;
   const token = authHeader.slice(7);
-  const secretKey = process.env.CLERK_SECRET_KEY;
-  if (!secretKey) {
-    console.error("[auth] CLERK_SECRET_KEY is not set");
-    return null;
-  }
   try {
-    const payload = await verifyToken(token, { secretKey });
-    return payload.sub;
+    const decoded = decodeJwt(token);
+    const issuer = decoded.iss as string;
+    if (!issuer) return null;
+    const jwksUri = new URL("/.well-known/jwks.json", issuer);
+    const JWKS = createRemoteJWKSet(jwksUri);
+    const { payload } = await jwtVerify(token, JWKS, { issuer });
+    return (payload.sub as string) ?? null;
   } catch (err: any) {
-    console.error("[auth] verifyToken failed:", err?.message ?? String(err));
+    console.error("[auth] JWT verification failed:", err?.message ?? String(err));
     return null;
   }
 }

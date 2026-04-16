@@ -59,12 +59,7 @@ export default function TeamPage() {
       ...(options.headers as Record<string, string> || {}),
     };
     if (token) headers["Authorization"] = `Bearer ${token}`;
-    const res = await fetch(url, { ...options, credentials: "include", headers });
-    if (res.status === 401) {
-      navigate(`${BASE}/sign-in`);
-      throw new Error("session-expired");
-    }
-    return res;
+    return fetch(url, { ...options, headers });
   };
 
   const fetchTeam = async () => {
@@ -72,8 +67,8 @@ export default function TeamPage() {
       const res = await authFetch("/api/teams/me");
       const data = await res.json();
       setTeam(data.team ? { ...data.team, memberCount: data.memberCount } : null);
-    } catch (e: any) {
-      if (e?.message !== "session-expired") setTeam(null);
+    } catch {
+      setTeam(null);
     } finally {
       setLoading(false);
     }
@@ -124,8 +119,8 @@ export default function TeamPage() {
       const data = await res.json();
       if (!res.ok) return setError(data.error || "Chyba");
       setTeam({ ...data.team, memberCount: 1 });
-    } catch (e: any) {
-      if (e?.message !== "session-expired") setError("Chyba připojení");
+    } catch {
+      setError("Chyba připojení");
     } finally {
       setSubmitting(false);
     }
@@ -144,8 +139,8 @@ export default function TeamPage() {
       const data = await res.json();
       if (!res.ok) return setError(data.error || "Chyba");
       setTeam({ ...data.team, memberCount: 2 });
-    } catch (e: any) {
-      if (e?.message !== "session-expired") setError("Chyba připojení");
+    } catch {
+      setError("Chyba připojení");
     } finally {
       setSubmitting(false);
     }
