@@ -301,14 +301,14 @@ export default function RozhlednyPage() {
 
   return (
     <div style={{
-      minHeight: "100vh", width: "100%", maxWidth: "480px", margin: "0 auto",
+      height: "100dvh", width: "100%", maxWidth: "480px", margin: "0 auto",
       position: "relative", display: "flex", flexDirection: "column", overflow: "hidden",
     }}>
       {/* Background */}
       <img src={heroBg} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(10,30,10,0.82) 100%)" }} />
 
-      <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", height: "100%" }}>
 
         {/* Header */}
         <div style={{ padding: "16px 16px 0", display: "flex", alignItems: "center", gap: "12px" }}>
