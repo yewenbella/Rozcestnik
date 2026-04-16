@@ -1,10 +1,11 @@
 import React, { useState, useMemo, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
-import { Eye, Search, X, ExternalLink, ChevronDown, CheckCircle2, Circle, MapPin, Navigation, Filter } from "lucide-react";
+import { Eye, Search, X, ExternalLink, ChevronDown, CheckCircle2, Circle, MapPin, Navigation, Filter, Bookmark, BookmarkCheck } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { rozhledny, krajeList, type Rozhledna } from "@/data/rozhledny";
 import { rozhlednyCoords } from "@/data/rozhlednyCoords";
 import { useDenik } from "@/hooks/useDenik";
+import { useWishlist } from "@/hooks/useWishlist";
 
 function distKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
   const R = 6371;
@@ -21,15 +22,18 @@ const DEFUNCT_TOWERS: Record<string, string> = {
   "rozhledna-na-grosscedlobi": "Zaniklá rozhledna",
 };
 
-function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn }: {
+function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted, toggleWishlist }: {
   r: Rozhledna;
   onClose: () => void;
   isCompleted: (type: string, id: string) => boolean;
   toggle: (type: string, id: string, name: string) => void;
   isSignedIn: boolean;
+  isWishlisted: (id: string) => boolean;
+  toggleWishlist: (id: string) => void;
 }) {
   const rid = String(r.id);
   const done = isCompleted("rozhledna", rid);
+  const wished = isWishlisted(rid);
   const defunctNote = DEFUNCT_TOWERS[r.slug];
   const mapsUrl = `https://maps.google.com/maps/search/${encodeURIComponent(r.name)}`;
 
@@ -189,6 +193,23 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn }: {
               {"P\u0159ihlas se pro ozna\u010dov\u00e1n\u00ed nav\u0161t\u00edven\u00fdch"}
             </div>
           )}
+
+          {/* Wishlist button — always available */}
+          <button
+            onClick={() => toggleWishlist(rid)}
+            style={{
+              marginTop: "8px",
+              width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+              padding: "12px", borderRadius: "10px",
+              background: wished ? "rgba(251,191,36,0.13)" : "rgba(255,255,255,0.06)",
+              border: wished ? "1px solid rgba(251,191,36,0.5)" : "1px solid rgba(255,255,255,0.12)",
+              color: wished ? "#fbbf24" : "rgba(255,255,255,0.6)",
+              fontWeight: 700, fontSize: "0.88rem", cursor: "pointer",
+            }}
+          >
+            {wished ? <BookmarkCheck size={16} /> : <Bookmark size={16} />}
+            {wished ? "Chci nav\u0161t\u00edvit \u2013 odebrat" : "Chci nav\u0161t\u00edvit"}
+          </button>
         </div>
       </div>
     </div>
@@ -203,12 +224,14 @@ export default function RozhlednyPage() {
   const [showKrajDropdown, setShowKrajDropdown] = useState(false);
   const [selected, setSelected] = useState<Rozhledna | null>(null);
   const [showVisited, setShowVisited] = useState(false);
+  const [showWishlist, setShowWishlist] = useState(false);
   const [nearbyActive, setNearbyActive] = useState(false);
   const [userLocation, setUserLocation] = useState<{ lat: number; lon: number } | null>(null);
   const [locationLoading, setLocationLoading] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const { isCompleted, toggle, isSignedIn } = useDenik();
+  const { isWishlisted, toggleWishlist } = useWishlist();
 
   const requestLocation = useCallback(() => {
     if (!navigator.geolocation) {
@@ -248,7 +271,8 @@ export default function RozhlednyPage() {
       const matchName = !q || r.name.toLowerCase().includes(q);
       const matchKraj = !kraj || r.kraj.some(k => k === kraj);
       const matchVisited = !showVisited || isCompleted("rozhledna", String(r.id));
-      return matchName && matchKraj && matchVisited;
+      const matchWishlist = !showWishlist || isWishlisted(String(r.id));
+      return matchName && matchKraj && matchVisited && matchWishlist;
     });
     if (nearbyActive && userLocation) {
       result = result
@@ -259,7 +283,7 @@ export default function RozhlednyPage() {
         .sort((a, b) => (distanceMap[a.slug] ?? Infinity) - (distanceMap[b.slug] ?? Infinity));
     }
     return result;
-  }, [query, kraj, showVisited, nearbyActive, userLocation, distanceMap, isCompleted]);
+  }, [query, kraj, showVisited, showWishlist, nearbyActive, userLocation, distanceMap, isCompleted, isWishlisted]);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const visible = filtered.slice(0, page * PAGE_SIZE);
@@ -407,6 +431,22 @@ export default function RozhlednyPage() {
             >
               <CheckCircle2 size={14} />
               {"Nav\u0161t\u00edven\u00e9"}
+            </button>
+
+            {/* Chci navštívit */}
+            <button
+              onClick={() => { setShowWishlist(p => !p); setPage(1); }}
+              style={{
+                display: "flex", alignItems: "center", gap: "6px",
+                padding: "7px 13px", borderRadius: "20px", fontSize: "0.82rem", fontWeight: 700, cursor: "pointer",
+                background: showWishlist ? "rgba(251,191,36,0.18)" : "rgba(255,255,255,0.08)",
+                border: showWishlist ? "1px solid rgba(251,191,36,0.6)" : "1px solid rgba(255,255,255,0.15)",
+                color: showWishlist ? "#fbbf24" : "rgba(255,255,255,0.65)",
+                transition: "all 0.18s",
+              }}
+            >
+              <Bookmark size={14} />
+              {"Chci nav\u0161t\u00edvit"}
             </button>
 
             {/* V okolí */}
@@ -593,6 +633,8 @@ export default function RozhlednyPage() {
           isCompleted={isCompleted}
           toggle={toggle}
           isSignedIn={isSignedIn}
+          isWishlisted={isWishlisted}
+          toggleWishlist={toggleWishlist}
         />
       )}
     </div>
