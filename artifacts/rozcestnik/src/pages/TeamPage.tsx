@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useUser, useClerk } from "@clerk/react";
+import { useUser, useClerk, useAuth } from "@clerk/react";
 import { useLocation } from "wouter";
 import { Users, Plus, LogIn, Copy, Check, LogOut, Mountain, QrCode, Share2, Pencil, BookOpen } from "lucide-react";
 import QRCode from "qrcode";
@@ -16,7 +16,8 @@ interface TeamData {
 
 export default function TeamPage() {
   const { user, isLoaded } = useUser();
-  const { signOut, session } = useClerk();
+  const { signOut } = useClerk();
+  const { getToken } = useAuth();
   const [, navigate] = useLocation();
 
   const [team, setTeam] = useState<TeamData | null>(null);
@@ -51,15 +52,6 @@ export default function TeamPage() {
       .then(setQrDataUrl)
       .catch(() => {});
   }, []);
-
-  const getToken = async (): Promise<string | null> => {
-    try {
-      if (!session) return null;
-      return await session.getToken();
-    } catch {
-      return null;
-    }
-  };
 
   const authFetch = async (url: string, options: RequestInit = {}) => {
     const token = await getToken();

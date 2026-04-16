@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation } from "wouter";
-import { useClerk, useUser } from "@clerk/react";
+import { useClerk, useUser, useAuth } from "@clerk/react";
 import { ArrowLeft, CheckCircle2, XCircle, Trophy, X } from "lucide-react";
 
 interface Question {
@@ -71,11 +71,9 @@ interface ScoreEntry { player_name: string; score: number; }
 
 export default function QuizPage() {
   const [, navigate] = useLocation();
-  const { session, openSignIn } = useClerk();
+  const { openSignIn } = useClerk();
   const { isLoaded, isSignedIn } = useUser();
-
-  const sessionRef = useRef(session);
-  useEffect(() => { sessionRef.current = session; }, [session]);
+  const { getToken } = useAuth();
 
   const [current, setCurrent] = useState<number>(() => {
     try {
@@ -139,8 +137,8 @@ export default function QuizPage() {
         return;
       } catch {}
     }
-    if (!session) { setCheckingPlayed(false); return; }
-    session.getToken().then(async (token) => {
+    if (!isSignedIn) { setCheckingPlayed(false); return; }
+    getToken().then(async (token) => {
       if (!token) { setCheckingPlayed(false); return; }
       try {
         const r = await fetch("/api/quiz-scores?mine=true", { headers: { Authorization: `Bearer ${token}` }, credentials: "include" });
@@ -154,23 +152,23 @@ export default function QuizPage() {
       } catch {}
       setCheckingPlayed(false);
     }).catch(() => setCheckingPlayed(false));
-  }, [session]);
+  }, [isSignedIn, getToken]);
 
   useEffect(() => {
-    if (!session) return;
-    session.getToken().then((token) => {
+    if (!isSignedIn) return;
+    getToken().then((token) => {
       if (!token) return;
       fetch("/api/profile", { headers: { Authorization: `Bearer ${token}` }, credentials: "include" })
         .then((r) => r.ok ? r.json() : null)
         .then((d) => { if (d?.nickname) setNickname(d.nickname); })
         .catch(() => {});
     }).catch(() => {});
-  }, [session]);
+  }, [isSignedIn, getToken]);
 
   const submitScore = useCallback(async (finalScore: number, playerName: string) => {
     setSubmitting(true);
     try {
-      const token = await sessionRef.current?.getToken().catch(() => null);
+      const token = await getToken().catch(() => null);
       const headers: Record<string, string> = { "Content-Type": "application/json" };
       if (token) headers["Authorization"] = `Bearer ${token}`;
       await fetch("/api/quiz-scores", {
@@ -186,7 +184,7 @@ export default function QuizPage() {
     } catch {} finally {
       setSubmitting(false);
     }
-  }, [fetchTop]);
+  }, [fetchTop, getToken]);
 
   function handleSelect(idx: number) {
     if (isAnswered) return;
@@ -204,7 +202,7 @@ export default function QuizPage() {
       const fs = calculatedScore.filter((a, i) => a === questions[i].correct).length;
       localStorage.removeItem("rozcestnik_quiz_progress");
       setFinished(true);
-      const name = nickname || (session?.user?.firstName ? `${session.user.firstName}` : null);
+      const name = nickname || null;
       if (name) {
         submitScore(fs, name);
       } else {

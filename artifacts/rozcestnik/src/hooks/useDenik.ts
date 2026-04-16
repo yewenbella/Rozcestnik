@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useUser, useClerk } from "@clerk/react";
+import { useUser, useAuth } from "@clerk/react";
 
 export type DennikItem = {
   id: number;
@@ -11,13 +11,9 @@ export type DennikItem = {
 
 export function useDenik() {
   const { isLoaded, isSignedIn } = useUser();
-  const { session } = useClerk();
+  const { getToken } = useAuth();
   const [items, setItems] = useState<DennikItem[]>([]);
   const [loading, setLoading] = useState(false);
-
-  const getToken = useCallback(async () => {
-    try { return session ? await session.getToken() : null; } catch { return null; }
-  }, [session]);
 
   const fetchItems = useCallback(async () => {
     if (!isSignedIn) return;

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useUser, useClerk } from "@clerk/react";
+import { useUser, useClerk, useAuth } from "@clerk/react";
 import { Trophy, X } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
@@ -30,7 +30,8 @@ function drawRoundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: n
 
 export default function GamePage() {
   const { user, isLoaded, isSignedIn } = useUser();
-  const { session, openSignIn } = useClerk();
+  const { openSignIn } = useClerk();
+  const { getToken } = useAuth();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef({
     playerY: GROUND - PLAYER_H,
@@ -50,8 +51,6 @@ export default function GamePage() {
   const [topScores, setTopScores] = useState<{ player_name: string; score: number }[]>([]);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const scoreSentRef = useRef(false);
-  const sessionRef = useRef(session);
-  useEffect(() => { sessionRef.current = session; }, [session]);
   const [nickname, setNickname] = useState<string | null>(null);
   const nicknameRef = useRef<string | null>(null);
   useEffect(() => { nicknameRef.current = nickname; }, [nickname]);
@@ -68,7 +67,7 @@ export default function GamePage() {
 
   const submitScore = useCallback(async (score: number, playerName: string) => {
     try {
-      const token = await sessionRef.current?.getToken().catch(() => null);
+      const token = await getToken().catch(() => null);
       const headers: Record<string, string> = { "Content-Type": "application/json" };
       if (token) headers["Authorization"] = `Bearer ${token}`;
       await fetch("/api/game-scores", {
@@ -78,13 +77,13 @@ export default function GamePage() {
       });
     } catch {}
     fetchTop();
-  }, [fetchTop]);
+  }, [fetchTop, getToken]);
 
   useEffect(() => {
-    if (!session) return;
+    if (!isSignedIn) return;
     (async () => {
       try {
-        const token = await session.getToken().catch(() => null);
+        const token = await getToken().catch(() => null);
         const headers: Record<string, string> = {};
         if (token) headers["Authorization"] = `Bearer ${token}`;
         const res = await fetch("/api/profile", { headers, credentials: "include" });
@@ -92,7 +91,7 @@ export default function GamePage() {
         if (data.nickname) setNickname(data.nickname);
       } catch {}
     })();
-  }, [session]);
+  }, [isSignedIn, getToken]);
 
   function jump() {
     const s = stateRef.current;
