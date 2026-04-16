@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "wouter";
 import { Map, Mountain, Landmark, Eye, UserCircle, Gamepad2, HelpCircle } from "lucide-react";
-import { Show } from "@clerk/react";
+import { useUser } from "@clerk/react";
 import heroBg from "@/assets/hero-bg.jpg";
 import WeatherWidget from "@/components/WeatherWidget";
 import SunsetBadge from "@/components/SunsetBadge";
@@ -111,6 +111,7 @@ function NavBtn({ label, Icon, path, gradient, border, glow, accent, navigate }:
 
 export default function Home() {
   const [, navigate] = useLocation();
+  const { isSignedIn } = useUser();
 
   return (
     <div
@@ -176,41 +177,27 @@ export default function Home() {
 
           {/* Můj tým tile — center */}
           <div style={{ flex: 1, minWidth: 0, height: "60px", boxSizing: "border-box" }}>
-            <Show when="signed-out">
-              <button
-                onClick={() => navigate("/sign-in")}
-                style={{
-                  width: "100%", height: "100%",
-                  display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
-                  background: "linear-gradient(160deg, rgba(60,70,60,0.72) 0%, rgba(20,28,20,0.82) 100%)",
-                  border: "1px solid rgba(100,110,100,0.45)", borderRadius: "10px",
-                  cursor: "pointer", boxSizing: "border-box",
-                  boxShadow: "0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 3px 8px rgba(0,0,0,0.45), 1px 0 0 rgba(255,255,255,0.08) inset",
-                }}
-              >
-                <UserCircle size={13} color="rgba(255,255,255,0.85)" />
+            <button
+              onClick={() => navigate(isSignedIn ? "/team" : "/sign-in")}
+              style={{
+                width: "100%", height: "100%",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                background: "linear-gradient(160deg, rgba(60,70,60,0.72) 0%, rgba(20,28,20,0.82) 100%)",
+                border: "1px solid rgba(100,110,100,0.45)", borderRadius: "10px",
+                cursor: "pointer", boxSizing: "border-box",
+                boxShadow: "0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 3px 8px rgba(0,0,0,0.45), 1px 0 0 rgba(255,255,255,0.08) inset",
+              }}
+            >
+              <UserCircle size={13} color="rgba(255,255,255,0.85)" />
+              {isSignedIn ? (
+                <span style={{ color: "white", fontSize: "0.62rem", fontWeight: 800 }}>{"M\u016fj t\u00fdm"}</span>
+              ) : (
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", lineHeight: 1.25 }}>
                   <span style={{ color: "white", fontSize: "0.60rem", fontWeight: 800 }}>{"P\u0159ihl\u00e1sit"}</span>
                   <span style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.53rem", fontWeight: 600 }}>{"M\u016fj t\u00fdm"}</span>
                 </div>
-              </button>
-            </Show>
-            <Show when="signed-in">
-              <button
-                onClick={() => navigate("/team")}
-                style={{
-                  width: "100%", height: "100%",
-                  display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
-                  background: "linear-gradient(160deg, rgba(60,70,60,0.72) 0%, rgba(20,28,20,0.82) 100%)",
-                  border: "1px solid rgba(100,110,100,0.45)", borderRadius: "10px",
-                  cursor: "pointer", boxSizing: "border-box",
-                  boxShadow: "0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.5) inset, 0 3px 8px rgba(0,0,0,0.45), 1px 0 0 rgba(255,255,255,0.08) inset",
-                }}
-              >
-                <UserCircle size={13} color="rgba(255,255,255,0.85)" />
-                <span style={{ color: "white", fontSize: "0.62rem", fontWeight: 800 }}>{"M\u016fj t\u00fdm"}</span>
-              </button>
-            </Show>
+              )}
+            </button>
           </div>
 
           {/* Západ slunce tile */}
