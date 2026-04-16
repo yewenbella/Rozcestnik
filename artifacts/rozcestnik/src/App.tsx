@@ -86,10 +86,6 @@ function AppRoutes() {
 
 function ClerkProviderWithRoutes() {
   const [, setLocation] = useLocation();
-  const proxyUrl = import.meta.env.PROD && typeof window !== "undefined"
-    ? `${window.location.origin}/api/__clerk`
-    : undefined;
-
   if (!clerkPubKey) {
     return (
       <QueryClientProvider client={queryClient}>
@@ -101,7 +97,6 @@ function ClerkProviderWithRoutes() {
   return (
     <ClerkProvider
       publishableKey={clerkPubKey}
-      proxyUrl={proxyUrl}
       routerPush={(to) => setLocation(stripBase(to))}
       routerReplace={(to) => setLocation(stripBase(to), { replace: true })}
     >
