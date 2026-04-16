@@ -53,7 +53,7 @@ export default function TeamPage() {
   }, [isLoaded, user]);
 
   useEffect(() => {
-    const url = window.location.origin + (import.meta.env.BASE_URL || "/");
+    const url = "https://rozcestnik-snowy.vercel.app/";
     QRCode.toDataURL(url, { width: 200, margin: 1, color: { dark: "#1a2a1a", light: "#ffffff" } })
       .then(setQrDataUrl)
       .catch(() => {});
