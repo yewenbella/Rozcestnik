@@ -421,8 +421,8 @@ export default function RozhlednyPage() {
             <button
               onClick={() => { setShowVisited(p => !p); setPage(1); }}
               style={{
-                display: "flex", alignItems: "center", gap: "6px", flexShrink: 0,
-                padding: "7px 13px", borderRadius: "20px", fontSize: "0.82rem", fontWeight: 700, cursor: "pointer",
+                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
+                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
                 background: showVisited ? "rgba(74,222,128,0.18)" : "rgba(255,255,255,0.08)",
                 border: showVisited ? "1px solid rgba(74,222,128,0.6)" : "1px solid rgba(255,255,255,0.15)",
                 color: showVisited ? "#4ade80" : "rgba(255,255,255,0.65)",
@@ -437,8 +437,8 @@ export default function RozhlednyPage() {
             <button
               onClick={() => { setShowWishlist(p => !p); setPage(1); }}
               style={{
-                display: "flex", alignItems: "center", gap: "6px", flexShrink: 0,
-                padding: "7px 13px", borderRadius: "20px", fontSize: "0.82rem", fontWeight: 700, cursor: "pointer",
+                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
+                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
                 background: showWishlist ? "rgba(251,191,36,0.18)" : "rgba(255,255,255,0.08)",
                 border: showWishlist ? "1px solid rgba(251,191,36,0.6)" : "1px solid rgba(255,255,255,0.15)",
                 color: showWishlist ? "#fbbf24" : "rgba(255,255,255,0.65)",
@@ -465,8 +465,8 @@ export default function RozhlednyPage() {
               }}
               disabled={locationLoading}
               style={{
-                display: "flex", alignItems: "center", gap: "6px", flexShrink: 0,
-                padding: "7px 13px", borderRadius: "20px", fontSize: "0.82rem", fontWeight: 700, cursor: locationLoading ? "wait" : "pointer",
+                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
+                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: locationLoading ? "wait" : "pointer",
                 background: nearbyActive ? "rgba(96,165,250,0.18)" : "rgba(255,255,255,0.08)",
                 border: nearbyActive ? "1px solid rgba(96,165,250,0.6)" : "1px solid rgba(255,255,255,0.15)",
                 color: nearbyActive ? "#60a5fa" : "rgba(255,255,255,0.65)",
