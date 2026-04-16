@@ -524,7 +524,6 @@ export default function RozhlednyPage() {
                         aspectRatio: "2/3",
                       }}
                     >
-                      {/* Full-height photo with contain so whole tower is visible */}
                       {r.photo ? (
                         <img
                           src={r.photo}
@@ -532,9 +531,9 @@ export default function RozhlednyPage() {
                           loading="lazy"
                           style={{
                             position: "absolute", inset: 0,
-                            width: "100%", height: "85%",
-                            objectFit: "contain",
-                            objectPosition: "center top",
+                            width: "100%", height: "100%",
+                            objectFit: "cover",
+                            objectPosition: "center",
                           }}
                         />
                       ) : (
