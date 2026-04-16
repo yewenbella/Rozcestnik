@@ -660,20 +660,20 @@ export const rozhledny: Rozhledna[] = [
     "id": 910,
     "name": "Císařský kámen",
     "slug": "cisarsky-kamen",
-    "url": "https://turistickamapa.cz/rozhledna-cisarsky-kamen/",
+    "url": "https://lesycr.cz/casopis-clanek/rozhledna-cisarsky-kamen/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/2024/rozhledna-cisarsky-kamen-2024_18_8-153546.jpg",
+    "photo": "https://lesycr.cz/wp-content/uploads/2016/12/rozhledna-510.jpg",
     "desc": "Dvacetimetrová dřevěná rozhledna z roku 2009. Kruhový výhled z otevřeného ochozu ve výšce 19 metrů (Ještěd, Javorník, Liberec, Jablonec, Jizerské hory, západní Krkonoše a Trosky v Českém ráji). Východištěm ke zdolání této dřevěné rozhledny je obec Mi"
   },
   {
     "id": 14173,
     "name": "Císařský kámen II",
     "slug": "cisarsky-kamen-ii",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/cisarsky-kamen-ii/",
+    "url": "https://turistickamapa.cz/rozhledna-cisarsky-kamen/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/cisarsky-kamen-ii.jpg",
+    "photo": "https://turistickamapa.cz/data_fotos/2024/rozhledna-cisarsky-kamen-2024_18_8-153546.jpg",
     "desc": "Původní dvacetimetrová dřevěná rozhledna z&nbsp;roku 2009 byla kvůli nutným opravám v&nbsp;roce 2017 uzavřena. Záhy se ale ukázalo, že působení povětrnostních vlivů ji poškodilo natolik, že byla v&nbsp;následujícím roce demontována. V&nbsp;roce 2018 "
   },
   {
