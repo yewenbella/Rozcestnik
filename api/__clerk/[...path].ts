@@ -1,5 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
+const CLERK_FAPI = "https://frontend-api.clerk.dev";
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const pathParts = Array.isArray(req.query.path)
     ? req.query.path
@@ -8,19 +10,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     : [];
   const clerkPath = pathParts.join("/");
 
-  const targetUrl = new URL(`https://frontend-api.clerk.dev/${clerkPath}`);
-  if (req.url) {
-    const qs = req.url.split("?")[1];
-    if (qs) targetUrl.search = "?" + qs;
+  const qs = req.url?.split("?")[1] ?? "";
+  const targetUrl = `${CLERK_FAPI}/${clerkPath}${qs ? "?" + qs : ""}`;
+
+  // CDN assets (clerk.browser.js etc.) — redirect directly to Clerk CDN
+  if (clerkPath.startsWith("npm/") || clerkPath.startsWith("static/")) {
+    res.redirect(302, targetUrl);
+    return;
   }
 
-  const protocol = req.headers["x-forwarded-proto"] || "https";
-  const host = req.headers.host || "";
+  const protocol = (req.headers["x-forwarded-proto"] as string) || "https";
+  const host = (req.headers.host as string) || "";
   const proxyUrl = `${protocol}://${host}/api/__clerk`;
 
   const forwardHeaders: Record<string, string> = {};
   for (const [k, v] of Object.entries(req.headers)) {
-    if (k === "host" || k === "content-length") continue;
+    if (k === "host" || k === "content-length" || k === "connection") continue;
     if (typeof v === "string") forwardHeaders[k] = v;
     else if (Array.isArray(v)) forwardHeaders[k] = v[0];
   }
@@ -36,7 +41,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       : JSON.stringify(req.body)
     : undefined;
 
-  const upstream = await fetch(targetUrl.toString(), {
+  const upstream = await fetch(targetUrl, {
     method: req.method || "GET",
     headers: forwardHeaders,
     body,
