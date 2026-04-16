@@ -416,12 +416,12 @@ export default function RozhlednyPage() {
           </div>
 
           {/* Filter Pills */}
-          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "8px", overflowX: "auto", paddingBottom: "2px" }}>
             {/* Navštívené */}
             <button
               onClick={() => { setShowVisited(p => !p); setPage(1); }}
               style={{
-                display: "flex", alignItems: "center", gap: "6px",
+                display: "flex", alignItems: "center", gap: "6px", flexShrink: 0,
                 padding: "7px 13px", borderRadius: "20px", fontSize: "0.82rem", fontWeight: 700, cursor: "pointer",
                 background: showVisited ? "rgba(74,222,128,0.18)" : "rgba(255,255,255,0.08)",
                 border: showVisited ? "1px solid rgba(74,222,128,0.6)" : "1px solid rgba(255,255,255,0.15)",
@@ -437,7 +437,7 @@ export default function RozhlednyPage() {
             <button
               onClick={() => { setShowWishlist(p => !p); setPage(1); }}
               style={{
-                display: "flex", alignItems: "center", gap: "6px",
+                display: "flex", alignItems: "center", gap: "6px", flexShrink: 0,
                 padding: "7px 13px", borderRadius: "20px", fontSize: "0.82rem", fontWeight: 700, cursor: "pointer",
                 background: showWishlist ? "rgba(251,191,36,0.18)" : "rgba(255,255,255,0.08)",
                 border: showWishlist ? "1px solid rgba(251,191,36,0.6)" : "1px solid rgba(255,255,255,0.15)",
@@ -465,7 +465,7 @@ export default function RozhlednyPage() {
               }}
               disabled={locationLoading}
               style={{
-                display: "flex", alignItems: "center", gap: "6px",
+                display: "flex", alignItems: "center", gap: "6px", flexShrink: 0,
                 padding: "7px 13px", borderRadius: "20px", fontSize: "0.82rem", fontWeight: 700, cursor: locationLoading ? "wait" : "pointer",
                 background: nearbyActive ? "rgba(96,165,250,0.18)" : "rgba(255,255,255,0.08)",
                 border: nearbyActive ? "1px solid rgba(96,165,250,0.6)" : "1px solid rgba(255,255,255,0.15)",
