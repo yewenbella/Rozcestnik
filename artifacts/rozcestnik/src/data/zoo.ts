@@ -315,6 +315,17 @@ export const zoos: Zoo[] = [
     desc: "Zoologická zahrada Tábor leží v místní části Větrovy na jižním okraji města. Je dosažitelná autobusem nebo od železniční zastávky Horky.",
   },
   {
+    id: 11647,
+    name: "Zoopark Frýdek-Místek",
+    slug: "zoopark",
+    url: "https://www.hrady.cz/zoo-akvarium-zoopark",
+    kraj: "Moravskoslezský kraj",
+    photo: "https://www.hrady.cz/data_g/11647/136502.800.jpg",
+    lat: 49.68286735,
+    lng: 18.34647059,
+    desc: "Areál bývalého hodnotného parku podnikatelské rodiny Landsbergerů, přeměněného na závodní Zoopark. Nachází se na pravém břehu řeky Ostravice v areálu bývalého ředitelství Slezan.",
+  },
+  {
     id: 10675,
     name: "Zoopark Zájezd",
     slug: "zoopark-zajezd",
