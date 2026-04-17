@@ -5786,7 +5786,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Břeclav",
       "Jihomoravský kraj"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/jihomoravsky-kraj/u-obrazku/DSCF2730.JPG",
-    "desc": "Sedmimetrová dřevěná rozhledna z roku 2007. Kruhovému výhledu ze zastřešené plošiny ve výšce 3 metry brání severním směrem oblý kopec s vinicemi (Bílé Karpaty s Velkou Javořinou, Pavlovské vrchy, Minaret v Lednici, Valti"
+    "desc": "Zaniklá rozhledna (2007\u20132019), nahrazena rozhlednou U Obrázku II. Sedmimetrová dřevěná rozhledna z roku 2007. Kruhovému výhledu ze zastřešené plošiny ve výšce 3 metry brání severním směrem oblý kopec s vinicemi (Bílé Karpaty s Velkou Javořinou, Pavlovské vrchy, Minaret v Lednici, Valti"
   },
   {
     "id": 15885,
@@ -5795,7 +5795,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/u-obrazku-ii/",
     "kraj": ["Břeclav",
       "Jihomoravský kraj"],
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Karlovy_Vary%2C_horn%C3%AD_stanice_lanov%C3%A9_dr%C3%A1hy_Diana_a_rozhledna.jpg/960px-Karlovy_Vary%2C_horn%C3%AD_stanice_lanov%C3%A9_dr%C3%A1hy_Diana_a_rozhledna.jpg",
+    "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/u-obrazku-ii/20201208_112114.jpg",
     "desc": "Svoji o něco jednodušší předchůdkyni z let 2007–2019 nahradila v závěru roku 2020 nová osmimetrová dřevěná rozhledna s točitým kovovým schodištěm. K ní navíc přibyl i jednoduchý přístřešek s&nbsp;posezením. Kruhovému výh"
   },
   {
