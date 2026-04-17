@@ -417,33 +417,33 @@ export default function RozhlednyPage() {
           </div>
 
           {/* Filter Pills */}
-          <div style={{ display: "flex", gap: "8px" }}>
+          <div style={{ display: "flex", gap: "6px" }}>
             <button
               onClick={() => { setShowVisited(p => !p); setPage(1); }}
               style={{
-                display: "flex", alignItems: "center", justifyContent: "center", gap: "5px", flex: 1,
-                padding: "6px 8px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "4px", flex: 1,
+                padding: "6px 4px", borderRadius: "20px", fontSize: "0.7rem", fontWeight: 700, cursor: "pointer",
                 background: showVisited ? "rgba(74,222,128,0.18)" : "rgba(255,255,255,0.08)",
                 border: showVisited ? "1px solid rgba(74,222,128,0.6)" : "1px solid rgba(255,255,255,0.15)",
                 color: showVisited ? "#4ade80" : "rgba(255,255,255,0.65)",
-                transition: "all 0.18s",
+                transition: "all 0.18s", whiteSpace: "nowrap",
               }}
             >
-              <CheckCircle2 size={13} />
+              <CheckCircle2 size={12} />
               {"Nav\u0161t\u00edven\u00e9"}
             </button>
             <button
               onClick={() => { setShowWishlist(p => !p); setPage(1); }}
               style={{
-                display: "flex", alignItems: "center", justifyContent: "center", gap: "5px", flex: 1,
-                padding: "6px 8px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "4px", flex: 1,
+                padding: "6px 4px", borderRadius: "20px", fontSize: "0.7rem", fontWeight: 700, cursor: "pointer",
                 background: showWishlist ? "rgba(251,191,36,0.18)" : "rgba(255,255,255,0.08)",
                 border: showWishlist ? "1px solid rgba(251,191,36,0.6)" : "1px solid rgba(255,255,255,0.15)",
                 color: showWishlist ? "#fbbf24" : "rgba(255,255,255,0.65)",
-                transition: "all 0.18s",
+                transition: "all 0.18s", whiteSpace: "nowrap",
               }}
             >
-              <Bookmark size={13} />
+              <Bookmark size={12} />
               {"Chci nav\u0161t\u00edvit"}
             </button>
             <button
@@ -454,16 +454,16 @@ export default function RozhlednyPage() {
               }}
               disabled={locationLoading}
               style={{
-                display: "flex", alignItems: "center", justifyContent: "center", gap: "5px", flex: 1,
-                padding: "6px 8px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700,
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "4px", flex: 1,
+                padding: "6px 4px", borderRadius: "20px", fontSize: "0.7rem", fontWeight: 700,
                 cursor: locationLoading ? "wait" : "pointer",
                 background: nearbyActive ? "rgba(96,165,250,0.18)" : "rgba(255,255,255,0.08)",
                 border: nearbyActive ? "1px solid rgba(96,165,250,0.6)" : "1px solid rgba(255,255,255,0.15)",
                 color: nearbyActive ? "#60a5fa" : "rgba(255,255,255,0.65)",
-                transition: "all 0.18s", opacity: locationLoading ? 0.7 : 1,
+                transition: "all 0.18s", whiteSpace: "nowrap", opacity: locationLoading ? 0.7 : 1,
               }}
             >
-              <Navigation size={13} />
+              <Navigation size={12} />
               {locationLoading ? "Hled\u00e1m\u2026" : nearbyActive ? "Do 100\u00a0km" : "V\u00a0okol\u00ed"}
             </button>
           </div>

@@ -346,7 +346,7 @@ export default function HradyPage() {
             )}
           </div>
 
-          {/* Filter Pills — jeden řádek */}
+          {/* Filter Pills — řádek 1: hlavní filtry */}
           <div style={{ display: "flex", gap: "6px" }}>
             <button
               onClick={() => { setShowVisited(p => !p); setPage(1); }}
@@ -386,12 +386,15 @@ export default function HradyPage() {
                 background: "rgba(96,165,250,0.08)",
                 border: "1px solid rgba(96,165,250,0.25)",
                 color: "#60a5fa", textDecoration: "none",
-                transition: "all 0.18s", whiteSpace: "nowrap",
+                transition: "all 0.18s", whiteSpace: "nowrap", boxSizing: "border-box",
               }}
             >
               <Navigation size={12} />
               {"V\u00a0okol\u00ed"}
             </a>
+          </div>
+          {/* Filter Pills — řádek 2: typ */}
+          <div style={{ display: "flex", gap: "6px", marginTop: "6px" }}>
             <button
               onClick={() => { setTypeFilter(p => p === "hrad" ? "" : "hrad"); setPage(1); }}
               style={{
