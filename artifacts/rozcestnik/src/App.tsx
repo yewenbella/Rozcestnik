@@ -22,6 +22,9 @@ import QuizPage from "@/pages/QuizPage";
 import VyzvaPage from "@/pages/VyzvaPage";
 import RozhlednyPage from "@/pages/RozhlednyPage";
 import HradyPage from "@/pages/HradyPage";
+import TipyNaVyletPage from "@/pages/TipyNaVyletPage";
+import ZooPage from "@/pages/ZooPage";
+import VyhlidkyPage from "@/pages/VyhlidkyPage";
 import DennikPage from "@/pages/DennikPage";
 import NotFound from "@/pages/not-found";
 
@@ -76,6 +79,9 @@ function AppRoutes() {
       <Route path="/vyzva" component={VyzvaPage} />
       <Route path="/rozhledny" component={RozhlednyPage} />
       <Route path="/hrady" component={HradyPage} />
+      <Route path="/tipy-na-vylet" component={TipyNaVyletPage} />
+      <Route path="/zoo" component={ZooPage} />
+      <Route path="/vyhlidky" component={VyhlidkyPage} />
       <Route path="/denik" component={DennikPage} />
       <Route path="/zebricek" component={ZebricekPage} />
       <Route path="/pravidla" component={PravidlaPage} />
