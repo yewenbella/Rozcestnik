@@ -1186,16 +1186,6 @@ export const rozhledny: Rozhledna[] = [
     "desc": "Jedenadvacetimetrová cihlová věž z roku 1907. Kruhový výhled z otevřeného ochozu ve výšce 18 metrů (Jizerské a Lužické hory, Ještěd, Frýdlant, v Polsku pak elektrárna Turoszow a mohutné haldy vytěžené hlušiny). Rozhledna"
   },
   {
-    "id": 9796,
-    "name": "Frýdštejn",
-    "slug": "frydstejn",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/frydstejn/",
-    "kraj": ["Jablonec nad Nisou",
-      "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/frydstejn.jpg",
-    "desc": "Patnáctimetrová válcová věž z&nbsp;druhé poloviny 14. století. Kruhový výhled z&nbsp;otevřeného ochozu je severním směrem znemožněn vyšším zalesněným hřebenem (Bezděz, Trosky, Kozákov, Krkonoše, Lužické hory, Suché skály"
-  },
-  {
     "id": 23375,
     "name": "Gloriet Průhonice",
     "slug": "gloriet-pruhonice",

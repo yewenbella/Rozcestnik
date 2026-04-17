@@ -115,7 +115,6 @@ export const rozhlednyCoords: Record<string, [number, number]> = {
   "frydlant": [50.792071, 15.157527],
   "frydlant-radnice": [50.889313, 15.27183],
   "frydlantska-vysina": [50.889313, 15.27183],
-  "frydstejn": [50.545267, 15.19486],
   "gloriet-pruhonice": [49.885096, 14.603185],
   "goethova-vyhlidka": [50.141723, 13.036345],
   "grabstejn": [50.732717, 14.984632],
