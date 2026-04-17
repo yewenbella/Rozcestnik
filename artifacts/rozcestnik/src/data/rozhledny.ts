@@ -36,7 +36,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/amalka/",
     "kraj": ["Pardubický kraj",
       "Ústí nad Orlicí"],
-    "photo": "https://cdn.kudyznudy.cz/files/2b/2b552e14-5473-4d69-aa52-fcd5523c495c.jpg?v=20250228040934",
+    "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/amalka/DSCF6858.JPG",
     "desc": "Desetimetrová kovová nástavba na dřevěném altánu skibaru stojí od roku 2020 u konečné stanice lyžařského vleku na severním úbočí vrchu Adam na východě Orlických hor. Z&nbsp;otevřené plošiny ve výšce 5 metrů se obhlédne celý severní obzor od západu k&"
   },
   {
