@@ -1,5 +1,11 @@
 # Workspace
 
+## Uživatelské preference
+
+- **Potvrzení před akcí**: Vždy se zeptat na potvrzení před provedením jakékoliv změny v kódu, push na GitHub, nebo jiné akce. Nejdřív popsat co chci udělat a počkat na souhlas.
+
+
+
 ## Overview
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
