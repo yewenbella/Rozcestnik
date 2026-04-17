@@ -417,74 +417,61 @@ export default function RozhlednyPage() {
           </div>
 
           {/* Filter Pills */}
-          <div style={{ display: "flex", gap: "8px", overflowX: "auto", paddingBottom: "2px" }}>
-            {/* Navštívené */}
+          <div style={{ display: "flex", gap: "8px" }}>
             <button
               onClick={() => { setShowVisited(p => !p); setPage(1); }}
               style={{
-                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
-                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "5px", flex: 1,
+                padding: "6px 8px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
                 background: showVisited ? "rgba(74,222,128,0.18)" : "rgba(255,255,255,0.08)",
                 border: showVisited ? "1px solid rgba(74,222,128,0.6)" : "1px solid rgba(255,255,255,0.15)",
                 color: showVisited ? "#4ade80" : "rgba(255,255,255,0.65)",
                 transition: "all 0.18s",
               }}
             >
-              <CheckCircle2 size={14} />
+              <CheckCircle2 size={13} />
               {"Nav\u0161t\u00edven\u00e9"}
             </button>
-
-            {/* Chci navštívit */}
             <button
               onClick={() => { setShowWishlist(p => !p); setPage(1); }}
               style={{
-                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
-                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "5px", flex: 1,
+                padding: "6px 8px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
                 background: showWishlist ? "rgba(251,191,36,0.18)" : "rgba(255,255,255,0.08)",
                 border: showWishlist ? "1px solid rgba(251,191,36,0.6)" : "1px solid rgba(255,255,255,0.15)",
                 color: showWishlist ? "#fbbf24" : "rgba(255,255,255,0.65)",
                 transition: "all 0.18s",
               }}
             >
-              <Bookmark size={14} />
+              <Bookmark size={13} />
               {"Chci nav\u0161t\u00edvit"}
             </button>
-
-            {/* V okolí */}
             <button
               onClick={() => {
-                if (nearbyActive) {
-                  setNearbyActive(false);
-                  setPage(1);
-                } else if (userLocation) {
-                  setNearbyActive(true);
-                  setPage(1);
-                } else {
-                  requestLocation();
-                  setPage(1);
-                }
+                if (nearbyActive) { setNearbyActive(false); setPage(1); }
+                else if (userLocation) { setNearbyActive(true); setPage(1); }
+                else { requestLocation(); setPage(1); }
               }}
               disabled={locationLoading}
               style={{
-                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
-                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: locationLoading ? "wait" : "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "5px", flex: 1,
+                padding: "6px 8px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700,
+                cursor: locationLoading ? "wait" : "pointer",
                 background: nearbyActive ? "rgba(96,165,250,0.18)" : "rgba(255,255,255,0.08)",
                 border: nearbyActive ? "1px solid rgba(96,165,250,0.6)" : "1px solid rgba(255,255,255,0.15)",
                 color: nearbyActive ? "#60a5fa" : "rgba(255,255,255,0.65)",
-                transition: "all 0.18s",
-                opacity: locationLoading ? 0.7 : 1,
+                transition: "all 0.18s", opacity: locationLoading ? 0.7 : 1,
               }}
             >
-              <Navigation size={14} />
-              {locationLoading ? "Hled\u00e1m polohu\u2026" : nearbyActive ? "Do 100\u00a0km" : "V\u00a0okol\u00ed"}
+              <Navigation size={13} />
+              {locationLoading ? "Hled\u00e1m\u2026" : nearbyActive ? "Do 100\u00a0km" : "V\u00a0okol\u00ed"}
             </button>
-
-            {locationError && (
-              <span style={{ fontSize: "0.75rem", color: "#f87171", display: "flex", alignItems: "center" }}>
-                {locationError}
-              </span>
-            )}
           </div>
+          {locationError && (
+            <div style={{ fontSize: "0.73rem", color: "#f87171", paddingLeft: "2px" }}>
+              {locationError}
+            </div>
+          )}
         </div>
 
         {/* Grid */}
