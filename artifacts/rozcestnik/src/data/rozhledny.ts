@@ -224,7 +224,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/bedrichova-vyhlidka/",
     "kraj": ["Kolín",
       "Středočeský kraj"],
-    "photo": "https://foto.turistika.cz/foto/32623/152808/67419183889c6.jpg",
+    "photo": "https://www.hrady.cz/data_g/14361/195002.800.jpg",
     "desc": "Čtrnáctimetrová dřevěná rozhledna s&nbsp;kovovým točitým schodištěm stojí od roku 2018 na Novoveském vrchu na místě Prusko – Rakouské bitvy z&nbsp;roku 1757, po bitvě nazývaném mezi prostým lidem Bedřichov. Kruhový výhled z&nbsp;otevřeného ochozu ve "
   },
   {
