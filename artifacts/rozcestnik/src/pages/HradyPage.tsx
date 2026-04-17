@@ -22,7 +22,6 @@ function DetailModal({ h, onClose, isCompleted, toggle, isSignedIn, isWishlisted
   const done = isCompleted("hrad", hid);
   const wished = isWishlisted(wid);
   const mapsUrl = `https://maps.google.com/maps/search/${encodeURIComponent(h.name + " " + h.kraj)}`;
-  const mapsNearbyUrl = `https://maps.google.com/maps/search/${encodeURIComponent("hrady a z\u00e1mky v okol\u00ed " + h.name)}`;
   const typeLabel = h.type === "hrad" ? "hrad" : "z\u00e1mek";
 
   return (
@@ -115,7 +114,7 @@ function DetailModal({ h, onClose, isCompleted, toggle, isSignedIn, isWishlisted
             )}
           </div>
 
-          {/* Buttons row: Maps + info + v okolí */}
+          {/* Buttons row: Maps + info */}
           <div style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
             <a
               href={mapsUrl}
@@ -146,21 +145,6 @@ function DetailModal({ h, onClose, isCompleted, toggle, isSignedIn, isWishlisted
             >
               <ExternalLink size={12} />
               {"Popis " + typeLabel + "u"}
-            </a>
-            <a
-              href={mapsNearbyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
-                padding: "10px 6px", borderRadius: "10px",
-                background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.25)",
-                color: "#60a5fa", fontWeight: 700, fontSize: "0.78rem",
-                textDecoration: "none",
-              }}
-            >
-              <Navigation size={12} />
-              {"V\u00a0okol\u00ed"}
             </a>
           </div>
 
@@ -425,6 +409,25 @@ export default function HradyPage() {
               <Bookmark size={14} />
               {"Chci nav\u0161t\u00edvit"}
             </button>
+
+            {/* V okolí */}
+            <a
+              href="https://maps.google.com/maps/search/hrady+a+z%C3%A1mky"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
+                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700,
+                background: "rgba(96,165,250,0.08)",
+                border: "1px solid rgba(96,165,250,0.25)",
+                color: "#60a5fa",
+                textDecoration: "none",
+                transition: "all 0.18s",
+              }}
+            >
+              <Navigation size={14} />
+              {"V\u00a0okol\u00ed"}
+            </a>
           </div>
         </div>
 
