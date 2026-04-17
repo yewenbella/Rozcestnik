@@ -20,6 +20,7 @@ const PAGE_SIZE = 24;
 const DEFUNCT_TOWERS: Record<string, string> = {
   "cisarsky-kamen": "Zaniklá – nahrazena rozhlednou Císařský kámen II",
   "rozhledna-na-grosscedlobi": "Zaniklá rozhledna",
+  "u-obrazku": "Zaniklá – nahrazena rozhlednou U Obrázku II",
 };
 
 function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted, toggleWishlist }: {

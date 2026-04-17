@@ -5786,7 +5786,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Břeclav",
       "Jihomoravský kraj"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/jihomoravsky-kraj/u-obrazku/DSCF2730.JPG",
-    "desc": "Zaniklá rozhledna (2007\u20132019), nahrazena rozhlednou U Obrázku II. Sedmimetrová dřevěná rozhledna z roku 2007. Kruhovému výhledu ze zastřešené plošiny ve výšce 3 metry brání severním směrem oblý kopec s vinicemi (Bílé Karpaty s Velkou Javořinou, Pavlovské vrchy, Minaret v Lednici, Valti"
+    "desc": "Sedmimetrová dřevěná rozhledna z roku 2007. Kruhovému výhledu ze zastřešené plošiny ve výšce 3 metry brání severním směrem oblý kopec s vinicemi (Bílé Karpaty s Velkou Javořinou, Pavlovské vrchy, Minaret v Lednici, Valti"
   },
   {
     "id": 15885,
