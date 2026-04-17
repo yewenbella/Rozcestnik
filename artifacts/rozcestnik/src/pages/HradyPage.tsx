@@ -346,13 +346,60 @@ export default function HradyPage() {
             )}
           </div>
 
-          {/* Filter Pills */}
-          <div style={{ display: "flex", gap: "8px", overflowX: "auto", paddingBottom: "2px" }}>
-            {/* Hrad */}
+          {/* Filter Pills — řádek 1: stavové filtry */}
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button
+              onClick={() => { setShowVisited(p => !p); setPage(1); }}
+              style={{
+                display: "flex", alignItems: "center", gap: "5px", flex: 1,
+                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
+                background: showVisited ? "rgba(74,222,128,0.18)" : "rgba(255,255,255,0.08)",
+                border: showVisited ? "1px solid rgba(74,222,128,0.6)" : "1px solid rgba(255,255,255,0.15)",
+                color: showVisited ? "#4ade80" : "rgba(255,255,255,0.65)",
+                transition: "all 0.18s", justifyContent: "center",
+              }}
+            >
+              <CheckCircle2 size={13} />
+              {"Nav\u0161t\u00edven\u00e9"}
+            </button>
+            <button
+              onClick={() => { setShowWishlist(p => !p); setPage(1); }}
+              style={{
+                display: "flex", alignItems: "center", gap: "5px", flex: 1,
+                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
+                background: showWishlist ? "rgba(251,191,36,0.18)" : "rgba(255,255,255,0.08)",
+                border: showWishlist ? "1px solid rgba(251,191,36,0.6)" : "1px solid rgba(255,255,255,0.15)",
+                color: showWishlist ? "#fbbf24" : "rgba(255,255,255,0.65)",
+                transition: "all 0.18s", justifyContent: "center",
+              }}
+            >
+              <Bookmark size={13} />
+              {"Chci nav\u0161t\u00edvit"}
+            </button>
+            <a
+              href="https://maps.google.com/maps/search/hrady+a+z%C3%A1mky"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex", alignItems: "center", gap: "5px", flex: 1,
+                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700,
+                background: "rgba(96,165,250,0.08)",
+                border: "1px solid rgba(96,165,250,0.25)",
+                color: "#60a5fa", textDecoration: "none",
+                transition: "all 0.18s", justifyContent: "center",
+              }}
+            >
+              <Navigation size={13} />
+              {"V\u00a0okol\u00ed"}
+            </a>
+          </div>
+
+          {/* Filter Pills — řádek 2: typ */}
+          <div style={{ display: "flex", gap: "8px" }}>
             <button
               onClick={() => { setTypeFilter(p => p === "hrad" ? "" : "hrad"); setPage(1); }}
               style={{
-                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "5px", flex: 1,
                 padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
                 background: typeFilter === "hrad" ? "rgba(249,115,22,0.18)" : "rgba(255,255,255,0.08)",
                 border: typeFilter === "hrad" ? "1px solid rgba(249,115,22,0.6)" : "1px solid rgba(255,255,255,0.15)",
@@ -362,12 +409,10 @@ export default function HradyPage() {
             >
               {"Hrady"}
             </button>
-
-            {/* Zamek */}
             <button
               onClick={() => { setTypeFilter(p => p === "zamek" ? "" : "zamek"); setPage(1); }}
               style={{
-                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "5px", flex: 1,
                 padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
                 background: typeFilter === "zamek" ? "rgba(251,191,36,0.18)" : "rgba(255,255,255,0.08)",
                 border: typeFilter === "zamek" ? "1px solid rgba(251,191,36,0.6)" : "1px solid rgba(255,255,255,0.15)",
@@ -377,57 +422,6 @@ export default function HradyPage() {
             >
               {"Z\u00e1mky"}
             </button>
-
-            {/* Navštívené */}
-            <button
-              onClick={() => { setShowVisited(p => !p); setPage(1); }}
-              style={{
-                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
-                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
-                background: showVisited ? "rgba(74,222,128,0.18)" : "rgba(255,255,255,0.08)",
-                border: showVisited ? "1px solid rgba(74,222,128,0.6)" : "1px solid rgba(255,255,255,0.15)",
-                color: showVisited ? "#4ade80" : "rgba(255,255,255,0.65)",
-                transition: "all 0.18s",
-              }}
-            >
-              <CheckCircle2 size={14} />
-              {"Nav\u0161t\u00edven\u00e9"}
-            </button>
-
-            {/* Chci navštívit */}
-            <button
-              onClick={() => { setShowWishlist(p => !p); setPage(1); }}
-              style={{
-                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
-                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700, cursor: "pointer",
-                background: showWishlist ? "rgba(251,191,36,0.18)" : "rgba(255,255,255,0.08)",
-                border: showWishlist ? "1px solid rgba(251,191,36,0.6)" : "1px solid rgba(255,255,255,0.15)",
-                color: showWishlist ? "#fbbf24" : "rgba(255,255,255,0.65)",
-                transition: "all 0.18s",
-              }}
-            >
-              <Bookmark size={14} />
-              {"Chci nav\u0161t\u00edvit"}
-            </button>
-
-            {/* V okolí */}
-            <a
-              href="https://maps.google.com/maps/search/hrady+a+z%C3%A1mky"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "flex", alignItems: "center", gap: "5px", flexShrink: 0,
-                padding: "6px 10px", borderRadius: "20px", fontSize: "0.76rem", fontWeight: 700,
-                background: "rgba(96,165,250,0.08)",
-                border: "1px solid rgba(96,165,250,0.25)",
-                color: "#60a5fa",
-                textDecoration: "none",
-                transition: "all 0.18s",
-              }}
-            >
-              <Navigation size={14} />
-              {"V\u00a0okol\u00ed"}
-            </a>
           </div>
         </div>
 
