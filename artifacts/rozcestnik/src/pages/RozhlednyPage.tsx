@@ -314,7 +314,7 @@ export default function RozhlednyPage() {
         {/* Header */}
         <div style={{ padding: "16px 16px 0", display: "flex", alignItems: "center", gap: "12px" }}>
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/tipy-na-vylet")}
             style={{
               display: "flex", alignItems: "center", gap: "6px",
               background: "rgba(0,0,0,0.50)",
