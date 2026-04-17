@@ -255,7 +255,6 @@ export const rozhlednyCoords: Record<string, [number, number]> = {
   "kovarka": [49.549819, 14.82658],
   "kozakov": [50.502768, 15.364315],
   "kozi-hradek": [48.737011, 16.736163],
-  "kozinec": [50.454935, 15.694593],
   "kozlovsky-kopec": [49.872528, 16.314278],
   "kozubova": [49.510714, 18.696349],
   "kozich": [49.618064, 13.613317],

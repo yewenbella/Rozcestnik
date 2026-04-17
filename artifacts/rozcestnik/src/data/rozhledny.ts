@@ -2605,18 +2605,8 @@ export const rozhledny: Rozhledna[] = [
     "desc": "Na vrcholu vápencového vrchu nad Mikulovem byla v&nbsp;15. století postavena dělostřelecká věž na zlepšení obrany města, střežícího důležitou obchodní stezku z&nbsp;Brna do Vídně. V&nbsp;devadesátých letech 20. století b"
   },
   {
-    "id": 1600,
-    "name": "Kozinec",
-    "slug": "kozinec",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/kozinec/",
-    "kraj": ["Jičín",
-      "Královéhradecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2025/12/kozinec.jpeg",
-    "desc": "Pětapadesátimetrová ocelová telekomunikační věž z roku 2004. Kruhový výhled z otevřeného ochozu ve výšce 33 metrů (panorama Krkonoš a Orlických hor, Jizerské hory, Ještěd, Stolové hory v Polsku, rozhledny Zvičina, Tábor,"
-  },
-  {
     "id": 1702,
-    "name": "Kozlovský kopec",
+    "name": "Kozlovský kopec (Kozinec)",
     "slug": "kozlovsky-kopec",
     "url": "https://turistickamapa.cz/rozhledna-kozlovsky-kopec/",
     "kraj": ["Pardubický kraj",
