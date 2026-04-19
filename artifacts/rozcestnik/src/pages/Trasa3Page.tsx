@@ -376,7 +376,7 @@ export default function Trasa3Page() {
                 <span style={{ fontSize: "1rem", flexShrink: 0, lineHeight: 1 }}>📅</span>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ color: "white", fontWeight: 600, fontSize: "0.80rem" }}>Rezervace koloběžky</div>
-                  <div style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}>kolobezky-ceskyraj.cz</div>
+                  <div style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}>Malá Skála &gt; Železný Brod – po Greenway Jizera – 1,5 hod. 199 Kč</div>
                 </div>
                 <a
                   href="https://www.kolobezky-ceskyraj.cz/rezervace"
@@ -398,7 +398,7 @@ export default function Trasa3Page() {
                 <MapPin size={14} color="#34d399" style={{ flexShrink: 0 }} />
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ color: "white", fontWeight: 600, fontSize: "0.80rem" }}>Zapůjčení koloběžky</div>
-                  <div style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}>J5PR+HG Malá Skála</div>
+                  <div style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}>Infoshop Vejměnek</div>
                 </div>
                 <a
                   href="https://www.google.com/maps?q=J5PR%2BHG+Mal%C3%A1+Sk%C3%A1la"
@@ -420,7 +420,7 @@ export default function Trasa3Page() {
                 <MapPin size={14} color="#34d399" style={{ flexShrink: 0 }} />
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ color: "white", fontWeight: 600, fontSize: "0.80rem" }}>Vrácení koloběžky</div>
-                  <div style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}>J7R4+7P Železný Brod</div>
+                  <div style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}>Kavárna Rest.Art</div>
                 </div>
                 <a
                   href="https://www.google.com/maps?q=J7R4%2B7P+%C5%BDelezn%C3%BD+Brod"
