@@ -21,7 +21,9 @@ function DetailModal({ z, onClose, isCompleted, toggle, isSignedIn, isWishlisted
   const zid = String(z.id);
   const done = isCompleted("zoo", zid);
   const wished = isWishlisted(wid);
-  const mapsUrl = `https://maps.google.com/maps/search/${encodeURIComponent(z.name + " " + z.kraj)}`;
+  const mapsUrl = (z.lat && z.lng)
+    ? `https://maps.google.com/maps?q=${z.lat},${z.lng}`
+    : `https://maps.google.com/maps/search/${encodeURIComponent(z.name + " " + z.kraj)}`;
 
   return (
     <div
