@@ -539,7 +539,7 @@ export default function Trasa3Page() {
                 <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.74rem", marginTop: "2px" }}>J7Q7+W3 Železný Brod</div>
               </div>
               <a
-                href="https://www.google.com/maps?q=J7Q7%2BW3+%C5%BDelezn%C3%BD+Brod"
+                href="https://www.google.com/maps/dir/?api=1&destination=J7Q7%2BW3+%C5%BDelezn%C3%BD+Brod&travelmode=driving"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
