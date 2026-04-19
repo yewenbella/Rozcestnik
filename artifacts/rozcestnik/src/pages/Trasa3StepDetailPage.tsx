@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { MapPin, Navigation, Flag, Info, ExternalLink, Star, Clock, Ticket } from "lucide-react";
 import { trasa3Steps } from "@/data/trasa3Steps";
 import PageLayout from "@/components/PageLayout";
+import GpsRecordButton from "@/components/GpsRecordButton";
 
 function wikiArticleTitle(wikiUrl?: string): string | null {
   if (!wikiUrl) return null;
@@ -90,6 +91,9 @@ export default function Trasa3StepDetailPage() {
             </div>
           </div>
         )}
+
+        {/* GPS record button */}
+        <GpsRecordButton step={step} storageKey="trasa3_times" />
 
         {/* Hours + entry badges */}
         {(step.openHours || step.entryFee) && (

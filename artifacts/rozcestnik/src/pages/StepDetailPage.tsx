@@ -2,6 +2,7 @@ import { useParams } from "wouter";
 import { MapPin, Navigation, Flag, Info, ExternalLink, Star, Clock, Ticket } from "lucide-react";
 import { trasa1Steps } from "@/data/trasa1Steps";
 import PageLayout from "@/components/PageLayout";
+import GpsRecordButton from "@/components/GpsRecordButton";
 
 
 export default function StepDetailPage() {
@@ -63,6 +64,9 @@ export default function StepDetailPage() {
             </div>
           </div>
         )}
+
+        {/* GPS record button */}
+        <GpsRecordButton step={step} storageKey="trasa1_times" />
 
         {/* Hours + entry badges */}
         {(step.openHours || step.entryFee) && (
