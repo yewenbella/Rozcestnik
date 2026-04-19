@@ -4,7 +4,7 @@ import PageLayout from "@/components/PageLayout";
 import {
   MapPin, Flag, Camera, Navigation, Car, Bus,
   ChevronUp, ChevronDown, ParkingCircle, Clock,
-  Loader2, AlertCircle, CheckCircle2, Timer, ExternalLink, Hotel, Train,
+  Loader2, AlertCircle, CheckCircle2, Timer, ExternalLink, Hotel, Train, Route,
 } from "lucide-react";
 import { trasa3Steps } from "@/data/trasa3Steps";
 import RouteRating from "@/components/RouteRating";
@@ -56,6 +56,7 @@ export default function Trasa3Page() {
   const [parkOpen, setParkOpen] = useState(false);
   const [trainOpen, setTrainOpen] = useState(false);
   const [hotelOpen, setHotelOpen] = useState(false);
+  const [cestaOpen, setCestaOpen] = useState(false);
 
   const [times, setTimes] = useState<StoredTimes>(() => {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
@@ -308,6 +309,136 @@ export default function Trasa3Page() {
 
         {/* Transport section */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
+
+          {/* Cesta zpět */}
+          <button onClick={() => setCestaOpen((o) => !o)} style={{
+            width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+            padding: "8px 10px", borderRadius: "12px",
+            border: cestaOpen ? "1px solid rgba(52,211,153,0.45)" : "1px solid rgba(255,255,255,0.15)",
+            background: cestaOpen ? "rgba(52,211,153,0.15)" : "rgba(255,255,255,0.07)",
+            color: "rgba(255,255,255,0.8)",
+            fontWeight: 700, fontSize: "0.80rem", cursor: "pointer", transition: "all 0.2s",
+          }}>
+            <Route size={15} color={cestaOpen ? "#34d399" : "rgba(255,255,255,0.7)"} />
+            Cesta z Malé Skály do Žel. Brodu
+            {cestaOpen ? <ChevronUp size={12} color="rgba(255,255,255,0.5)" /> : <ChevronDown size={12} color="rgba(255,255,255,0.5)" />}
+          </button>
+
+          {cestaOpen && (
+            <div style={{ borderRadius: "12px", background: "rgba(52,211,153,0.07)", border: "1px solid rgba(52,211,153,0.22)", overflow: "hidden" }}>
+
+              {/* Vlak */}
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                <Train size={14} color="#34d399" style={{ flexShrink: 0 }} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ color: "white", fontWeight: 600, fontSize: "0.80rem" }}>Cesta vlakem</div>
+                  <div style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}>Malá Skála → Železný Brod</div>
+                </div>
+                <a
+                  href="https://idos.cz/vlaky/spojeni/?f=Mal%C3%A1+Sk%C3%A1la&t=%C5%BDelezn%C3%BD+Brod"
+                  target="_blank" rel="noopener noreferrer"
+                  style={{
+                    display: "flex", alignItems: "center", gap: "4px", flexShrink: 0,
+                    padding: "5px 9px", borderRadius: "8px",
+                    background: "rgba(52,211,153,0.15)", border: "1px solid rgba(52,211,153,0.35)",
+                    color: "#34d399", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none", whiteSpace: "nowrap",
+                  }}
+                >
+                  <ExternalLink size={11} />
+                  IDOS
+                </a>
+              </div>
+
+              {/* Koloběžka – trasa */}
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                <span style={{ fontSize: "1rem", flexShrink: 0, lineHeight: 1 }}>🛴</span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ color: "white", fontWeight: 600, fontSize: "0.80rem" }}>Cesta na koloběžce</div>
+                  <div style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}>Greenway Jizera</div>
+                </div>
+                <a
+                  href="https://www.kolobezky-ceskyraj.cz/vylety/2-uncategorised/33-greenway-jizera.html"
+                  target="_blank" rel="noopener noreferrer"
+                  style={{
+                    display: "flex", alignItems: "center", gap: "4px", flexShrink: 0,
+                    padding: "5px 9px", borderRadius: "8px",
+                    background: "rgba(52,211,153,0.15)", border: "1px solid rgba(52,211,153,0.35)",
+                    color: "#34d399", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none", whiteSpace: "nowrap",
+                  }}
+                >
+                  <ExternalLink size={11} />
+                  Trasa
+                </a>
+              </div>
+
+              {/* Rezervace koloběžky */}
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                <span style={{ fontSize: "1rem", flexShrink: 0, lineHeight: 1 }}>📅</span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ color: "white", fontWeight: 600, fontSize: "0.80rem" }}>Rezervace koloběžky</div>
+                  <div style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}>kolobezky-ceskyraj.cz</div>
+                </div>
+                <a
+                  href="https://www.kolobezky-ceskyraj.cz/rezervace"
+                  target="_blank" rel="noopener noreferrer"
+                  style={{
+                    display: "flex", alignItems: "center", gap: "4px", flexShrink: 0,
+                    padding: "5px 9px", borderRadius: "8px",
+                    background: "rgba(52,211,153,0.15)", border: "1px solid rgba(52,211,153,0.35)",
+                    color: "#34d399", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none", whiteSpace: "nowrap",
+                  }}
+                >
+                  <ExternalLink size={11} />
+                  Rezervovat
+                </a>
+              </div>
+
+              {/* Zapůjčení */}
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                <MapPin size={14} color="#34d399" style={{ flexShrink: 0 }} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ color: "white", fontWeight: 600, fontSize: "0.80rem" }}>Zapůjčení koloběžky</div>
+                  <div style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}>J5PR+HG Malá Skála</div>
+                </div>
+                <a
+                  href="https://www.google.com/maps?q=J5PR%2BHG+Mal%C3%A1+Sk%C3%A1la"
+                  target="_blank" rel="noopener noreferrer"
+                  style={{
+                    display: "flex", alignItems: "center", gap: "4px", flexShrink: 0,
+                    padding: "5px 9px", borderRadius: "8px",
+                    background: "rgba(52,211,153,0.15)", border: "1px solid rgba(52,211,153,0.35)",
+                    color: "#34d399", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none", whiteSpace: "nowrap",
+                  }}
+                >
+                  <Navigation size={11} />
+                  Mapa
+                </a>
+              </div>
+
+              {/* Vrácení */}
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px" }}>
+                <MapPin size={14} color="#34d399" style={{ flexShrink: 0 }} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ color: "white", fontWeight: 600, fontSize: "0.80rem" }}>Vrácení koloběžky</div>
+                  <div style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}>J7R4+7P Železný Brod</div>
+                </div>
+                <a
+                  href="https://www.google.com/maps?q=J7R4%2B7P+%C5%BDelezn%C3%BD+Brod"
+                  target="_blank" rel="noopener noreferrer"
+                  style={{
+                    display: "flex", alignItems: "center", gap: "4px", flexShrink: 0,
+                    padding: "5px 9px", borderRadius: "8px",
+                    background: "rgba(52,211,153,0.15)", border: "1px solid rgba(52,211,153,0.35)",
+                    color: "#34d399", fontSize: "0.72rem", fontWeight: 700, textDecoration: "none", whiteSpace: "nowrap",
+                  }}
+                >
+                  <Navigation size={11} />
+                  Mapa
+                </a>
+              </div>
+
+            </div>
+          )}
 
           {/* Ubytování */}
           <button onClick={() => setHotelOpen((o) => !o)} style={{
