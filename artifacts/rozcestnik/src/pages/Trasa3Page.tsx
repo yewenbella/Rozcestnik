@@ -535,11 +535,11 @@ export default function Trasa3Page() {
               <ParkingCircle size={15} color="#4ade80" style={{ flexShrink: 0 }} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem", marginBottom: "2px" }}>Parkoviště</div>
-                <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Železný Brod</div>
-                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.74rem", marginTop: "2px" }}>J7Q7+W3 Železný Brod</div>
+                <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>u nádraží Železný Brod</div>
+                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.74rem", marginTop: "2px" }}>Vlakové nádraží, Železný Brod</div>
               </div>
               <a
-                href="https://www.google.com/maps/dir/?api=1&destination=J7Q7%2BW3+%C5%BDelezn%C3%BD+Brod&travelmode=driving"
+                href="https://www.google.com/maps/dir/?api=1&destination=Vlakové+nádraží+Železný+Brod&travelmode=driving"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
