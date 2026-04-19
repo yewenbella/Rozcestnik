@@ -10,32 +10,40 @@ function isTrasa1Done(): boolean {
 function isTrasa2Done(): boolean {
   try { return !!localStorage.getItem("trasa2_result_sent"); } catch { return false; }
 }
+function isTrasa3Done(): boolean {
+  try { return !!localStorage.getItem("trasa3_result_sent"); } catch { return false; }
+}
 
 const trasy = [
   { id: 1, name: "Trasa \u010d.1", location: "Janov nad Nisou", locationPath: "/janov", duration: "\u23f1 odh. 3\u20134 h", wip: false },
   { id: 2, name: "Trasa \u010d.2", location: "\u010cesk\u00fd r\u00e1j", locationPath: "/cesky-raj", duration: "\u23f1 odh. 3\u20134 h", wip: false },
-  { id: 3, name: "Trasa \u010d.3", location: "Rozpracov\u00e1no", locationPath: null, duration: "", wip: true },
+  { id: 3, name: "Trasa č.3", location: "Žel. Brod – Malá Skála", locationPath: null, duration: "⏱ odh. 3–4 h", wip: false },
 ];
 
 export default function TrasyPage() {
   const [, navigate] = useLocation();
   const trasa1Done = isTrasa1Done();
   const trasa2Done = isTrasa2Done();
+  const trasa3Done = isTrasa3Done();
   const { markDone, isSignedIn } = useDenik();
 
   useEffect(() => {
-    if (isSignedIn && trasa1Done) markDone("trasa", "1", "Trasa \u010d.1");
+    if (isSignedIn && trasa1Done) markDone("trasa", "1", "Trasa č.1");
   }, [isSignedIn, trasa1Done]);
 
   useEffect(() => {
-    if (isSignedIn && trasa2Done) markDone("trasa", "2", "Trasa \u010d.2");
+    if (isSignedIn && trasa2Done) markDone("trasa", "2", "Trasa č.2");
   }, [isSignedIn, trasa2Done]);
+
+  useEffect(() => {
+    if (isSignedIn && trasa3Done) markDone("trasa", "3", "Trasa č.3");
+  }, [isSignedIn, trasa3Done]);
 
   return (
     <PageLayout title="Trasy" backPath="/vyzva">
       <div style={{ display: "flex", flexDirection: "column", gap: "12px", padding: "16px" }}>
         {trasy.map((trasa) => {
-          const done = trasa.id === 1 ? trasa1Done : trasa.id === 2 ? trasa2Done : false;
+          const done = trasa.id === 1 ? trasa1Done : trasa.id === 2 ? trasa2Done : trasa.id === 3 ? trasa3Done : false;
           const wip = trasa.wip;
           const handleClick = () => {
             if (wip) return;

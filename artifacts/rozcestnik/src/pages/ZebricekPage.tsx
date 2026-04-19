@@ -48,6 +48,7 @@ export default function ZebricekPage() {
           {[
             { id: 1, label: "Trasa č.1", activeColor: "56,189,248", textColor: "#7dd3fc" },
             { id: 2, label: "Trasa č.2", activeColor: "74,222,128", textColor: "#86efac" },
+            { id: 3, label: "Trasa č.3", activeColor: "251,191,36", textColor: "#fbbf24" },
           ].map(({ id, label, activeColor, textColor }) => (
             <button
               key={id}
