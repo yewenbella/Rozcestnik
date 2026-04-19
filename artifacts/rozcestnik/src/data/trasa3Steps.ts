@@ -7,7 +7,7 @@ export const trasa3Steps: TrailStep[] = [
     type: "start",
     label: "START",
     place: "Železný Brod",
-    proof: "Hospoda/Občerstvení u Klokana",
+    proof: "Hospoda U Klokana",
     info: "Železný Brod je malebné město v Libereckém kraji, rozkládající se v údolí řeky Jizery na úpatí Jizerských hor. Město je světoznámé výrobou skla a bižuterie – místní Střední uměleckoprůmyslová škola sklářská patří k nejstarším svého druhu v Čechách a vychovává sklářské umělce již od roku 1920. Hospoda U Klokana je oblíbeným místem setkávání místních i turistů a slouží jako výchozí bod okružní trasy.",
     wikiUrl: "https://cs.wikipedia.org/wiki/%C5%BDelezn%C3%BD_Brod",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/%C5%BDelezn%C3%BD_Brod_-_nam%C4%9Bst%C3%AD_pohled_od_radnice.jpg/500px-%C5%BDelezn%C3%BD_Brod_-_nam%C4%9Bst%C3%AD_pohled_od_radnice.jpg",

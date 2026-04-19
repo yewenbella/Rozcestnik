@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
 import { Info, ExternalLink, Sparkles } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
+const wikiText =
+  "Malá Skála je obec v okrese Jablonec nad Nisou v Libereckém kraji, rozkládající se v romantickém údolí řeky Jizery. Okolí tvoří rozsáhlé skalní město z pískovcových skal, které lákají turisty, horolezce i milovníky přírody po celý rok. Dominantou obce je hrad Vranov, hovorově nazývaný Pantheon, postavený v romantickém slohu v 19. století rodinou Rohanů přímo na skalnatém ostrohu nad Jizerou. Malá Skála je turisticky oblíbenou destinací zejména díky vyhlídce Kde domov můj, která nabízí panoramatický výhled na meandrující Jizeru a zalesněné skalnaté svahy.";
+
 const zajimavosti = [
-  { emoji: "🏰", text: "Hrad Vranov nad Malou Skálou, hovorově zvaný Pantheon, byl postaven v romantickém slohu v 19. století rodinou Rohanů. Stojí přímo na skalnatém ostrohu nad Jizerou a patří k nejmalebněji situovaným šlechtickým sídlům v Čechách." },
-  { emoji: "🏔", text: "Maloskalské skalní město je vytvořeno z křídových pískovců a nabízí desítky vyhlídek, skalních soutěsek a turistických stezek. Nejznámější vyhlídkou je vyhlídka Kde domov můj s panoramatem meandrující Jizery — její název odkazuje na českou státní hymnu." },
-  { emoji: "🎬", text: "Oblast Malé Skály se proslavila ve filmu i literatuře. Natáčely se tu pohádky i dobrodružné filmy a krajina inspirovala malíře národního obrození. Soutěska Jizery pod skálami je dodnes vyhledávaným místem fotografů i filmařů." },
+  {
+    emoji: "🏰",
+    text: "Hrad Vranov nad Malou Skálou, zvaný Pantheon, byl vybudován v romantickém slohu v 19. století rodinou Rohanů. Stojí přímo na skalnatém ostrohu nad Jizerou a patří k nejmalebněji situovaným šlechtickým sídlům v Čechách.",
+  },
+  {
+    emoji: "🏔",
+    text: "Maloskalské skalní město vzniklo ze křídových pískovců a nabízí desítky vyhlídek a skalních soutěsek. Nejznámější vyhlídkou je Kde domov můj s panoramatem meandrující Jizery — název odkazuje na českou státní hymnu.",
+  },
+  {
+    emoji: "🎬",
+    text: "Oblast Malé Skály se proslavila ve filmu i literatuře. Krajina inspirovala malíře národního obrození a soutěska Jizery pod skálami je dodnes vyhledávaným místem fotografů i filmařů.",
+  },
 ];
 
 export default function MalaSkalaPage() {
-  const [text, setText] = useState("");
-
-  useEffect(() => {
-    fetch("https://cs.wikipedia.org/api/rest_v1/page/summary/Malá_Skála")
-      .then((r) => r.json())
-      .then((d) => {
-        setText(d.extract || "Informace nejsou k dispozici.");
-      })
-      .catch(() => setText("Nepodařilo se načíst informace z Wikipedie."));
-  }, []);
-
   return (
     <PageLayout title="Malá Skála" backPath="/trasy">
       <div style={{ display: "flex", flexDirection: "column", padding: "10px 12px 16px", gap: "10px", boxSizing: "border-box" }}>
@@ -58,11 +58,11 @@ export default function MalaSkalaPage() {
           </div>
 
           <p style={{ margin: 0, color: "rgba(255,255,255,0.80)", fontSize: "0.80rem", lineHeight: "1.55" }}>
-            {text || "Načítání…"}
+            {wikiText}
           </p>
 
           <a
-            href="https://cs.wikipedia.org/wiki/Malá_Skála"
+            href="https://cs.wikipedia.org/wiki/Mal%C3%A1_Sk%C3%A1la"
             target="_blank"
             rel="noopener noreferrer"
             style={{

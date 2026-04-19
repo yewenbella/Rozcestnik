@@ -404,11 +404,11 @@ export default function Trasa3Page() {
               <ParkingCircle size={15} color="#4ade80" style={{ flexShrink: 0 }} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem", marginBottom: "2px" }}>Parkoviště</div>
-                <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Železný Brod – centrum</div>
-                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.74rem", marginTop: "2px" }}>(u nám. 3. května)</div>
+                <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Železný Brod</div>
+                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.74rem", marginTop: "2px" }}>J7Q7+W3 Železný Brod</div>
               </div>
               <a
-                href="https://www.google.com/maps/dir/?api=1&destination=%C5%BDelezn%C3%BD+Brod%2C+n%C3%A1m.+3.+kv%C4%9Btna"
+                href="https://www.google.com/maps?q=J7Q7%2BW3+%C5%BDelezn%C3%BD+Brod"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -430,10 +430,11 @@ export default function Trasa3Page() {
               <Bus size={15} color="#60a5fa" style={{ flexShrink: 0 }} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.72rem", marginBottom: "2px" }}>Zastávka</div>
-                <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Železný Brod, autobusové nádraží</div>
+                <div style={{ color: "white", fontWeight: 600, fontSize: "0.88rem" }}>Terminál u žel. stanice</div>
+                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.74rem", marginTop: "2px" }}>Železný Brod</div>
               </div>
               <a
-                href="https://idos.cz/autobusy/spojeni/?t=%C5%BDelezn%C3%BD+Brod%2Cautobusov%C3%A9+n%C3%A1dra%C5%BE%C3%AD"
+                href="https://idos.cz/autobusy/spojeni/?t=%C5%BDelezn%C3%BD+Brod%2C+Termin%C3%A1l+u+%C5%BEel.st."
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
