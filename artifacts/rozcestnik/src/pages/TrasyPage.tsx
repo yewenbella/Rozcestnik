@@ -17,7 +17,7 @@ function isTrasa3Done(): boolean {
 const trasy = [
   { id: 1, name: "Trasa \u010d.1", location: "Janov nad Nisou", locationPath: "/janov", duration: "\u23f1 odh. 3\u20134 h", wip: false },
   { id: 2, name: "Trasa \u010d.2", location: "\u010cesk\u00fd r\u00e1j", locationPath: "/cesky-raj", duration: "\u23f1 odh. 3\u20134 h", wip: false },
-  { id: 3, name: "Trasa č.3", location: "Žel. Brod – Malá Skála", locationPath: null, duration: "⏱ odh. 3–4 h", wip: false },
+  { id: 3, name: "Trasa č.3", location: "Malá Skála", locationPath: "/mala-skala", duration: "⏱ odh. 3–4 h", wip: false },
 ];
 
 export default function TrasyPage() {
