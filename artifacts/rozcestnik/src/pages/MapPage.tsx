@@ -51,7 +51,7 @@ export default function MapPage() {
     setShowSuggestions(false);
     setSuggestions([]);
     setMapSrc(
-      `https://frame.mapy.cz/?x=${s.lon}&y=${s.lat}&z=13&base=turist&lang=cs`
+      `https://frame.mapy.cz/?x=${s.lon}&y=${s.lat}&z=15&base=turist&lang=cs&q=${encodeURIComponent(name)}`
     );
   };
 
