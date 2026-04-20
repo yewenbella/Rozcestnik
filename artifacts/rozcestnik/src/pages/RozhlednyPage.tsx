@@ -37,9 +37,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
   const wished = isWishlisted(rid);
   const defunctNote = DEFUNCT_TOWERS[r.slug];
   const coords = rozhlednyCoords[r.slug];
-  const mapsUrl = coords
-    ? `https://maps.google.com/maps?q=${coords[0]},${coords[1]}`
-    : `https://maps.google.com/maps/search/${encodeURIComponent(r.name)}`;
+  const mapsUrl = `https://maps.google.com/maps/search/${encodeURIComponent(r.name)}`;
 
   return (
     <div
