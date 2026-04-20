@@ -14,7 +14,6 @@ import Trasa3StepDetailPage from "@/pages/Trasa3StepDetailPage";
 import JanovPage from "@/pages/JanovPage";
 import CeskyRajPage from "@/pages/CeskyRajPage";
 import MalaSkalaPage from "@/pages/MalaSkalaPage";
-import BouncePage from "@/pages/BouncePage";
 import GamePage from "@/pages/GamePage";
 import ZebricekPage from "@/pages/ZebricekPage";
 import PravidlaPage from "@/pages/PravidlaPage";
@@ -80,7 +79,6 @@ function AppRoutes() {
       <Route path="/janov" component={JanovPage} />
       <Route path="/cesky-raj" component={CeskyRajPage} />
       <Route path="/mala-skala" component={MalaSkalaPage} />
-      <Route path="/bounce" component={BouncePage} />
       <Route path="/zkusebni" component={ZkusebniTrasaPage} />
       <Route path="/hra" component={GamePage} />
       <Route path="/kviz" component={QuizPage} />

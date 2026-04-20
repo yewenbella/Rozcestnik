@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "wouter";
-import { Map, Mountain, Compass, UserCircle, Gamepad2, HelpCircle, Circle } from "lucide-react";
+import { Map, Mountain, Compass, UserCircle, Gamepad2, HelpCircle } from "lucide-react";
 import { useUser } from "@clerk/react";
 import heroBg from "@/assets/hero-bg.jpg";
 import WeatherWidget from "@/components/WeatherWidget";
@@ -54,15 +54,6 @@ const extraButtons = [
     border: "rgba(251,191,36,0.55)",
     glow: "#fbbf24",
     accent: "#fde68a",
-  },
-  {
-    label: "BOUNCE",
-    icon: Circle,
-    path: "/bounce",
-    gradient: "linear-gradient(135deg, rgba(60,10,10,0.82), rgba(239,68,68,0.28))",
-    border: "rgba(239,68,68,0.55)",
-    glow: "#ef4444",
-    accent: "#fca5a5",
   },
 ];
 
