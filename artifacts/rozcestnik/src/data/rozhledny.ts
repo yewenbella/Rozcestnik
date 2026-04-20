@@ -5500,7 +5500,7 @@ export const rozhledny: Rozhledna[] = [
   },
   {
     "id": 1104,
-    "name": "Tábor",
+    "name": "Tichánkova/Táborská rozhledna",
     "slug": "tabor",
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/tabor/",
     "kraj": ["Liberecký kraj",
