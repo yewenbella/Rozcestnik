@@ -17,6 +17,10 @@ function distKm(lat1: number, lon1: number, lat2: number, lon2: number): number 
 
 const PAGE_SIZE = 24;
 
+const MAPS_OVERRIDES: Record<string, string> = {
+  "dubecko": "https://maps.google.com/maps/search/H6MF%2BC2+M%C3%ADrov%C3%A1+pod+Koz%C3%A1kovem",
+};
+
 const DEFUNCT_TOWERS: Record<string, string> = {
   "cisarsky-kamen": "Zaniklá – nahrazena rozhlednou Císařský kámen II",
   "rozhledna-na-grosscedlobi": "Zaniklá rozhledna",
@@ -37,7 +41,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
   const wished = isWishlisted(rid);
   const defunctNote = DEFUNCT_TOWERS[r.slug];
   const coords = rozhlednyCoords[r.slug];
-  const mapsUrl = `https://maps.google.com/maps/search/${encodeURIComponent(r.name)}`;
+  const mapsUrl = MAPS_OVERRIDES[r.slug] ?? `https://maps.google.com/maps/search/${encodeURIComponent(r.name)}`;
 
   return (
     <div
