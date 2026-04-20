@@ -2581,7 +2581,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-kozakov/",
     "kraj": ["Liberecký kraj",
       "Semily"],
-    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-kozakov-2023_6_7-182614.jpg",
+    "photo": "https://www.chata-kozakov.cz/images/galerie/rozhledna-003.jpg",
     "desc": "Padesátimetrová ocelová vojenská věž z roku 1995. Fantastický kruhový výhled z otevřené plošiny ve výšce 24 metrů. Doporučuji spojit s návštěvou rozhledny Hamštejn po červené turistické stezce necelé 4 km."
   },
   {
