@@ -31,6 +31,12 @@ const MAPS_OVERRIDES: Record<string, string> = {
   "kumburk": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Kumburk Syřenov")}`,
   "lemberk": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Lemberk Jablonné v Podještědí")}`,
   "liberecka-vysina": `https://maps.google.com/maps/search/${encodeURIComponent("Liberecká výšina Liberec")}`,
+  "lidove-sady": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Lidové sady Liberec")}`,
+  "na-janecku": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Na Janečku Semily")}`,
+  "na-krizku": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Na křížku Albrechtice v Jizerských horách")}`,
+  "na-strazi": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Na stráži Sloup v Čechách")}`,
+  "petrin-2": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Petřín Jablonec nad Nisou")}`,
+  "prosecsky-hreben": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Prosečský hřeben Jablonec nad Nisou")}`,
 };
 
 const DEFUNCT_TOWERS: Record<string, string> = {
