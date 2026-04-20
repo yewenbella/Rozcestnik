@@ -517,6 +517,8 @@ export default function RozhlednyPage() {
   const { getToken } = useAuth();
   const [ratingTarget, setRatingTarget] = useState<{ rid: string; name: string } | null>(null);
   const [communityRatings, setCommunityRatings] = useState<Record<string, { avg: number; count: number }>>({});
+  const [drivingDistances, setDrivingDistances] = useState<Record<string, number>>({});
+  const [osrmLoading, setOsrmLoading] = useState(false);
 
   useEffect(() => {
     fetch("/api/viewpoint-ratings/all", { credentials: "include" })
@@ -524,6 +526,35 @@ export default function RozhlednyPage() {
       .then(data => setCommunityRatings(data || {}))
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (!userLocation) return;
+    const nearby = rozhledny
+      .map(r => ({ slug: r.slug, coords: rozhlednyCoords[r.slug] }))
+      .filter(r => r.coords && distKm(userLocation.lat, userLocation.lon, r.coords[0], r.coords[1]) <= 100)
+      .sort((a, b) => distKm(userLocation.lat, userLocation.lon, a.coords![0], a.coords![1]) - distKm(userLocation.lat, userLocation.lon, b.coords![0], b.coords![1]))
+      .slice(0, 100);
+    if (nearby.length === 0) return;
+    setOsrmLoading(true);
+    const coordStr = [
+      `${userLocation.lon},${userLocation.lat}`,
+      ...nearby.map(r => `${r.coords![1]},${r.coords![0]}`),
+    ].join(";");
+    fetch(`https://router.project-osrm.org/table/v1/driving/${coordStr}?sources=0&annotations=distance`, { signal: AbortSignal.timeout(8000) })
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (!data?.distances?.[0]) return;
+        const meters: number[] = data.distances[0];
+        const result: Record<string, number> = {};
+        nearby.forEach((r, i) => {
+          const m = meters[i + 1];
+          if (m != null && m >= 0) result[r.slug] = m / 1000;
+        });
+        setDrivingDistances(result);
+      })
+      .catch(() => {})
+      .finally(() => setOsrmLoading(false));
+  }, [userLocation]);
 
   const saveRatingToApi = useCallback(async (rid: string, stars: number) => {
     try {
@@ -597,10 +628,14 @@ export default function RozhlednyPage() {
           const d = distanceMap[r.slug];
           return d !== undefined && d <= 100;
         })
-        .sort((a, b) => (distanceMap[a.slug] ?? Infinity) - (distanceMap[b.slug] ?? Infinity));
+        .sort((a, b) => {
+          const da = drivingDistances[a.slug] ?? distanceMap[a.slug] ?? Infinity;
+          const db = drivingDistances[b.slug] ?? distanceMap[b.slug] ?? Infinity;
+          return da - db;
+        });
     }
     return result;
-  }, [query, kraj, showVisited, showWishlist, nearbyActive, userLocation, distanceMap, isCompleted, isWishlisted]);
+  }, [query, kraj, showVisited, showWishlist, nearbyActive, userLocation, distanceMap, drivingDistances, isCompleted, isWishlisted]);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const visible = filtered.slice(0, page * PAGE_SIZE);
@@ -812,7 +847,9 @@ export default function RozhlednyPage() {
                   const done = isCompleted("rozhledna", rid);
                   const regionTag = r.kraj.filter(k => krajeList.includes(k))[0];
                   const isDefunct = !!DEFUNCT_TOWERS[r.slug];
-                  const dist = nearbyActive ? distanceMap[r.slug] : undefined;
+                  const straightDist = nearbyActive ? distanceMap[r.slug] : undefined;
+                  const drivingDist = nearbyActive ? drivingDistances[r.slug] : undefined;
+                  const dist = drivingDist ?? straightDist;
                   return (
                     <div
                       key={r.id}
@@ -929,8 +966,14 @@ export default function RozhlednyPage() {
                               {regionTag.replace(" kraj", "")}
                             </span>
                           )}
-                          {dist !== undefined && (
-                            <span style={{ color: "#60a5fa", fontSize: "0.61rem", fontWeight: 700, marginLeft: "auto" }}>
+                          {nearbyActive && osrmLoading && straightDist !== undefined && drivingDist === undefined && (
+                            <span style={{ color: "rgba(96,165,250,0.55)", fontSize: "0.58rem", fontWeight: 600, marginLeft: "auto" }}>
+                              {straightDist < 1 ? "<1" : Math.round(straightDist)}&nbsp;km…
+                            </span>
+                          )}
+                          {dist !== undefined && (!osrmLoading || drivingDist !== undefined) && (
+                            <span style={{ color: "#60a5fa", fontSize: "0.61rem", fontWeight: 700, marginLeft: "auto", display: "flex", alignItems: "center", gap: "2px" }}>
+                              {drivingDist !== undefined && <span style={{ fontSize: "0.56rem" }}>🚗</span>}
                               {dist < 1 ? "<1\u00a0km" : Math.round(dist) + "\u00a0km"}
                             </span>
                           )}
