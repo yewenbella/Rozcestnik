@@ -372,7 +372,6 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                         {extra.scheduleNote && (
                           <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.68rem", marginTop: "5px", fontStyle: "italic" }}>{extra.scheduleNote}</div>
                         )}
-                        <div style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.65rem", marginTop: "3px" }}>{MONTH_NAMES[curMonth - 1]}</div>
                       </div>
                     </div>
                   );
