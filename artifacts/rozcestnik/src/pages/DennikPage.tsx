@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BookOpen, MapPin, Route, Eye, Landmark, Loader2, CheckCircle2, PawPrint } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import { useDenik, type DennikItem } from "@/hooks/useDenik";
+import { useRatings } from "@/hooks/useRatings";
 
 type FilterType = "vse" | "trasa" | "rozhledna" | "hrad" | "zoo";
 
@@ -34,6 +35,7 @@ function formatDate(iso: string) {
 
 export default function DennikPage() {
   const { items, loading, isSignedIn } = useDenik();
+  const { getRating } = useRatings();
   const [filter, setFilter] = useState<FilterType>("vse");
 
   const grouped: Record<string, DennikItem[]> = { trasa: [], rozhledna: [], hrad: [], zoo: [] };
@@ -156,6 +158,11 @@ export default function DennikPage() {
                                 <span style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.68rem" }}>
                                   {typeLabel(item.type)} &bull; {formatDate(item.completedAt)}
                                 </span>
+                              {item.type === "rozhledna" && getRating(item.itemId) > 0 && (
+                                <span style={{ fontSize: "0.68rem", marginLeft: "2px" }}>
+                                  {"⭐".repeat(getRating(item.itemId))}
+                                </span>
+                              )}
                               </div>
                             </div>
                             <CheckCircle2 size={16} color={color} style={{ flexShrink: 0, opacity: 0.85 }} />

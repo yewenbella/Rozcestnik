@@ -91,6 +91,20 @@ export const completedItemsTable = pgTable(
 
 export type CompletedItem = typeof completedItemsTable.$inferSelect;
 
+export const viewpointRatingsTable = pgTable(
+  "viewpoint_ratings",
+  {
+    id: serial("id").primaryKey(),
+    userId: text("user_id").notNull(),
+    itemId: text("item_id").notNull(),
+    rating: integer("rating").notNull(),
+    ratedAt: timestamp("rated_at").defaultNow(),
+  },
+  (t) => [unique("unique_user_viewpoint_rating").on(t.userId, t.itemId)]
+);
+
+export type ViewpointRating = typeof viewpointRatingsTable.$inferSelect;
+
 export const insertTeamSchema = createInsertSchema(teamsTable).omit({
   id: true,
   createdAt: true,

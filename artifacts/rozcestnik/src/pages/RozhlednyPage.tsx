@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useRef, useCallback } from "react";
+import React, { useState, useMemo, useRef, useCallback, useEffect } from "react";
+import { useAuth } from "@clerk/react";
 import { useLocation } from "wouter";
 import { Eye, Search, X, ExternalLink, ChevronDown, CheckCircle2, Circle, MapPin, Navigation, Filter, Bookmark, BookmarkCheck } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -513,7 +514,41 @@ export default function RozhlednyPage() {
   const { isCompleted, toggle, isSignedIn } = useDenik();
   const { isWishlisted, toggleWishlist } = useWishlist();
   const { getRating, setRating } = useRatings();
+  const { getToken } = useAuth();
   const [ratingTarget, setRatingTarget] = useState<{ rid: string; name: string } | null>(null);
+  const [communityRatings, setCommunityRatings] = useState<Record<string, { avg: number; count: number }>>({});
+
+  useEffect(() => {
+    fetch("/api/viewpoint-ratings/all", { credentials: "include" })
+      .then(r => r.ok ? r.json() : {})
+      .then(data => setCommunityRatings(data || {}))
+      .catch(() => {});
+  }, []);
+
+  const saveRatingToApi = useCallback(async (rid: string, stars: number) => {
+    try {
+      const token = await getToken();
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (token) headers["Authorization"] = `Bearer ${token}`;
+      const res = await fetch("/api/viewpoint-ratings", {
+        method: "POST", headers, credentials: "include",
+        body: JSON.stringify({ itemId: rid, rating: stars }),
+      });
+      if (res.ok) {
+        setCommunityRatings(prev => {
+          const existing = prev[rid];
+          if (existing) {
+            const newCount = existing.count;
+            const newAvg = parseFloat(((existing.avg * newCount - (prev[rid]?.avg ?? 0) + stars) / newCount).toFixed(1));
+            return { ...prev, [rid]: { avg: newAvg, count: newCount } };
+          }
+          return { ...prev, [rid]: { avg: stars, count: 1 } };
+        });
+        const fresh = await fetch("/api/viewpoint-ratings/all", { credentials: "include" });
+        if (fresh.ok) setCommunityRatings(await fresh.json());
+      }
+    } catch {}
+  }, [getToken]);
 
   const requestLocation = useCallback(() => {
     if (!navigator.geolocation) {
@@ -850,16 +885,29 @@ export default function RozhlednyPage() {
                         </button>
                       )}
 
-                      {/* Rating stars — bottom left */}
-                      {done && getRating(rid) > 0 && (
-                        <div style={{
-                          position: "absolute", bottom: "calc(15% + 4px)", left: "6px",
-                          background: "rgba(0,0,0,0.55)", borderRadius: "6px",
-                          padding: "1px 5px", fontSize: "0.6rem", lineHeight: 1.4,
-                        }}>
-                          {"⭐".repeat(getRating(rid))}
-                        </div>
-                      )}
+                      {/* Community/personal rating — bottom left */}
+                      {(() => {
+                        const community = communityRatings[rid];
+                        const personal = getRating(rid);
+                        if (!community && !personal) return null;
+                        return (
+                          <div style={{
+                            position: "absolute", bottom: "calc(15% + 4px)", left: "7px",
+                            background: "rgba(0,0,0,0.6)", borderRadius: "6px",
+                            padding: "2px 6px", display: "flex", alignItems: "center", gap: "3px",
+                          }}>
+                            <span style={{ fontSize: "0.62rem" }}>⭐</span>
+                            <span style={{ color: "white", fontSize: "0.62rem", fontWeight: 700 }}>
+                              {community ? community.avg.toFixed(1) : personal}
+                            </span>
+                            {community && community.count > 1 && (
+                              <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.56rem" }}>
+                                ({community.count})
+                              </span>
+                            )}
+                          </div>
+                        );
+                      })()}
 
                       {/* Name + region — bottom strip */}
                       <div style={{
@@ -934,6 +982,7 @@ export default function RozhlednyPage() {
           currentRating={getRating(ratingTarget.rid)}
           onRate={(stars) => {
             setRating(ratingTarget.rid, stars);
+            saveRatingToApi(ratingTarget.rid, stars);
             toggle("rozhledna", ratingTarget.rid, ratingTarget.name);
             setRatingTarget(null);
           }}

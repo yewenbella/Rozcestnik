@@ -8,6 +8,7 @@ import ratingsRouter from "./ratings";
 import profileRouter from "./profile";
 import dennikRouter from "./denik";
 import bounceScoresRouter from "./bounce-scores";
+import viewpointRatingsRouter from "./viewpoint-ratings";
 
 const router: IRouter = Router();
 
@@ -20,5 +21,6 @@ router.use("/ratings", ratingsRouter);
 router.use("/profile", profileRouter);
 router.use("/denik", dennikRouter);
 router.use("/bounce-scores", bounceScoresRouter);
+router.use("/viewpoint-ratings", viewpointRatingsRouter);
 
 export default router;

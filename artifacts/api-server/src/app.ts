@@ -55,6 +55,16 @@ async function runMigrations() {
         CONSTRAINT unique_completed_item UNIQUE (user_id, type, item_id)
       )
     `);
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS viewpoint_ratings (
+        id serial PRIMARY KEY,
+        user_id text NOT NULL,
+        item_id text NOT NULL,
+        rating integer NOT NULL,
+        rated_at timestamptz NOT NULL DEFAULT now(),
+        CONSTRAINT unique_user_viewpoint_rating UNIQUE (user_id, item_id)
+      )
+    `);
     logger.info("DB migrations OK");
   } catch (e) {
     logger.error({ e }, "DB migration error");
