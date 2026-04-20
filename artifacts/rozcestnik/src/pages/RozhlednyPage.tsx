@@ -328,20 +328,20 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                display: "flex", alignItems: "center", gap: "10px",
+                display: "flex", alignItems: "center", gap: "8px",
                 textDecoration: "none", marginBottom: "8px",
                 background: "rgba(66,133,244,0.10)", border: "1px solid rgba(66,133,244,0.3)",
-                borderRadius: "10px", padding: "11px 14px",
+                borderRadius: "10px", padding: "7px 10px",
               }}
             >
-              <span style={{ fontSize: "1.1rem" }}>🅿️</span>
-              <div style={{ flex: 1 }}>
-                <div style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.82rem" }}>Navigace na parkoviště</div>
-                <div style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.72rem", marginTop: "2px" }}>
-                  {extra.parkingPrice}
-                </div>
+              <span style={{ fontSize: "0.95rem", flexShrink: 0 }}>🅿️</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <span style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.76rem" }}>Navigace na parkoviště</span>
+                {extra.parkingPrice && (
+                  <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.7rem", marginLeft: "5px" }}>· {extra.parkingPrice}</span>
+                )}
               </div>
-              <span style={{ fontSize: "0.75rem", color: "#93c5fd" }}>↗</span>
+              <span style={{ fontSize: "0.7rem", color: "#93c5fd", flexShrink: 0 }}>↗</span>
             </a>
           )}
 
