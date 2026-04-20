@@ -41,7 +41,6 @@ const MAPS_OVERRIDES: Record<string, string> = {
 
 interface TowerExtra {
   parkingUrl: string;
-  parkingLabel?: string;
   parkingPrice: string;
   routeFromParking: string;
   openingHours: string;
@@ -51,15 +50,14 @@ interface TowerExtra {
 const TOWER_EXTRA: Record<string, TowerExtra> = {
   "allainova-vez": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Allainova věž")}`,
-    parkingPrice: "Zdarma",
+    parkingPrice: "Parkování u rozhledny Táborská/Tichánkova rozhledna · Zdarma",
     routeFromParking: "Po modré necelé 2 km",
     openingHours: "24/7",
     entrance: "Zdarma",
   },
   "tabor": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Táborská Tichánkova rozhledna Lomnice nad Popelkou")}`,
-    parkingLabel: "Parkování u rozhledny Táborská/Tichánkova rozhledna",
-    parkingPrice: "Zdarma",
+    parkingPrice: "Parkování u rozhledny Táborská/Tichánkova rozhledna · Zdarma",
     routeFromParking: "",
     openingHours: "",
     entrance: "",
@@ -238,11 +236,8 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
               <span style={{ fontSize: "1.1rem" }}>🅿️</span>
               <div style={{ flex: 1 }}>
                 <div style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.82rem" }}>Navigace na parkoviště</div>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap", marginTop: "2px" }}>
-                  {extra.parkingLabel && (
-                    <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem" }}>{extra.parkingLabel}</span>
-                  )}
-                  <span style={{ color: "#4ade80", fontSize: "0.72rem", fontWeight: 700 }}>{extra.parkingPrice}</span>
+                <div style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.72rem", marginTop: "2px" }}>
+                  {extra.parkingPrice}
                 </div>
               </div>
               <span style={{ fontSize: "0.75rem", color: "#93c5fd" }}>↗</span>
