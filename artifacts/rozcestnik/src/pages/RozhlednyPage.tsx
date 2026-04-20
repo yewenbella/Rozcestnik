@@ -41,7 +41,7 @@ const MAPS_OVERRIDES: Record<string, string> = {
 
 interface TowerExtra {
   parkingUrl: string;
-  parkingNote?: string;
+  parkingLabel?: string;
   parkingPrice: string;
   routeFromParking: string;
   openingHours: string;
@@ -50,15 +50,16 @@ interface TowerExtra {
 
 const TOWER_EXTRA: Record<string, TowerExtra> = {
   "allainova-vez": {
-    parkingUrl: "https://maps.google.com/maps?q=50.5093036,15.3686631",
+    parkingUrl: "https://www.google.com/maps/dir/?api=1&destination=50.5093036,15.3686631",
     parkingPrice: "Zdarma",
     routeFromParking: "Po modré necelé 2 km",
     openingHours: "24/7",
     entrance: "Zdarma",
   },
   "tabor": {
-    parkingUrl: "https://maps.google.com/maps?q=50.5092,15.3686",
-    parkingPrice: "Parkování u rozhledny",
+    parkingUrl: "https://www.google.com/maps/dir/?api=1&destination=50.5092,15.3686",
+    parkingLabel: "Parkování u rozhledny Táborská/Tichánkova rozhledna",
+    parkingPrice: "Zdarma",
     routeFromParking: "",
     openingHours: "",
     entrance: "",
@@ -237,7 +238,9 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
               <span style={{ fontSize: "1.1rem" }}>🅿️</span>
               <div style={{ flex: 1 }}>
                 <div style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.82rem" }}>Navigace na parkoviště</div>
-                <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem" }}>{extra.parkingPrice}</div>
+                <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem" }}>
+                  {extra.parkingLabel ? `${extra.parkingLabel} · ${extra.parkingPrice}` : extra.parkingPrice}
+                </div>
               </div>
               <span style={{ fontSize: "0.75rem", color: "#93c5fd" }}>↗</span>
             </a>
