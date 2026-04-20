@@ -79,7 +79,7 @@ function StarPicker({ value, hover, onHover, onLeave, onClick }: {
 }) {
   const active = hover || value;
   return (
-    <div style={{ display: "flex", gap: "6px", justifyContent: "center" }}>
+    <div style={{ display: "flex", gap: "4px", justifyContent: "center" }}>
       {[1, 2, 3, 4, 5].map(n => (
         <button
           key={n}
@@ -88,9 +88,9 @@ function StarPicker({ value, hover, onHover, onLeave, onClick }: {
           onClick={() => onClick(n)}
           style={{
             background: "none", border: "none", cursor: "pointer",
-            fontSize: "2rem", lineHeight: 1, padding: "4px",
-            filter: n <= active ? "none" : "grayscale(1) opacity(0.35)",
-            transform: n <= active ? "scale(1.12)" : "scale(1)",
+            fontSize: "2.2rem", lineHeight: 1, padding: "6px",
+            filter: n <= active ? "none" : "grayscale(1) opacity(0.3)",
+            transform: n <= active ? "scale(1.15)" : "scale(1)",
             transition: "transform 0.12s, filter 0.12s",
           }}
         >⭐</button>
@@ -99,7 +99,63 @@ function StarPicker({ value, hover, onHover, onLeave, onClick }: {
   );
 }
 
-function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted, toggleWishlist, getRating, setRating }: {
+function RatingPopup({ name, currentRating, onRate, onSkip, onClose }: {
+  name: string;
+  currentRating: number;
+  onRate: (stars: number) => void;
+  onSkip: () => void;
+  onClose: () => void;
+}) {
+  const [hover, setHover] = useState(0);
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 400,
+        background: "rgba(0,0,0,0.65)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "20px",
+      }}
+    >
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          width: "100%", maxWidth: "340px",
+          background: "rgba(8,22,8,0.98)", border: "1px solid rgba(134,239,172,0.3)",
+          borderRadius: "20px", padding: "24px 20px",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ fontSize: "2rem", marginBottom: "8px" }}>⭐</div>
+        <div style={{ color: "white", fontWeight: 900, fontSize: "1rem", marginBottom: "4px" }}>
+          Jak hodnotíte rozhlednu?
+        </div>
+        <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.78rem", marginBottom: "18px" }}>
+          {name}
+        </div>
+        <StarPicker
+          value={currentRating}
+          hover={hover}
+          onHover={setHover}
+          onLeave={() => setHover(0)}
+          onClick={onRate}
+        />
+        <button
+          onClick={onSkip}
+          style={{
+            background: "none", border: "none", color: "rgba(255,255,255,0.35)",
+            fontSize: "0.75rem", cursor: "pointer", marginTop: "16px",
+            textDecoration: "underline",
+          }}
+        >
+          Přeskočit hodnocení
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted, toggleWishlist, getRating, setRating, onRateRequest }: {
   r: Rozhledna;
   onClose: () => void;
   isCompleted: (type: string, id: string) => boolean;
@@ -109,14 +165,14 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
   toggleWishlist: (id: string) => void;
   getRating: (id: string) => number;
   setRating: (id: string, stars: number) => void;
+  onRateRequest: (rid: string, name: string) => void;
 }) {
   const rid = String(r.id);
   const done = isCompleted("rozhledna", rid);
   const wished = isWishlisted(rid);
   const currentRating = getRating(rid);
-  const [showRatingPicker, setShowRatingPicker] = useState(false);
-  const [hoverRating, setHoverRating] = useState(0);
   const [editingRating, setEditingRating] = useState(false);
+  const [hoverRating, setHoverRating] = useState(0);
   const defunctNote = DEFUNCT_TOWERS[r.slug];
   const coords = rozhlednyCoords[r.slug];
   const mapsUrl = MAPS_OVERRIDES[r.slug] ?? `https://maps.google.com/maps/search/${encodeURIComponent(r.name)}`;
@@ -322,44 +378,8 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
             </a>
           </div>
 
-          {/* Rating picker — shown when clicking Navštíveno for first time */}
-          {showRatingPicker && (
-            <div style={{
-              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(134,239,172,0.3)",
-              borderRadius: "12px", padding: "14px 12px", marginBottom: "10px", textAlign: "center",
-            }}>
-              <div style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.84rem", fontWeight: 700, marginBottom: "10px" }}>
-                Jak hodnotíte rozhlednu?
-              </div>
-              <StarPicker
-                value={0}
-                hover={hoverRating}
-                onHover={setHoverRating}
-                onLeave={() => setHoverRating(0)}
-                onClick={(n) => {
-                  setRating(rid, n);
-                  toggle("rozhledna", rid, r.name);
-                  setShowRatingPicker(false);
-                  setHoverRating(0);
-                }}
-              />
-              <button
-                onClick={() => {
-                  toggle("rozhledna", rid, r.name);
-                  setShowRatingPicker(false);
-                }}
-                style={{
-                  background: "none", border: "none", color: "rgba(255,255,255,0.4)",
-                  fontSize: "0.75rem", cursor: "pointer", marginTop: "10px", textDecoration: "underline",
-                }}
-              >
-                Přeskočit hodnocení
-              </button>
-            </div>
-          )}
-
-          {/* Current rating display + edit — shown for visited towers */}
-          {done && !showRatingPicker && (
+          {/* Current rating display — shown for visited towers */}
+          {done && (
             <div style={{
               marginBottom: "8px",
               background: "rgba(255,255,255,0.04)", border: "1px solid rgba(134,239,172,0.15)",
@@ -398,7 +418,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                   <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                     <span style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.5)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Vaše hodnocení</span>
                     {currentRating > 0 ? (
-                      <span style={{ fontSize: "0.95rem", letterSpacing: "1px" }}>
+                      <span style={{ fontSize: "0.9rem" }}>
                         {"⭐".repeat(currentRating)}{"☆".repeat(5 - currentRating)}
                       </span>
                     ) : (
@@ -426,10 +446,9 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
               <button
                 onClick={() => {
                   if (!done) {
-                    setShowRatingPicker(true);
+                    onRateRequest(rid, r.name);
                   } else {
                     toggle("rozhledna", rid, r.name);
-                    setShowRatingPicker(false);
                     setEditingRating(false);
                   }
                 }}
@@ -494,6 +513,7 @@ export default function RozhlednyPage() {
   const { isCompleted, toggle, isSignedIn } = useDenik();
   const { isWishlisted, toggleWishlist } = useWishlist();
   const { getRating, setRating } = useRatings();
+  const [ratingTarget, setRatingTarget] = useState<{ rid: string; name: string } | null>(null);
 
   const requestLocation = useCallback(() => {
     if (!navigator.geolocation) {
@@ -809,7 +829,14 @@ export default function RozhlednyPage() {
                       {/* Check button */}
                       {isSignedIn && (
                         <button
-                          onClick={e => { e.stopPropagation(); toggle("rozhledna", rid, r.name); }}
+                          onClick={e => {
+                            e.stopPropagation();
+                            if (!done) {
+                              setRatingTarget({ rid, name: r.name });
+                            } else {
+                              toggle("rozhledna", rid, r.name);
+                            }
+                          }}
                           style={{
                             position: "absolute", top: "6px", right: "6px",
                             width: "26px", height: "26px", borderRadius: "50%",
@@ -821,6 +848,17 @@ export default function RozhlednyPage() {
                         >
                           {done ? <CheckCircle2 size={13} color="#052805" /> : <Circle size={13} color="rgba(255,255,255,0.85)" />}
                         </button>
+                      )}
+
+                      {/* Rating stars — bottom left */}
+                      {done && getRating(rid) > 0 && (
+                        <div style={{
+                          position: "absolute", bottom: "calc(15% + 4px)", left: "6px",
+                          background: "rgba(0,0,0,0.55)", borderRadius: "6px",
+                          padding: "1px 5px", fontSize: "0.6rem", lineHeight: 1.4,
+                        }}>
+                          {"⭐".repeat(getRating(rid))}
+                        </div>
                       )}
 
                       {/* Name + region — bottom strip */}
@@ -885,6 +923,25 @@ export default function RozhlednyPage() {
           toggleWishlist={toggleWishlist}
           getRating={getRating}
           setRating={setRating}
+          onRateRequest={(rid, name) => setRatingTarget({ rid, name })}
+        />
+      )}
+
+      {/* Rating Popup */}
+      {ratingTarget && (
+        <RatingPopup
+          name={ratingTarget.name}
+          currentRating={getRating(ratingTarget.rid)}
+          onRate={(stars) => {
+            setRating(ratingTarget.rid, stars);
+            toggle("rozhledna", ratingTarget.rid, ratingTarget.name);
+            setRatingTarget(null);
+          }}
+          onSkip={() => {
+            toggle("rozhledna", ratingTarget.rid, ratingTarget.name);
+            setRatingTarget(null);
+          }}
+          onClose={() => setRatingTarget(null)}
         />
       )}
     </div>

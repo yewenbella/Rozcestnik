@@ -3,7 +3,7 @@ import { useUser, useAuth } from "@clerk/react";
 
 export type DennikItem = {
   id: number;
-  type: "trasa" | "rozhledna" | "hrad";
+  type: "trasa" | "rozhledna" | "hrad" | "zoo";
   itemId: string;
   itemName: string;
   completedAt: string;
@@ -40,7 +40,7 @@ export function useDenik() {
   }, [items]);
 
   const toggle = useCallback(async (
-    type: "trasa" | "rozhledna" | "hrad",
+    type: "trasa" | "rozhledna" | "hrad" | "zoo",
     itemId: string,
     itemName: string
   ) => {
@@ -90,7 +90,7 @@ export function useDenik() {
   }, [isSignedIn, items, getToken, fetchItems]);
 
   const markDone = useCallback(async (
-    type: "trasa" | "rozhledna" | "hrad",
+    type: "trasa" | "rozhledna" | "hrad" | "zoo",
     itemId: string,
     itemName: string
   ) => {

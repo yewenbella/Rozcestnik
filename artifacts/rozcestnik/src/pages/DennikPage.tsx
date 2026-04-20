@@ -1,25 +1,28 @@
 import { useState } from "react";
-import { BookOpen, MapPin, Route, Eye, Landmark, Loader2, CheckCircle2 } from "lucide-react";
+import { BookOpen, MapPin, Route, Eye, Landmark, Loader2, CheckCircle2, PawPrint } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import { useDenik, type DennikItem } from "@/hooks/useDenik";
 
-type FilterType = "vse" | "trasa" | "rozhledna" | "hrad";
+type FilterType = "vse" | "trasa" | "rozhledna" | "hrad" | "zoo";
 
 const SECTIONS = [
-  { type: "trasa" as const,     label: "Trasy",           icon: Route,    color: "#38bdf8", bg: "rgba(14,165,233,0.13)",  border: "rgba(14,165,233,0.30)" },
-  { type: "rozhledna" as const, label: "Rozhledny",       icon: Eye,      color: "#fb923c", bg: "rgba(251,146,60,0.13)",  border: "rgba(251,146,60,0.30)" },
-  { type: "hrad" as const,      label: "Hrady a z\u00e1mky", icon: Landmark, color: "#a78bfa", bg: "rgba(167,139,250,0.13)", border: "rgba(167,139,250,0.30)" },
+  { type: "trasa" as const,     label: "Trasy",              icon: Route,     color: "#38bdf8", bg: "rgba(14,165,233,0.13)",  border: "rgba(14,165,233,0.30)" },
+  { type: "rozhledna" as const, label: "Rozhledny",          icon: Eye,       color: "#fb923c", bg: "rgba(251,146,60,0.13)",  border: "rgba(251,146,60,0.30)" },
+  { type: "hrad" as const,      label: "Hrady a z\u00e1mky", icon: Landmark,  color: "#a78bfa", bg: "rgba(167,139,250,0.13)", border: "rgba(167,139,250,0.30)" },
+  { type: "zoo" as const,       label: "Zoologick\u00e9 zahrady", icon: PawPrint, color: "#34d399", bg: "rgba(52,211,153,0.13)",  border: "rgba(52,211,153,0.30)" },
 ];
 
 function typeIcon(type: DennikItem["type"]) {
-  if (type === "trasa")    return <Route    size={15} color="#38bdf8" />;
-  if (type === "rozhledna") return <Eye     size={15} color="#fb923c" />;
-  return                          <Landmark size={15} color="#a78bfa" />;
+  if (type === "trasa")     return <Route    size={15} color="#38bdf8" />;
+  if (type === "rozhledna") return <Eye      size={15} color="#fb923c" />;
+  if (type === "zoo")       return <PawPrint size={15} color="#34d399" />;
+  return                           <Landmark size={15} color="#a78bfa" />;
 }
 
 function typeLabel(type: DennikItem["type"]) {
-  if (type === "trasa")    return "Trasa";
+  if (type === "trasa")     return "Trasa";
   if (type === "rozhledna") return "Rozhledna";
+  if (type === "zoo")       return "Zoo";
   return "Hrad / z\u00e1mek";
 }
 
@@ -33,7 +36,7 @@ export default function DennikPage() {
   const { items, loading, isSignedIn } = useDenik();
   const [filter, setFilter] = useState<FilterType>("vse");
 
-  const grouped: Record<string, DennikItem[]> = { trasa: [], rozhledna: [], hrad: [] };
+  const grouped: Record<string, DennikItem[]> = { trasa: [], rozhledna: [], hrad: [], zoo: [] };
   for (const item of items) (grouped[item.type] ||= []).push(item);
 
   const visibleSections = SECTIONS.filter(s => filter === "vse" || s.type === filter);
@@ -63,7 +66,8 @@ export default function DennikPage() {
                 { key: "vse", label: "V\u0161e", color: "rgba(255,255,255,0.7)", activeBg: "rgba(255,255,255,0.14)", activeBorder: "rgba(255,255,255,0.35)" },
                 { key: "trasa",     label: "Trasy",              color: "#38bdf8", activeBg: "rgba(14,165,233,0.18)",  activeBorder: "rgba(14,165,233,0.55)" },
                 { key: "rozhledna", label: "Rozhledny",          color: "#fb923c", activeBg: "rgba(251,146,60,0.18)",  activeBorder: "rgba(251,146,60,0.55)" },
-                { key: "hrad",      label: "Hrady a z\u00e1mky", color: "#a78bfa", activeBg: "rgba(167,139,250,0.18)", activeBorder: "rgba(167,139,250,0.55)" },
+                { key: "hrad",      label: "Hrady a z\u00e1mky",      color: "#a78bfa", activeBg: "rgba(167,139,250,0.18)", activeBorder: "rgba(167,139,250,0.55)" },
+                { key: "zoo",       label: "Zoo",                     color: "#34d399", activeBg: "rgba(52,211,153,0.18)",  activeBorder: "rgba(52,211,153,0.55)" },
               ] as { key: FilterType; label: string; color: string; activeBg: string; activeBorder: string }[]).map(btn => {
                 const active = filter === btn.key;
                 const count = btn.key === "vse" ? items.length : grouped[btn.key]?.length ?? 0;
