@@ -336,9 +336,9 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
             >
               <span style={{ fontSize: "0.95rem", flexShrink: 0 }}>🅿️</span>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <span style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.76rem" }}>Navigace na parkoviště</span>
+                <div style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.76rem" }}>Navigace na parkoviště</div>
                 {extra.parkingPrice && (
-                  <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.7rem", marginLeft: "5px" }}>· {extra.parkingPrice}</span>
+                  <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", marginTop: "1px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{extra.parkingPrice}</div>
                 )}
               </div>
               <span style={{ fontSize: "0.7rem", color: "#93c5fd", flexShrink: 0 }}>↗</span>
