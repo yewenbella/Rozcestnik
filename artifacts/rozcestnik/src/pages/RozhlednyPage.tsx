@@ -252,8 +252,8 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
               style={{
                 flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
                 padding: "11px 8px", borderRadius: "10px",
-                background: "rgba(66,133,244,0.12)", border: "1px solid rgba(66,133,244,0.35)",
-                color: "#93c5fd", fontWeight: 700, fontSize: "0.82rem",
+                background: "rgba(251,191,36,0.12)", border: "1px solid rgba(251,191,36,0.45)",
+                color: "#fbbf24", fontWeight: 700, fontSize: "0.82rem",
                 textDecoration: "none",
               }}
             >
