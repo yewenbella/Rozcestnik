@@ -885,7 +885,7 @@ export default function RozhlednyPage() {
                           padding: "2px 6px", fontSize: "0.6rem", fontWeight: 800, color: "#1a0f00",
                           letterSpacing: "0.03em",
                         }}>
-                          {"ZAN\u00cdKL\u00c1"}
+                          {"ZANIKL\u00c1"}
                         </div>
                       )}
 
