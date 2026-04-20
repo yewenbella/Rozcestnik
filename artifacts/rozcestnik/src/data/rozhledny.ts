@@ -2582,7 +2582,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberecký kraj",
       "Semily"],
     "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-kozakov-2023_6_7-182614.jpg",
-    "desc": "Padesátimetrová ocelová vojenská věž z roku 1995. Fantastický kruhový výhled z otevřené plošiny ve výšce 24 metrů (Český ráj, Krkonoše, Jizerské, Lužické a Orlické hory, České středohoří, Trosky, Říp, Bezděz, Tábor). Odb"
+    "desc": "Padesátimetrová ocelová vojenská věž z roku 1995. Fantastický kruhový výhled z otevřené plošiny ve výšce 24 metrů. Doporučuji spojit s návštěvou rozhledny Hamštejn po červené turistické stezce necelé 4 km."
   },
   {
     "id": 11197,

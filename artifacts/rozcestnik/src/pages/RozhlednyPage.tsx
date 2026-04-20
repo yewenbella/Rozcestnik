@@ -75,6 +75,14 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     entrance: "Zdarma",
     stairs: 121,
   },
+  "kozakov": {
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Kozákov Chuchelna Komárov Česko")}`,
+    parkingPrice: "Parkování přímo u rozhledny · 50,-",
+    routeFromParking: "Parkoviště přímo u rozhledny",
+    openingHours: "",
+    entrance: "Děti, důchodci, ISIC, ITIC, ZTP, KČT: 20 Kč · Dospělí: 40 Kč · Rodinné (2+3): 120 Kč",
+    stairs: 120,
+  },
 };
 
 const DEFUNCT_TOWERS: Record<string, string> = {
