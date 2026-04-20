@@ -56,6 +56,13 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     openingHours: "24/7",
     entrance: "Zdarma",
   },
+  "tabor": {
+    parkingUrl: "https://maps.google.com/maps?q=50.5092,15.3686",
+    parkingPrice: "Parkování u rozhledny",
+    routeFromParking: "",
+    openingHours: "",
+    entrance: "",
+  },
 };
 
 const DEFUNCT_TOWERS: Record<string, string> = {
@@ -177,33 +184,14 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
             </p>
           )}
 
-          {/* Practical info panel */}
-          {extra && (
+          {/* Extra info: route / hours / entrance */}
+          {extra && (extra.routeFromParking || extra.openingHours || extra.entrance) && (
             <div style={{
               background: "rgba(255,255,255,0.04)", border: "1px solid rgba(134,239,172,0.2)",
               borderRadius: "12px", padding: "12px 14px", marginBottom: "12px",
-              display: "flex", flexDirection: "column", gap: "10px",
+              display: "flex", flexDirection: "column", gap: "7px",
             }}>
-              <a
-                href={extra.parkingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "flex", alignItems: "center", gap: "10px",
-                  textDecoration: "none",
-                  background: "rgba(66,133,244,0.10)", border: "1px solid rgba(66,133,244,0.3)",
-                  borderRadius: "9px", padding: "9px 12px",
-                }}
-              >
-                <span style={{ fontSize: "1.1rem" }}>🅿️</span>
-                <div style={{ flex: 1 }}>
-                  <div style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.8rem" }}>Navigace na parkoviště</div>
-                  <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem" }}>{extra.parkingPrice === "Zdarma" ? "Parkování zdarma" : `Parkování ${extra.parkingPrice}`}</div>
-                </div>
-                <span style={{ fontSize: "0.7rem", color: "#93c5fd" }}>↗</span>
-              </a>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
+              {extra.routeFromParking && (
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                   <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🥾</span>
                   <div>
@@ -211,6 +199,8 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                     <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.routeFromParking}</div>
                   </div>
                 </div>
+              )}
+              {extra.openingHours && (
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                   <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🕐</span>
                   <div>
@@ -218,6 +208,8 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                     <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.openingHours}</div>
                   </div>
                 </div>
+              )}
+              {extra.entrance && (
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                   <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🎫</span>
                   <div>
@@ -225,8 +217,30 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                     <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.entrance}</div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
+          )}
+
+          {/* Parking navigation button — above Google Maps / Popis */}
+          {extra && (
+            <a
+              href={extra.parkingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex", alignItems: "center", gap: "10px",
+                textDecoration: "none", marginBottom: "8px",
+                background: "rgba(66,133,244,0.10)", border: "1px solid rgba(66,133,244,0.3)",
+                borderRadius: "10px", padding: "11px 14px",
+              }}
+            >
+              <span style={{ fontSize: "1.1rem" }}>🅿️</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.82rem" }}>Navigace na parkoviště</div>
+                <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem" }}>{extra.parkingPrice}</div>
+              </div>
+              <span style={{ fontSize: "0.75rem", color: "#93c5fd" }}>↗</span>
+            </a>
           )}
 
           {/* Buttons row 1: Maps + info */}
