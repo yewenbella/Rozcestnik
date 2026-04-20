@@ -57,7 +57,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     entrance: "Zdarma",
   },
   "tabor": {
-    parkingUrl: "https://www.google.com/maps/dir/?api=1&destination=50.5092,15.3686",
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Tichánkova věž Lomnice nad Popelkou")}`,
     parkingLabel: "Parkování u rozhledny Táborská/Tichánkova rozhledna",
     parkingPrice: "Zdarma",
     routeFromParking: "",
@@ -238,8 +238,11 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
               <span style={{ fontSize: "1.1rem" }}>🅿️</span>
               <div style={{ flex: 1 }}>
                 <div style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.82rem" }}>Navigace na parkoviště</div>
-                <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem" }}>
-                  {extra.parkingLabel ? `${extra.parkingLabel} · ${extra.parkingPrice}` : extra.parkingPrice}
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap", marginTop: "2px" }}>
+                  {extra.parkingLabel && (
+                    <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem" }}>{extra.parkingLabel}</span>
+                  )}
+                  <span style={{ color: "#4ade80", fontSize: "0.72rem", fontWeight: 700 }}>{extra.parkingPrice}</span>
                 </div>
               </div>
               <span style={{ fontSize: "0.75rem", color: "#93c5fd" }}>↗</span>
