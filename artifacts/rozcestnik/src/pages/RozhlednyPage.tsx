@@ -48,6 +48,17 @@ interface TowerExtra {
   openingHours: string;
   entrance: string;
   stairs?: number;
+  schedule?: { [month: number]: (string | null)[] }; // month 1-12 → [Po,Út,St,Čt,Pá,So,Ne]
+  scheduleNote?: string;
+}
+
+function getTodayHours(schedule: { [month: number]: (string | null)[] }): { hours: string | null; inSeason: boolean } {
+  const now = new Date();
+  const month = now.getMonth() + 1;
+  const dayIndex = (now.getDay() + 6) % 7; // 0=Po, 1=Út, ..., 5=So, 6=Ne
+  const monthSchedule = schedule[month];
+  if (!monthSchedule) return { hours: null, inSeason: false };
+  return { hours: monthSchedule[dayIndex] ?? null, inSeason: true };
 }
 
 const TOWER_EXTRA: Record<string, TowerExtra> = {
@@ -82,6 +93,16 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     openingHours: "",
     entrance: "Děti, důchodci, ISIC, ITIC, ZTP, KČT: 20 Kč · Dospělí: 40 Kč · Rodinné (2+3): 120 Kč",
     stairs: 120,
+    scheduleNote: "Otevřeno za příznivého počasí",
+    schedule: {
+      4:  [null,      null,      null,      null,      null,      "10–16",   "10–16"],
+      5:  [null,      "10–16",   "10–16",   "10–16",   "10–16",   "09–17",   "09–17"],
+      6:  [null,      "10–16",   "10–16",   "10–16",   "10–16",   "09–17",   "09–17"],
+      7:  ["09–17",   "09–17",   "09–17",   "09–17",   "09–17",   "09–17",   "09–17"],
+      8:  ["09–17",   "09–17",   "09–17",   "09–17",   "09–17",   "09–17",   "09–17"],
+      9:  [null,      "10–16",   "10–16",   "10–16",   "10–16",   "09–17",   "09–17"],
+      10: [null,      null,      null,      null,      null,      "10–16",   "10–16"],
+    },
   },
 };
 
@@ -308,15 +329,64 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                   </div>
                 </div>
               )}
-              {extra.openingHours && (
-                <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
-                  <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🕐</span>
-                  <div>
-                    <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Otevírací doba</div>
-                    <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.openingHours}</div>
+              {(extra.openingHours || extra.schedule) && (() => {
+                const DAY_NAMES = ["Po", "Út", "St", "Čt", "Pá", "So", "Ne"];
+                const MONTH_NAMES = ["Leden","Únor","Březen","Duben","Květen","Červen","Červenec","Srpen","Září","Říjen","Listopad","Prosinec"];
+                if (extra.schedule) {
+                  const { hours, inSeason } = getTodayHours(extra.schedule);
+                  const now = new Date();
+                  const curMonth = now.getMonth() + 1;
+                  const monthRow = extra.schedule[curMonth];
+                  const isOpen = !!hours;
+                  return (
+                    <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                      <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🕐</span>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Otevírací doba</div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "3px" }}>
+                          <span style={{
+                            color: isOpen ? "#4ade80" : (inSeason ? "#f87171" : "rgba(255,255,255,0.4)"),
+                            fontSize: "0.85rem", fontWeight: 800,
+                          }}>
+                            {inSeason ? (isOpen ? `Dnes: ${hours}` : "Dnes: Zavřeno") : "Mimo sezónu"}
+                          </span>
+                          {isOpen && <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#4ade80", display: "inline-block", flexShrink: 0 }} />}
+                        </div>
+                        {monthRow && (
+                          <div style={{ display: "flex", gap: "3px", marginTop: "6px", flexWrap: "wrap" }}>
+                            {DAY_NAMES.map((d, i) => (
+                              <div key={d} style={{
+                                textAlign: "center", minWidth: "34px",
+                                background: i === (new Date().getDay() + 6) % 7 ? "rgba(134,239,172,0.15)" : "rgba(255,255,255,0.04)",
+                                borderRadius: "6px", padding: "3px 4px",
+                                border: i === (new Date().getDay() + 6) % 7 ? "1px solid rgba(134,239,172,0.4)" : "1px solid transparent",
+                              }}>
+                                <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.58rem", fontWeight: 700 }}>{d}</div>
+                                <div style={{ color: monthRow[i] ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.2)", fontSize: "0.6rem", marginTop: "1px" }}>
+                                  {monthRow[i] ?? "—"}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        {extra.scheduleNote && (
+                          <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.68rem", marginTop: "5px", fontStyle: "italic" }}>{extra.scheduleNote}</div>
+                        )}
+                        <div style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.65rem", marginTop: "3px" }}>{MONTH_NAMES[curMonth - 1]}</div>
+                      </div>
+                    </div>
+                  );
+                }
+                return (
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                    <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🕐</span>
+                    <div>
+                      <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Otevírací doba</div>
+                      <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.openingHours}</div>
+                    </div>
                   </div>
-                </div>
-              )}
+                );
+              })()}
               {extra.entrance && (
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                   <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🎫</span>
