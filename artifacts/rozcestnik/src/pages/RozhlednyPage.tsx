@@ -22,6 +22,7 @@ const MAPS_OVERRIDES: Record<string, string> = {
   "frydlant": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Frýdlant")}`,
   "hamstejn": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Hamštejn Koberovy")}`,
   "hermanice": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Heřmanice Frýdlant v Čechách")}`,
+  "hornik": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Horník Rokytnice nad Jizerou")}`,
 };
 
 const DEFUNCT_TOWERS: Record<string, string> = {
