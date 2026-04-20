@@ -566,15 +566,6 @@ export default function RozhlednyPage() {
         body: JSON.stringify({ itemId: rid, rating: stars }),
       });
       if (res.ok) {
-        setCommunityRatings(prev => {
-          const existing = prev[rid];
-          if (existing) {
-            const newCount = existing.count;
-            const newAvg = parseFloat(((existing.avg * newCount - (prev[rid]?.avg ?? 0) + stars) / newCount).toFixed(1));
-            return { ...prev, [rid]: { avg: newAvg, count: newCount } };
-          }
-          return { ...prev, [rid]: { avg: stars, count: 1 } };
-        });
         const fresh = await fetch("/api/viewpoint-ratings/all", { credentials: "include" });
         if (fresh.ok) setCommunityRatings(await fresh.json());
       }
@@ -922,11 +913,10 @@ export default function RozhlednyPage() {
                         </button>
                       )}
 
-                      {/* Community/personal rating — bottom left */}
+                      {/* Community rating — bottom left (only when at least 1 community rating exists) */}
                       {(() => {
                         const community = communityRatings[rid];
-                        const personal = getRating(rid);
-                        if (!community && !personal) return null;
+                        if (!community) return null;
                         return (
                           <div style={{
                             position: "absolute", bottom: "calc(15% + 4px)", left: "7px",
@@ -935,13 +925,11 @@ export default function RozhlednyPage() {
                           }}>
                             <span style={{ fontSize: "0.62rem" }}>⭐</span>
                             <span style={{ color: "white", fontSize: "0.62rem", fontWeight: 700 }}>
-                              {community ? community.avg.toFixed(1) : personal}
+                              {community.avg.toFixed(1)}
                             </span>
-                            {community && community.count > 1 && (
-                              <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.56rem" }}>
-                                ({community.count})
-                              </span>
-                            )}
+                            <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.56rem" }}>
+                              ({community.count})
+                            </span>
                           </div>
                         );
                       })()}
