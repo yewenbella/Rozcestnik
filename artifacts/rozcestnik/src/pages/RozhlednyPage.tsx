@@ -39,6 +39,25 @@ const MAPS_OVERRIDES: Record<string, string> = {
   "prosecsky-hreben": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Prosečský hřeben Jablonec nad Nisou")}`,
 };
 
+interface TowerExtra {
+  parkingUrl: string;
+  parkingNote?: string;
+  parkingPrice: string;
+  routeFromParking: string;
+  openingHours: string;
+  entrance: string;
+}
+
+const TOWER_EXTRA: Record<string, TowerExtra> = {
+  "allainova-vez": {
+    parkingUrl: "https://maps.google.com/maps?q=50.5093036,15.3686631",
+    parkingPrice: "Zdarma",
+    routeFromParking: "Po modré necelé 2 km",
+    openingHours: "24/7",
+    entrance: "Zdarma",
+  },
+};
+
 const DEFUNCT_TOWERS: Record<string, string> = {
   "cisarsky-kamen": "Zaniklá – nahrazena rozhlednou Císařský kámen II",
   "rozhledna-na-grosscedlobi": "Zaniklá rozhledna",
@@ -60,6 +79,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
   const defunctNote = DEFUNCT_TOWERS[r.slug];
   const coords = rozhlednyCoords[r.slug];
   const mapsUrl = MAPS_OVERRIDES[r.slug] ?? `https://maps.google.com/maps/search/${encodeURIComponent(r.name)}`;
+  const extra = TOWER_EXTRA[r.slug];
 
   return (
     <div
@@ -155,6 +175,58 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
             <p style={{ color: "rgba(255,255,255,0.72)", fontSize: "0.86rem", lineHeight: 1.6, margin: "0 0 14px" }}>
               {r.desc}
             </p>
+          )}
+
+          {/* Practical info panel */}
+          {extra && (
+            <div style={{
+              background: "rgba(255,255,255,0.04)", border: "1px solid rgba(134,239,172,0.2)",
+              borderRadius: "12px", padding: "12px 14px", marginBottom: "12px",
+              display: "flex", flexDirection: "column", gap: "10px",
+            }}>
+              <a
+                href={extra.parkingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex", alignItems: "center", gap: "10px",
+                  textDecoration: "none",
+                  background: "rgba(66,133,244,0.10)", border: "1px solid rgba(66,133,244,0.3)",
+                  borderRadius: "9px", padding: "9px 12px",
+                }}
+              >
+                <span style={{ fontSize: "1.1rem" }}>🅿️</span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.8rem" }}>Navigace na parkoviště</div>
+                  <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.72rem" }}>{extra.parkingPrice === "Zdarma" ? "Parkování zdarma" : `Parkování ${extra.parkingPrice}`}</div>
+                </div>
+                <span style={{ fontSize: "0.7rem", color: "#93c5fd" }}>↗</span>
+              </a>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                  <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🥾</span>
+                  <div>
+                    <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Z parkoviště na rozhlednu</div>
+                    <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.routeFromParking}</div>
+                  </div>
+                </div>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                  <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🕐</span>
+                  <div>
+                    <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Otevírací doba</div>
+                    <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.openingHours}</div>
+                  </div>
+                </div>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                  <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🎫</span>
+                  <div>
+                    <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Vstupné</div>
+                    <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.entrance}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
 
           {/* Buttons row 1: Maps + info */}
