@@ -5506,7 +5506,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberecký kraj",
       "Semily"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/tabor/074-tabor.jpg",
-    "desc": "Mohutná pětatřicetimetrová cihlová Tichánkova věž z roku 1911. Nádherný kruhový výhled z otevřeného ochozu ve výšce 26 metrů (Krkonoše, Jizerské a Orlické hory, Český ráj a České středohoří, Říp, Ještěd, Kunětická hora, "
+    "desc": "Mohutná pětatřicetimetrová cihlová Tichánkova věž z roku 1911. Nádherný kruhový výhled z otevřeného ochozu ve výšce 26 metrů (Krkonoše, Jizerské a Orlické hory, Český ráj a České středohoří, Říp, Ještěd, Kunětická hora, Bezděz). Doporučuji spojit s návštěvou Allainovy rozhledny, necelé 2 km po modré turistické stezce."
   },
   {
     "id": 1318,

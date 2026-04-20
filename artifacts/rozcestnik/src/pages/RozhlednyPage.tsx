@@ -62,9 +62,10 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
   "tabor": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Táborská Tichánkova rozhledna Lomnice nad Popelkou")}`,
     parkingPrice: "Parkování u rozhledny Táborská/Tichánkova rozhledna · Zdarma",
-    routeFromParking: "",
-    openingHours: "",
-    entrance: "",
+    routeFromParking: "Rozhledna je přímo u parkoviště",
+    openingHours: "24/7",
+    entrance: "20,-",
+    stairs: 145,
   },
 };
 
