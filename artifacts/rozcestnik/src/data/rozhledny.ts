@@ -1293,7 +1293,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
     "photo": "https://turistickamapa.cz/data_fotos/2024/rozhledna-hamstejn-2024_18_8-152525.jpg",
-    "desc": "Pětadvacetimetrový ocelový sloup z roku 2023 s točitým schodištěm, zpevněný třemi prohnutými dřevěnými podpěrami ve tvaru kalicha. V soutěži o Rozhlednu roku 2023, pořádanou Klubem přátel rozhleden, obsadila tato originá"
+    "desc": "Pětadvacetimetrový ocelový sloup z roku 2023 s točitým schodištěm, zpevněný třemi prohnutými dřevěnými podpěrami ve tvaru kalicha. Rozhledna Hamštejn je nováčkem mezi vyhlídkovými místy, přesto se ale může pyšnit vítězstvím v anketě Rozhledna roku 2023. Doporučuji spojit s návštěvou rozhledny Kozákov po červené turistické stezce necelé 4 km."
   },
   {
     "id": 14946,

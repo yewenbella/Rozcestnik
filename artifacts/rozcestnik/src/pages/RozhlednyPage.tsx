@@ -67,6 +67,14 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     entrance: "20,-",
     stairs: 145,
   },
+  "hamstejn": {
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Hamštejn Koberovy Česko")}`,
+    parkingPrice: "Parkování přímo pod rozhlednou · 100,- hotovost i karta",
+    routeFromParking: "Rozhledna je přímo nad parkovištěm",
+    openingHours: "24/7",
+    entrance: "Zdarma",
+    stairs: 121,
+  },
 };
 
 const DEFUNCT_TOWERS: Record<string, string> = {
