@@ -24,6 +24,7 @@ const MAPS_OVERRIDES: Record<string, string> = {
   "hermanice": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Heřmanice Frýdlant v Čechách")}`,
   "hornik": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Horník Rokytnice nad Jizerou")}`,
   "hruba-skala": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Hrubá Skála")}`,
+  "jablonne-v-podjestedi": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Jablonné v Podještědí")}`,
 };
 
 const DEFUNCT_TOWERS: Record<string, string> = {
