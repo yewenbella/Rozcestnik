@@ -27,7 +27,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberecký kraj",
       "Semily"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/allainova-vez/dscf3534.jpg",
-    "desc": "Jedenáctimetrová kamenná osmiboká věž, která byla postavena v roce 1862 a sloužila jako honosný lovecký posed. V roce 2014 byla značně zdevastovaná stavba opravena."
+    "desc": "Jedenáctimetrová kamenná osmiboká věž, která byla postavena v roce 1862 a sloužila jako honosný lovecký posed. V roce 2014 byla značně zdevastovaná stavba opravena. Doporučuji spojit s návštěvou Táborské/Tichánkové rozhledny která se nachází hned u parkoviště."
   },
   {
     "id": 15881,
