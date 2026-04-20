@@ -50,7 +50,7 @@ interface TowerExtra {
 
 const TOWER_EXTRA: Record<string, TowerExtra> = {
   "allainova-vez": {
-    parkingUrl: "https://www.google.com/maps/dir/?api=1&destination=50.5093036,15.3686631",
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Allainova věž")}`,
     parkingPrice: "Zdarma",
     routeFromParking: "Po modré necelé 2 km",
     openingHours: "24/7",
