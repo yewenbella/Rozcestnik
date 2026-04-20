@@ -263,49 +263,49 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
             </a>
           </div>
 
-          {/* Mark visited button */}
-          {isSignedIn ? (
+          {/* Mark visited + Wishlist buttons side by side */}
+          <div style={{ display: "flex", gap: "8px" }}>
+            {isSignedIn ? (
+              <button
+                onClick={() => toggle("rozhledna", rid, r.name)}
+                style={{
+                  flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                  padding: "12px 6px", borderRadius: "10px",
+                  background: done ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.07)",
+                  border: done ? "1px solid rgba(74,222,128,0.45)" : "1px solid rgba(255,255,255,0.15)",
+                  color: done ? "#4ade80" : "rgba(255,255,255,0.7)",
+                  fontWeight: 700, fontSize: "0.78rem", cursor: "pointer",
+                }}
+              >
+                {done ? <CheckCircle2 size={14} /> : <Circle size={14} />}
+                {done ? "Navštíveno" : "Navštíveno"}
+              </button>
+            ) : (
+              <div style={{
+                flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+                padding: "12px 6px", borderRadius: "10px",
+                background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
+                color: "rgba(255,255,255,0.3)", fontSize: "0.75rem", textAlign: "center",
+              }}>
+                {"Přihlas se"}
+              </div>
+            )}
+
             <button
-              onClick={() => toggle("rozhledna", rid, r.name)}
+              onClick={() => toggleWishlist(rid)}
               style={{
-                width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-                padding: "12px", borderRadius: "10px",
-                background: done ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.07)",
-                border: done ? "1px solid rgba(74,222,128,0.45)" : "1px solid rgba(255,255,255,0.15)",
-                color: done ? "#4ade80" : "rgba(255,255,255,0.7)",
-                fontWeight: 700, fontSize: "0.88rem", cursor: "pointer",
+                flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                padding: "12px 6px", borderRadius: "10px",
+                background: wished ? "rgba(251,191,36,0.13)" : "rgba(255,255,255,0.06)",
+                border: wished ? "1px solid rgba(251,191,36,0.5)" : "1px solid rgba(255,255,255,0.12)",
+                color: wished ? "#fbbf24" : "rgba(255,255,255,0.6)",
+                fontWeight: 700, fontSize: "0.78rem", cursor: "pointer",
               }}
             >
-              {done ? <CheckCircle2 size={16} /> : <Circle size={16} />}
-              {done ? "Nav\u0161t\u00edveno \u2013 odebrat z den\u00edku" : "Ozna\u010dit jako nav\u0161t\u00edveno"}
+              {wished ? <BookmarkCheck size={14} /> : <Bookmark size={14} />}
+              {"Chci navštívit"}
             </button>
-          ) : (
-            <div style={{
-              width: "100%", display: "flex", alignItems: "center", justifyContent: "center",
-              padding: "11px", borderRadius: "10px",
-              background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
-              color: "rgba(255,255,255,0.3)", fontSize: "0.82rem",
-            }}>
-              {"P\u0159ihlas se pro ozna\u010dov\u00e1n\u00ed nav\u0161t\u00edven\u00fdch"}
-            </div>
-          )}
-
-          {/* Wishlist button — always available */}
-          <button
-            onClick={() => toggleWishlist(rid)}
-            style={{
-              marginTop: "8px",
-              width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-              padding: "12px", borderRadius: "10px",
-              background: wished ? "rgba(251,191,36,0.13)" : "rgba(255,255,255,0.06)",
-              border: wished ? "1px solid rgba(251,191,36,0.5)" : "1px solid rgba(255,255,255,0.12)",
-              color: wished ? "#fbbf24" : "rgba(255,255,255,0.6)",
-              fontWeight: 700, fontSize: "0.88rem", cursor: "pointer",
-            }}
-          >
-            {wished ? <BookmarkCheck size={16} /> : <Bookmark size={16} />}
-            {wished ? "Chci nav\u0161t\u00edvit \u2013 odebrat" : "Chci nav\u0161t\u00edvit"}
-          </button>
+          </div>
         </div>
       </div>
     </div>
