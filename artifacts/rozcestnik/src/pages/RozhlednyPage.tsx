@@ -6,6 +6,7 @@ import { rozhledny, krajeList, type Rozhledna } from "@/data/rozhledny";
 import { rozhlednyCoords } from "@/data/rozhlednyCoords";
 import { useDenik } from "@/hooks/useDenik";
 import { useWishlist } from "@/hooks/useWishlist";
+import { useRatings } from "@/hooks/useRatings";
 
 function distKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
   const R = 6371;
@@ -72,7 +73,33 @@ const DEFUNCT_TOWERS: Record<string, string> = {
   "u-obrazku": "Zaniklá – nahrazena rozhlednou U Obrázku II",
 };
 
-function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted, toggleWishlist }: {
+function StarPicker({ value, hover, onHover, onLeave, onClick }: {
+  value: number; hover: number;
+  onHover: (n: number) => void; onLeave: () => void; onClick: (n: number) => void;
+}) {
+  const active = hover || value;
+  return (
+    <div style={{ display: "flex", gap: "6px", justifyContent: "center" }}>
+      {[1, 2, 3, 4, 5].map(n => (
+        <button
+          key={n}
+          onMouseEnter={() => onHover(n)}
+          onMouseLeave={onLeave}
+          onClick={() => onClick(n)}
+          style={{
+            background: "none", border: "none", cursor: "pointer",
+            fontSize: "2rem", lineHeight: 1, padding: "4px",
+            filter: n <= active ? "none" : "grayscale(1) opacity(0.35)",
+            transform: n <= active ? "scale(1.12)" : "scale(1)",
+            transition: "transform 0.12s, filter 0.12s",
+          }}
+        >⭐</button>
+      ))}
+    </div>
+  );
+}
+
+function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted, toggleWishlist, getRating, setRating }: {
   r: Rozhledna;
   onClose: () => void;
   isCompleted: (type: string, id: string) => boolean;
@@ -80,10 +107,16 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
   isSignedIn: boolean;
   isWishlisted: (id: string) => boolean;
   toggleWishlist: (id: string) => void;
+  getRating: (id: string) => number;
+  setRating: (id: string, stars: number) => void;
 }) {
   const rid = String(r.id);
   const done = isCompleted("rozhledna", rid);
   const wished = isWishlisted(rid);
+  const currentRating = getRating(rid);
+  const [showRatingPicker, setShowRatingPicker] = useState(false);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [editingRating, setEditingRating] = useState(false);
   const defunctNote = DEFUNCT_TOWERS[r.slug];
   const coords = rozhlednyCoords[r.slug];
   const mapsUrl = MAPS_OVERRIDES[r.slug] ?? `https://maps.google.com/maps/search/${encodeURIComponent(r.name)}`;
@@ -289,11 +322,117 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
             </a>
           </div>
 
+          {/* Rating picker — shown when clicking Navštíveno for first time */}
+          {showRatingPicker && (
+            <div style={{
+              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(134,239,172,0.3)",
+              borderRadius: "12px", padding: "14px 12px", marginBottom: "10px", textAlign: "center",
+            }}>
+              <div style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.84rem", fontWeight: 700, marginBottom: "10px" }}>
+                Jak hodnotíte rozhlednu?
+              </div>
+              <StarPicker
+                value={0}
+                hover={hoverRating}
+                onHover={setHoverRating}
+                onLeave={() => setHoverRating(0)}
+                onClick={(n) => {
+                  setRating(rid, n);
+                  toggle("rozhledna", rid, r.name);
+                  setShowRatingPicker(false);
+                  setHoverRating(0);
+                }}
+              />
+              <button
+                onClick={() => {
+                  toggle("rozhledna", rid, r.name);
+                  setShowRatingPicker(false);
+                }}
+                style={{
+                  background: "none", border: "none", color: "rgba(255,255,255,0.4)",
+                  fontSize: "0.75rem", cursor: "pointer", marginTop: "10px", textDecoration: "underline",
+                }}
+              >
+                Přeskočit hodnocení
+              </button>
+            </div>
+          )}
+
+          {/* Current rating display + edit — shown for visited towers */}
+          {done && !showRatingPicker && (
+            <div style={{
+              marginBottom: "8px",
+              background: "rgba(255,255,255,0.04)", border: "1px solid rgba(134,239,172,0.15)",
+              borderRadius: "10px", padding: "10px 12px",
+            }}>
+              {editingRating ? (
+                <>
+                  <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.78rem", marginBottom: "8px", textAlign: "center" }}>
+                    Změnit hodnocení
+                  </div>
+                  <StarPicker
+                    value={currentRating}
+                    hover={hoverRating}
+                    onHover={setHoverRating}
+                    onLeave={() => setHoverRating(0)}
+                    onClick={(n) => {
+                      setRating(rid, n);
+                      setEditingRating(false);
+                      setHoverRating(0);
+                    }}
+                  />
+                  <div style={{ textAlign: "center" }}>
+                    <button
+                      onClick={() => setEditingRating(false)}
+                      style={{
+                        background: "none", border: "none", color: "rgba(255,255,255,0.4)",
+                        fontSize: "0.75rem", cursor: "pointer", marginTop: "8px",
+                      }}
+                    >
+                      Zrušit
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                    <span style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.5)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Vaše hodnocení</span>
+                    {currentRating > 0 ? (
+                      <span style={{ fontSize: "0.95rem", letterSpacing: "1px" }}>
+                        {"⭐".repeat(currentRating)}{"☆".repeat(5 - currentRating)}
+                      </span>
+                    ) : (
+                      <span style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.78rem" }}>Bez hodnocení</span>
+                    )}
+                  </div>
+                  <button
+                    onClick={() => setEditingRating(true)}
+                    style={{
+                      background: "rgba(134,239,172,0.1)", border: "1px solid rgba(134,239,172,0.25)",
+                      borderRadius: "6px", padding: "3px 10px",
+                      color: "#86efac", fontSize: "0.72rem", fontWeight: 700, cursor: "pointer",
+                    }}
+                  >
+                    {currentRating > 0 ? "Změnit" : "Ohodnotit"}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Mark visited + Wishlist buttons side by side */}
           <div style={{ display: "flex", gap: "8px" }}>
             {isSignedIn ? (
               <button
-                onClick={() => toggle("rozhledna", rid, r.name)}
+                onClick={() => {
+                  if (!done) {
+                    setShowRatingPicker(true);
+                  } else {
+                    toggle("rozhledna", rid, r.name);
+                    setShowRatingPicker(false);
+                    setEditingRating(false);
+                  }
+                }}
                 style={{
                   flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
                   padding: "12px 6px", borderRadius: "10px",
@@ -304,7 +443,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                 }}
               >
                 {done ? <CheckCircle2 size={14} /> : <Circle size={14} />}
-                {done ? "Navštíveno" : "Navštíveno"}
+                {"Navštíveno"}
               </button>
             ) : (
               <div style={{
@@ -354,6 +493,7 @@ export default function RozhlednyPage() {
   const listRef = useRef<HTMLDivElement>(null);
   const { isCompleted, toggle, isSignedIn } = useDenik();
   const { isWishlisted, toggleWishlist } = useWishlist();
+  const { getRating, setRating } = useRatings();
 
   const requestLocation = useCallback(() => {
     if (!navigator.geolocation) {
@@ -743,6 +883,8 @@ export default function RozhlednyPage() {
           isSignedIn={isSignedIn}
           isWishlisted={isWishlisted}
           toggleWishlist={toggleWishlist}
+          getRating={getRating}
+          setRating={setRating}
         />
       )}
     </div>
