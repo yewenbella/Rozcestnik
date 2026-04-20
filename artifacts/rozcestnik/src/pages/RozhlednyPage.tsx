@@ -49,8 +49,8 @@ interface TowerExtra {
 
 const TOWER_EXTRA: Record<string, TowerExtra> = {
   "allainova-vez": {
-    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Allainova věž")}`,
-    parkingPrice: "Parkování u rozhledny Táborská/Tichánkova rozhledna · Zdarma",
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Táborská Tichánkova rozhledna Lomnice nad Popelkou")}`,
+    parkingPrice: "Parkování u Táborská/Tichánkova rozhledna - Zdarma",
     routeFromParking: "Po modré necelé 2 km",
     openingHours: "24/7",
     entrance: "Zdarma",
