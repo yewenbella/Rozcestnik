@@ -38,8 +38,8 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
   const defunctNote = DEFUNCT_TOWERS[r.slug];
   const coords = rozhlednyCoords[r.slug];
   const mapsUrl = coords
-    ? `https://www.google.com/maps/dir/?api=1&destination=${coords[0]},${coords[1]}&travelmode=driving`
-    : `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(r.name + " rozhledna")}&travelmode=driving`;
+    ? `https://maps.google.com/maps?q=${coords[0]},${coords[1]}`
+    : `https://maps.google.com/maps/search/${encodeURIComponent(r.name)}`;
 
   return (
     <div
