@@ -27,7 +27,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberecký kraj",
       "Semily"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/allainova-vez/dscf3534.jpg",
-    "desc": "Jedenáctimetrová kamenná osmiboká věž, která byla postavena v&nbsp;roce 1862 a sloužila jako honosný lovecký posed. V&nbsp;roce 2014 byla značně zdevastovaná stavba opravena a ještě do konce roku 2015 se plánuje instalace železného točitého schodiště"
+    "desc": "Jedenáctimetrová kamenná osmiboká věž, která byla postavena v roce 1862 a sloužila jako honosný lovecký posed. V roce 2014 byla značně zdevastovaná stavba opravena."
   },
   {
     "id": 15881,

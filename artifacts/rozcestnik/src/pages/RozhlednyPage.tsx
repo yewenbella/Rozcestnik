@@ -45,13 +45,15 @@ interface TowerExtra {
   routeFromParking: string;
   openingHours: string;
   entrance: string;
+  stairs?: number;
 }
 
 const TOWER_EXTRA: Record<string, TowerExtra> = {
   "allainova-vez": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Táborská Tichánkova rozhledna Lomnice nad Popelkou")}`,
     parkingPrice: "Parkování u Táborská/Tichánkova rozhledna - Zdarma",
-    routeFromParking: "Po modré necelé 2 km",
+    routeFromParking: "Po modré turistické stezce necelé 2km",
+    stairs: 42,
     openingHours: "24/7",
     entrance: "Zdarma",
   },
@@ -119,7 +121,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
             <img
               src={r.photo}
               alt={r.name}
-              style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center top" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
             />
           ) : (
             <Eye size={40} color="rgba(134,239,172,0.2)" />
@@ -214,6 +216,15 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                   <div>
                     <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Vstupné</div>
                     <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.entrance}</div>
+                  </div>
+                </div>
+              )}
+              {extra.stairs && (
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                  <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🪜</span>
+                  <div>
+                    <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Počet schodů</div>
+                    <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.stairs}</div>
                   </div>
                 </div>
               )}
