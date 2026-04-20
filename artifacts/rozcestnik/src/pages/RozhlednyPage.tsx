@@ -19,6 +19,7 @@ const PAGE_SIZE = 24;
 
 const MAPS_OVERRIDES: Record<string, string> = {
   "dubecko": "https://maps.google.com/maps/search/H6MF%2BC2+M%C3%ADrov%C3%A1+pod+Koz%C3%A1kovem",
+  "frydlant": "https://maps.google.com/maps/search/W37M%2BWF+Fr%C3%BDdlant",
 };
 
 const DEFUNCT_TOWERS: Record<string, string> = {
