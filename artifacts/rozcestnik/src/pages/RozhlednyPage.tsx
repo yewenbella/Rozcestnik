@@ -25,6 +25,12 @@ const MAPS_OVERRIDES: Record<string, string> = {
   "hornik": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Horník Rokytnice nad Jizerou")}`,
   "hruba-skala": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Hrubá Skála")}`,
   "jablonne-v-podjestedi": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Jablonné v Podještědí")}`,
+  "kopanina": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Kopanina Pulečný")}`,
+  "kozakov": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Kozákov Chuchelna")}`,
+  "kralovka": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Královka Janov nad Nisou")}`,
+  "kumburk": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Kumburk Syřenov")}`,
+  "lemberk": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Lemberk Jablonné v Podještědí")}`,
+  "liberecka-vysina": `https://maps.google.com/maps/search/${encodeURIComponent("Liberecká výšina Liberec")}`,
 };
 
 const DEFUNCT_TOWERS: Record<string, string> = {
