@@ -124,7 +124,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
         note: "Dole pod Ještědem · 200,-",
       },
     ],
-    routeFromParking: "Blíž k vrcholu – po silnici nahoru po červené turistické stezce necelých 800m · Dole pod Ještědem – po modré turistické stezce 3,5km",
+    routeFromParking: "Blíž k vrcholu – po silnici nahoru po červené turistické stezce necelých 800m\nDole pod Ještědem – po modré turistické stezce 3,5km",
     openingHours: "24/7",
     entrance: "Zdarma",
   },
@@ -390,7 +390,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                   <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🥾</span>
                   <div>
                     <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Z parkoviště na rozhlednu</div>
-                    <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.routeFromParking}</div>
+                    <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px", whiteSpace: "pre-line" }}>{extra.routeFromParking}</div>
                   </div>
                 </div>
               )}
