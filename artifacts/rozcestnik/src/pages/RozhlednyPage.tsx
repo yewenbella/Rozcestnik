@@ -330,7 +330,7 @@ function RatingPopup({ name, currentRating, onRate, onSkip, onClose }: {
   );
 }
 
-function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted, toggleWishlist, getRating, setRating, onRateRequest }: {
+function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted, toggleWishlist, getRating, setRating, onRateRequest, onRatingSave }: {
   r: Rozhledna;
   onClose: () => void;
   isCompleted: (type: string, id: string) => boolean;
@@ -341,6 +341,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
   getRating: (id: string) => number;
   setRating: (id: string, stars: number) => void;
   onRateRequest: (rid: string, name: string) => void;
+  onRatingSave: (rid: string, stars: number) => void;
 }) {
   const rid = String(r.id);
   const done = isCompleted("rozhledna", rid);
@@ -631,6 +632,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                     onLeave={() => setHoverRating(0)}
                     onClick={(n) => {
                       setRating(rid, n);
+                      onRatingSave(rid, n);
                       setEditingRating(false);
                       setHoverRating(0);
                     }}
@@ -1148,8 +1150,10 @@ export default function RozhlednyPage() {
 
                       {/* Community rating — bottom left (only when at least 1 community rating exists) */}
                       {(() => {
-                        const community = communityRatings[rid];
-                        if (!community) return null;
+                        const community = communityRatings[rid] ?? communityRatings[r.slug];
+                        const myRating = getRating(rid);
+                        if (!community && myRating <= 0) return null;
+                        const label = community ? community.avg.toFixed(1) : `${myRating}/5`;
                         return (
                           <div style={{
                             position: "absolute", bottom: "calc(15% + 4px)", left: "7px",
@@ -1158,11 +1162,13 @@ export default function RozhlednyPage() {
                           }}>
                             <span style={{ fontSize: "0.62rem" }}>⭐</span>
                             <span style={{ color: "white", fontSize: "0.62rem", fontWeight: 700 }}>
-                              {community.avg.toFixed(1)}
+                              {label}
                             </span>
-                            <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.56rem" }}>
-                              ({community.count})
-                            </span>
+                            {community && (
+                              <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.56rem" }}>
+                                ({community.count})
+                              </span>
+                            )}
                           </div>
                         );
                       })()}
@@ -1236,6 +1242,7 @@ export default function RozhlednyPage() {
           getRating={getRating}
           setRating={setRating}
           onRateRequest={(rid, name) => setRatingTarget({ rid, name })}
+          onRatingSave={saveRatingToApi}
         />
       )}
 
