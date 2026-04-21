@@ -71,6 +71,18 @@ function getTodayHours(extra: TowerExtra): { hours: string | null; inSeason: boo
 
 const TOWER_EXTRA: Record<string, TowerExtra> = {
   "bezdez": {
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkování P1 Bezděz")}`,
+    parkingPrice: "Parkování Bezděz",
+    parkingOptions: [
+      {
+        label: "Parkování P1 Bezděz",
+        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkování P1 Bezděz")}`,
+      },
+      {
+        label: "Parkování P2 Bezděz",
+        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkování P2 Bezděz")}`,
+      },
+    ],
     openingHours: "",
     entrance: "Dospělí 25–64 let: 180 Kč\nSenioři 65+: 140 Kč\nMládež 18–24 let: 140 Kč\nOsoby se zdravotním postižením s platným průkazem/osvědčením: 140 Kč\nDěti 6–17 let: 50 Kč\nDěti do 5 let: zdarma",
     schedule: {
