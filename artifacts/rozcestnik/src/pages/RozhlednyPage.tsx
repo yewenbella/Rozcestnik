@@ -75,6 +75,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
       {
         label: "Parkoviště Bezděz",
         url: `https://www.google.com/maps/search/${encodeURIComponent("Parkoviště Bezděz")}`,
+        note: "Auto: 100 Kč\nMotocykl: 50 Kč\nBus: 200 Kč\nPlatba: parkovací automat, platební karta, hotovost",
       },
     ],
     openingHours: "",
@@ -566,7 +567,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.76rem" }}>{option.label}</div>
                       {option.note && (
-                        <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", marginTop: "1px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{option.note}</div>
+                        <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", marginTop: "1px", whiteSpace: "pre-line", lineHeight: 1.35 }}>{option.note}</div>
                       )}
                     </div>
                     <span style={{ fontSize: "0.7rem", color: "#93c5fd", flexShrink: 0 }}>↗</span>
