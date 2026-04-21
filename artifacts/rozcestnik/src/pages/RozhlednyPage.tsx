@@ -20,6 +20,7 @@ function distKm(lat1: number, lon1: number, lat2: number, lon2: number): number 
 const PAGE_SIZE = 24;
 
 const MAPS_OVERRIDES: Record<string, string> = {
+  "bezdez": `https://maps.google.com/maps/search/${encodeURIComponent("Státní hrad Bezděz")}`,
   "dubecko": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Dubečko Mírová pod Kozákovem")}`,
   "frydlant": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Frýdlant")}`,
   "hamstejn": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Hamštejn Koberovy")}`,
