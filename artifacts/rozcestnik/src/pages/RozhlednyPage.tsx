@@ -92,6 +92,14 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     entrance: "Zdarma",
     stairs: 121,
   },
+  "cisarsky-kamen-ii": {
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště rozhledna Císařský kámen Rádlo Česko")}`,
+    parkingPrice: "Parkoviště rozhledna Císařský kámen",
+    routeFromParking: "Po zelené turistické stezce necelých 800m",
+    openingHours: "24/7",
+    entrance: "Zdarma",
+    stairs: 112,
+  },
   "bramberk": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Bramberk parkoviště")}`,
     parkingPrice: "Parkování u rozhledny",

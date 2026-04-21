@@ -674,7 +674,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberec",
       "Liberecký kraj"],
     "photo": "https://turistickamapa.cz/data_fotos/2024/rozhledna-cisarsky-kamen-2024_18_8-153546.jpg",
-    "desc": "Původní dvacetimetrová dřevěná rozhledna z&nbsp;roku 2009 byla kvůli nutným opravám v&nbsp;roce 2017 uzavřena. Záhy se ale ukázalo, že působení povětrnostních vlivů ji poškodilo natolik, že byla v&nbsp;následujícím roce demontována. V&nbsp;roce 2018 "
+    "desc": "Původní dvacetimetrová dřevěná rozhledna z roku 2009 byla kvůli nutným opravám v roce 2017 uzavřena. Záhy se ale ukázalo, že působení povětrnostních vlivů ji poškodilo natolik, že byla v následujícím roce demontována. V roce 2018 byla nahrazena ocelovou věží, opláštěnou dřevem."
   },
   {
     "id": 1912,
