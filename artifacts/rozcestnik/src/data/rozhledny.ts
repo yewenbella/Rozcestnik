@@ -2454,7 +2454,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-kopanina/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-kopanina-2023_22_1-122257.jpg",
+    "photo": "https://www.cesky-raj.info/sites/default/files/images/2024-06/cesky-raj-kopanina-01.jpg",
     "desc": "Jedenadvacetimetrová cihlová válcová věž z roku 1894. Kruhový výhled z prosklené dřevěné nástavby ve výšce 18 metrů (Jizerské hory, Krkonoše, Ještědský hřbet, Český ráj s Kozákovem, Trosky, Bezděz, Milešovka). Osada Kopa"
   },
   {
