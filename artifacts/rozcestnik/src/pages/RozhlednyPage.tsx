@@ -50,13 +50,19 @@ interface TowerExtra {
   stairs?: number;
   schedule?: { [month: number]: (string | null)[] }; // month 1-12 → [Po,Út,St,Čt,Pá,So,Ne]
   scheduleNote?: string;
+  dateExceptions?: { [date: string]: string | null };
 }
 
-function getTodayHours(schedule: { [month: number]: (string | null)[] }): { hours: string | null; inSeason: boolean } {
+function getTodayHours(extra: TowerExtra): { hours: string | null; inSeason: boolean } {
   const now = new Date();
+  const dateKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  if (extra.dateExceptions && dateKey in extra.dateExceptions) {
+    return { hours: extra.dateExceptions[dateKey], inSeason: true };
+  }
+  if (!extra.schedule) return { hours: null, inSeason: false };
   const month = now.getMonth() + 1;
   const dayIndex = (now.getDay() + 6) % 7; // 0=Po, 1=Út, ..., 5=So, 6=Ne
-  const monthSchedule = schedule[month];
+  const monthSchedule = extra.schedule[month];
   if (!monthSchedule) return { hours: null, inSeason: false };
   return { hours: monthSchedule[dayIndex] ?? null, inSeason: true };
 }
@@ -86,10 +92,33 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     entrance: "Zdarma",
     stairs: 121,
   },
+  "bramberk": {
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Bramberk parkoviště")}`,
+    parkingPrice: "Parkování u rozhledny",
+    routeFromParking: "Rozhledna se nachází přímo u parkoviště",
+    openingHours: "",
+    entrance: "Dospělí: 40 Kč · Senioři od 65 let: 10 Kč · Děti 6–15 let: 10 Kč · Děti do 6 let a ZTP: zdarma",
+    stairs: 96,
+    scheduleNote: "Za nepříznivého počasí je rozhledna uzavřena. V dubnu a říjnu otevřeno také ve svátek.",
+    dateExceptions: {
+      "2026-04-03": "10:30–16",
+      "2026-04-06": "10:30–16",
+      "2026-10-28": "10:30–16",
+    },
+    schedule: {
+      4:  [null,      null,      null,      null,      null,      "10:30–16", "10:30–16"],
+      5:  ["10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17"],
+      6:  ["10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17"],
+      7:  ["10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17"],
+      8:  ["10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17", "10:30–17"],
+      9:  ["10:30–16", "10:30–16", "10:30–16", "10:30–16", "10:30–16", "10:30–16", "10:30–16"],
+      10: [null,      null,      null,      null,      null,      "10:30–16", "10:30–16"],
+    },
+  },
   "kozakov": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Kozákov Chuchelna Komárov Česko")}`,
     parkingPrice: "Parkování přímo u rozhledny · 50,-",
-    routeFromParking: "Parkoviště přímo u rozhledny",
+    routeFromParking: "Rozhledna přímo u parkoviště",
     openingHours: "",
     entrance: "Děti, důchodci, ISIC, ITIC, ZTP, KČT: 20 Kč · Dospělí: 40 Kč · Rodinné (2+3): 120 Kč",
     stairs: 120,
@@ -331,9 +360,8 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
               )}
               {(extra.openingHours || extra.schedule) && (() => {
                 const DAY_NAMES = ["Po", "Út", "St", "Čt", "Pá", "So", "Ne"];
-                const MONTH_NAMES = ["Leden","Únor","Březen","Duben","Květen","Červen","Červenec","Srpen","Září","Říjen","Listopad","Prosinec"];
                 if (extra.schedule) {
-                  const { hours, inSeason } = getTodayHours(extra.schedule);
+                  const { hours, inSeason } = getTodayHours(extra);
                   const now = new Date();
                   const curMonth = now.getMonth() + 1;
                   const monthRow = extra.schedule[curMonth];

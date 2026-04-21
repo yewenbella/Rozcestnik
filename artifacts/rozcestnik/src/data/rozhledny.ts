@@ -455,7 +455,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
     "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-bramberk-2023_13_7-132540.jpg",
-    "desc": "Masivní kamenná jedenadvaceti metrová vysoká věž z roku 1912. Kruhový výhled z kryté místnosti ve výšce 18 metrů je severním směrem částečně omezen vzrostlým lesem na hřebeni vyššího kopce (Jizerské hory, Krkonoše, Ještědský hřbet, Jablonec, Liberec,"
+    "desc": "Rozhledna Bramberk je oblíbeným výletním místem nejen z Lučan nad Nisou, ale i nedalekého Jablonce nad Nisou a Liberce. Dnešní 21 metrů vysoká kamenná vyhlídková věž nahradila původní dřevěnou rozhlednu z roku 1889. Ta vlivem počasí a nedostatku financí brzy zchátrala a musela být znepřístupněna. Netrvalo ale dlouho a vyrostla zde bytelnější žulová věž, kterou dnes dobře známe."
   },
   {
     "id": 1965,
