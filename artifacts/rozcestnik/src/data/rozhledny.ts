@@ -457,7 +457,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-bramberk/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/uploads/2023/10/bramberk.jpg",
+    "photo": "https://fajnvylety.cz/wp-content/uploads/2022/08/MG_2221-678x381.jpg",
     "desc": "Rozhledna Bramberk je oblíbeným výletním místem nejen z Lučan nad Nisou, ale i nedalekého Jablonce nad Nisou a Liberce. Dnešní 21 metrů vysoká kamenná vyhlídková věž nahradila původní dřevěnou rozhlednu z roku 1889. Ta vlivem počasí a nedostatku financí brzy zchátrala a musela být znepřístupněna. Netrvalo ale dlouho a vyrostla zde bytelnější žulová věž, kterou dnes dobře známe."
   },
   {
