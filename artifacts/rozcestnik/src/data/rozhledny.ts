@@ -2661,7 +2661,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/kralovka/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/liberecky-kraj/kralovka/IMG_3502.jpg",
+    "photo": "https://cdn.kudyznudy.cz/files/fd/fd7efa3d-02e1-4726-89a0-0608e46c3aa9.webp?v=20250923190339",
     "desc": "Kamenná, 24 metrů vysoká věž z roku 1907 s horskou chatou, kterou doplnily v poslední době nové ubytovací objekty. Nádherný kruhový výhled z kryté vyhlídkové plošiny a visutých balkonů ve výšce 20 metrů (Jizerské hory, Ještěd, Krkonoše, Kozákov, Trosky, Jablonec, Liberec)."
   },
   {
