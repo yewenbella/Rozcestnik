@@ -3230,7 +3230,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-majak-jary-cimrmana/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-majak-jary-cimrmana-2023_2_4-134759.jpg",
+    "photo": "https://cdn.kudyznudy.cz/files/31/31cede12-f6d5-463e-ab85-ff248dcf8721.webp?v=20241207172120",
     "desc": "Čtyřiadvacetimetrová dřevěná rozhledna z roku 2013. Kruhový výhled z otevřeného ochozu ve výšce 17 metrů (Jizerské hory, Ještěd, Tanvaldský Špičák, Černá Studnice, Štěpánka, Kozákov, Bezděz)."
   },
   {
