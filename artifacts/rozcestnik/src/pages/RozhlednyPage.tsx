@@ -75,12 +75,12 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     parkingPrice: "Parkování Bezděz",
     parkingOptions: [
       {
-        label: "Parkování P1 Bezděz",
-        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkování P1 Bezděz")}`,
+        label: "Parkoviště P1 obec Bezděz",
+        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště P1 obec Bezděz")}`,
       },
       {
-        label: "Parkování P2 Bezděz",
-        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkování P2 Bezděz")}`,
+        label: "Parkoviště P2 obec Bezděz",
+        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště P2 obec Bezděz")}`,
       },
     ],
     openingHours: "",
