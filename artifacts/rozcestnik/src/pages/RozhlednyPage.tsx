@@ -134,6 +134,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     routeFromParking: "Rozhledna přímo u parkoviště",
     openingHours: "",
     entrance: "Dospělí: 50 Kč · Děti: 35 Kč",
+    stairs: 102,
     schedule: {
       1:  ["10–18:30", "10–17:30", "10–18:30", "10–18:30", "10–18:30", "10–17:30", "10–17:30"],
       2:  ["10–18:30", "10–17:30", "10–18:30", "10–18:30", "10–18:30", "10–17:30", "10–17:30"],
