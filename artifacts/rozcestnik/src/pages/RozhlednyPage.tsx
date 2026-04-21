@@ -42,10 +42,10 @@ const MAPS_OVERRIDES: Record<string, string> = {
 };
 
 interface TowerExtra {
-  parkingUrl: string;
-  parkingPrice: string;
+  parkingUrl?: string;
+  parkingPrice?: string;
   parkingOptions?: { label: string; url: string; note?: string }[];
-  routeFromParking: string;
+  routeFromParking?: string;
   openingHours: string;
   entrance: string;
   stairs?: number;
@@ -69,6 +69,24 @@ function getTodayHours(extra: TowerExtra): { hours: string | null; inSeason: boo
 }
 
 const TOWER_EXTRA: Record<string, TowerExtra> = {
+  "bezdez": {
+    openingHours: "",
+    entrance: "Dospělí 25–64 let: 180 Kč · Senioři 65+: 140 Kč · Mládež 18–24 let: 140 Kč · Osoby se zdravotním postižením s platným průkazem/osvědčením: 140 Kč · Děti 6–17 let: 50 Kč · Děti do 5 let: zdarma",
+    schedule: {
+      1:  [null, null, null, null, "10–17", "10–17", "10–17"],
+      2:  [null, null, null, null, "10–17", "10–17", "10–17"],
+      3:  [null, null, null, null, "10–17", "10–17", "10–17"],
+      4:  [null, null, null, null, "10–17", "10–17", "10–17"],
+      5:  [null, null, null, null, "10–17", "10–17", "10–17"],
+      6:  [null, null, null, null, "10–17", "10–17", "10–17"],
+      7:  [null, null, null, null, "10–17", "10–17", "10–17"],
+      8:  [null, null, null, null, "10–17", "10–17", "10–17"],
+      9:  [null, null, null, null, "10–17", "10–17", "10–17"],
+      10: [null, null, null, null, "10–17", "10–17", "10–17"],
+      11: [null, null, null, null, "10–17", "10–17", "10–17"],
+      12: [null, null, null, null, "10–17", "10–17", "10–17"],
+    },
+  },
   "allainova-vez": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Táborská Tichánkova rozhledna Lomnice nad Popelkou")}`,
     parkingPrice: "Parkování u Táborská/Tichánkova rozhledna - Zdarma",
@@ -516,10 +534,10 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
           )}
 
           {/* Parking navigation button — above Google Maps / Popis */}
-          {extra && (() => {
+          {extra && (extra.parkingOptions?.length || extra.parkingUrl) && (() => {
             const parkingOptions = extra.parkingOptions ?? [{
               label: "Navigace na parkoviště",
-              url: extra.parkingUrl,
+              url: extra.parkingUrl ?? "",
               note: extra.parkingPrice,
             }];
             return (

@@ -245,7 +245,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Česká Lípa",
       "Liberecký kraj"],
     "photo": "https://www.hrad-bezdez.cz/pamatky/bezdez/fotogalerie/image-thumb__20680__OgTagImage/hrad_s_obci.webp",
-    "desc": "Čtyřicetimetrová válcová věž s&nbsp;cimbuřím z&nbsp;poloviny 13. století. Fantastický kruhový výhled z&nbsp;otevřené plošiny (Ještěd, Ralsko, Lužické hory, Vrátenská hora, elektrárna Mělník, Říp, hrad Houska). Do stejnojmenné obce se nejsnáze dostane"
+    "desc": "Čtyřicetimetrová válcová věž s cimbuřím z poloviny 13. století. Fantastický kruhový výhled z otevřené plošiny (Ještěd, Ralsko, Lužické hory, Vrátenská hora, elektrárna Mělník, Říp, hrad Houska)."
   },
   {
     "id": 3298,
