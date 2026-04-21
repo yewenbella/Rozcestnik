@@ -71,7 +71,7 @@ function getTodayHours(extra: TowerExtra): { hours: string | null; inSeason: boo
 const TOWER_EXTRA: Record<string, TowerExtra> = {
   "bezdez": {
     openingHours: "",
-    entrance: "Dospělí 25–64 let: 180 Kč · Senioři 65+: 140 Kč · Mládež 18–24 let: 140 Kč · Osoby se zdravotním postižením s platným průkazem/osvědčením: 140 Kč · Děti 6–17 let: 50 Kč · Děti do 5 let: zdarma",
+    entrance: "Dospělí 25–64 let: 180 Kč\nSenioři 65+: 140 Kč\nMládež 18–24 let: 140 Kč\nOsoby se zdravotním postižením s platným průkazem/osvědčením: 140 Kč\nDěti 6–17 let: 50 Kč\nDěti do 5 let: zdarma",
     schedule: {
       1:  [null, null, null, null, "10–17", "10–17", "10–17"],
       2:  [null, null, null, null, "10–17", "10–17", "10–17"],
@@ -517,7 +517,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                   <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: "1px" }}>🎫</span>
                   <div>
                     <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.7rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Vstupné</div>
-                    <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px" }}>{extra.entrance}</div>
+                    <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "0.82rem", marginTop: "2px", whiteSpace: "pre-line" }}>{extra.entrance}</div>
                   </div>
                 </div>
               )}
