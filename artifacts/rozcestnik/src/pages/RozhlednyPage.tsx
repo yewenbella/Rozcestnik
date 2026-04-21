@@ -71,16 +71,18 @@ function getTodayHours(extra: TowerExtra): { hours: string | null; inSeason: boo
 
 const TOWER_EXTRA: Record<string, TowerExtra> = {
   "bezdez": {
-    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkování P1 Bezděz")}`,
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Bezděz (obec), Bezděz 58, 472 01 Bezděz")}`,
     parkingPrice: "Parkování Bezděz",
     parkingOptions: [
       {
-        label: "Parkoviště P1 obec Bezděz",
-        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště P1 obec Bezděz")}`,
+        label: "Parkoviště Bezděz (obec)",
+        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Bezděz (obec), Bezděz 58, 472 01 Bezděz")}`,
+        note: "Bezděz 58",
       },
       {
-        label: "Parkoviště P2 obec Bezděz",
-        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště P2 obec Bezděz")}`,
+        label: "Parkoviště Bezděz",
+        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Bezděz, Bezděz 114, 472 01 Bezděz")}`,
+        note: "Bezděz 114",
       },
     ],
     openingHours: "",
