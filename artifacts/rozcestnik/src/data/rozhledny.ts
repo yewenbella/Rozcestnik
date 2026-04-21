@@ -1165,7 +1165,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/frydlant/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/frydlant/DSCF2745.JPG",
+    "photo": "https://travelking.cdn.it7.sk/deadpool/locations/400/1206-mxpk-location.webp",
     "desc": "Státní hrad a zámek Frýdlant stojí na čedičové skále nad řekou Smědou. Patří k nejstarším zpřístupněným hradním muzeím ve střední Evropě. Součástí okruhu Zbraně, zbroj a rytíři je také výstup na hradní věž s výhledem na Frýdlant, Jizerské hory a okolí."
   },
   {
