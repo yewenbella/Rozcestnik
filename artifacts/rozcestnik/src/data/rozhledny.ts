@@ -1065,7 +1065,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberecký kraj",
       "Semily"],
     "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-dubecko-2023_6_7-104503.jpg",
-    "desc": "Padesátimetrová ocelová rozhledna z roku 2002 stojí na kopci Dubecko u Mírové pod Kozákovem. Původně šlo o telekomunikační stožár, obec ale prosadila doplnění schodiště a vyhlídkového ochozu pro turisty. Na zastřešenou plošinu ve výšce 33 metrů vede 176 schodů a z rozhledny je výhled na Kozákov, Trosky, Hruboskalsko, Ještěd, Bezděz, Ralsko i Krkonoše."
+    "desc": "Padesátimetrová ocelová rozhledna z roku 2002 stojí na kopci Dubecko u Mírové pod Kozákovem. Původně šlo o telekomunikační stožár, obec ale prosadila doplnění schodiště a vyhlídkového ochozu pro turisty."
   },
   {
     "id": 398,
