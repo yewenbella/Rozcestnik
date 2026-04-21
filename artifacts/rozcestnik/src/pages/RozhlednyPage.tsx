@@ -191,7 +191,6 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     dateExceptions: {
       "2026-07-06": "9–17",
     },
-    scheduleNote: "7. 4.–30. 4. so–ne 10.00–15.00\n1. 5.–31. 5. út–ne 10.00–16.00\n1. 6.–30. 6. út–ne 9.00–16.00\n1. 7.–31. 8. út–ne 9.00–17.00\n6. 7. po 9.00–17.00\n1. 9.–30. 9. čt–ne 10.00–16.00\n1. 10.–27. 10. so–ne 10.00–15.00\n28. 10.–31. 10. st–so 10.00–15.00\n1. 11. ne 10.00–15.00",
   },
   "hornik": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště hotel Stráž Rokytnice nad Jizerou")}`,
