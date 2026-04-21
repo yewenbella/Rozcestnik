@@ -175,8 +175,8 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     scheduleNote: "Otevřeno od 1.4. do 31.10.\nKlíče k vyzvednutí v občerstvení",
   },
   "frydlant": {
-    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště hrad a zámek Frýdlant Hejnická")}`,
-    parkingPrice: "Placené parkoviště cca 50 m od vstupu",
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště zámek Frýdlant")}`,
+    parkingPrice: "Parkoviště zámek Frýdlant · 50 Kč",
     routeFromParking: "Z parkoviště cca 50 m ke vstupu do hradu a zámku.",
     openingHours: "",
     entrance: "Okruh Zbraně, zbroj a rytíři (s hradní věží):\nDospělí: 160 Kč\nSenioři / mládež: 130 Kč\nDěti 6–17 let: 50 Kč\nDěti do 5 let: zdarma",
