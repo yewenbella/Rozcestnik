@@ -1216,7 +1216,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberec",
       "Liberecký kraj"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/grabstejn/DSCF1166.JPG",
-    "desc": "Grabštejn je původně gotický hrad ze 13. století nad obcí Chotyně, později přestavěný na renesanční sídlo. Veřejnosti je přístupná také hradní věž s vyhlídkovým ochozem, odkud je kruhový výhled na Lužické hory, Ještědský hřbet, Jizerské hory, Hrádek nad Nisou, Žitavu i krajinu u hranic Česka, Německa a Polska. K nejcennějším částem hradu patří renesanční kaple sv. Barbory."
+    "desc": "Grabštejn je původně gotický hrad ze 13. století nad obcí Chotyně, později přestavěný na renesanční sídlo. Veřejnosti je přístupná také hradní věž s vyhlídkovým ochozem, odkud je kruhový výhled na Lužické hory, Ještědský hřbet, Jizerské hory, Hrádek nad Nisou, Žitavu i krajinu u hranic Česka, Německa a Polska."
   },
   {
     "id": 794,
