@@ -131,8 +131,8 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     stairs: 112,
   },
   "dubecko": {
-    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Kaplička Dubecko Mírová pod Kozákovem")}`,
-    parkingPrice: "Parkování u kapličky v Dubecku",
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Kaple sv. Jana Nepomuckého Dubecko Mírová pod Kozákovem")}`,
+    parkingPrice: "Parkování u kaple sv. Jana Nepomuckého",
     routeFromParking: "Od kapličky v Dubecku po zelené turistické stezce cca 200–300 m k rozhledně.",
     openingHours: "",
     entrance: "Dospělí: 30 Kč",
