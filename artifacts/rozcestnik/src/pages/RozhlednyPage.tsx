@@ -460,7 +460,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                           {isOpen && <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#4ade80", display: "inline-block", flexShrink: 0 }} />}
                         </div>
                         {monthRow && (
-                          <div style={{ display: "flex", gap: "3px", marginTop: "6px", flexWrap: "wrap" }}>
+                          <div style={{ display: "flex", gap: "3px", marginTop: "6px", flexWrap: "nowrap", overflowX: "auto", paddingBottom: "2px" }}>
                             {DAY_NAMES.map((d, i) => (
                               <div key={d} style={{
                                 textAlign: "center", minWidth: "34px",
