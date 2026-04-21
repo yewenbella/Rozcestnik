@@ -1,5 +1,6 @@
 import bezdezPhoto from "@assets/image_1776800107254.png";
 import dubeckoPhoto from "@assets/image_1776805695962.png";
+import severoceskeMuzeumPhoto from "@assets/image_1776812010587.png";
 
 export interface Rozhledna {
   id: number;
@@ -3053,7 +3054,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/liberec-severoceske-muzeum/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "http://app.johanies.cz.s3.amazonaws.com/liberec-film-office/production/image/2021/10/07/06/45/34/37300155-8db2-4544-a4d7-a47a2c66b6d4/muzeum_svacek.jpg",
+    "photo": severoceskeMuzeumPhoto,
     "desc": "Kamenná 41metrová věž je přesnou kopií renesanční radniční věže, zbourané v&nbsp;roce 1893. V&nbsp;budově sídlí Severočeské muzeum, které je naše nejstarší uměleckoprůmyslové muzeum. Bylo založeno v&nbsp;roce 1873. S&nbs"
   },
   {
