@@ -124,7 +124,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
         note: "Dole pod Ještědem · 200,-",
       },
     ],
-    routeFromParking: "Vyberte si jednu ze dvou možností parkování",
+    routeFromParking: "Blíž k vrcholu – po silnici nahoru po červené turistické stezce necelých 800m · Dole pod Ještědem – po modré turistické stezce 3,5km",
     openingHours: "24/7",
     entrance: "Zdarma",
   },
