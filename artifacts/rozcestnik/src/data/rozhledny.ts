@@ -1215,7 +1215,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.hrad-grabstejn.cz/cs",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/grabstejn/DSCF1166.JPG",
+    "photo": "https://travelking.cdn.it7.sk/deadpool/locations/400/1917-bVcA-location.webp",
     "desc": "Grabštejn je původně gotický hrad ze 13. století nad obcí Chotyně, později přestavěný na renesanční sídlo. Veřejnosti je přístupná také hradní věž s vyhlídkovým ochozem, odkud je kruhový výhled na Lužické hory, Ještědský hřbet, Jizerské hory, Hrádek nad Nisou, Žitavu i krajinu u hranic Česka, Německa a Polska."
   },
   {
