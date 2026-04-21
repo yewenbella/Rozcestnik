@@ -131,7 +131,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
   "kralovka": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Královka Janov nad Nisou 116")}`,
     parkingPrice: "Parkoviště Královka",
-    routeFromParking: "",
+    routeFromParking: "Rozhledna přímo u parkoviště",
     openingHours: "",
     entrance: "Dospělí: 50 Kč · Děti: 35 Kč",
     schedule: {
