@@ -74,11 +74,11 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     parkingOptions: [
       {
         label: "Parkoviště Bezděz (obec)",
-        url: `https://www.google.com/maps/place/${encodeURIComponent("GPMC+J7 Bezděz, Doksy")}`,
+        url: `https://www.google.com/maps/place/${encodeURIComponent("Parkoviště Bezděz (obec)")}/@50.539052,14.720690,17z`,
       },
       {
         label: "Parkoviště Bezděz",
-        url: `https://www.google.com/maps/place/${encodeURIComponent("GPJF+CH Bezděz, Doksy")}`,
+        url: `https://www.google.com/maps/place/${encodeURIComponent("Parkoviště Bezděz")}/@50.531070,14.723906,17z`,
       },
     ],
     openingHours: "",
