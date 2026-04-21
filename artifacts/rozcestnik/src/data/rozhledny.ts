@@ -244,7 +244,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/bezdez/",
     "kraj": ["Česká Lípa",
       "Liberecký kraj"],
-    "photo": "https://mapy.com/screenshoter?url=https%3A%2F%2Fmapy.com%2Fen%2Fturisticka%3Fsource%3Dbase%26id%3D2342818%26gallery%3D1%26sourcep%3Dfoto%26idp%3D5801923%26x%3D14.7209180%26y%3D50.5391229%26z%3D19%26p%3D3%26l%3D0&width=1200&height=630",
+    "photo": "https://mapy.com/screenshoter?url=https%3A%2F%2Fmapy.com%2Fen%2Fturisticka%3Fsource%3Dbase%26id%3D2342818%26gallery%3D1%26sourcep%3Dfoto%26idp%3D5801923%26x%3D14.7209180%26y%3D50.5391229%26z%3D17%26p%3D3%26l%3D0&width=1200&height=630",
     "desc": "Čtyřicetimetrová válcová věž s cimbuřím z poloviny 13. století. Fantastický kruhový výhled z otevřené plošiny (Ještěd, Ralsko, Lužické hory, Vrátenská hora, elektrárna Mělník, Říp, hrad Houska)."
   },
   {
