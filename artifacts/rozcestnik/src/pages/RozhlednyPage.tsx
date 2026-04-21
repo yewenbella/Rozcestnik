@@ -73,10 +73,6 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
   "bezdez": {
     parkingOptions: [
       {
-        label: "Parkoviště Bezděz (obec)",
-        url: `https://www.google.com/maps/search/${encodeURIComponent("Parkoviště Bezděz (obec)")}`,
-      },
-      {
         label: "Parkoviště Bezděz",
         url: `https://www.google.com/maps/search/${encodeURIComponent("Parkoviště Bezděz")}`,
       },
