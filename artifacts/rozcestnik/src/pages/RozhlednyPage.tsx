@@ -151,7 +151,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
       11: [null, null, null, null, null, null, null],
       12: [null, null, null, null, null, null, null],
     },
-    scheduleNote: "Otevřeno od 1.4. do 31.10.",
+    scheduleNote: "Otevřeno od 1.4. do 31.10.\nKlíče k vyzvednutí v občerstvení",
   },
   "grabstejn": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště hrad Grabštejn Chotyně")}`,
@@ -605,7 +605,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                           </div>
                         )}
                         {extra.scheduleNote && (
-                          <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.68rem", marginTop: "5px", fontStyle: "italic" }}>{extra.scheduleNote}</div>
+                          <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.68rem", marginTop: "5px", fontStyle: "italic", whiteSpace: "pre-line" }}>{extra.scheduleNote}</div>
                         )}
                       </div>
                     </div>
