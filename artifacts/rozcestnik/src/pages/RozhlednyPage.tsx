@@ -116,12 +116,12 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
       {
         label: "Parkoviště Ještědka",
         url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Ještědka Světlá pod Ještědem 60")}`,
-        note: "Blíž k vrcholu",
+        note: "Blíž k vrcholu · 200,-",
       },
       {
         label: "Parkoviště P1",
         url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště P1 Ještěd Liberec")}`,
-        note: "Dole pod Ještědem",
+        note: "Dole pod Ještědem · 200,-",
       },
     ],
     routeFromParking: "Vyberte si jednu ze dvou možností parkování",
