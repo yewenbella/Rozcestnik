@@ -3063,7 +3063,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/liberecka-vysina/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/liberecky-kraj/liberecka-vysina/P1010013.JPG",
+    "photo": "https://www.libereckavysina.com/wp-content/uploads/2025/09/DSC_0822edit-scaled.jpg",
     "desc": "Pětadvacetimetrová kamenná rozhledna v podobě středověkého hradu z roku 1901. Kruhový výhled ze zastřešené vyhlídkové místnosti ve výšce 21 metrů (Jizerské hory, Ještědský hřbet, Javorník, Liberec, Jablonec). Z Lidových "
   },
   {
