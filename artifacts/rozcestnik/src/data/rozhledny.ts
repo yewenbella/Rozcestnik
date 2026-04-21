@@ -676,7 +676,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-cisarsky-kamen/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/2024/rozhledna-cisarsky-kamen-2024_18_8-153546.jpg",
+    "photo": "https://cdn.kudyznudy.cz/files/b5/b55cb079-2f55-4474-9839-07e8700d7144.webp?v=20250708223343&_gl=1*1w1v31t*_gcl_aw*R0NMLjE3NzY3OTgzMTIuQ2p3S0NBand3SnpQQmhCUkVpd0FKZkhSbmQ1ZEo0SFpKaXVmbWVlbkpmakhOZUNBV3JGZW5UckREZVpINUNfREZUQ0hoVjVqR1dlRlhCb0NSOWdRQXZEX0J3RQ..*_gcl_au*MTg0ODM3Njg2My4xNzc2MTY0NjE0*_ga*NjU1MTU4MjY4LjE3NzYxNjQ2MTI.*_ga_EQVF905M85*czE3NzY4MDM1MDgkbzEwJGcxJHQxNzc2ODA1OTcxJGo2MCRsMCRoMTE4NDAyMTM3Nw..*_fplc*YVFNQTlZVzBnWnJTSHpTbW5NJTJCS2JkMHl3OFhIbHA2OFhyMnBXM2wwTTNYcGRrdlNaVnpkdEFWSG1FZGZhbDMyNFYwVTNyWkpra3VFWkprTFF1R3Ric0hWOVgydFpTSTc0NndLcEswJTJGVUFvVTRxV2trSERDbWJ0bldpaGtwQSUzRCUzRA..",
     "desc": "Původní dvacetimetrová dřevěná rozhledna z roku 2009 byla kvůli nutným opravám v roce 2017 uzavřena. Záhy se ale ukázalo, že působení povětrnostních vlivů ji poškodilo natolik, že byla v následujícím roce demontována. V roce 2018 byla nahrazena ocelovou věží, opláštěnou dřevem."
   },
   {
