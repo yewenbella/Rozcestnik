@@ -78,6 +78,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
         note: "Auto: 100 Kč\nMotocykl: 50 Kč\nBus: 200 Kč\nPlatba: parkovací automat, platební karta, hotovost",
       },
     ],
+    routeFromParking: "Po modré turistické stezce k rozcestníku Bezděz - pod hradem, následně po červené turistické stezce na hrad Bezděz. Celkem cca 1,5 km.",
     openingHours: "",
     entrance: "Dospělí 25–64 let: 180 Kč\nSenioři 65+: 140 Kč\nMládež 18–24 let: 140 Kč\nOsoby se zdravotním postižením s platným průkazem/osvědčením: 140 Kč\nDěti 6–17 let: 50 Kč\nDěti do 5 let: zdarma",
     schedule: {
