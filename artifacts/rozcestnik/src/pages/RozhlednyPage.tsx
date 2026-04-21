@@ -175,7 +175,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
   "grabstejn": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště hrad Grabštejn Chotyně")}`,
     parkingPrice: "Parkoviště pod hradem Grabštejn",
-    routeFromParking: "Z parkoviště cca 300–400 m ke hradu po žluté turistické značce.",
+    routeFromParking: "Z parkoviště cca 300–400 m ke hradu po žluté nebo zelené turistické značce.",
     openingHours: "",
     entrance: "Věž: 80 Kč\nZákladní prohlídkový okruh: 180 Kč\nSnížené vstupné dle okruhu",
     dateRanges: [
