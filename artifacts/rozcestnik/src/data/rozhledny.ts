@@ -664,7 +664,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberec",
       "Liberecký kraj"],
     "photo": "https://lesycr.cz/wp-content/uploads/2016/12/rozhledna-510.jpg",
-    "desc": "Dvacetimetrová dřevěná rozhledna z roku 2009. Kruhový výhled z otevřeného ochozu ve výšce 19 metrů (Ještěd, Javorník, Liberec, Jablonec, Jizerské hory, západní Krkonoše a Trosky v Českém ráji). Východištěm ke zdolání této dřevěné rozhledny je obec Mi"
+    "desc": "Dvacetimetrová dřevěná rozhledna z roku 2009. Kruhový výhled z otevřeného ochozu ve výšce 19 metrů (Ještěd, Javorník, Liberec, Jablonec, Jizerské hory, západní Krkonoše a Trosky v Českém ráji)."
   },
   {
     "id": 14173,
