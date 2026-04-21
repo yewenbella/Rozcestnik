@@ -153,7 +153,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
   "majak-jary-cimrmana": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště U Čápa Kořenov Příchovice")}`,
     parkingPrice: "Parkoviště U Čápa",
-    routeFromParking: "",
+    routeFromParking: "Rozhledna přímo nad parkovištěm",
     openingHours: "",
     entrance: "Dospělí: 65 Kč · Senioři: 45 Kč · Dítě 6–15 let: 35 Kč · Děti do 6 let: zdarma",
     stairs: 105,
