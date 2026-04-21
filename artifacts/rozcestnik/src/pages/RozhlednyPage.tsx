@@ -94,7 +94,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
   },
   "cisarsky-kamen-ii": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště rozhledna Císařský kámen Rádlo Česko")}`,
-    parkingPrice: "Parkoviště rozhledna Císařský kámen",
+    parkingPrice: "Parkoviště rozhledna Císařský kámen · Zdarma",
     routeFromParking: "Po zelené turistické stezce necelých 800m",
     openingHours: "24/7",
     entrance: "Zdarma",
