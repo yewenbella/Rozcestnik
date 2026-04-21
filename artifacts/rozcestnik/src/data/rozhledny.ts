@@ -1585,7 +1585,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/hornik/",
     "kraj": ["Liberecký kraj",
       "Semily"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/hornik/DSCF6894.JPG",
+    "photo": "https://s3.eu-central-1.amazonaws.com/api.contember.mangoweb.cz/rokytnice/ea053bc0-be52-4b81-883e-849e2c91721e.jpeg",
     "desc": "Horník je nejvýraznější vyhlídka lesoparku Hlídka na Stráži nad Rokytnicí nad Jizerou. Spolu s Liškou, Medvědem a Ovcí odkazuje na postavy z městského znaku Rokytnice. Dřevěno-ocelová vyhlídka stojí na skále Kápětka a nabízí pohled do údolí Jizery i na okolní krkonošské hřebeny. Přístup vede po krátkém žebříku a prudším schodišti."
   },
   {
