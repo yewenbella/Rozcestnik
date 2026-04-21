@@ -1166,7 +1166,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberec",
       "Liberecký kraj"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/frydlant/DSCF2745.JPG",
-    "desc": "Středověký hrad byl vybudován na mohutné čedičové skále nad řekou Smědá v&nbsp;polovině 13. století a nadále se postupně rozšiřoval. V&nbsp;16. století doznal dvě renesanční úpravy a&nbsp;na přelomu 17. století byl posta"
+    "desc": "Státní hrad a zámek Frýdlant stojí na čedičové skále nad řekou Smědou. Patří k nejstarším zpřístupněným hradním muzeím ve střední Evropě. Součástí okruhu Zbraně, zbroj a rytíři je také výstup na hradní věž s výhledem na Frýdlant, Jizerské hory a okolí."
   },
   {
     "id": 15954,
@@ -1176,7 +1176,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberec",
       "Liberecký kraj"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/frydlant-radnice/DSCF4738.JPG",
-    "desc": "Druhou dominantou města je, samozřejmě kromě zámku, rozprostírajícího se na výrazné výšině, také novorenesanční budova radnice. Byla vystavěná v letech 1893-1896 podle projektu vídeňského architekta Franze Neumanna, kter"
+    "desc": "Novorenesanční radnice ve Frýdlantu byla postavena v letech 1893–1896 podle návrhu architekta Franze Neumanna. Její 48 metrů vysoká věž s ochozem je přístupná pouze s průvodcem a nabízí výhled na město, hrad a zámek Frýdlant i Jizerské hory."
   },
   {
     "id": 926,
@@ -1186,7 +1186,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberec",
       "Liberecký kraj"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/liberecky-kraj/fydlantska-vysina/DSCF3113.JPG",
-    "desc": "Jedenadvacetimetrová cihlová věž z roku 1907. Kruhový výhled z otevřeného ochozu ve výšce 18 metrů (Jizerské a Lužické hory, Ještěd, Frýdlant, v Polsku pak elektrárna Turoszow a mohutné haldy vytěžené hlušiny). Rozhledna"
+    "desc": "Frýdlantská výšina je 21 metrů vysoká cihlová rozhledna z roku 1907 stojící nad Frýdlantem v nadmořské výšce 399 metrů. Po výstupu na ochoz se otevírá pohled na frýdlantský zámek, Jizerské hory, vrch Vysoký a za dobré viditelnosti i do Polska."
   },
   {
     "id": 23375,
