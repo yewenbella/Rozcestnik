@@ -1185,7 +1185,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/frydlantska-vysina/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/liberecky-kraj/fydlantska-vysina/DSCF3113.JPG",
+    "photo": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEINpUF5Jyi1hHectOFNbSen2081v4M2iZs4qdNrqnALRm85ELvAGQtycv4wFPP1E6BmHWDfQ9yA47ppjW-Tjs-6Qv6jbKsNgx6A0eiCHmqvfOZ2cQV8JS9akjO7dxTcQNgTjj1=s1360-w1360-h1020-rw",
     "desc": "Frýdlantská výšina je 21 metrů vysoká cihlová rozhledna z roku 1907 stojící nad Frýdlantem v nadmořské výšce 399 metrů. Po výstupu na ochoz se otevírá pohled na frýdlantský zámek, Jizerské hory, vrch Vysoký a za dobré viditelnosti i do Polska."
   },
   {
