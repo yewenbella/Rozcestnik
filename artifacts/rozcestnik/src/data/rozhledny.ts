@@ -1065,7 +1065,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberecký kraj",
       "Semily"],
     "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-dubecko-2023_6_7-104503.jpg",
-    "desc": "Padesátimetrový trubková ocelový stožár opatřený vnějším vinutým schodištěm z roku 2002. Kruhový výhled ze zastřešené, dřevem obložené vyhlídkové plošiny ve výšce 33 metrů (Kozákov, Trosky, Ještěd, Bezděz, Ralsko, Černá "
+    "desc": "Padesátimetrová ocelová rozhledna z roku 2002 stojí na kopci Dubecko u Mírové pod Kozákovem. Původně šlo o telekomunikační stožár, obec ale prosadila doplnění schodiště a vyhlídkového ochozu pro turisty. Na zastřešenou plošinu ve výšce 33 metrů vede 176 schodů a z rozhledny je výhled na Kozákov, Trosky, Hruboskalsko, Ještěd, Bezděz, Ralsko i Krkonoše."
   },
   {
     "id": 398,
@@ -1211,11 +1211,11 @@ export const rozhledny: Rozhledna[] = [
     "id": 11757,
     "name": "Grabštejn",
     "slug": "grabstejn",
-    "url": "https://www.rozhlednovymrajem.cz/rozhledny/grabstejn/",
+    "url": "https://www.hrad-grabstejn.cz/cs",
     "kraj": ["Liberec",
       "Liberecký kraj"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/grabstejn/DSCF1166.JPG",
-    "desc": "Původně gotický hrad ze 13. století byl v&nbsp;16. století přestavěn na výstavný renesanční zámek. Od roku 1954 celý areál vlastnila Československá armáda, která jej využívala až do roku 1970, kdy byl celý objekt předán "
+    "desc": "Grabštejn je původně gotický hrad ze 13. století nad obcí Chotyně, později přestavěný na renesanční sídlo. Veřejnosti je přístupná také hradní věž s vyhlídkovým ochozem, odkud je kruhový výhled na Lužické hory, Ještědský hřbet, Jizerské hory, Hrádek nad Nisou, Žitavu i krajinu u hranic Česka, Německa a Polska. K nejcennějším částem hradu patří renesanční kaple sv. Barbory."
   },
   {
     "id": 794,
@@ -1585,7 +1585,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberecký kraj",
       "Semily"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/hornik/DSCF6894.JPG",
-    "desc": "Desetimetrová kovová rozhledna opláštěná dubovými fošnami, stojí spolu s dalšími třemi nižšími stavbami Liškou, Medvědem a Ovcí od roku 2021 na severním okraji vrchu Stráž nad Rokytnicí nad Jizerou, na jejímž městském zn"
+    "desc": "Horník je nejvýraznější vyhlídka lesoparku Hlídka na Stráži nad Rokytnicí nad Jizerou. Spolu s Liškou, Medvědem a Ovcí odkazuje na postavy z městského znaku Rokytnice. Dřevěno-ocelová vyhlídka stojí na skále Kápětka a nabízí pohled do údolí Jizery i na okolní krkonošské hřebeny. Přístup vede po krátkém žebříku a prudším schodišti."
   },
   {
     "id": 1595,
@@ -1755,7 +1755,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberecký kraj",
       "Semily"],
     "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/hruba-skala/DSCF2698.JPG",
-    "desc": "Zámek je postaven jihovýchodně od Turnova na skupině pískovcových skalních věží a vznikl přestavbou hradu Skála z poloviny 14. století. Od 16. století prošel postupně renesančními, barokními, romantickými a novogotickými"
+    "desc": "Zámek Hrubá Skála stojí jihovýchodně od Turnova na pískovcových skalních věžích v Českém ráji. Vznikl přestavbou středověkého hradu Skála a dnes slouží jako hotelový areál. Přístupná vyhlídková věž nabízí pohled na Hruboskalské skalní město, hrad Trosky, Kozákov, Tábor a okolní krajinu Českého ráje."
   },
   {
     "id": 10789,
