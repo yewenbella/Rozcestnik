@@ -53,22 +53,41 @@ interface TowerExtra {
   entrance: string;
   stairs?: number;
   schedule?: { [month: number]: (string | null)[] }; // month 1-12 → [Po,Út,St,Čt,Pá,So,Ne]
+  dateRanges?: { start: string; end: string; hours: (string | null)[] }[];
   scheduleNote?: string;
   dateExceptions?: { [date: string]: string | null };
 }
 
-function getTodayHours(extra: TowerExtra): { hours: string | null; inSeason: boolean } {
-  const now = new Date();
-  const dateKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+function getDateKey(date: Date): string {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function getMonthDayKey(date: Date): string {
+  return `${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function getHoursForDate(extra: TowerExtra, date: Date): { hours: string | null; inSeason: boolean } {
+  const dateKey = getDateKey(date);
   if (extra.dateExceptions && dateKey in extra.dateExceptions) {
     return { hours: extra.dateExceptions[dateKey], inSeason: true };
   }
+  if (extra.dateRanges?.length) {
+    const monthDay = getMonthDayKey(date);
+    const dayIndex = (date.getDay() + 6) % 7;
+    const range = extra.dateRanges.find(item => monthDay >= item.start && monthDay <= item.end);
+    if (!range) return { hours: null, inSeason: false };
+    return { hours: range.hours[dayIndex] ?? null, inSeason: true };
+  }
   if (!extra.schedule) return { hours: null, inSeason: false };
-  const month = now.getMonth() + 1;
-  const dayIndex = (now.getDay() + 6) % 7; // 0=Po, 1=Út, ..., 5=So, 6=Ne
+  const month = date.getMonth() + 1;
+  const dayIndex = (date.getDay() + 6) % 7;
   const monthSchedule = extra.schedule[month];
   if (!monthSchedule) return { hours: null, inSeason: false };
   return { hours: monthSchedule[dayIndex] ?? null, inSeason: true };
+}
+
+function getTodayHours(extra: TowerExtra): { hours: string | null; inSeason: boolean } {
+  return getHoursForDate(extra, new Date());
 }
 
 const TOWER_EXTRA: Record<string, TowerExtra> = {
@@ -159,27 +178,18 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     routeFromParking: "Z parkoviště cca 300–400 m ke hradu po žluté turistické značce.",
     openingHours: "",
     entrance: "Věž: 80 Kč\nZákladní prohlídkový okruh: 180 Kč\nSnížené vstupné dle okruhu",
-    schedule: {
-      1:  [null, null, null, null, null, null, null],
-      2:  [null, null, null, null, null, null, null],
-      3:  [null, null, null, null, null, null, null],
-      4:  [null, null, null, null, null, "10–15", "10–15"],
-      5:  [null, "10–16", "10–16", "10–16", "10–16", "10–16", "10–16"],
-      6:  [null, "9–16", "9–16", "9–16", "9–16", "9–16", "9–16"],
-      7:  [null, "9–17", "9–17", "9–17", "9–17", "9–17", "9–17"],
-      8:  [null, "9–17", "9–17", "9–17", "9–17", "9–17", "9–17"],
-      9:  [null, null, null, "10–16", "10–16", "10–16", "10–16"],
-      10: [null, null, null, null, null, "10–15", "10–15"],
-      11: [null, null, null, null, null, null, null],
-      12: [null, null, null, null, null, null, null],
-    },
+    dateRanges: [
+      { start: "04-07", end: "04-30", hours: [null, null, null, null, null, "10–15", "10–15"] },
+      { start: "05-01", end: "05-31", hours: [null, "10–16", "10–16", "10–16", "10–16", "10–16", "10–16"] },
+      { start: "06-01", end: "06-30", hours: [null, "9–16", "9–16", "9–16", "9–16", "9–16", "9–16"] },
+      { start: "07-01", end: "08-31", hours: [null, "9–17", "9–17", "9–17", "9–17", "9–17", "9–17"] },
+      { start: "09-01", end: "09-30", hours: [null, null, null, "10–16", "10–16", "10–16", "10–16"] },
+      { start: "10-01", end: "10-27", hours: [null, null, null, null, null, "10–15", "10–15"] },
+      { start: "10-28", end: "10-31", hours: [null, null, "10–15", "10–15", "10–15", "10–15", null] },
+      { start: "11-01", end: "11-01", hours: [null, null, null, null, null, null, "10–15"] },
+    ],
     dateExceptions: {
       "2026-07-06": "9–17",
-      "2026-10-28": "10–15",
-      "2026-10-29": "10–15",
-      "2026-10-30": "10–15",
-      "2026-10-31": "10–15",
-      "2026-11-01": "10–15",
     },
     scheduleNote: "7. 4.–30. 4. so–ne 10.00–15.00\n1. 5.–31. 5. út–ne 10.00–16.00\n1. 6.–30. 6. út–ne 9.00–16.00\n1. 7.–31. 8. út–ne 9.00–17.00\n6. 7. po 9.00–17.00\n1. 9.–30. 9. čt–ne 10.00–16.00\n1. 10.–27. 10. so–ne 10.00–15.00\n28. 10.–31. 10. st–so 10.00–15.00\n1. 11. ne 10.00–15.00",
   },
@@ -573,13 +583,21 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                   </div>
                 </div>
               )}
-              {(extra.openingHours || extra.schedule) && (() => {
+              {(extra.openingHours || extra.schedule || extra.dateRanges) && (() => {
                 const DAY_NAMES = ["Po", "Út", "St", "Čt", "Pá", "So", "Ne"];
-                if (extra.schedule) {
+                if (extra.schedule || extra.dateRanges) {
                   const { hours, inSeason } = getTodayHours(extra);
                   const now = new Date();
                   const curMonth = now.getMonth() + 1;
-                  const monthRow = extra.schedule[curMonth];
+                  const monthRow = extra.schedule?.[curMonth];
+                  const weekStart = new Date(now);
+                  weekStart.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+                  const weekRow = DAY_NAMES.map((_, i) => {
+                    const day = new Date(weekStart);
+                    day.setDate(weekStart.getDate() + i);
+                    return getHoursForDate(extra, day).hours;
+                  });
+                  const visibleRow = extra.dateRanges ? weekRow : monthRow;
                   const isOpen = !!hours;
                   return (
                     <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
@@ -595,7 +613,7 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                           </span>
                           {isOpen && <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#4ade80", display: "inline-block", flexShrink: 0 }} />}
                         </div>
-                        {monthRow && (
+                        {visibleRow && (
                           <div style={{ display: "flex", gap: "3px", marginTop: "6px", flexWrap: "nowrap", overflowX: "auto", paddingBottom: "2px" }}>
                             {DAY_NAMES.map((d, i) => (
                               <div key={d} style={{
@@ -605,8 +623,8 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
                                 border: i === (new Date().getDay() + 6) % 7 ? "1px solid rgba(134,239,172,0.4)" : "1px solid transparent",
                               }}>
                                 <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.58rem", fontWeight: 700 }}>{d}</div>
-                                <div style={{ color: monthRow[i] ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.2)", fontSize: "0.6rem", marginTop: "1px" }}>
-                                  {monthRow[i] ?? "—"}
+                                <div style={{ color: visibleRow[i] ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.2)", fontSize: "0.6rem", marginTop: "1px" }}>
+                                  {visibleRow[i] ?? "—"}
                                 </div>
                               </div>
                             ))}
