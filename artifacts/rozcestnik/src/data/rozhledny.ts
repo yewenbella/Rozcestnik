@@ -1433,7 +1433,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberec",
       "Liberecký kraj"],
     "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-hermanice-2023_22_1-121944.jpg",
-    "desc": "Originální čtyřiadvacetimetrová dřevěná rozhledna z&nbsp;roku 2012. Kruhový výhled z&nbsp;otevřeného ochozu ve výšce 23 metrů (Jizerské hory s dominantním Smrkem, Lužické hory se všemi nejznámějšími vrcholy Hvozdem, Luží"
+    "desc": "Originální čtyřiadvacetimetrová dřevěná rozhledna z roku 2012. Za neobvyklý tvar si rozhledna vysloužila přezdívku okurka. I když je rozhledna jednou z nejníže položených v celém kraji, nabízí poměrně široký rozhled na Jizerské hory, Lužické hory a dohlédnete i do Polska a Německa."
   },
   {
     "id": 2533,

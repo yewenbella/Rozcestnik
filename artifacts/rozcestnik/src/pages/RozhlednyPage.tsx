@@ -100,6 +100,14 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     entrance: "Zdarma",
     stairs: 112,
   },
+  "hermanice": {
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště pod rozhlednou Heřmanice Frýdlant v Čechách")}`,
+    parkingPrice: "Parkování přímo u rozhledny · Zdarma",
+    routeFromParking: "Rozhledna přímo u parkoviště",
+    openingHours: "24/7",
+    entrance: "Zdarma",
+    stairs: 99,
+  },
   "bramberk": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Bramberk parkoviště")}`,
     parkingPrice: "Parkování u rozhledny",
