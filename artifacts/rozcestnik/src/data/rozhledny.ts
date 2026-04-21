@@ -1,4 +1,5 @@
 import bezdezPhoto from "@assets/image_1776800107254.png";
+import dubeckoPhoto from "@assets/image_1776805695962.png";
 
 export interface Rozhledna {
   id: number;
@@ -1064,7 +1065,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://turistickamapa.cz/rozhledna-dubecko/",
     "kraj": ["Liberecký kraj",
       "Semily"],
-    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-dubecko-2023_6_7-104503.jpg",
+    "photo": dubeckoPhoto,
     "desc": "Padesátimetrová ocelová rozhledna z roku 2002 stojí na kopci Dubecko u Mírové pod Kozákovem. Původně šlo o telekomunikační stožár, obec ale prosadila doplnění schodiště a vyhlídkového ochozu pro turisty."
   },
   {
