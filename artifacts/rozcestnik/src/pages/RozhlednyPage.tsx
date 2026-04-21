@@ -221,7 +221,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
   "frydlantska-vysina": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště u hřbitova Frýdlant WJJC+J7")}`,
     parkingPrice: "Parkoviště u hřbitova · zdarma",
-    routeFromParking: "Od hřbitova cca 0,5 km pěšky k rozhledně. Z centra Frýdlantu vede žlutá turistická značka cca 2 km.",
+    routeFromParking: "Od hřbitova cca 0,5 km pěšky k rozhledně.",
     openingHours: "",
     entrance: "Dospělí: 30 Kč\nSnížené vstupné děti / senioři / ZTP: 20 Kč",
     stairs: 105,
