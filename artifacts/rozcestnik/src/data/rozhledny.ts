@@ -2993,7 +2993,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/lemberk/",
     "kraj": ["Liberec",
       "Liberecký kraj"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/lemberk/DSCF2765.JPG",
+    "photo": "https://cdn.kudyznudy.cz/files/98/987377da-d3e4-4ee8-b41a-16d23d043540.webp?v=20260319150227",
     "desc": "Strážní hrad z&nbsp;poloviny 13. století byl v&nbsp;roce 1550 přestaven na renesanční sídlo. Z původních zdí se dochovala jen část okrouhlé šestadvacetimetrové věže, která dominuje celému objektu do dnešních dnů. Po zříc"
   },
   {
