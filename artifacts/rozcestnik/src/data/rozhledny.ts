@@ -765,7 +765,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://cernastudnice.eu/vyhlidka/",
     "kraj": ["Jablonec nad Nisou",
       "Liberecký kraj"],
-    "photo": "https://turistickamapa.cz/data_fotos/2023/rozhledna-cerna-studnice-2023_31_1-172856.jpg",
+    "photo": "https://cdn.kudyznudy.cz/files/42/42b71490-9b35-4208-b057-213de84bed22.webp?v=20260307050256",
     "desc": "Mohutná šestadvacetimetrová kamenná rozhledna z roku 1905 s horskou chatou, restaurací, kioskem a výletním areálem Černá Studnice. Stojí na vrcholu ve výšce 869 m n. m. a patří mezi nejvyšší kamenné rozhledny Jizerských hor. V areálu je také dětské hřiště, mini-zoo s alpakami, arboretum a v zimě sáňkařská dráha."
   },
   {
