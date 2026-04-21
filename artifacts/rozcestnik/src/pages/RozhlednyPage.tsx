@@ -200,8 +200,8 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     entrance: "Zdarma",
   },
   "hruba-skala": {
-    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště zámek Hrubá Skála")}`,
-    parkingPrice: "Parkování u zámku Hrubá Skála · zpoplatněné",
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Hrubá Skála G5VV+Q2")}`,
+    parkingPrice: "Parkoviště Hrubá Skála",
     routeFromParking: "Z parkoviště u zámku je vyhlídková věž jen pár kroků přes nádvoří.",
     openingHours: "",
     entrance: "Dospělí: 50 Kč\nDěti: 25 Kč",
