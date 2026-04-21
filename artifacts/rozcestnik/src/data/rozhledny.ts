@@ -2083,7 +2083,7 @@ export const rozhledny: Rozhledna[] = [
     "kraj": ["Liberec",
       "Liberecký kraj"],
     "photo": "https://turistickamapa.cz/data_fotos/2019_3-11-185708-tmp.jpg",
-    "desc": "Třiadevadesátimetrová&nbsp; konstrukce ve tvaru rotačního hyperboloidu z roku 1973 (stavba probíhala od roku 1966).V roce 1969 za ni architekt Hubáček získal prestižní Perretovu cenu Mezinárodní unie architektů. Fantasti"
+    "desc": "Vysílač a rozhledna Ještěd má podobu rotačního hyperboloidu a jeho špička elegantně dotváří ještědský vrchol. Vysílač je vysoký 94 metrů a v sobě ukrývá také restauraci a hotel, kde v každém pokoji dostanete navíc výhled, který jinde nezažijete."
   },
   {
     "id": 809,

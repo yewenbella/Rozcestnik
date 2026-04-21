@@ -44,6 +44,7 @@ const MAPS_OVERRIDES: Record<string, string> = {
 interface TowerExtra {
   parkingUrl: string;
   parkingPrice: string;
+  parkingOptions?: { label: string; url: string; note?: string }[];
   routeFromParking: string;
   openingHours: string;
   entrance: string;
@@ -107,6 +108,25 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     openingHours: "24/7",
     entrance: "Zdarma",
     stairs: 99,
+  },
+  "jested": {
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Ještěd Liberec")}`,
+    parkingPrice: "Parkování u Ještědu",
+    parkingOptions: [
+      {
+        label: "Parkoviště u Ještědu",
+        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Ještěd Liberec")}`,
+        note: "Blíž k vrcholu",
+      },
+      {
+        label: "Parkoviště lanovka Horní Hanychov",
+        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště lanovka Horní Hanychov Liberec")}`,
+        note: "Dole pod Ještědem",
+      },
+    ],
+    routeFromParking: "Vyberte si jednu ze dvou možností parkování",
+    openingHours: "24/7",
+    entrance: "Zdarma",
   },
   "bramberk": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Bramberk parkoviště")}`,
@@ -452,28 +472,40 @@ function DetailModal({ r, onClose, isCompleted, toggle, isSignedIn, isWishlisted
           )}
 
           {/* Parking navigation button — above Google Maps / Popis */}
-          {extra && (
-            <a
-              href={extra.parkingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "flex", alignItems: "center", gap: "8px",
-                textDecoration: "none", marginBottom: "8px",
-                background: "rgba(66,133,244,0.10)", border: "1px solid rgba(66,133,244,0.3)",
-                borderRadius: "10px", padding: "7px 10px",
-              }}
-            >
-              <span style={{ fontSize: "0.95rem", flexShrink: 0 }}>🅿️</span>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.76rem" }}>Navigace na parkoviště</div>
-                {extra.parkingPrice && (
-                  <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", marginTop: "1px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{extra.parkingPrice}</div>
-                )}
+          {extra && (() => {
+            const parkingOptions = extra.parkingOptions ?? [{
+              label: "Navigace na parkoviště",
+              url: extra.parkingUrl,
+              note: extra.parkingPrice,
+            }];
+            return (
+              <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "8px" }}>
+                {parkingOptions.map((option, index) => (
+                  <a
+                    key={`${option.label}-${index}`}
+                    href={option.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "flex", alignItems: "center", gap: "8px",
+                      textDecoration: "none",
+                      background: "rgba(66,133,244,0.10)", border: "1px solid rgba(66,133,244,0.3)",
+                      borderRadius: "10px", padding: "7px 10px",
+                    }}
+                  >
+                    <span style={{ fontSize: "0.95rem", flexShrink: 0 }}>🅿️</span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ color: "#93c5fd", fontWeight: 700, fontSize: "0.76rem" }}>{option.label}</div>
+                      {option.note && (
+                        <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.65rem", marginTop: "1px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{option.note}</div>
+                      )}
+                    </div>
+                    <span style={{ fontSize: "0.7rem", color: "#93c5fd", flexShrink: 0 }}>↗</span>
+                  </a>
+                ))}
               </div>
-              <span style={{ fontSize: "0.7rem", color: "#93c5fd", flexShrink: 0 }}>↗</span>
-            </a>
-          )}
+            );
+          })()}
 
           {/* Buttons row 1: Maps + info */}
           <div style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
