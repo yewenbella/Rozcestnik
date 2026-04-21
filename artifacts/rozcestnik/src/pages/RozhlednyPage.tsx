@@ -219,12 +219,12 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     scheduleNote: "Prohlídka pouze s průvodcem, začíná ve 2. patře radnice. Jen za příznivého počasí.",
   },
   "frydlantska-vysina": {
-    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Hřbitov Frýdlant Údolí parkování")}`,
-    parkingPrice: "Parkování u místního hřbitova · zdarma",
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště u hřbitova Frýdlant WJJC+J7")}`,
+    parkingPrice: "Parkoviště u hřbitova · zdarma",
     routeFromParking: "Od hřbitova cca 0,5 km pěšky k rozhledně. Z centra Frýdlantu vede žlutá turistická značka cca 2 km.",
     openingHours: "",
     entrance: "Dospělí: 30 Kč\nSnížené vstupné děti / senioři / ZTP: 20 Kč",
-    stairs: 100,
+    stairs: 105,
     dateRanges: [
       { start: "05-01", end: "06-30", hours: [null, null, null, null, null, "9–18", "9–18"] },
       { start: "07-01", end: "08-31", hours: [null, "10–17", "10–17", "10–17", "10–17", "9–18", "9–18"] },
