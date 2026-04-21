@@ -194,7 +194,7 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
   },
   "hornik": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště zpoplatněné Jablonec nad Jizerou PF82+67")}`,
-    parkingPrice: "Parkoviště zpoplatněné",
+    parkingPrice: "Parkoviště zpoplatněné · 60 Kč · platba QR",
     routeFromParking: "Z parkoviště po červené turistické stezce necelý 1 km.",
     openingHours: "24/7",
     entrance: "Zdarma",
