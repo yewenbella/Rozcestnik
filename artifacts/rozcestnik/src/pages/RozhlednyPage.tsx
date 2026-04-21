@@ -114,13 +114,13 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     parkingPrice: "Parkování u Ještědu",
     parkingOptions: [
       {
-        label: "Parkoviště u Ještědu",
-        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Ještěd Liberec")}`,
+        label: "Parkoviště Ještědka",
+        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Ještědka Liberec")}`,
         note: "Blíž k vrcholu",
       },
       {
-        label: "Parkoviště lanovka Horní Hanychov",
-        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště lanovka Horní Hanychov Liberec")}`,
+        label: "Parkoviště P1",
+        url: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště P1 Ještěd Liberec")}`,
         note: "Dole pod Ještědem",
       },
     ],
