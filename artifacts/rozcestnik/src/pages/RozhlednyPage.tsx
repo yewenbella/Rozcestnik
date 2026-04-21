@@ -21,6 +21,7 @@ const PAGE_SIZE = 24;
 
 const MAPS_OVERRIDES: Record<string, string> = {
   "bezdez": `https://maps.google.com/maps/search/${encodeURIComponent("Státní hrad Bezděz")}`,
+  "cerna-studnice": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Černá Studnice Smržovka")}`,
   "dubecko": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Dubečko Mírová pod Kozákovem")}`,
   "frydlant": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Frýdlant")}`,
   "hamstejn": `https://maps.google.com/maps/search/${encodeURIComponent("Rozhledna Hamštejn Koberovy")}`,
@@ -127,6 +128,29 @@ const TOWER_EXTRA: Record<string, TowerExtra> = {
     openingHours: "24/7",
     entrance: "Zdarma",
     stairs: 112,
+  },
+  "cerna-studnice": {
+    parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště Černá Studnice Smržovka")}`,
+    parkingPrice: "Parkování u areálu Černá Studnice · dle dostupných informací vyhrazené pro návštěvníky restaurace",
+    routeFromParking: "Z parkoviště přímo u areálu je rozhledna jen pár kroků. Při parkování níže v Horní Černé Studnici pokračujte po značené cestě k vrcholu Černá Studnice.",
+    openingHours: "",
+    entrance: "Dospělí: 50 Kč\nDěti do 15 let / senioři 60+ / ZTP: 30 Kč\nRodinné vstupné: 140 Kč",
+    stairs: 91,
+    schedule: {
+      1:  ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+      2:  ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+      3:  ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+      4:  ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+      5:  ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+      6:  ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+      7:  ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+      8:  ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+      9:  ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+      10: ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+      11: ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+      12: ["10–17", "10–17", "10–17", "10–17", "10–17", "10–16:30", "10–16:30"],
+    },
+    scheduleNote: "Otevírací doba se může měnit. Kiosek je otevřen pouze za hezkého počasí, aktuální stav je vhodné ověřit na cernastudnice.eu.",
   },
   "hermanice": {
     parkingUrl: `https://maps.google.com/maps/search/${encodeURIComponent("Parkoviště pod rozhlednou Heřmanice Frýdlant v Čechách")}`,
