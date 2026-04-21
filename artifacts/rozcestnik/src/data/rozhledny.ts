@@ -1755,7 +1755,7 @@ export const rozhledny: Rozhledna[] = [
     "url": "https://www.rozhlednovymrajem.cz/rozhledny/hruba-skala/",
     "kraj": ["Liberecký kraj",
       "Semily"],
-    "photo": "https://www.rozhlednovymrajem.cz/wp-content/gallery/netridene/hruba-skala/DSCF2698.JPG",
+    "photo": "https://primavylety.cz/wp-content/uploads/2025/01/IMG_0649-1024x736.jpg",
     "desc": "Zámek Hrubá Skála stojí jihovýchodně od Turnova na pískovcových skalních věžích v Českém ráji. Vznikl přestavbou středověkého hradu Skála a dnes slouží jako hotelový areál. Přístupná vyhlídková věž nabízí pohled na Hruboskalské skalní město, hrad Trosky, Kozákov, Tábor a okolní krajinu Českého ráje."
   },
   {
